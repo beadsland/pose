@@ -37,7 +37,7 @@
 -define(STDOUT(Format, What), stdout, pose_stdio:send_stdout(IO, Format, What)).
 -define(STDOUT(What), stdout, pose_stdio:send_stdout(IO, What)).
 
--define(FORMAT_ERLERR(What), format_erlerr, pose_stdio:format_erlerr(What)).
+-define(FORMAT_ERLERR(What), pose_stdio:format_erlerr(What)).
 
 % Debug is special case of Stderr
 -define(INIT_DEBUG, put(debug, IO#std.err)).
