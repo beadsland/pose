@@ -26,8 +26,6 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @todo spec API functions
-
 -module(pose_stdio).
 
 %%
@@ -36,7 +34,7 @@
 
 -include_lib("kernel/include/file.hrl").
 
--include("interface.hrl").
+-include("../include/interface.hrl").
 
 %%
 %% Exported Functions
