@@ -46,9 +46,6 @@
 -export([send_stderr/2, send_stderr/3, send_stdout/2, send_stdout/3,
          send_debug/2, format_erlerr/1]).
 
-% File Properties
--export([can_read/1, can_write/1, last_modified/1]).
-
 %%
 %% API Functions
 %%
