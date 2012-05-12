@@ -38,18 +38,18 @@
 %% dependency via `rebar.config':
 %%
 %% <blockquote>
-%% `{deps, [
+%% {deps, [
 %%    {pose, ".*",
 %%      {git, "git://github.com/beadsland/pose", {branch, master}}}
-%%   ]}'
+%%   ]}
 %% </blockquote>
 %%
 %% Any module that uses `pose' macros should then include the `pose'
 %% interface header file:
 %%
 %% <blockquote>
-%% `%-define(debug, true).'<br />
-%% `-include("pose/include/interface.hrl").'
+%% %-define(debug, true).<br />
+%% -include("pose/include/interface.hrl").
 %% </blockquote>
 %%
 %% (The `debug' macro definition can be uncommented when `pose' debugging
@@ -69,7 +69,7 @@
 %% implementing I/O functionality as `IO', as in:
 %%
 %% <blockquote>
-%% `loop(IO, ...)'
+%% loop(IO, ...)
 %% </blockquote>
 %%
 %% Each I/O stream is a process that sends (in the case of `stdin') or

@@ -21,17 +21,20 @@ This is the POSIX-like interface emulation for use with the[`nosh`](http://githu
 
 `pose` should be included in any `nosh`-compatible project as a project
   dependency via `rebar.config`:
-<blockquote>`{deps, [
+<blockquote>
+  {deps, [
      {pose, ".*",
        {git, "git://github.com/beadsland/pose", {branch, master}}}
-    ]}`</blockquote>
+    ]}</blockquote>
 
 
 Any module that uses `pose` macros should then include the `pose`
 interface header file:
-<blockquote>`%-define(debug, true).`
+<blockquote>
+  %-define(debug, true).
 <br></br>
-`-include("pose/include/interface.hrl").`</blockquote>
+
+  -include("pose/include/interface.hrl").</blockquote>
 
 
 (The `debug` macro definition can be uncommented when `pose` debugging
@@ -49,7 +52,8 @@ Processes using the `pose` interface simulate POSIX-style
   standard I/O streams using the `#std{}` record.  The convention is to
   pass this record as the first parameter to functions performing or
   implementing I/O functionality as `IO`, as in:
-<blockquote>`loop(IO, ...)`</blockquote>
+<blockquote>
+  loop(IO, ...)</blockquote>
 
 
 Each I/O stream is a process that sends (in the case of `stdin`) or
