@@ -41,12 +41,15 @@ else
 endif
 
 ONLINE	=	`$(PING) www.google.com 2>&1 >/dev/null; \
-			if [ "$$?" -eq "0" ]; then (echo yes); else (echo no); fi`
+			if [ "$$?" -eq "0" ]; then (echo yes); \
+			else (echo no); fi`
 
 HIDE_EDOC_WARN	=	grep -v "cannot handle URI.*edoc-info"
-SUCCINCT	=	grep -v "Entering directory" | grep -v "Leaving directory"
+SUCCINCT	=	grep -v "Entering directory" \
+				| grep -v "Leaving directory"
 
-ERL_PATH	= 	-pa deps/superl/ebin -pa ebin
+ERL_PATH	= 	-pa ebin
+SUPERL		=	-pa ../superl/ebin -s superl -s init stop
 
 #
 # Build rules start
@@ -57,7 +60,9 @@ all:	push good
 run:	current good
 
 good:	compile
-	@erl $(ERL_PATH) -i deps -noshell -s superl -s init stop
+	@if [ "$(DEV)" == yes ]; \
+		then (erl $(ERL_PATH) -i deps -noshell $(SUPERL)); \
+		else (echo Good only in development); fi 
 		
 compile:
 	@rebar compile doc | $(HIDE_EDOC_WARN) | $(SUCCINCT)
@@ -69,8 +74,8 @@ current:
 
 clean: 	online
 	@if [ "$(ONLINE)" == yes ]; \
-			then (rm -rf deps; rebar clean get-deps | $(SUCCINCT)); \
-			else (rebar clean | $(SUCCINCT)); fi
+		then (rm -rf deps; rebar clean get-deps | $(SUCCINCT)); \
+		else (rebar clean | $(SUCCINCT)); fi
 	
 online:	
 	@if [ "$(ONLINE)" == yes ]; \

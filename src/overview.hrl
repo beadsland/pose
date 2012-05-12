@@ -52,8 +52,8 @@
 %% `-include("pose/include/interface.hrl").'
 %% </blockquote>
 %%
-%% (The `debug' macro can be uncommented when `pose' debugging output is
-%% to be included on `stderr'.)
+%% (The `debug' macro definition can be uncommented when `pose' debugging
+%% output is to be included on `stderr'.)
 %%
 %% Any application using the `pose' interface must initialize `pose'
 %% with the `?INIT_POSE' macro before other macros can be used.

@@ -1,6 +1,7 @@
 
 
 #Module pose_stdio#
+
 * [Description](#description)
 * [Data Types](#types)
 * [Function Index](#index)
@@ -8,8 +9,6 @@
 
 
 Standard I/O functions underlying interface.hrl macros.
-
-
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 
@@ -53,12 +52,8 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ###format_erlerr/1##
 
 
-
-
 <pre>format_erlerr(What::any()) -&gt; string()</pre>
 <br></br>
-
-
 
 
 Smartly format erlerr messages.<a name="send_debug-2"></a>
@@ -66,12 +61,8 @@ Smartly format erlerr messages.<a name="send_debug-2"></a>
 ###send_debug/2##
 
 
-
-
 <pre>send_debug(Format::<a href="#type-format">format()</a>, What::list()) -> ok</pre>
 <br></br>
-
-
 
 
 Smart DEBUG/2 macro function.
@@ -80,12 +71,8 @@ Retrieves debug pid from process dictionary.  (Set by macro.)<a name="send_stder
 ###send_stderr/2##
 
 
-
-
 <pre>send_stderr(IO::#std{}, What::<a href="#type-output">output()</a>) -> ok</pre>
 <br></br>
-
-
 
 
 Smart STDERR/1 macro function.<a name="send_stderr-3"></a>
@@ -93,12 +80,8 @@ Smart STDERR/1 macro function.<a name="send_stderr-3"></a>
 ###send_stderr/3##
 
 
-
-
 <pre>send_stderr(IO::#std{}, Format::<a href="#type-format">format()</a>, What::list()) -> ok</pre>
 <br></br>
-
-
 
 
 Smart STDERR/2 macro function.<a name="send_stdout-2"></a>
@@ -106,12 +89,8 @@ Smart STDERR/2 macro function.<a name="send_stdout-2"></a>
 ###send_stdout/2##
 
 
-
-
 <pre>send_stdout(IO::#std{}, What::<a href="#type-output">output()</a>) -> ok</pre>
 <br></br>
-
-
 
 
 Smart STDOUT/1 macro function.<a name="send_stdout-3"></a>
@@ -119,12 +98,8 @@ Smart STDOUT/1 macro function.<a name="send_stdout-3"></a>
 ###send_stdout/3##
 
 
-
-
 <pre>send_stdout(IO::#std{}, Format::<a href="#type-format">format()</a>, What::list()) -> ok</pre>
 <br></br>
-
-
 
 
 Smart STDOUT/2 macro function.
