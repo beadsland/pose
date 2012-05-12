@@ -3,5 +3,4 @@
 doc/
 !doc/*.md
 !doc/*.edoc
-
 /deps
