@@ -151,6 +151,4 @@
 %%      `stderr' process.  Otherwise, quietly do nothing. </td></tr>
 %% </table>
 %%
-%% <i>Draft documentation to be finished tomorrow.</i>
-%%
 %% @end

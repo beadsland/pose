@@ -92,7 +92,7 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
        printing to console. </td></tr><tr><td> <code>?DEBUG(Format :: format(), What :: list())</code> </td><td> If <code>debug</code> macro is <code>true</code>, send an <code>io_lib:format/2</code> formatted,<code>debug</code> tagged message to <code>stderr</code> process.  Otherwise, quietly
        do nothing. </td></tr><tr><td> <code>?DEBUG(What :: string())</code> </td><td> If <code>debug</code> macro is <code>true</code>, send a <code>debug</code> tagged message to<code>stderr</code> process.  Otherwise, quietly do nothing. </td></tr></table>
 
-_Draft documentation to be finished tomorrow._
+
 
 ##Modules##
 
