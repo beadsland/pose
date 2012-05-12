@@ -36,7 +36,7 @@
 
 -include_lib("kernel/include/file.hrl").
 
--include("../include/interface.hrl").
+-include("interface.hrl").
 
 %%
 %% Exported Functions

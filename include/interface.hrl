@@ -32,9 +32,11 @@
 -define(IO(Pid), #std{in=Pid, out=Pid, err=Pid}).
 
 -import(pose_stdio).  % May be used by packaged modules.
--define(STDERR(Format, What), stderr, pose_stdio:send_stderr(IO, Format, What)).
+-define(STDERR(Format, What),
+        stderr, pose_stdio:send_stderr(IO, Format, What)).
 -define(STDERR(What), stderr, pose_stdio:send_stderr(IO, What)).
--define(STDOUT(Format, What), stdout, pose_stdio:send_stdout(IO, Format, What)).
+-define(STDOUT(Format, What),
+        stdout, pose_stdio:send_stdout(IO, Format, What)).
 -define(STDOUT(What), stdout, pose_stdio:send_stdout(IO, What)).
 
 -define(FORMAT_ERLERR(What), pose_stdio:format_erlerr(What)).
