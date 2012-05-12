@@ -61,27 +61,7 @@ Each I/O stream is a process that sends (in the case of `stdin`) or
 message queues simulate POSIX buffers.  The pids of each standard I/O
 process can be addressed as follows:
 
-<dt> Standard input </dt>
-
- 
-
-<dd> <code>IO#std.in</code> </dd>
-
-
-
-<dt> Standard output </dt>
-
- 
-
-<dd> <code>IO#std.out</code> </dd>
-
-
-
-<dt> Standard error </dt>
-
- 
-
-<dd> <code>IO#std.err</code> </dd>
+<table><tr><td> Standard input </td> <td> <code>IO#std.in</code> </td></tr><tr><td> Standard output </td> <td> <code>IO#std.out</code> </td></tr><tr><td> Standard error </td> <td> <code>IO#std.err</code> </td></tr></table>
 
 
 
@@ -100,7 +80,17 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
 
 <table><tr><td> <code>?INIT_POSE</code> </td><td> Initialize the <code>pose</code> interface.  Must be called when any
        pose-compatible application starts. </td></tr><tr><td> <code>?INIT_DEBUG</code> </td><td> Initialize the <code>pose</code> debug stream.  Must be called at the
-       beginning of any pose-compatible process. </td></tr><tr><td> <code>?IO(Pid :: pid())</code> </td><td> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and<code>stderr</code> to Pid </td></tr></table>
+       beginning of any pose-compatible process. </td></tr><tr><td> <code>?IO(Pid :: pid()) -> #std{}</code> </td><td> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and<code>stderr</code> to Pid </td></tr><tr><td> <code>?IO(In :: pid(), Out :: pid(), Err :: pid()) -> #std{}</code> </td><td> Create a <code>pose</code> I/O record. </td></tr><tr><td> <code>?IO(In :: pid(), Out :: pid(), Err :: pid(), Echo :: boolean())
+       -> #std{}</code> </td><td> <i>Deprecated.</i>  Create a <code>pose</code> IO record, setting the echo
+       flag.  Setting the flag to <code>true</code> indicates that the process run
+       with this IO record should echo <code>stdin</code> back to <code>stdout</code>.  Defaults
+       to false. </td></tr><tr><td> <code>?STDOUT(Format :: format(), What :: list())</code> </td><td> Send a <code>io_lib:format/2` formatted `string()</code> message to <code>stdout</code>
+       process. </td></tr><tr><td> <code>?STDOUT(What :: string() | tuple() | atom())</code> </td><td> Send either a <code>string()</code> message to <code>stdout</code> process or an <code>erlout</code>
+       tagged message to the same process. </td></tr><tr><td> <code>?STDERR(Format :: format(), What :: list())</code> </td><td> Send a <code>io_lib:format/2` formatted `string()</code> message to <code>stderr</code>
+       process. </td></tr><tr><td> <code>?STDERR(What :: string() | tuple() | atom())</code> </td><td> Send either a <code>string()</code> message to <code>stderr</code> process or an <code>erlerr</code>
+       tagged message to the same process. </td></tr><tr><td> <code>?ERLERR_FORMAT(What :: any()) -> string()</code> </td><td> Format <code>erlerr</code> type message data as an easy-to-read string for
+       printing to console. </td></tr><tr><td> <code>?DEBUG(Format :: format(), What :: list())</code> </td><td> If <code>debug</code> macro is <code>true</code>, send an <code>io_lib:format/2</code> formatted,<code>debug</code> tagged message to <code>stderr</code> process.  Otherwise, quietly
+       do nothing. </td></tr><tr><td> <code>?DEBUG(What :: string())</code> </td><td> If <code>debug</code> macro is <code>true</code>, send a <code>debug</code> tagged message to<code>stderr</code> process.  Otherwise, quietly do nothing. </td></tr></table>
 
 _Draft documentation to be finished tomorrow._
 

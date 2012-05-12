@@ -77,11 +77,11 @@
 %% message queues simulate POSIX buffers.  The pids of each standard I/O
 %% process can be addressed as follows:
 %%
-%% <dl>
-%% <dt> Standard input </dt> <dd> `IO#std.in' </dd>
-%% <dt> Standard output </dt> <dd> `IO#std.out' </dd>
-%% <dt> Standard error </dt> <dd> `IO#std.err' </dd>
-%% </dl>
+%% <table>
+%% <tr><td> Standard input </td> <td> `IO#std.in' </td></tr>
+%% <tr><td> Standard output </td> <td> `IO#std.out' </td></tr>
+%% <tr><td> Standard error </td> <td> `IO#std.err' </td></tr>
+%% </table>
 %%
 %% Messages from and to `pose' processes are of the form
 %% `{Tag, SendingPid, Data}' and may be tagged as follows.
@@ -116,9 +116,39 @@
 %% <tr><td> `?INIT_DEBUG' </td>
 %% <td> Initialize the `pose' debug stream.  Must be called at the
 %%      beginning of any pose-compatible process. </td></tr>
-%% <tr><td> `?IO(Pid :: pid())' </td>
+%% <tr><td> `?IO(Pid :: pid()) -> #std{}' </td>
 %% <td> Create a `pose' I/O record, setting each of `stdin', `stdout' and
 %%      `stderr' to Pid </td></tr>
+%% <tr><td> `?IO(In :: pid(), Out :: pid(), Err :: pid()) -> #std{}' </td>
+%% <td> Create a `pose' I/O record. </td></tr>
+%% <tr><td> `?IO(In :: pid(), Out :: pid(), Err :: pid(), Echo :: boolean())
+%%      -> #std{}' </td>
+%% <td> <i>Deprecated.</i>  Create a `pose' IO record, setting the echo
+%%      flag.  Setting the flag to `true' indicates that the process run
+%%      with this IO record should echo `stdin' back to `stdout'.  Defaults
+%%      to false. </td></tr>
+%% <tr><td> `?STDOUT(Format :: format(), What :: list())' </td>
+%% <td> Send a `io_lib:format/2` formatted `string()' message to `stdout'
+%%      process. </td></tr>
+%% <tr><td> `?STDOUT(What :: string() | tuple() | atom())' </td>
+%% <td> Send either a `string()' message to `stdout' process or an `erlout'
+%%      tagged message to the same process. </td></tr>
+%% <tr><td> `?STDERR(Format :: format(), What :: list())' </td>
+%% <td> Send a `io_lib:format/2` formatted `string()' message to `stderr'
+%%      process. </td></tr>
+%% <tr><td> `?STDERR(What :: string() | tuple() | atom())' </td>
+%% <td> Send either a `string()' message to `stderr' process or an `erlerr'
+%%      tagged message to the same process. </td></tr>
+%% <tr><td> `?ERLERR_FORMAT(What :: any()) -> string()' </td>
+%% <td> Format `erlerr' type message data as an easy-to-read string for
+%%      printing to console. </td></tr>
+%% <tr><td> `?DEBUG(Format :: format(), What :: list())' </td>
+%% <td> If `debug' macro is `true', send an `io_lib:format/2' formatted,
+%%      `debug' tagged message to `stderr' process.  Otherwise, quietly
+%%      do nothing. </td></tr>
+%% <tr><td> `?DEBUG(What :: string())' </td>
+%% <td> If `debug' macro is `true', send a `debug' tagged message to
+%%      `stderr' process.  Otherwise, quietly do nothing. </td></tr>
 %% </table>
 %%
 %% <i>Draft documentation to be finished tomorrow.</i>
