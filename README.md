@@ -87,44 +87,9 @@ process can be addressed as follows:
 
 Messages from and to `pose` processes are of the form`{Tag, SendingPid, Data}` and may be tagged as follows.
 
-<dt> <code>stdout</code> </dt>
-
-
-
-<dd> A <code>string()</code> for printing by the console process. </dd>
-
-
-
-<dt> <code>stderr</code> </dt>
-
-
-
-<dd> A <code>string()</code> for printing as an error message by the console process.</dd>
-
-
-
-<dt> <code>debug</code> </dt>
-
-
-
-<dd> A <code>string()</code> for printing as an debug message by the console process.</dd>
-
-
-
-<dt> <code>erlout</code> </dt>
-
-
-
-<dd> An <code>atom()</code> or <code>tuple()</code> for pretty printing by the console process.</dd>
-
-
-
-<dt> <code>erlerr</code> </dt>
-
-
-
-<dd> An <code>atom()</code> or <code>tuple()</code> for pretty printing as an error message
-       by the console process.</dd>
+<table><tr><td> <code>stdout</code> </td><td> A <code>string()</code> for printing by the console process.</td></tr><tr><td> <code>stderr</code> </td><td> A <code>string()</code> for printing as an error message by the console
+       process. </td></tr><tr><td> <code>debug</code> </td><td> A <code>string()</code> for printing as an debug message by the console process.</td></tr><tr><td> <code>erlout</code> </td><td> An <code>atom()</code> or <code>tuple()</code> for pretty printing by the console process.</td></tr><tr><td> <code>erlerr</code> </td><td> An <code>atom()</code> or <code>tuple()</code> for pretty printing as an error message
+       by the console process. </td></tr></table>
 
 
 
@@ -133,29 +98,9 @@ Messages from and to `pose` processes are of the form`{Tag, SendingPid, Data}` a
 
 The `pose` interface provides a number of macros for use by`pose`-compatible modules.
 
-<dt> <code>?INIT_POSE</code> </dt>
-
-
-
-<dd> Initialize the <code>pose</code> interface.  Must be called when any
-  pose-compatible application starts. </dd>
-
-
-
-<dt> <code>?INIT_DEBUG</code> </dt>
-
-
-
-<dd> Initialize the <code>pose</code> debug stream.  Must be called at the
-  beginning of any pose-compatible process. </dd>
-
-
-
-<dt> <code>?IO(Pid :: pid())</code> </dt>
-
-
-
-<dd> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and<code>stderr</code> to Pid </dd>
+<table><tr><td> <code>?INIT_POSE</code> </td><td> Initialize the <code>pose</code> interface.  Must be called when any
+       pose-compatible application starts. </td></tr><tr><td> <code>?INIT_DEBUG</code> </td><td> Initialize the <code>pose</code> debug stream.  Must be called at the
+       beginning of any pose-compatible process. </td></tr><tr><td> <code>?IO(Pid :: pid())</code> </td><td> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and<code>stderr</code> to Pid </td></tr></table>
 
 _Draft documentation to be finished tomorrow._
 

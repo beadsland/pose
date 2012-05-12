@@ -86,40 +86,40 @@
 %% Messages from and to `pose' processes are of the form
 %% `{Tag, SendingPid, Data}' and may be tagged as follows.
 %%
-%% <dl>
-%% <dt> `stdout' </dt>
-%% <dd> A `string()' for printing by the console process. </dd>
-%% <dt> `stderr' </dt>
-%% <dd> A `string()' for printing as an error message by the console process.
-%% </dd>
-%% <dt> `debug' </dt>
-%% <dd> A `string()' for printing as an debug message by the console process.
-%% </dd>
-%% <dt> `erlout' </dt>
-%% <dd> An `atom()' or `tuple()' for pretty printing by the console process.
-%% </dd>
-%% <dt> `erlerr' </dt>
-%% <dd> An `atom()' or `tuple()' for pretty printing as an error message
-%%      by the console process.
-%% </dd>
-%% </dl>
+%% <table>
+%% <tr><td> `stdout' </td>
+%% <td> A `string()' for printing by the console process.
+%%      </td></tr>
+%% <tr><td> `stderr' </td>
+%% <td> A `string()' for printing as an error message by the console
+%%      process. </td></tr>
+%% <tr><td> `debug' </td>
+%% <td> A `string()' for printing as an debug message by the console process.
+%%      </td></tr>
+%% <tr><td> `erlout' </td>
+%% <td> An `atom()' or `tuple()' for pretty printing by the console process.
+%%      </td></tr>
+%% <tr><td> `erlerr' </td>
+%% <td> An `atom()' or `tuple()' for pretty printing as an error message
+%%      by the console process. </td></tr>
+%% </table>
 %%
 %% ==Macros==
 %%
 %% The `pose' interface provides a number of macros for use by
 %% `pose'-compatible modules.
 %%
-%% <dl>
-%% <dt> `?INIT_POSE' </dt>
-%% <dd> Initialize the `pose' interface.  Must be called when any
-%% pose-compatible application starts. </dd>
-%% <dt> `?INIT_DEBUG' </dt>
-%% <dd> Initialize the `pose' debug stream.  Must be called at the
-%% beginning of any pose-compatible process. </dd>
-%% <dt> `?IO(Pid :: pid())' </dt>
-%% <dd> Create a `pose' I/O record, setting each of `stdin', `stdout' and
-%% `stderr' to Pid </dd>
-%% </dl>
+%% <table>
+%% <tr><td> `?INIT_POSE' </td>
+%% <td> Initialize the `pose' interface.  Must be called when any
+%%      pose-compatible application starts. </td></tr>
+%% <tr><td> `?INIT_DEBUG' </td>
+%% <td> Initialize the `pose' debug stream.  Must be called at the
+%%      beginning of any pose-compatible process. </td></tr>
+%% <tr><td> `?IO(Pid :: pid())' </td>
+%% <td> Create a `pose' I/O record, setting each of `stdin', `stdout' and
+%%      `stderr' to Pid </td></tr>
+%% </table>
 %%
 %% <i>Draft documentation to be finished tomorrow.</i>
 %%
