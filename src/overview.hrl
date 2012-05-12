@@ -111,11 +111,8 @@
 %%
 %% <table>
 %% <tr><td> `?INIT_POSE' </td>
-%% <td> Initialize the `pose' interface.  Must be called when any
-%%      pose-compatible application starts. </td></tr>
-%% <tr><td> `?INIT_DEBUG' </td>
-%% <td> Initialize the `pose' debug stream.  Must be called at the
-%%      beginning of any pose-compatible process. </td></tr>
+%% <td> Initialize the `pose' interface.  Must be called by entry-function
+%%      of any `pose'-compatible process. </td></tr>
 %% <tr><td> `?IO(Pid :: pid()) -> #std{}' </td>
 %% <td> Create a `pose' I/O record, setting each of `stdin', `stdout' and
 %%      `stderr' to Pid </td></tr>
@@ -129,26 +126,31 @@
 %%      to false. </td></tr>
 %% <tr><td> `?STDOUT(Format :: format(), What :: list())' </td>
 %% <td> Send a `io_lib:format/2` formatted `string()' message to `stdout'
-%%      process. </td></tr>
+%%      process.
+%%      <i>Only available to functions with an IO parameter.</i></td></tr>
 %% <tr><td> `?STDOUT(What :: string() | tuple() | atom())' </td>
 %% <td> Send either a `string()' message to `stdout' process or an `erlout'
-%%      tagged message to the same process. </td></tr>
+%%      tagged message to the same process.
+%%      <i>Only available to functions with an IO parameter.</i></td></tr>
 %% <tr><td> `?STDERR(Format :: format(), What :: list())' </td>
 %% <td> Send a `io_lib:format/2` formatted `string()' message to `stderr'
-%%      process. </td></tr>
+%%      process.
+%%      <i>Only available to functions with an IO parameter.</i></td></tr>
 %% <tr><td> `?STDERR(What :: string() | tuple() | atom())' </td>
 %% <td> Send either a `string()' message to `stderr' process or an `erlerr'
-%%      tagged message to the same process. </td></tr>
+%%      tagged message to the same process.
+%%      <i>Only available to functions with an IO parameter.</i></td></tr>
 %% <tr><td> `?ERLERR_FORMAT(What :: any()) -> string()' </td>
 %% <td> Format `erlerr' type message data as an easy-to-read string for
 %%      printing to console. </td></tr>
 %% <tr><td> `?DEBUG(Format :: format(), What :: list())' </td>
 %% <td> If `debug' macro is `true', send an `io_lib:format/2' formatted,
 %%      `debug' tagged message to `stderr' process.  Otherwise, quietly
-%%      do nothing. </td></tr>
+%%      do nothing. <i>Does not require IO parameter.</i></td></tr>
 %% <tr><td> `?DEBUG(What :: string())' </td>
 %% <td> If `debug' macro is `true', send a `debug' tagged message to
-%%      `stderr' process.  Otherwise, quietly do nothing. </td></tr>
+%%      `stderr' process.  Otherwise, quietly do nothing.
+%%      <i>Does not require IO parameter.</i></td></tr>
 %% </table>
 %%
 %% @end

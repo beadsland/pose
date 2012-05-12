@@ -22,7 +22,9 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
--define(INIT_POSE, init_pose, code:add_patha("deps/pose/ebin")).
+-define(INIT_POSE, init_pose, process_flag(trap_exit, true),
+                   code:add_patha("deps/pose/ebin"),
+                   put(debug, IO#std.err)).
 
 -record(std, {in = self() :: pid(), out = self() :: pid(),
               err = self() :: pid(), echo = false :: boolean()}).
@@ -41,8 +43,7 @@
 
 -define(FORMAT_ERLERR(What), pose_stdio:format_erlerr(What)).
 
-% Debug is special case of Stderr
--define(INIT_DEBUG, put(debug, IO#std.err)).
+% ?DEBUG is a special case of ?STDERR
 -ifdef(debug).
 -define(DEBUG(Format, What), debug, pose_stdio:send_debug(Format, What)).
 -else.
