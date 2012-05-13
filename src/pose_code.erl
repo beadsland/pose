@@ -387,7 +387,7 @@ get_otp_package(_BinDir, Path) ->
 
 get_otp_includes(BinDir) ->
   case pose_file:find_parallel_folder("ebin", "_temp_", BinDir) of
-    {true, TempDir, _Project}   ->
+    {true, TempDir}   ->
       {ok, get_otp_includes(TempDir, ["deps", "apps"]) ++
         get_otp_includes("deps", ["deps"])};
     {false, BinDir}             ->
