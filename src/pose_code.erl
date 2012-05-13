@@ -369,21 +369,18 @@ do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, _Package, Binary) ->
 
 %% @todo make this chdir safe
 get_otp_package(BinDir) ->
-  ?DEBUG("get_otp_package(~p)~n", [BinDir]),
-  AbsBin = filename:absname("ebin"),
-  if BinDir == AbsBin ->
-        "ebin";
-     true                                ->
-        Split = re:split(BinDir, "/", [{return, list}]),
-        get_otp_package(BinDir, Split)
+  Pwd = filename:absname(""),
+  {ok, MP} = re:compile("^" ++ Pwd ++ "/(.*)$"),
+  case re:run(BinDir, MP, [{return, list}, {capture, [1]}]) of
+    nomatch         -> {error, off_pwd};
+    {match, [Path]} -> get_otp_package(BinDir, Path)
   end.
 
-get_otp_package(_BinDir, []) -> {error, no_otp_path};
-get_otp_package(BinDir, [Head | Tail]) ->
-  if Head == "deps";
-     Head == "apps" -> {ok, string:join(Tail, "/")};
-     true           -> get_otp_package(BinDir, Tail)
-  end.
+get_otp_package(_BinDir, Path) ->
+  Package = re:replace(Path, "\/", ".", [{return, list}]),
+  ?DEBUG(Package),
+  Package.
+
 
 %%%
 % Get OTP standard include paths
