@@ -94,7 +94,7 @@
 start(Command) ->
   IO = ?IO(self()),
   ?INIT_POSE,
-  ?DEBUG("starting ~p", [Command]),
+  io:format("pose: starting ~p~n", [Command]),
   case load(Command) of
     {module, Module, Warning}   -> io:format("pose: warn: ~p~n", [Warning]),
                                    do_start(IO, Module);
@@ -105,7 +105,7 @@ start(Command) ->
   end.
 
 %% Locate command on PATH, load from file if newer than currently loaded.
--type command() :: string() | atom().
+-type command() :: nonempty_string() | atom().
 -type load_warn() :: diff_path | flat_pkg.
 -type error() :: atom() | {atom(), error()}.
 -type load_err() :: {load, error()} | {slurp, error()} | error().
@@ -116,6 +116,7 @@ start(Command) ->
 %% @todo get PATH from environment
 load(Command) when is_atom(Command) -> load(atom_to_list(Command));
 load(Command) ->
+  io:format("command: ~p~n", [Command]),
   Path = [filename:absname("ebin"), filename:absname("deps/superl/ebin")],
   load(Command, Path).
 
