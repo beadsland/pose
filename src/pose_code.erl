@@ -324,21 +324,27 @@ ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj, SrcMod, BinMod) ->
 % Make sure we've got a directory to write to.
 do_compile(SrcDir, Cmd, Project, BinDir)  ->
   case file:make_dir(BinDir) of
-    ok				-> do_compile(SrcDir, Cmd, Project, BinDir, true);
-    {error, eexist} -> do_compile(SrcDir, Cmd, Project, BinDir, true);
+    ok				-> do_compile(SrcDir, Cmd, Project, BinDir, true_dir);
+    {error, eexist} -> do_compile(SrcDir, Cmd, Project, BinDir, true_dir);
     {error, What}	-> {error, {What, BinDir}}
   end.
 
 % Compile to a binary in memory.
-do_compile(SrcDir, Cmd, Project, BinDir, true) ->
+do_compile(SrcDir, Cmd, Project, BinDir, true_dir) ->
   case get_otp_includes(BinDir) of
     {error, What}   -> {error, {includes, What}};
-    InclList        -> do_compile(SrcDir, Cmd, Project, BinDir, InclList)
+    {ok, InclList}  -> do_compile(SrcDir, Cmd, Project, BinDir, InclList)
   end;
 do_compile(SrcDir, Cmd, Project, BinDir, InclList) ->
-  ?DEBUG("InclList = ~p~n", [InclList]),
+  case get_otp_package(BinDir) of
+    {error, What}   -> {error, {package, What}};
+    {ok, Package}   -> do_compile(SrcDir, Cmd, Project, BinDir, InclList,
+                                  Package)
+  end.
+
+do_compile(SrcDir, Cmd, Project, BinDir, InclList, Package) ->
   Options = [verbose, warnings_as_errors, return_errors, binary,
-            {d, package, Project}, {outdir, BinDir}] ++ InclList,
+            {d, package, Package}, {outdir, BinDir}] ++ InclList,
   Filename = ?FILENAME(SrcDir, Cmd, ".erl"),
   case compile:file(Filename, Options) of
     error						->
@@ -346,15 +352,30 @@ do_compile(SrcDir, Cmd, Project, BinDir, InclList) ->
     {error, Errors, Warnings}	->
       {error, {compile, {Errors, Warnings}}};
     {ok, ModuleName, Binary} 	->
-      do_compile(SrcDir, Cmd, Project, BinDir, ModuleName, Binary)
+      do_compile(SrcDir, Cmd, Project, BinDir, ModuleName, Package, Binary)
   end.
 
 % Write our binary out to file.
-do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, Binary) ->
+do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, _Package, Binary) ->
   Outfile = ?FILENAME(BinDir, Cmd, ".beam"),
   case file:write_file(Outfile, Binary) of
     {error, What}	-> {error, {What, Outfile}};
     ok				-> {ok, ModuleName, Binary}
+  end.
+
+%%%
+% Get OTP compliant package
+%%%
+
+get_otp_package(BinDir) ->
+  Split = re:split(BinDir, "/", [{return, list}]),
+  get_otp_package(BinDir, Split).
+
+get_otp_package(_BinDir, []) -> {error, no_otp_package};
+get_otp_package(BinDir, [Head | Tail]) ->
+  if Head == "deps";
+     Head == "apps" -> {ok, string:join(Tail, "/")};
+     true           -> get_otp_package(BinDir, Tail)
   end.
 
 %%%
@@ -364,8 +385,8 @@ do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, Binary) ->
 get_otp_includes(BinDir) ->
   case pose_file:find_parallel_folder("ebin", "_temp_", BinDir) of
     {true, TempDir, _Project}   ->
-      get_otp_includes(TempDir, ["deps", "apps"]) ++
-        get_otp_includes("deps", ["deps"]);
+      {ok, get_otp_includes(TempDir, ["deps", "apps"]) ++
+        get_otp_includes("deps", ["deps"])};
     {false, BinDir}             ->
       {error, not_otp}
   end.
@@ -387,14 +408,14 @@ get_otp_includes(TempDir, [Head | Tail]) ->
  parallel_src(BinDir, Cmd) ->
   ?DEBUG("Seeking parallel src\n"),
   case pose_file:find_parallel_folder("ebin", "src", BinDir) of
-    {true, SrcPath, Pkg} -> parallel_src(BinDir, Cmd, SrcPath, Pkg);
-    _Else				 -> ?DEBUG("Didn't find parallel src\n"), nosrc
+    {true, SrcPath, Proj} -> parallel_src(BinDir, Cmd, SrcPath, Proj);
+    _Else				  -> ?DEBUG("Didn't find parallel src\n"), nosrc
   end.
 
 % Confirm it's readable and return result.
-parallel_src(_BinDir, Command, SrcDir, Package) ->
+parallel_src(_BinDir, Command, SrcDir, Project) ->
   Filename = ?FILENAME(SrcDir, Command, ".erl"),
   case pose_file:can_read(Filename) of
-    true 	-> {ok, SrcDir, Package};
+    true 	-> {ok, SrcDir, Project};
     false 	-> nosrc
   end.
