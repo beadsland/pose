@@ -116,7 +116,11 @@ start([Command]) ->
 %% @todo get PATH from environment
 load(Command) when is_atom(Command) -> load(atom_to_list(Command));
 load(Command) ->
-  Path = [filename:absname("ebin"), filename:absname("deps/superl/ebin")],
+  Path = [filename:absname("ebin"),
+          filename:absname("deps/superl/ebin"),
+          filename:absname("deps/bin/ebin"),
+          filename:absname("deps/erl/ebin"),
+          filename:absname("deps/nosql/ebin")],
   load(Command, Path).
 
 %%
