@@ -107,9 +107,7 @@ last_modified(Filename) ->
 -type path_string() :: nonempty_string().
 -type path_list() :: {folders, [folder()]}.
 -type path() :: path_string() | path_list().
--type project() :: atom().
--type parallel_result() :: {false, path_string()} | {true, path_string()}
-                           | {true, path_string(), project()}.
+-type parallel_result() :: {false, path_string()} | {true, path_string()}.
 -spec find_parallel_folder(OldFlder :: folder(), NewFolder :: folder(),
                            OldPath :: path()) -> parallel_result().
 %
@@ -127,9 +125,7 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
     {false, OldDir}                         ->
       {false, lists:append([Head, "/", OldDir])};
     {true, NewDir}                          ->
-      {true, lists:append([Head, "/", NewDir]), list_to_atom(Head)};
-    {true, NewDir, Project}                 ->
-      {true, lists:append([Head, "/", NewDir]), Project}
+      {true, lists:append([Head, "/", NewDir])}
   end.
 
 %%

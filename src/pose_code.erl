@@ -283,12 +283,19 @@ ensure_compiled(Cmd, Dir, Force, write_dir) ->
     true			-> ensure_compiled(Cmd, Dir, Force, write_both)
   end;
 
-% Find our source file, and if none found, confirm there is even a binary.
+% Find any source file, and get modification date of same.
 ensure_compiled(Cmd, BinDir, Force, write_both) ->
   case parallel_src(BinDir, Cmd) of
-    nosrc					-> ensure_binary(Cmd, BinDir, nosrc);
-    {ok, SrcDir, Project}	-> ensure_compiled(Cmd, BinDir, Force, SrcDir,
-                                               Project)
+    nosrc			-> ensure_binary(Cmd, BinDir, nosrc);
+    {ok, SrcDir}	-> ensure_compiled(Cmd, BinDir, Force, SrcDir)
+  end;
+ensure_compiled(Cmd, BinDir, Force, SrcDir) ->
+  SrcFile = ?FILENAME(SrcDir, Cmd, ".erl"),
+  case pose_file:last_modified(SrcFile) of
+    {error, What}   ->
+      {error, {file, What}};
+    SrcMod          ->
+      ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod)
   end.
 
 % If we can't compile from source file, confirm we can use binary we have.
@@ -298,54 +305,43 @@ ensure_binary(Cmd, Dir, Why) ->
        true           -> {info, nobin}  % i.e., search next dir in path
     end.
 
-% Get modification date of source file.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj) ->
-  SrcFile = ?FILENAME(SrcDir, Cmd, ".erl"),
-  case pose_file:last_modified(SrcFile) of
-    {error, What}	->
-      {error, {file, What}};
-    SrcMod			->
-      ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj, SrcMod)
-  end.
-
 % Get modification date of binary file.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj, SrcMod) ->
+ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod) ->
   BinFile = ?FILENAME(BinDir, Cmd, ".beam"),
   case pose_file:last_modified(BinFile) of
     {error, What}	->
       {error, {file, What}};
     BinMod 			->
-      ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj, SrcMod, BinMod)
+      ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinMod)
   end.
 
 % Compare modification dates and compile if source is newer.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj, SrcMod, BinMod) ->
-  if SrcMod > BinMod; Force	-> do_compile(SrcDir, Cmd, Proj, BinDir);
+ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinMod) ->
+  if SrcMod > BinMod; Force	-> do_compile(SrcDir, Cmd, BinDir);
      true				    -> {ok, ?FILENAME(BinDir, Cmd, ".beam")}
   end.
 
 % Make sure we've got a directory to write to.
-do_compile(SrcDir, Cmd, Project, BinDir)  ->
+do_compile(SrcDir, Cmd, BinDir)  ->
   case file:make_dir(BinDir) of
-    ok				-> do_compile(SrcDir, Cmd, Project, BinDir, true_dir);
-    {error, eexist} -> do_compile(SrcDir, Cmd, Project, BinDir, true_dir);
+    ok				-> do_compile(SrcDir, Cmd, BinDir, true_dir);
+    {error, eexist} -> do_compile(SrcDir, Cmd, BinDir, true_dir);
     {error, What}	-> {error, {What, BinDir}}
   end.
 
 % Compile to a binary in memory.
-do_compile(SrcDir, Cmd, Project, BinDir, true_dir) ->
+do_compile(SrcDir, Cmd, BinDir, true_dir) ->
   case get_otp_includes(BinDir) of
     {error, What}   -> {error, {includes, What}};
-    {ok, InclList}  -> do_compile(SrcDir, Cmd, Project, BinDir, InclList)
+    {ok, InclList}  -> do_compile(SrcDir, Cmd, BinDir, InclList)
   end;
-do_compile(SrcDir, Cmd, Project, BinDir, InclList) ->
+do_compile(SrcDir, Cmd, BinDir, InclList) ->
   case get_otp_package(BinDir) of
     {error, What}   -> {error, {package, What}};
-    {ok, Package}   -> do_compile(SrcDir, Cmd, Project, BinDir, InclList,
-                                  Package)
+    {ok, Package}   -> do_compile(SrcDir, Cmd, BinDir, InclList, Package)
   end.
 
-do_compile(SrcDir, Cmd, Project, BinDir, InclList, Package) ->
+do_compile(SrcDir, Cmd, BinDir, InclList, Package) ->
   Options = [verbose, warnings_as_errors, return_errors, binary,
             {d, package, Package}, {outdir, BinDir}] ++ InclList,
   Filename = ?FILENAME(SrcDir, Cmd, ".erl"),
@@ -355,11 +351,11 @@ do_compile(SrcDir, Cmd, Project, BinDir, InclList, Package) ->
     {error, Errors, Warnings}	->
       {error, {compile, {Errors, Warnings}}};
     {ok, ModuleName, Binary} 	->
-      do_compile(SrcDir, Cmd, Project, BinDir, ModuleName, Package, Binary)
+      do_compile(SrcDir, Cmd, BinDir, ModuleName, Package, Binary)
   end.
 
 % Write our binary out to file.
-do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, _Package, Binary) ->
+do_compile(_SrcDir, Cmd, BinDir, ModuleName, _Package, Binary) ->
   Outfile = ?FILENAME(BinDir, Cmd, ".beam"),
   case file:write_file(Outfile, Binary) of
     {error, What}	-> {error, {What, Outfile}};
@@ -415,14 +411,14 @@ get_otp_includes(TempDir, [Head | Tail]) ->
  parallel_src(BinDir, Cmd) ->
   ?DEBUG("Seeking parallel src\n"),
   case pose_file:find_parallel_folder("ebin", "src", BinDir) of
-    {true, SrcPath, Proj} -> parallel_src(BinDir, Cmd, SrcPath, Proj);
-    _Else				  -> ?DEBUG("Didn't find parallel src\n"), nosrc
+    {true, SrcPath} -> parallel_src(BinDir, Cmd, SrcPath);
+    _Else	        -> ?DEBUG("Didn't find parallel src\n"), nosrc
   end.
 
 % Confirm it's readable and return result.
-parallel_src(_BinDir, Command, SrcDir, Project) ->
+parallel_src(_BinDir, Command, SrcDir) ->
   Filename = ?FILENAME(SrcDir, Command, ".erl"),
   case pose_file:can_read(Filename) of
-    true 	-> {ok, SrcDir, Project};
+    true 	-> {ok, SrcDir};
     false 	-> nosrc
   end.
