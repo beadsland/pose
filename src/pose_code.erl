@@ -73,10 +73,10 @@
 %% Exported functions
 %%
 
--export([run/2]).
+-export([load/1]).
 
 % exposed for use by nosh_test
--export([run/3]).
+-export([load/2]).
 
 %%
 %% API functions
@@ -84,15 +84,18 @@
 
 %% Locate command on PATH, load from file if newer than currently loaded.
 -type command() :: string() | atom().
--spec run(IO :: #std{}, Command :: command()) ->
-        {module, module()} | {error, any()}.
+-type load_warn() :: diff_path | flat_pkg.
+-type error() :: atom() | {atom(), error()}.
+-type load_err() :: {load, error()} | {slurp, error()} | error().
+-type load_rtn() :: {module, module()} | {module, module(), load_warn()}
+                    | {error, load_err()}.
+-spec load(Command :: command()) -> load_rtn().
 %% @todo refactor as a no_return with all output on stdout/stderr
 %% @todo get PATH from environment
-run(IO, Command) when is_atom(Command) -> run(IO, atom_to_list(Command));
-run(IO, Command) ->
-  ?INIT_POSE,
+load(Command) when is_atom(Command) -> load(atom_to_list(Command));
+load(Command) ->
   Path = [filename:absname("ebin"), filename:absname("deps/superl/ebin")],
-  run(IO, Command, Path).
+  load(Command, Path).
 
 %%
 %% Local functions
@@ -100,35 +103,32 @@ run(IO, Command) ->
 
 % Iterate over path list in search of command.
 % @hidden
-run(_IO, _Command, []) -> {error, notfound};
-run(IO, Command, [Head | Tail]) ->
+load(_Command, []) -> {error, notfound};
+load(Command, [Head | Tail]) ->
   case ensure_compiled(Command, Head) of
-    {info, nobin}           -> run(IO, Command, Tail);
+    {info, nobin}           -> load(Command, Tail);
     {info, Info}            -> ?DEBUG("l: ~p~n", [Info]),
-                               run(IO, Command, Head, slurp);
+                               load(Command, Head, slurp);
     {ok, Filename}			-> ?DEBUG("l: ~s~n", [Filename]),
-                               run(IO, Command, Head, slurp);
+                               load(Command, Head, slurp);
     {ok, Module, Binary}	-> ?DEBUG("l: ~p~n", [Module]),
-                               run(IO, Command, Head, Module, Binary);
-    {error, What}			-> ?STDERR({load, What}),
-                               {error, {load, What}}
+                               load(Command, Head, Module, Binary);
+    {error, What}			-> {error, {load, What}}
   end.
 
 % Having found command, slurp binary from file.
-run(IO, Command, Dir, slurp) ->
+load(Command, Dir, slurp) ->
   Filename = ?FILENAME(Dir, Command, ".beam"),
   case pose_beam:slurp_binary(Filename) of
-    {ok, Module, Binary}	-> run(IO, Command, Dir, Module, Binary);
+    {ok, Module, Binary}	-> load(Command, Dir, Module, Binary);
     {error, What}			-> {error, {slurp, What}}
   end.
 
 % Load new current module from binary.
-run(IO, Command, Dir, OrigModule, Binary) ->
-  case run_load(Command, Dir, OrigModule, Binary) of
-    {ok, Module, diff_path}	-> ?STDERR({Module, "namespace collision"}),
-                               {module, Module};
-    {ok, Module, flat_pkg} 	-> ?STDERR({Module, "flat package unsafe"}),
-                               {module, Module};
+load(Command, Dir, OrigModule, Binary) ->
+  case do_load(Command, Dir, OrigModule, Binary) of
+    {ok, Module, diff_path}	-> {module, Module, diff_path};
+    {ok, Module, flat_pkg} 	-> {module, Module, flat_pkg};
     {ok, Module}			-> ?DEBUG("got module: ~p~n", [Module]),
                                {module, Module};
     {error, What}			-> {error, What}
@@ -139,27 +139,27 @@ run(IO, Command, Dir, OrigModule, Binary) ->
 %%%
 
 % Get version and package details from binary.
-run_load(Cmd, Dir, Module, Binary) ->
+do_load(Cmd, Dir, Module, Binary) ->
   case pose_beam:get_binary_detail(Module, Binary) of
     {error, What}			->
       {error, {get_detail, What}};
     {ok, Version, Package}	->
-      run_load(Cmd, Dir, Module, Binary, Version, Package)
+      do_load(Cmd, Dir, Module, Binary, Version, Package)
   end.
 
 % Make sure binary was compiled using any explicit package attribute.
-run_load(Cmd, Dir, Module, Binary, Version, Package) ->
+do_load(Cmd, Dir, Module, Binary, Version, Package) ->
   case ensure_packaged(Cmd, Dir, Package) of
     {error, What}			                ->
       {error, {load, What}};
     {ok, NewMod, NewBin, NewVsn, NewPkg}	->
-      run_load(Cmd, Dir, NewMod, NewBin, NewVsn, NewPkg, pack_true);
+      do_load(Cmd, Dir, NewMod, NewBin, NewVsn, NewPkg, pack_true);
     ok				->
-      run_load(Cmd, Dir, Module, Binary, Version, Package, pack_true)
+      do_load(Cmd, Dir, Module, Binary, Version, Package, pack_true)
   end.
 
 % Make sure the binary is what is current in memory.
-run_load(Cmd, Dir, Module, Binary, Version, Package, pack_true) ->
+do_load(Cmd, Dir, Module, Binary, Version, Package, pack_true) ->
   Filename = ?FILENAME(Dir, Cmd, ".beam"),
   ensure_loaded(Module, Filename, Binary, Version, Package).
 
