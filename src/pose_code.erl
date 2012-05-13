@@ -175,6 +175,7 @@ start_noise(Module, RunPid, Noise) ->
 % @hidden
 load(_Command, []) -> {error, notfound};
 load(Command, [Head | Tail]) ->
+  ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
   case ensure_compiled(Command, Head) of
     {info, nobin}           -> load(Command, Tail);
     {info, Info}            -> ?DEBUG("l: ~p~n", [Info]),
