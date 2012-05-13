@@ -116,7 +116,6 @@ start([Command]) ->
 %% @todo get PATH from environment
 load(Command) when is_atom(Command) -> load(atom_to_list(Command));
 load(Command) ->
-  io:format("command: ~p~n", [Command]),
   Path = [filename:absname("ebin"), filename:absname("deps/superl/ebin")],
   load(Command, Path).
 
@@ -138,6 +137,7 @@ start_loop(Module, RunPid) ->
   SelfPid = self(),
   receive
     {purging, _Pid, _Mod}       -> ?MODULE:start_loop(Module, RunPid);
+    {'EXIT', RunPid, ok}        -> exit(normal);
     {'EXIT', RunPid, Reason}    -> exit({Module, Reason});
     {debug, SelfPid, Output}    -> start_output(Module, RunPid,
                                                 debug, Output);
