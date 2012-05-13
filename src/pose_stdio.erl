@@ -95,11 +95,12 @@ send_stderr(IO, What) ->
 %% @end
 -spec send_debug(Format :: format(), What :: list()) -> ok.
 send_debug(Format, What) ->
+  Msg = io_lib:format(Format, What),
   case get(debug) of
     Pid when is_pid(Pid) ->
-      get(debug) ! {debug, self(), io_lib:format(Format, What)}, ok;
-    Else                 ->
-      throw({debug_unitialized, Else})
+      get(debug) ! {debug, self(), Msg}, ok;
+    _Else                ->
+      throw({debug_unitialized, Msg})
   end.
 
 %% @doc Smartly format erlerr messages.
