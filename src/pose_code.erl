@@ -378,8 +378,8 @@ get_otp_package(BinDir) ->
 
 get_otp_package(_BinDir, Path) ->
   Package = re:replace(Path, "\/", ".", [{return, list}]),
-  ?DEBUG(Package),
-  Package.
+  ?DEBUG("~s~n", Package),
+  {ok, Package}.
 
 
 %%%
