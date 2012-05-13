@@ -90,8 +90,8 @@
 %%
 
 %% Locate command on PATH, load and run.
--spec start(Command :: atom()) -> no_return.
-start(Command) ->
+-spec start([Command :: atom()]) -> no_return.
+start([Command]) ->
   IO = ?IO(self()),
   ?INIT_POSE,
   io:format("pose: starting ~p~n", [Command]),
