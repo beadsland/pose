@@ -265,7 +265,7 @@ ensure_compiled(Command, Path) -> ensure_compiled(Command, Path, false).
 
 % Check if we can write to the ebin directory.
 ensure_compiled(Cmd, Dir, Force) ->
-  case nosh_util:can_write(Dir) of
+  case pose_file:can_write(Dir) of
     {error, What}	-> {error, {file, What}};
     false			-> {info, readonly_dir};
     true			-> ensure_compiled(Cmd, Dir, Force, write_dir)
@@ -274,7 +274,7 @@ ensure_compiled(Cmd, Dir, Force) ->
 % Check if we can write to the beam file.
 ensure_compiled(Cmd, Dir, Force, write_dir) ->
   Filename = ?FILENAME(Dir, Cmd, ".beam"),
-  case nosh_util:can_write(Filename) of
+  case pose_file:can_write(Filename) of
     {error, What}	-> {error, {file, What}};
     false			-> ensure_binary(Cmd, Dir, readonly);
     true			-> ensure_compiled(Cmd, Dir, Force, write_both)
@@ -290,7 +290,7 @@ ensure_compiled(Cmd, BinDir, Force, write_both) ->
 
 % If we can't compile from source file, confirm we can use binary we have.
 ensure_binary(Cmd, Dir, Why) ->
-    HaveBinary = nosh_util:can_read(?FILENAME(Dir, Cmd, ".beam")),
+    HaveBinary = pose_file:can_read(?FILENAME(Dir, Cmd, ".beam")),
     if HaveBinary     -> {info, Why};
        true           -> {info, nobin}  % i.e., search next dir in path
     end.
@@ -298,7 +298,7 @@ ensure_binary(Cmd, Dir, Why) ->
 % Get modification date of source file.
 ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj) ->
   SrcFile = ?FILENAME(SrcDir, Cmd, ".erl"),
-  case nosh_util:last_modified(SrcFile) of
+  case pose_file:last_modified(SrcFile) of
     {error, What}	->
       {error, {file, What}};
     SrcMod			->
@@ -308,7 +308,7 @@ ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj) ->
 % Get modification date of binary file.
 ensure_compiled(Cmd, BinDir, Force, SrcDir, Proj, SrcMod) ->
   BinFile = ?FILENAME(BinDir, Cmd, ".beam"),
-  case nosh_util:last_modified(BinFile) of
+  case pose_file:last_modified(BinFile) of
     {error, What}	->
       {error, {file, What}};
     BinMod 			->
@@ -362,7 +362,7 @@ do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, Binary) ->
 %%%
 
 get_otp_includes(BinDir) ->
-  case nosh_util:find_parallel_folder("ebin", "_temp_", BinDir) of
+  case pose_file:find_parallel_folder("ebin", "_temp_", BinDir) of
     {true, TempDir, _Project}   ->
       get_otp_includes(TempDir, ["deps", "apps"]) ++
         get_otp_includes("deps", ["deps"]);
@@ -373,7 +373,7 @@ get_otp_includes(BinDir) ->
 get_otp_includes(_TempDir, []) -> [];
 get_otp_includes(TempDir, [Head | Tail]) ->
   Include = re:replace(TempDir, "_temp_.*$", Head, [{return, list}]),
-  case nosh_util:can_read(Include) of
+  case pose_file:can_read(Include) of
     true            -> [{i, Include} | get_otp_includes(TempDir, Tail)];
     false           -> get_otp_includes(TempDir, Tail);
     {error, What}   -> {error, {file, What}}
@@ -386,15 +386,15 @@ get_otp_includes(TempDir, [Head | Tail]) ->
 % Find candidate src directory parallel to ebin.
  parallel_src(BinDir, Cmd) ->
   ?DEBUG("Seeking parallel src\n"),
-  case nosh_util:find_parallel_folder("ebin", "src", BinDir) of
-    {true, SrcPath, Proj}	-> parallel_src(BinDir, Cmd, SrcPath, Proj);
-    _Else					-> ?DEBUG("Didn't find parallel src\n"), nosrc
+  case pose_file:find_parallel_folder("ebin", "src", BinDir) of
+    {true, SrcPath, Pkg} -> parallel_src(BinDir, Cmd, SrcPath, Pkg);
+    _Else				 -> ?DEBUG("Didn't find parallel src\n"), nosrc
   end.
 
 % Confirm it's readable and return result.
-parallel_src(_BinDir, Command, SrcDir, Project) ->
+parallel_src(_BinDir, Command, SrcDir, Package) ->
   Filename = ?FILENAME(SrcDir, Command, ".erl"),
-  case nosh_util:can_read(Filename) of
-    true 	-> {ok, SrcDir, Project};
+  case pose_file:can_read(Filename) of
+    true 	-> {ok, SrcDir, Package};
     false 	-> nosrc
   end.
