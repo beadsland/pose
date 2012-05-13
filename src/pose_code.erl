@@ -130,7 +130,7 @@ run(IO, Command, [Head | Tail]) ->
 % Having found command, slurp binary from file.
 run(IO, Command, Dir, slurp) ->
   Filename = ?FILENAME(Dir, Command, ".beam"),
-  case nosh_beam:slurp_binary(Filename) of
+  case pose_beam:slurp_binary(Filename) of
     {ok, Module, Binary}	-> run(IO, Command, Dir, Module, Binary);
     {error, What}			-> {error, {slurp, What}}
   end.
@@ -153,7 +153,7 @@ run(IO, Command, Dir, OrigModule, Binary) ->
 
 % Get version and package details from binary.
 run_load(Cmd, Dir, Module, Binary) ->
-  case nosh_beam:get_binary_detail(Module, Binary) of
+  case pose_beam:get_binary_detail(Module, Binary) of
     {error, What}			->
       {error, {get_detail, What}};
     {ok, Version, Package}	->
@@ -251,7 +251,7 @@ ensure_packaged(_Command, _Dir, _Package) -> ok.
 
 % Return binary with details
 ensure_packaged(_Command, _Dir, Module, Binary) ->
-  case nosh_beam:get_binary_detail(Module, Binary) of
+  case pose_beam:get_binary_detail(Module, Binary) of
     {error, What}			-> {error, {get_detail, What}};
     {ok, Version, Package}	-> {ok, Module, Binary, Version, Package}
   end.
