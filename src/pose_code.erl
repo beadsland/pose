@@ -368,8 +368,13 @@ do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, _Package, Binary) ->
 %%%
 
 get_otp_package(BinDir) ->
-  Split = re:split(BinDir, "/", [{return, list}]),
-  get_otp_package(BinDir, Split).
+  AbsBin = filename:absolute("ebin"),
+  if BinDir == AbsBin ->
+        "ebin";
+     true                                ->
+        Split = re:split(BinDir, "/", [{return, list}]),
+        get_otp_package(BinDir, Split)
+  end.
 
 get_otp_package(_BinDir, []) -> {error, no_otp_package};
 get_otp_package(BinDir, [Head | Tail]) ->
