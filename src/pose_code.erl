@@ -135,7 +135,7 @@ do_start(IO, Module) ->
 start_loop(Module, RunPid) ->
   receive
     {purging, _Pid, _Mod}       -> ?MODULE:start_loop(Module, RunPid);
-    {'EXIT', RunPid, Reason}    -> exit(Reason);
+    {'EXIT', RunPid, Reason}    -> exit({Module, Reason});
     {MsgTag, RunPid, Output}    -> start_output(Module, RunPid,
                                                 MsgTag, Output);
     Noise                       -> start_noise(Module, RunPid, Noise)
