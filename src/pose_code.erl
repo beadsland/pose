@@ -90,7 +90,7 @@
 %%
 
 %% Locate command on PATH, load and run.
--spec start([Command :: atom()]) -> no_return.
+-spec start([Command :: atom()]) -> ok | no_return().
 start([Command]) ->
   IO = ?IO(self()),
   ?INIT_POSE,
@@ -137,7 +137,7 @@ start_loop(Module, RunPid) ->
   SelfPid = self(),
   receive
     {purging, _Pid, _Mod}       -> ?MODULE:start_loop(Module, RunPid);
-    {'EXIT', RunPid, ok}        -> init:stop();
+    {'EXIT', RunPid, ok}        -> ok;
     {'EXIT', RunPid, Reason}    -> exit({Module, Reason});
     {debug, SelfPid, Output}    -> start_output(Module, RunPid,
                                                 debug, Output);
