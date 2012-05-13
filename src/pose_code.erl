@@ -73,7 +73,10 @@
 %% Exported functions
 %%
 
--export([run/2, test/1]).
+-export([run/2]).
+
+% exposed for use by nosh_test
+-export([run/3]).
 
 %%
 %% API functions
@@ -91,31 +94,12 @@ run(IO, Command) ->
   Path = [filename:absname("ebin"), filename:absname("deps/superl/ebin")],
   run(IO, Command, Path).
 
-%% Test that we can throw appropriate warnings in various scenarios.
-%% @deprecated
-test(IO) ->
-  ?DEBUG("Running ver. ~s nosh_load test.~n", [?VERSION(?MODULE)]),
-
-  Root = filename:absname(""),
-
-  test(IO, "test", ?FILENAME(Root, "ebin/alt")),
-  test(IO, "test", ?FILENAME(Root, "ebin/alt2")),
-  test(IO, "test", ?FILENAME(Root, "ebin")),
-  test:start(),
-
-  ?DEBUG("test: done\n").
-
-test(IO, Command, Filename) ->
-  case run(IO, Command, [Filename]) of
-    {module, Module} -> Module:start();
-    {error, What}    -> ?STDERR({test, What})
-  end.
-
 %%
 %% Local functions
 %%
 
 % Iterate over path list in search of command.
+% @hidden
 run(_IO, _Command, []) -> {error, notfound};
 run(IO, Command, [Head | Tail]) ->
   case ensure_compiled(Command, Head) of
