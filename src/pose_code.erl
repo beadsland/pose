@@ -53,9 +53,9 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.4
+%% @version 0.1.5
 -module(pose_code).
--version("0.1.4").
+-version("0.1.5").
 
 %%
 %% Include files
@@ -73,7 +73,14 @@
 %% Exported functions
 %%
 
+% used from within pose applications
 -export([load/1]).
+
+% used from erl command line
+-export([start/1]).
+
+% exposed for use by start/1
+-export([start_loop/2]).
 
 % exposed for use by nosh_test
 -export([load/2]).
@@ -81,6 +88,20 @@
 %%
 %% API functions
 %%
+
+%% Locate command on PATH, load and run.
+-spec start(Command :: atom()) -> no_return.
+start(Command) ->
+  IO = ?IO(self()),
+  ?INIT_POSE,
+  case load(Command) of
+    {module, Module, Warning}   -> io:format("pose: warn: ~p~n", [Warning]),
+                                   do_start(IO, Module);
+    {module, Module}            -> do_start(IO, Module);
+    {error, What}               -> Error = ?FORMAT_ERLERR(What),
+                                   io:format("pose: ~p~n", Error),
+                                   exit(What)
+  end.
 
 %% Locate command on PATH, load from file if newer than currently loaded.
 -type command() :: string() | atom().
@@ -100,6 +121,46 @@ load(Command) ->
 %%
 %% Local functions
 %%
+
+%%%
+% Start from commandline
+%%%
+
+% Run module as pose process and exit on result.
+do_start(IO, Module) ->
+  RunPid = spawn_link(Module, run, [IO]),
+  ?MODULE:start_loop(Module, RunPid).
+
+% Loop waiting for output and exit.
+start_loop(Module, RunPid) ->
+  receive
+    {purging, _Pid, _Mod}       -> ?MODULE:start_loop(Module, RunPid);
+    {'EXIT', RunPid, Reason}    -> exit(Reason);
+    {MsgTag, RunPid, Output}    -> start_output(Module, RunPid,
+                                                MsgTag, Output);
+    Noise                       -> start_noise(Module, RunPid, Noise)
+  end.
+
+% Relay standard output to console.
+start_output(Module, RunPid, MsgTag, Output) ->
+  case MsgTag of
+    erlout  -> io:format("~p: ~p~n", [Module, Output]);
+    erlerr  -> io:format(standard_error, "** ~p: ~s~n",
+                         [Module, ?FORMAT_ERLERR(Output)]);
+    stdout  -> io:format(Output);
+    stderr  -> io:format(standard_error, "** ~s", [Output]);
+    debug   -> io:format(standard_error, "-- ~s", [Output])
+  end,
+  ?MODULE:start_loop(Module, RunPid).
+
+% Handle noise on message queue.
+start_noise(Module, RunPid, Noise) ->
+  io:format(standard_error, "noise: ~p ~p~n", [Noise, self()]),
+  ?MODULE:start_loop(Module, RunPid).
+
+%%%
+% Load command
+%%%
 
 % Iterate over path list in search of command.
 % @hidden
