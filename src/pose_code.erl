@@ -371,7 +371,7 @@ do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, _Package, Binary) ->
 get_otp_package(BinDir) ->
   Pwd = filename:absname(""),
   {ok, MP} = re:compile("^" ++ Pwd ++ "/(.*)$"),
-  case re:run(BinDir, MP, [{return, list}, {capture, [1]}]) of
+  case re:run(BinDir, MP, [{capture, [1], list}]) of
     nomatch         -> {error, off_pwd};
     {match, [Path]} -> get_otp_package(BinDir, Path)
   end.
