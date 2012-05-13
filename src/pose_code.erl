@@ -99,8 +99,8 @@ start(Command) ->
                                    do_start(IO, Module);
     {module, Module}            -> do_start(IO, Module);
     {error, What}               -> Error = ?FORMAT_ERLERR(What),
-                                   io:format("pose: ~p~n", Error),
-                                   exit(What)
+                                   io:format("~p: ~p~n", [Command, Error]),
+                                   exit({Command, What})
   end.
 
 %% Locate command on PATH, load from file if newer than currently loaded.
