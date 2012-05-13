@@ -369,6 +369,7 @@ do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, _Package, Binary) ->
 
 %% @todo make this chdir safe
 get_otp_package(BinDir) ->
+  ?DEBUG("get_otp_package(~p)~n", [BinDir]),
   AbsBin = filename:absname("ebin"),
   if BinDir == AbsBin ->
         "ebin";
