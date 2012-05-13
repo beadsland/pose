@@ -98,15 +98,18 @@ test(IO) ->
 
   Root = filename:absname(""),
 
-  {module, Mod1} = run(IO, "test", [?FILENAME(Root, "ebin/alt")]),
-  Mod1:start(),
-  {module, Mod2} = run(IO, "test", [?FILENAME(Root, "ebin/alt2")]),
-  Mod2:start(),
-  {module, Mod3} = run(IO, "test", [?FILENAME(Root, "ebin")]),
-  Mod3:start(),
+  test(IO, "test", ?FILENAME(Root, "ebin/alt")),
+  test(IO, "test", ?FILENAME(Root, "ebin/alt2")),
+  test(IO, "test", ?FILENAME(Root, "ebin")),
   test:start(),
 
-  ?DEBUG("test: done~n").
+  ?DEBUG("test: done\n").
+
+test(IO, Command, Filename) ->
+  case run(IO, Command, [Filename]) of
+    {module, Module} -> Module:start();
+    {error, What}    -> ?STDERR({test, What})
+  end.
 
 %%
 %% Local functions
