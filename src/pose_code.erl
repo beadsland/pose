@@ -94,12 +94,13 @@
 start(Command) ->
   IO = ?IO(self()),
   ?INIT_POSE,
+  ?DEBUG("starting ~p", [Command]),
   case load(Command) of
     {module, Module, Warning}   -> io:format("pose: warn: ~p~n", [Warning]),
                                    do_start(IO, Module);
     {module, Module}            -> do_start(IO, Module);
     {error, What}               -> Error = ?FORMAT_ERLERR(What),
-                                   io:format("~p: ~p~n", [Command, Error]),
+                                   io:format("~p: ~s~n", [Command, Error]),
                                    exit({Command, What})
   end.
 
