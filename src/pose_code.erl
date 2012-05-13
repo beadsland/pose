@@ -367,8 +367,9 @@ do_compile(_SrcDir, Cmd, _Project, BinDir, ModuleName, _Package, Binary) ->
 % Get OTP compliant package
 %%%
 
+%% @todo make this chdir safe
 get_otp_package(BinDir) ->
-  AbsBin = filename:absolute("ebin"),
+  AbsBin = filename:absname("ebin"),
   if BinDir == AbsBin ->
         "ebin";
      true                                ->
@@ -376,7 +377,7 @@ get_otp_package(BinDir) ->
         get_otp_package(BinDir, Split)
   end.
 
-get_otp_package(_BinDir, []) -> {error, no_otp_package};
+get_otp_package(_BinDir, []) -> {error, no_otp_path};
 get_otp_package(BinDir, [Head | Tail]) ->
   if Head == "deps";
      Head == "apps" -> {ok, string:join(Tail, "/")};
