@@ -370,13 +370,13 @@ do_compile(_SrcDir, Cmd, BinDir, ModuleName, _Package, Binary) ->
 get_otp_package(BinDir) ->
   Pwd = filename:absname(""),
   {ok, MP} = re:compile("^" ++ Pwd ++ "/(.*)$"),
-  case re:run(BinDir, MP, [{capture, [1], list}, global]) of
+  case re:run(BinDir, MP, [{capture, [1], list}]) of
     nomatch         -> {error, off_pwd};
     {match, [Path]} -> get_otp_package(BinDir, Path)
   end.
 
 get_otp_package(_BinDir, Path) ->
-  Package = re:replace(Path, "\/", ".", [{return, list}]),
+  Package = re:replace(Path, "\/", ".", [{return, list}, global]),
   ?DEBUG("package: ~s~n", [Package]),
   {ok, list_to_atom(Package)}.
 
