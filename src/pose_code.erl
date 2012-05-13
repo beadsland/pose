@@ -53,9 +53,9 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.3
+%% @version 0.1.4
 -module(pose_code).
--version("0.1.3").
+-version("0.1.4").
 
 %%
 %% Include files
@@ -378,8 +378,8 @@ get_otp_package(BinDir) ->
 
 get_otp_package(_BinDir, Path) ->
   Package = re:replace(Path, "\/", ".", [{return, list}]),
-  ?DEBUG("~s~n", [Package]),
-  {ok, Package}.
+  ?DEBUG("package: ~s~n", [Package]),
+  {ok, list_to_atom(Package)}.
 
 
 %%%
