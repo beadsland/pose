@@ -137,7 +137,7 @@ start_loop(Module, RunPid) ->
   SelfPid = self(),
   receive
     {purging, _Pid, _Mod}       -> ?MODULE:start_loop(Module, RunPid);
-    {'EXIT', RunPid, ok}        -> exit(normal);
+    {'EXIT', RunPid, ok}        -> init:stop();
     {'EXIT', RunPid, Reason}    -> exit({Module, Reason});
     {debug, SelfPid, Output}    -> start_output(Module, RunPid,
                                                 debug, Output);
