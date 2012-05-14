@@ -56,7 +56,7 @@
 start([Command]) when is_atom(Command) ->
   IO = ?IO(self()),
   ?INIT_POSE,
-  ?DEBUG("Starting pose ~p ~p~n", [Command, self()]),
+  io:format("Starting pose ~p~n", [self()]),
   case pose_code:load(Command) of
     {module, Module, Warning}   ->
       Erlerr = ?FORMAT_ERLERR({pose, {Command, Warning}}),
