@@ -72,10 +72,9 @@ loop(SafePid, Format, What) ->
       ?MODULE:loop(SafePid, Format, What);
     {'EXIT', SafePid, {ok, String}}   ->
       {ok, String};
-    {'EXIT', SafePid, {badarg, What}} ->
-      {error, io_lib:format("badarg: ~p", [{Format, What}])};
-    {'EXIT', SafePid, {Error, What}} ->
-      {error, io_lib:format("error: ~p: ~p", [Error, {Format, What}])};
+    {'EXIT', SafePid, Reason} ->
+      List = [Format, What, ?FORMAT_ERLERR(Reason)],
+      {error, io_lib:format("Format: ~s~nList: ~p~nError~p~n", List)};
     Noise                             ->
       ?DEBUG("noise: ~p ~p~n", [Noise, self()]),
       ?MODULE:loop(SafePid, Format, What)
