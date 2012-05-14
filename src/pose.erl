@@ -56,19 +56,24 @@
 start([Command]) when is_atom(Command) ->
   IO = ?IO(self()),
   ?INIT_POSE,
-  ?DEBUG("pose: starting ~p~n", [Command]),
+  ?DEBUG("Starting pose ~p~n", [Command, self()]),
   case pose_code:load(Command) of
     {module, Module, Warning}   ->
-      Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, Warning}}),
+      Erlerr = ?FORMAT_ERLERR({pose, {Command, Warning}}),
       io:format(standard_error, "** ~p~n", [Erlerr]),
-      do_start(IO, ?ARG(Module), ?ENV);
+      spawn_run(IO, Command, Module);
     {module, Module}            ->
-      do_start(IO, ?ARG(Module), ?ENV);
+      spawn_run(IO, Command, Module);
     {error, What}               ->
-      Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, What}}),
+      Erlerr = ?FORMAT_ERLERR({pose, {Command, What}}),
       io:format(standard_error, "** ~p~n", [Erlerr]),
       exit({Command, What})
   end.
+
+spawn_run(IO, Command, Module) ->
+  RunPid = spawn_link(Module, run, [IO, ?ARG(Command), ?ENV]),
+  ?DEBUG("Running ~p as ~p ~p", [Command, Module, RunPid]),
+  ?MODULE:loop(Command, RunPid).
 
 %%
 %% Hidden functions
@@ -95,27 +100,22 @@ argv(ARG, N) ->
 %%
 
 %%%
-% Start from commandline
+% Loop handlers
 %%%
 
-% Run module as pose process and exit on result.
-do_start(IO, ARG, ENV) ->
-  RunPid = spawn_link(?ARGV(0), run, [IO, ARG, ENV]),
-  ?MODULE:loop(?ARGV(0), RunPid).
-
 % Relay standard output to console.
-do_output(Module, RunPid, MsgTag, Output) ->
+do_output(Command, RunPid, MsgTag, Output) ->
   case MsgTag of
-    erlout  -> io:format("~p: ~p~n", [Module, Output]);
+    erlout  -> io:format("~p: ~p~n", [Command, Output]);
     erlerr  -> io:format(standard_error, "** ~p: ~s~n",
-                         [Module, ?FORMAT_ERLERR(Output)]);
+                         [Command, ?FORMAT_ERLERR(Output)]);
     stdout  -> io:format(Output);
     stderr  -> io:format(standard_error, "** ~s", [Output]);
     debug   -> io:format(standard_error, "-- ~s", [Output])
   end,
-  ?MODULE:loop(Module, RunPid).
+  ?MODULE:loop(Command, RunPid).
 
 % Handle noise on message queue.
-do_noise(Module, RunPid, Noise) ->
+do_noise(Command, RunPid, Noise) ->
   io:format(standard_error, "noise: ~p ~p~n", [Noise, self()]),
-  ?MODULE:loop(Module, RunPid).
+  ?MODULE:loop(Command, RunPid).
