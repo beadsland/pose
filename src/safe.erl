@@ -37,7 +37,7 @@
 %%
 
 %-define(debug, true).
--include("pose/include/interface.hrl").
+-include("interface.hrl").
 
 %%
 %% Exported Functions
