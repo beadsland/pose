@@ -22,11 +22,12 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc This is a preliminary draft of the module loader for `nosh'.
+%% @doc This is a preliminary draft of the module loader for `pose',
+%% a core component of `nosh' ([http://github.com/beadsland/nosh]).
 %%
 %% <b>Draft Notes:</b>
 %%
-%% Each Erlang module is treated as an executable in `nosh'.  When the
+%% Each Erlang module is treated as an executable in `pose'.  When the
 %% name of a module appears in first position on a `nosh' command line, a
 %% matching `.beam' file is sought on each directory on the `PATH'
 %% environment variable, with one modification:  For each directory on
@@ -76,33 +77,12 @@
 % used from within pose applications
 -export([load/1]).
 
-% used from erl command line
--export([start/1]).
-
-% exposed for use by start/1
--export([start_loop/2]).
-
 % exposed for use by nosh_test
 -export([load/2]).
 
 %%
 %% API functions
 %%
-
-%% Locate command on PATH, load and run.
--spec start([Command :: atom()]) -> ok | no_return().
-start([Command]) ->
-  IO = ?IO(self()),
-  ?INIT_POSE,
-  ?DEBUG("pose: starting ~p~n", [Command]),
-  case load(Command) of
-    {module, Module, Warning}   -> io:format("pose: warn: ~p~n", [Warning]),
-                                   do_start(IO, Module);
-    {module, Module}            -> do_start(IO, Module);
-    {error, What}               -> Error = ?FORMAT_ERLERR(What),
-                                   io:format("~p: ~s~n", [Command, Error]),
-                                   exit({Command, What})
-  end.
 
 %% Locate command on PATH, load from file if newer than currently loaded.
 -type command() :: nonempty_string() | atom().
@@ -127,45 +107,6 @@ load(Command) ->
 %% Local functions
 %%
 
-%%%
-% Start from commandline
-%%%
-
-% Run module as pose process and exit on result.
-do_start(IO, Module) ->
-  RunPid = spawn_link(Module, run, [IO]),
-  ?MODULE:start_loop(Module, RunPid).
-
-% Loop waiting for output and exit.
-start_loop(Module, RunPid) ->
-  SelfPid = self(),
-  receive
-    {purging, _Pid, _Mod}       -> ?MODULE:start_loop(Module, RunPid);
-    {'EXIT', RunPid, ok}        -> ok;
-    {'EXIT', RunPid, Reason}    -> exit({Module, Reason});
-    {debug, SelfPid, Output}    -> start_output(Module, RunPid,
-                                                debug, Output);
-    {MsgTag, RunPid, Output}    -> start_output(Module, RunPid,
-                                                MsgTag, Output);
-    Noise                       -> start_noise(Module, RunPid, Noise)
-  end.
-
-% Relay standard output to console.
-start_output(Module, RunPid, MsgTag, Output) ->
-  case MsgTag of
-    erlout  -> io:format("~p: ~p~n", [Module, Output]);
-    erlerr  -> io:format(standard_error, "** ~p: ~s~n",
-                         [Module, ?FORMAT_ERLERR(Output)]);
-    stdout  -> io:format(Output);
-    stderr  -> io:format(standard_error, "** ~s", [Output]);
-    debug   -> io:format(standard_error, "-- ~s", [Output])
-  end,
-  ?MODULE:start_loop(Module, RunPid).
-
-% Handle noise on message queue.
-start_noise(Module, RunPid, Noise) ->
-  io:format(standard_error, "noise: ~p ~p~n", [Noise, self()]),
-  ?MODULE:start_loop(Module, RunPid).
 
 %%%
 % Load command

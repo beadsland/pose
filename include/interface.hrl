@@ -27,6 +27,7 @@
                    code:add_patha("deps/pose/ebin"),
                    put(debug, IO#std.err)).
 
+% IO is first parameter to pose entry points.
 -record(std, {in = self() :: pid(), out = self() :: pid(),
               err = self() :: pid(), echo = false :: boolean()}).
 
@@ -34,6 +35,18 @@
 -define(IO(In, Out, Err), #std{in=In, out=Out, err=Err}).
 -define(IO(Pid), #std{in=Pid, out=Pid, err=Pid}).
 
+% ARG is second parameter to pose entry points.
+-record(arg, {cmd = '' :: atom(), v = [] :: list()}).
+
+-define(ARG(C, V), #arg{cmd = C, v = V}).
+-define(ARGV(X), argv, if X == 0 -> ARG#arg.cmd;
+                          true -> lists:nth(X, ARG#arg.v) end).
+-define(COMMAND, ?ARGV(0)).
+
+% ENV is third parameter to pose entry points.
+-define(ENV, env).
+
+% STDERR and STDOUT work only in functions that receive IO parameter
 -import(pose_stdio).  % May be used by packaged modules.
 -define(STDERR(Format, What),
         stderr, pose_stdio:send_stderr(IO, Format, What)).
@@ -44,7 +57,7 @@
 
 -define(FORMAT_ERLERR(What), pose_stdio:format_erlerr(What)).
 
-% ?DEBUG is a special case of ?STDERR
+% DEBUG is a special case of STDERR that does not require IO
 -ifdef(debug).
 -define(DEBUG(Format, What), debug, pose_stdio:send_debug(Format, What)).
 -else.
