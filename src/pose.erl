@@ -52,8 +52,8 @@
 %%
 
 %% Run a pose-compliant command from the erl commandline.
--spec start([Command :: atom()]) -> ok | no_return().
-start([Command]) when is_atom(Command) ->
+-spec start([Command :: string()]) -> ok | no_return().
+start([Command]) when is_list(Command) ->
   IO = ?IO(self()),
   ?INIT_POSE,
   ?DEBUG("pose: starting ~p~n", [Command]),
