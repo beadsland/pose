@@ -95,7 +95,11 @@ send_stderr(IO, What) ->
 %% @end
 -spec send_debug(Format :: format(), What :: list()) -> ok.
 send_debug(Format, What) ->
-  Msg = io_lib:format(Format, What),
+  Msg = try
+    io_lib:format(Format, What),
+  catch
+    {badarg, Reason} -> io_lib:format("badarg: ~p~n", [{Format, What}])
+  end,
   case get(debug) of
     Pid when is_pid(Pid) ->
       get(debug) ! {debug, self(), Msg}, ok;
