@@ -76,6 +76,7 @@
 
 % used from within pose applications
 -export([load/1]).
+-export_type([load_err/0]).
 
 % exposed for use by nosh_test
 -export([load/2]).
@@ -85,7 +86,7 @@
 %%
 
 %% Locate command on PATH, load from file if newer than currently loaded.
--type command() :: nonempty_string() | atom().
+-type command() :: pose:command().
 -type load_warn() :: diff_path | flat_pkg.
 -type error() :: atom() | {atom(), error()}.
 -type load_err() :: {load, error()} | {slurp, error()} | error().

@@ -22,7 +22,8 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Entry points for running `pose'-compatible commands.
+%% @doc Entry point for running `pose'-compatible commands from
+%% Erl commandline.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
@@ -42,10 +43,11 @@
 %%
 
 % pose entry functions
--export([start/1]).
+-export([start/1, spawn/2, spawn/3]).
+-export_type([command/0]).
 
 % hidden functions
--export([loop/2, argv/2]).
+-export([loop/2, argv/2, spawn/4]).
 
 %%
 %% API Functions
@@ -57,19 +59,43 @@ start([Command]) ->
   IO = ?IO(self()),
   ?INIT_POSE,
   io:format("Starting pose ~p~n", [self()]),
-  case pose_code:load(Command) of
-    {module, Module, Warning}   ->
-      Erlerr = ?FORMAT_ERLERR({pose, {Command, Warning}}),
+  case ?MODULE:spawn(IO, Command) of
+    {error, Reason} ->
+      Erlerr = ?FORMAT_ERLERR({pose, {Command, Reason}}),
       io:format(standard_error, "** ~s~n", [Erlerr]),
-      spawn_run(IO, Command, Module);
-    {module, Module}            ->
-      spawn_run(IO, Command, Module);
-    {error, What}               ->
-      Erlerr = ?FORMAT_ERLERR({pose, {Command, What}}),
-      io:format(standard_error, "** ~s~n", [Erlerr]),
-      exit({Command, What})
+      exit({Command, Reason});
+    CmdPid          ->
+      ?MODULE:loop(Command, CmdPid)
   end.
-  
+
+%% Run a pose-compliant command from within an application.
+%% @equiv spawn(IO, Command, [])
+-type command() :: nonempty_string() | atom().
+-type spawn_rtn() :: {error, pose_code:load_err()} | pid().
+-spec spawn(IO :: #std{}, Command :: command()) -> spawn_rtn().
+%
+spawn(IO, Command) -> ?MODULE:spawn(IO, Command, []).
+
+%% Run a pose-compliant command from within an application.
+-spec spawn(IO :: #std{}, Command :: command(), Param :: [any()]) ->
+        spawn_rtn().
+%
+spawn(IO, Command, Param) when is_atom(Command) ->
+  ?MODULE:spawn(IO, atom_to_list(Command), Param);
+spawn(IO, Command, Param) ->
+  case pose_code:load(Command) of
+    {module, Module, diff_path} ->
+        ?STDERR("~s: namespace collision~n", [Command]),
+        ?MODULE:spawn(IO, Command, Param, Module);
+    {module, Module, flat_pkg}  ->
+        ?STDERR("~s: flat package unsafe~n", [Command]),
+        ?MODULE:spawn(IO, Command, Param, Module);
+    {module, Module}            ->
+        ?MODULE:spawn(IO, Command, Param, Module);
+    {error, Else}               ->
+        {error, Else}
+  end.
+
 %%
 %% Hidden functions
 %%
@@ -94,11 +120,14 @@ argv(ARG, N) ->
 %% Local Functions
 %%
 
-% Run pose-compliant command
-spawn_run(IO, Command, Module) ->
-  RunPid = spawn_link(Module, run, [IO, ?ARG(Command), ?ENV]),
-  ?DEBUG("Running ~p as ~p ~p~n", [Command, Module, RunPid]),
-  ?MODULE:loop(Command, RunPid).
+% Run pose-compliant command.
+% @hidden Only exported to avoid warnings about overriding BIF.
+spawn(MyIO, Command, Param, Module) ->
+  IO = ?IO(self(), self(), MyIO#std.err),
+  ARG = ?ARG(Command, Param),
+  CmdPid = spawn_link(Module, run, [IO, ARG, ?ENV]),
+  ?DEBUG("Running ~p as ~p ~p~n", [Command, Module, CmdPid]),
+  CmdPid.
 
 %%%
 % Loop handlers
