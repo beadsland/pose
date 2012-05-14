@@ -26,11 +26,11 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @version 0.0.1
+%% @version 0.1.0
 
 -module(safe).
 
--version("0.0.1").
+-version("0.1.0").
 
 %%
 %% Include files
