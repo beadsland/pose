@@ -78,9 +78,6 @@
 -export([load/1]).
 -export_type([load_err/0]).
 
-% exposed for use by nosh_test
--export([load/2]).
-
 %%
 %% API functions
 %%
@@ -114,7 +111,6 @@ load(Command) ->
 %%%
 
 % Iterate over path list in search of command.
-% @hidden
 load(_Command, []) -> {error, notfound};
 load(Command, [Head | Tail]) ->
   ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
