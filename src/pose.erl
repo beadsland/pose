@@ -72,7 +72,7 @@ start([Command]) when is_atom(Command) ->
 
 spawn_run(IO, Command, Module) ->
   RunPid = spawn_link(Module, run, [IO, ?ARG(Command), ?ENV]),
-  ?DEBUG("Running ~p as ~p ~p", [Command, Module, RunPid]),
+  ?DEBUG("Running ~p as ~p ~p~n", [Command, Module, RunPid]),
   ?MODULE:loop(Command, RunPid).
 
 %%
