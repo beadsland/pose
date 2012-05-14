@@ -46,6 +46,9 @@
 -export([send_stderr/2, send_stderr/3, send_stdout/2, send_stdout/3,
          send_debug/2, format_erlerr/1]).
 
+% Hidden export
+-export([safe_format/2])
+
 %%
 %% API Functions
 %%
@@ -95,11 +98,7 @@ send_stderr(IO, What) ->
 %% @end
 -spec send_debug(Format :: format(), What :: list()) -> ok.
 send_debug(Format, What) ->
-  Msg = try
-    io_lib:format(Format, What)
-  catch
-    {badarg, _Reason} -> io_lib:format("badarg: ~p~n", [{Format, What}])
-  end,
+  Msg = io_lib:format(Format, What)
   case get(debug) of
     Pid when is_pid(Pid) ->
       get(debug) ! {debug, self(), Msg}, ok;
@@ -131,5 +130,3 @@ format_erlerr(What) ->
 %%
 %% Local Functions
 %%
-
-
