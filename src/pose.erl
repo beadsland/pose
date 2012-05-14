@@ -52,8 +52,8 @@
 %%
 
 %% Run a pose-compliant command from the erl commandline.
--spec start([Command :: string()]) -> ok | no_return().
-start([Command]) when is_list(Command) ->
+-spec start([Command :: atom()]) -> ok | no_return().
+start([Command]) when is_atom(Command) ->
   IO = ?IO(self()),
   ?INIT_POSE,
   ?DEBUG("pose: starting ~p~n", [Command]),
@@ -81,7 +81,7 @@ start([Command]) when is_list(Command) ->
 % Run module as pose process and exit on result.
 do_start(IO, Module) ->
   RunPid = spawn_link(Module, run, [IO]),
-  ?MODULE:start_loop(Module, RunPid).
+  ?MODULE:loop(Module, RunPid).
 
 % Loop waiting for output and exit.
 % @hidden Exposed for fully qualified calls.
