@@ -58,7 +58,7 @@
 -spec format(Format :: format(), What :: [any()]) -> string().
 %
 format(Format, What) ->
-  SafePid = spawn_link(?MODULE, safe_run, [Format, What]),
+  SafePid = spawn_link(?MODULE, format_run, [Format, What]),
   ?MODULE:format_loop(SafePid, Format, What).
 
 %%
