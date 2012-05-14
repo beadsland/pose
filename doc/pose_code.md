@@ -1,0 +1,127 @@
+
+
+#Module pose_code#
+
+* [Description](#description)
+* [Data Types](#types)
+* [Function Index](#index)
+* [Function Details](#functions)
+
+
+This is a preliminary draft of the module loader for `pose`,
+a core component of `nosh` ([`http://github.com/beadsland/nosh`](http://github.com/beadsland/nosh)).
+
+Copyright (c) 2012 Beads D. Land-Trujillo
+
+__Version:__ 0.1.5
+
+__Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
+
+__<font color="red">To do</font>__
+<br></br>
+
+* <font color="red"> module binary service (to avoid repetitive slurps)</font>
+* <font color="red"> conservative module loader (to preserve against collisions)</font>
+<a name="description"></a>
+
+##Description##
+
+
+
+
+__Draft Notes:__
+
+
+
+Each Erlang module is treated as an executable in `pose`.  When the
+name of a module appears in first position on a `nosh` command line, a
+matching `.beam` file is sought on each directory on the `PATH`
+environment variable, with one modification:  For each directory on
+`PATH` that ends in `ebin\`, and for which the current user has write
+access, `nosh` will look for a parallel `src\` directory, and if found,
+search for a matching `.erl` file therein.
+
+
+
+If an associated `.erl` file is found, and it is newer that the `.beam`
+file, or if an `.erl` file is found for which no `.beam` file appears,
+the `.erl` file will be compiled to its `ebin\` directory.  If this
+compilation is successful, the module will be loaded and evaluation
+and execution proceeds.  Otherwise, the compiler error is written to
+`stdout` and a non-zero status is returned.
+
+If no associated `.erl` file is found, the `.beam` file on the `PATH`
+is loaded and evaluation and execution goes forward.  If no `.beam`
+file is found, the search continues to the next directory on `PATH`,
+returning an error if no `.beam` file can be found or compiled from
+source before the `PATH` is exhausted.
+<a name="types"></a>
+
+##Data Types##
+
+
+
+
+###<a name="type-command">command()</a>##
+
+
+
+<pre>command() = nonempty_string() | atom()</pre>
+
+
+
+###<a name="type-error">error()</a>##
+
+
+
+<pre>error() = atom() | {atom(), <a href="#type-error">error()</a>}</pre>
+
+
+
+###<a name="type-load_err">load_err()</a>##
+
+
+
+<pre>load_err() = {load, <a href="#type-error">error()</a>} | {slurp, <a href="#type-error">error()</a>} | <a href="#type-error">error()</a></pre>
+
+
+
+###<a name="type-load_rtn">load_rtn()</a>##
+
+
+
+<pre>load_rtn() = {module, module()} | {module, module(), <a href="#type-load_warn">load_warn()</a>} | {error, <a href="#type-load_err">load_err()</a>}</pre>
+
+
+
+###<a name="type-load_warn">load_warn()</a>##
+
+
+
+<pre>load_warn() = diff_path | flat_pkg</pre>
+<a name="index"></a>
+
+##Function Index##
+
+
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td></td></tr></table>
+
+
+<a name="functions"></a>
+
+##Function Details##
+
+<a name="load-1"></a>
+
+###load/1##
+
+
+<pre>load(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_rtn">load_rtn()</a></pre>
+<br></br>
+
+
+__<font color="red">To do</font>__
+<br></br>
+
+* <font color="red">refactor as a no_return with all output on stdout/stderr</font>
+* <font color="red">get PATH from environment</font>
