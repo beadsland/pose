@@ -71,10 +71,10 @@ format_loop(SafePid, Format, What) ->
     {purging, _Pid, _Mod}             ->
       ?MODULE:format_loop(SafePid, Format, What);
     {'EXIT', SafePid, {ok, String}}   ->
-      {ok, String};
+      String;
     {'EXIT', SafePid, Reason} ->
       List = [Format, What, ?FORMAT_ERLERR(Reason)],
-      {error, io_lib:format("Format: ~s~nList: ~p~nError~p~n", List)};
+      io_lib:format("Format: ~s~nList: ~p~nError~p~n", List);
     Noise                             ->
       ?DEBUG("noise: ~p ~p~n", [Noise, self()]),
       ?MODULE:format_loop(SafePid, Format, What)
