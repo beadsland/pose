@@ -53,7 +53,7 @@
 
 %% Run a pose-compliant command from the erl commandline.
 -spec start([Command :: atom()]) -> ok | no_return().
-start([Command]) when is_atom(Command) ->
+start([Command]) ->
   IO = ?IO(self()),
   ?INIT_POSE,
   io:format("Starting pose ~p~n", [self()]),
@@ -69,11 +69,6 @@ start([Command]) when is_atom(Command) ->
       io:format(standard_error, "** ~p~n", [Erlerr]),
       exit({Command, What})
   end.
-
-spawn_run(IO, Command, Module) ->
-  RunPid = spawn_link(Module, run, [IO, ?ARG(Command), ?ENV]),
-  ?DEBUG("Running ~p as ~p ~p~n", [Command, Module, RunPid]),
-  ?MODULE:loop(Command, RunPid).
 
 %%
 %% Hidden functions
@@ -98,6 +93,12 @@ argv(ARG, N) ->
 %%
 %% Local Functions
 %%
+
+% Run pose-compliant command
+spawn_run(IO, Command, Module) ->
+  RunPid = spawn_link(Module, run, [IO, ?ARG(Command), ?ENV]),
+  ?DEBUG("Running ~p as ~p ~p~n", [Command, Module, RunPid]),
+  ?MODULE:loop(Command, RunPid).
 
 %%%
 % Loop handlers
