@@ -46,9 +46,6 @@
 -export([send_stderr/2, send_stderr/3, send_stdout/2, send_stdout/3,
          send_debug/2, format_erlerr/1]).
 
-% Hidden export
--export([safe_format/2])
-
 %%
 %% API Functions
 %%
@@ -97,8 +94,9 @@ send_stderr(IO, What) ->
 %% Retrieves debug pid from process dictionary.  (Set by macro.)
 %% @end
 -spec send_debug(Format :: format(), What :: list()) -> ok.
+%
 send_debug(Format, What) ->
-  Msg = io_lib:format(Format, What)
+  Msg = io_lib:format(Format, What),
   case get(debug) of
     Pid when is_pid(Pid) ->
       get(debug) ! {debug, self(), Msg}, ok;
