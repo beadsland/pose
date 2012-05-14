@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @version 0.1.5
+%% @version 0.1.6
 -module(pose).
--version("0.1.5").
+-version("0.1.6").
 
 %%
 %% Include files
@@ -44,8 +44,8 @@
 % pose entry functions
 -export([start/1]).
 
-% exposed for fully qualified calls
--export([loop/2]).
+% hidden functions
+-export([loop/2, argv/2]).
 
 %%
 %% API Functions
@@ -61,14 +61,34 @@ start([Command]) when is_atom(Command) ->
     {module, Module, Warning}   ->
       Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, Warning}}),
       io:format(standard_error, "** ~p~n", Erlerr),
-      do_start(IO, Module);
+      do_start(IO, ?ARG(Module), ?ENV);
     {module, Module}            ->
-      do_start(IO, Module);
+      do_start(IO, ?ARG(Module), ?ENV);
     {error, What}               ->
       Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, What}}),
       io:format(standard_error, "** ~p~n", Erlerr),
       exit({Command, What})
   end.
+
+%%
+%% Hidden functions
+%%
+
+% @hidden Fully qualified loop waiting for output and then exiting.
+loop(Command, RunPid) ->
+  SelfPid = self(),
+  receive
+    {purging, _Pid, _Mod}       -> ?MODULE:loop(Command, RunPid);
+    {'EXIT', RunPid, ok}        -> ok;
+    {'EXIT', RunPid, Reason}    -> exit({Command, Reason});
+    {debug, SelfPid, Output}    -> do_output(Command, RunPid, debug, Output);
+    {MsgTag, RunPid, Output}    -> do_output(Command, RunPid, MsgTag, Output);
+    Noise                       -> do_noise(Command, RunPid, Noise)
+  end.
+
+% @hidden Smart argument lookup function for ?ARGV(X) macro.
+argv(ARG, N) ->
+  if N == 0 -> ARG#arg.cmd; N > 0 -> lists:nth(N, ARG#arg.v) end.
 
 %%
 %% Local Functions
@@ -79,24 +99,9 @@ start([Command]) when is_atom(Command) ->
 %%%
 
 % Run module as pose process and exit on result.
-do_start(IO, Module) ->
-  RunPid = spawn_link(Module, run, [IO]),
-  ?MODULE:loop(Module, RunPid).
-
-% Loop waiting for output and exit.
-% @hidden Exposed for fully qualified calls.
-loop(Module, RunPid) ->
-  SelfPid = self(),
-  receive
-    {purging, _Pid, _Mod}       -> ?MODULE:loop(Module, RunPid);
-    {'EXIT', RunPid, ok}        -> ok;
-    {'EXIT', RunPid, Reason}    -> exit({Module, Reason});
-    {debug, SelfPid, Output}    -> do_output(Module, RunPid,
-                                                debug, Output);
-    {MsgTag, RunPid, Output}    -> do_output(Module, RunPid,
-                                                MsgTag, Output);
-    Noise                       -> do_noise(Module, RunPid, Noise)
-  end.
+do_start(IO, ARG, ENV) ->
+  RunPid = spawn_link(?ARGV(0), run, [IO, ARG, ENV]),
+  ?MODULE:loop(?ARGV(0), RunPid).
 
 % Relay standard output to console.
 do_output(Module, RunPid, MsgTag, Output) ->

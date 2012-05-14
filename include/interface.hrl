@@ -38,13 +38,16 @@
 % ARG is second parameter to pose entry points.
 -record(arg, {cmd = '' :: atom(), v = [] :: list()}).
 
+-import(pose).
+-define(ARG(C), ?ARG(C, [])).
 -define(ARG(C, V), #arg{cmd = C, v = V}).
--define(ARGV(X), argv, if X == 0 -> ARG#arg.cmd;
-                          true -> lists:nth(X, ARG#arg.v) end).
--define(COMMAND, ?ARGV(0)).
+-define(ARGV(X), pose:argv(ARG, X)).
 
 % ENV is third parameter to pose entry points.
--define(ENV, env).
+-type env_prop() :: atom() | {atom(), string()}.
+-record(env, {plist = [] :: [env_prop()]}).
+
+-define(ENV, #env{}).
 
 % STDERR and STDOUT work only in functions that receive IO parameter
 -import(pose_stdio).  % May be used by packaged modules.
