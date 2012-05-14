@@ -60,16 +60,16 @@ start([Command]) ->
   case pose_code:load(Command) of
     {module, Module, Warning}   ->
       Erlerr = ?FORMAT_ERLERR({pose, {Command, Warning}}),
-      io:format(standard_error, "** ~p~n", [Erlerr]),
+      io:format(standard_error, "** ~s~n", [Erlerr]),
       spawn_run(IO, Command, Module);
     {module, Module}            ->
       spawn_run(IO, Command, Module);
     {error, What}               ->
       Erlerr = ?FORMAT_ERLERR({pose, {Command, What}}),
-      io:format(standard_error, "** ~p~n", [Erlerr]),
+      io:format(standard_error, "** ~s~n", [Erlerr]),
       exit({Command, What})
   end.
-
+  
 %%
 %% Hidden functions
 %%
