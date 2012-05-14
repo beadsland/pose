@@ -97,5 +97,10 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
 
 
 <table width="100%" border="0" summary="list of modules">
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr></table>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose.md" class="module">pose</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_beam.md" class="module">pose_beam</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_code.md" class="module">pose_code</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_file.md" class="module">pose_file</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/safe.md" class="module">safe</a></td></tr></table>
 
