@@ -53,17 +53,21 @@
 
 %% Run a pose-compliant command from the erl commandline.
 -spec start([Command :: atom()]) -> ok | no_return().
-start([Command]) ->
+start([Command]) when is_atom(Command) ->
   IO = ?IO(self()),
   ?INIT_POSE,
   ?DEBUG("pose: starting ~p~n", [Command]),
   case pose_code:load(Command) of
-    {module, Module, Warning}   -> io:format("pose: warn: ~p~n", [Warning]),
-                                   do_start(IO, Module);
-    {module, Module}            -> do_start(IO, Module);
-    {error, What}               -> Error = ?FORMAT_ERLERR(What),
-                                   io:format("~p: ~s~n", [Command, Error]),
-                                   exit({Command, What})
+    {module, Module, Warning}   ->
+      Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, Warning}}),
+      io:format(standard_error, "** ~p~n", Erlerr),
+      do_start(IO, Module);
+    {module, Module}            ->
+      do_start(IO, Module);
+    {error, What}               ->
+      Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, What}}),
+      io:format(standard_error, "** ~p~n", Erlerr),
+      exit({Command, What})
   end.
 
 %%
