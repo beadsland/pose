@@ -44,10 +44,10 @@
 %%
 
 % API
--export([run/2]).
+-export([format/2]).
 
 % Hidden
--export([run_safe/2, loop/3]).
+-export([format_run/2, format_loop/3]).
 
 %%
 %% API Functions
@@ -55,21 +55,21 @@
 
 %% @doc Return a formatted string, catching any badarg runtime errors.
 -type format() :: io:format().
--spec run(Format :: format(), What :: [any()]) -> string().
+-spec format(Format :: format(), What :: [any()]) -> string().
 %
-run(Format, What) ->
+format(Format, What) ->
   SafePid = spawn_link(?MODULE, safe_run, [Format, What]),
-  ?MODULE:loop(SafePid, Format, What).
+  ?MODULE:format_loop(SafePid, Format, What).
 
 %%
 %% Hidden Functions
 %%
 
 % @hidden Fully qualified loop.
-loop(SafePid, Format, What) ->
+format_loop(SafePid, Format, What) ->
   receive
     {purging, _Pid, _Mod}             ->
-      ?MODULE:loop(SafePid, Format, What);
+      ?MODULE:format_loop(SafePid, Format, What);
     {'EXIT', SafePid, {ok, String}}   ->
       {ok, String};
     {'EXIT', SafePid, Reason} ->
@@ -77,11 +77,11 @@ loop(SafePid, Format, What) ->
       {error, io_lib:format("Format: ~s~nList: ~p~nError~p~n", List)};
     Noise                             ->
       ?DEBUG("noise: ~p ~p~n", [Noise, self()]),
-      ?MODULE:loop(SafePid, Format, What)
+      ?MODULE:format_loop(SafePid, Format, What)
   end.
 
 % @hidden Spawned as a separate process, to catch runtime errors.
-run_safe(Format, What) ->
+format_run(Format, What) ->
   String = io_lib:format(Format, What),
   exit({ok, String}).
 
