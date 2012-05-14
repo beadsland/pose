@@ -28,17 +28,7 @@
 
 %% @version 0.0.1
 
--define(module, safe).
-
-% BEGIN POSE PACKAGE PATTERN
--ifndef(package).
--module(?module).
--package(default).
--else.
--module(?package.?module).
--package(?package).
--endif.
-% END POSE PACKAGE PATTERN
+-module(safe).
 
 -version("0.0.1").
 
@@ -49,17 +39,12 @@
 %-define(debug, true).
 -include("pose/include/interface.hrl").
 
--import(io_lib).
-
 %%
 %% Exported Functions
 %%
 
-% API direct
+% API
 -export([run/2]).
-
-% API pose
--export([run/3]).
 
 % Hidden
 -export([run_safe/2, loop/3]).
@@ -75,19 +60,6 @@
 run(Format, What) ->
   SafePid = spawn_link(?MODULE, safe_run, [Format, What]),
   ?MODULE:loop(SafePid, Format, What).
-
-%% @doc Print a formatted string, catching any badarg runtime errors.
--spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
-run(IO, ARG, _ENV) ->
-  ?INIT_POSE,
-  Format = ARG(1), What = ARG(2),
-  SafePid = spawn_link(?MODULE, run_safe, [Format, What]),
-  Result = ?MODULE:loop(SafePid, Format, What),
-  case Result of
-    {ok, String}    -> ?STDOUT(String);
-    {error, String} -> ?STDERR(String)
-  end,
-  exit(Result).
 
 %%
 %% Hidden Functions
