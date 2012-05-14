@@ -59,7 +59,7 @@
 -spec send_stdout(IO :: #std{}, Format :: format(), What :: list()) -> ok.
 %
 send_stdout(IO, Format, What) ->
-  send_stdout(IO, io_lib:format(Format, What)),
+  send_stdout(IO, safe:format(Format, What)),
   ok.
 
 %% @doc Smart STDOUT/1 macro function.
@@ -77,7 +77,7 @@ send_stdout(IO, What) ->
 %% @doc Smart STDERR/2 macro function.
 -spec send_stderr(IO :: #std{}, Format:: format(), What :: list()) -> ok.
 send_stderr(IO, Format, What) ->
-  send_stderr(IO, io_lib:format(Format, What)),
+  send_stderr(IO, safe:format(Format, What)),
   ok.
 
 %% @doc Smart STDERR/1 macro function.
@@ -96,7 +96,7 @@ send_stderr(IO, What) ->
 -spec send_debug(Format :: format(), What :: list()) -> ok.
 %
 send_debug(Format, What) ->
-  Msg = io_lib:format(Format, What),
+  Msg = safe:format(Format, What),
   case get(debug) of
     Pid when is_pid(Pid) ->
       get(debug) ! {debug, self(), Msg}, ok;
@@ -111,17 +111,17 @@ format_erlerr(What) ->
         {{Atom, Data}, Trace} when is_atom(Atom), is_list(Trace)    ->
             Format = "~p ~p~nReason: ~p~nTrace: ~p~n",
             NewWhat = [Atom, self(), Data, Trace],
-            io_lib:format(Format, NewWhat);
+            safe:format(Format, NewWhat);
         {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
             Format = "~p ~p~nTrace: ~p~n",
             NewWhat = [Atom, self(), [Head | Tail]],
-            io_lib:format(Format, NewWhat);
+            safe:format(Format, NewWhat);
         {Atom, Data} when is_atom(Atom)                             ->
-            io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
+            safe:format("~p: ~s", [Atom, format_erlerr(Data)]);
         List when is_list(List)                                     ->
-            io_lib:format("~s", [List]);
+            safe:format("~s", [List]);
         _Else                                                       ->
-            io_lib:format("~p", [What])
+            safe:format("~p", [What])
     end.
 
 
