@@ -28,7 +28,7 @@
 
 %% @version 0.0.1
 
--define(module, format).
+-define(module, safe).
 
 % BEGIN POSE PACKAGE PATTERN
 -ifndef(package).
