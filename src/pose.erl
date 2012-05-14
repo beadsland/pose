@@ -41,17 +41,17 @@
 %% Exported Functions
 %%
 
-% used from erl command line
+% pose entry functions
 -export([start/1]).
 
-% exposed for use by start/1
--export([start_loop/2]).
+% exposed for fully qualified calls
+-export([loop/2]).
 
 %%
 %% API Functions
 %%
 
-%% Locate command on PATH, load and run.
+%% Run a pose-compliant command from the erl commandline.
 -spec start([Command :: atom()]) -> ok | no_return().
 start([Command]) ->
   IO = ?IO(self()),
@@ -80,21 +80,22 @@ do_start(IO, Module) ->
   ?MODULE:start_loop(Module, RunPid).
 
 % Loop waiting for output and exit.
-start_loop(Module, RunPid) ->
+% @hidden Exposed for fully qualified calls.
+loop(Module, RunPid) ->
   SelfPid = self(),
   receive
-    {purging, _Pid, _Mod}       -> ?MODULE:start_loop(Module, RunPid);
+    {purging, _Pid, _Mod}       -> ?MODULE:loop(Module, RunPid);
     {'EXIT', RunPid, ok}        -> ok;
     {'EXIT', RunPid, Reason}    -> exit({Module, Reason});
-    {debug, SelfPid, Output}    -> start_output(Module, RunPid,
+    {debug, SelfPid, Output}    -> do_output(Module, RunPid,
                                                 debug, Output);
-    {MsgTag, RunPid, Output}    -> start_output(Module, RunPid,
+    {MsgTag, RunPid, Output}    -> do_output(Module, RunPid,
                                                 MsgTag, Output);
-    Noise                       -> start_noise(Module, RunPid, Noise)
+    Noise                       -> do_noise(Module, RunPid, Noise)
   end.
 
 % Relay standard output to console.
-start_output(Module, RunPid, MsgTag, Output) ->
+do_output(Module, RunPid, MsgTag, Output) ->
   case MsgTag of
     erlout  -> io:format("~p: ~p~n", [Module, Output]);
     erlerr  -> io:format(standard_error, "** ~p: ~s~n",
@@ -103,9 +104,9 @@ start_output(Module, RunPid, MsgTag, Output) ->
     stderr  -> io:format(standard_error, "** ~s", [Output]);
     debug   -> io:format(standard_error, "-- ~s", [Output])
   end,
-  ?MODULE:start_loop(Module, RunPid).
+  ?MODULE:loop(Module, RunPid).
 
 % Handle noise on message queue.
-start_noise(Module, RunPid, Noise) ->
+do_noise(Module, RunPid, Noise) ->
   io:format(standard_error, "noise: ~p ~p~n", [Noise, self()]),
-  ?MODULE:start_loop(Module, RunPid).
+  ?MODULE:loop(Module, RunPid).
