@@ -60,13 +60,13 @@ start([Command]) when is_atom(Command) ->
   case pose_code:load(Command) of
     {module, Module, Warning}   ->
       Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, Warning}}),
-      io:format(standard_error, "** ~p~n", Erlerr),
+      io:format(standard_error, "** ~p~n", [Erlerr]),
       do_start(IO, ?ARG(Module), ?ENV);
     {module, Module}            ->
       do_start(IO, ?ARG(Module), ?ENV);
     {error, What}               ->
       Erlerr = ?FORMAT_ERLERR({?MODULE, {Command, What}}),
-      io:format(standard_error, "** ~p~n", Erlerr),
+      io:format(standard_error, "** ~p~n", [Erlerr]),
       exit({Command, What})
   end.
 
