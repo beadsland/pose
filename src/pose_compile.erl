@@ -90,8 +90,7 @@ ensure_compiled(Cmd, Dir, Force) ->
 
 % Check if we can write to the beam file.
 ensure_compiled(Cmd, Dir, Force, write_dir) ->
-  Filename = ?FILENAME(Dir, Cmd, ".beam"),
-  case pose_file:can_write(Filename) of
+  case pose_file:can_write(?FILENAME(Dir, Cmd, ".beam")) of
     {error, What}   -> {error, {file, What}};
     false           -> ensure_binary(Cmd, Dir, readonly);
     true            -> ensure_compiled(Cmd, Dir, Force, write_both)
@@ -104,12 +103,9 @@ ensure_compiled(Cmd, BinDir, Force, write_both) ->
     {ok, SrcDir}    -> ensure_compiled(Cmd, BinDir, Force, SrcDir)
   end;
 ensure_compiled(Cmd, BinDir, Force, SrcDir) ->
-  SrcFile = ?FILENAME(SrcDir, Cmd, ".erl"),
-  case pose_file:last_modified(SrcFile) of
-    {error, What}   ->
-      {error, {file, What}};
-    SrcMod          ->
-      ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod)
+  case pose_file:last_modified(?FILENAME(SrcDir, Cmd, ".erl")) of
+    {error, What}   -> {error, {file, What}};
+    SrcMod          -> ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod)
   end.
 
 % If we can't compile from source file, confirm we can use binary we have.
@@ -198,7 +194,6 @@ get_otp_package(_BinDir, Path) ->
   Package = re:replace(Path, "\/", ".", [{return, list}, global]),
   ?DEBUG("package: ~s~n", [Package]),
   {ok, list_to_atom(Package)}.
-
 
 %%%
 % Get OTP standard include paths
