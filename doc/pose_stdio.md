@@ -8,7 +8,7 @@
 * [Function Details](#functions)
 
 
-Standard I/O functions underlying interface.hrl macros.
+Standard I/O functions underlying `interface.hrl` macros.
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 

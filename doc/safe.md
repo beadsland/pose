@@ -12,9 +12,12 @@ Safely apply io_lib:format/2, catching badarg runtime errors.
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 
-__Version:__ 0.0.1
+__Version:__ 0.1.0
 
-__Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
+__Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).<a name="description"></a>
+
+##Description##
+  Used by [`pose_stdio`](pose_stdio.md).
 <a name="types"></a>
 
 ##Data Types##

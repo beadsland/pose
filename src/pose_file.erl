@@ -22,7 +22,7 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Utility function library.
+%% @doc File-related utility functions for use by {@link pose_code}.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 

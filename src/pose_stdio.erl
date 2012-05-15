@@ -22,7 +22,7 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Standard I/O functions underlying interface.hrl macros.
+%% @doc Standard I/O functions underlying `interface.hrl' macros.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 

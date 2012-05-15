@@ -8,7 +8,7 @@
 * [Function Details](#functions)
 
 
-Utility function library.
+File-related utility functions for use by [`pose_code`](pose_code.md).
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 

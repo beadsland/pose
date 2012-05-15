@@ -23,6 +23,8 @@
 %% CDDL HEADER END
 
 %% @doc Safely apply io_lib:format/2, catching badarg runtime errors.
+%% Used by {@link pose_stdio}.
+%% @end
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 

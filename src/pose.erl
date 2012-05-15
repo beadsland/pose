@@ -22,8 +22,7 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Entry point for running `pose'-compatible commands from
-%% Erl commandline.
+%% @doc Entry points for running `pose'-compatible commands.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
