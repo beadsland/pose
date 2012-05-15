@@ -120,8 +120,8 @@
 %%      `stderr' to Pid </td></tr>
 %% <tr><td> `?IO(In :: pid(), Out :: pid(), Err :: pid()) -> #std{}' </td>
 %% <td> Create a `pose' I/O record. </td></tr>
-%% <tr><td> `?IO(In :: pid(), Out :: pid(), Err :: pid(), Echo :: boolean())
-%%      -> #std{}' </td>
+%% <tr><td width="30%"> `?IO(In :: pid(), Out :: pid(), Err :: pid(),
+%%      Echo :: boolean()) -> #std{}' </td>
 %% <td> <i>Deprecated.</i>  Create a `pose' IO record, setting the echo
 %%      flag.  Setting the flag to `true' indicates that the process run
 %%      with this IO record should echo `stdin' back to `stdout'.  Defaults

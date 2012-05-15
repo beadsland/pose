@@ -74,8 +74,8 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
 
 
 <table><tr><td> <code>?INIT_POSE</code> </td><td> Initialize the <code>pose</code> interface.  Must be called by entry-function
-       of any <code>pose</code>-compatible process. </td></tr><tr><td> <code>?IO(Pid :: pid()) -> #std{}</code> </td><td> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and<code>stderr</code> to Pid </td></tr><tr><td> <code>?IO(In :: pid(), Out :: pid(), Err :: pid()) -> #std{}</code> </td><td> Create a <code>pose</code> I/O record. </td></tr><tr><td> <code>?IO(In :: pid(), Out :: pid(), Err :: pid(), Echo :: boolean())
-       -> #std{}</code> </td><td> <i>Deprecated.</i>  Create a <code>pose</code> IO record, setting the echo
+       of any <code>pose</code>-compatible process. </td></tr><tr><td> <code>?IO(Pid :: pid()) -> #std{}</code> </td><td> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and<code>stderr</code> to Pid </td></tr><tr><td> <code>?IO(In :: pid(), Out :: pid(), Err :: pid()) -> #std{}</code> </td><td> Create a <code>pose</code> I/O record. </td></tr><tr><td width="30%"> <code>?IO(In :: pid(), Out :: pid(), Err :: pid(),
+       Echo :: boolean()) -> #std{}</code> </td><td> <i>Deprecated.</i>  Create a <code>pose</code> IO record, setting the echo
        flag.  Setting the flag to <code>true</code> indicates that the process run
        with this IO record should echo <code>stdin</code> back to <code>stdout</code>.  Defaults
        to false. </td></tr><tr><td> <code>?ARG(Command :: command(), Values :: [any()]) -> #arg{}</code></td><td> Create a <code>pose</code> Arg record. </td></tr><tr><td> <code>?ARG(Command :: command()) -> #arg{}</code></td><td> Create a <code>pose</code> Arg record, with no arguments. </td></tr><tr><td> <code>?ARGV(N) -> any()</code> </td><td> Return argument <i>N</i>.  Argument 0 corresponds to the name of
