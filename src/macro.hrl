@@ -27,3 +27,5 @@
     proplists:get_value(Attribute, Module:module_info(attributes))).
 -define(VERSION(Module), ?ATTRIB(Module, version)).
 
+-define(FILENAME(Path, Command, Extn), Path ++ "/" ++ Command ++ Extn).
+-define(FILENAME(Path, Command), ?FILENAME(Path, Command, "")).

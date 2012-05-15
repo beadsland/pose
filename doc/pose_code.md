@@ -8,11 +8,11 @@
 * [Function Details](#functions)
 
 
-Intuitive module compiler and loader.
+Intuitive module loader.
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 
-__Version:__ 0.1.5
+__Version:__ 0.1.6
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
@@ -146,7 +146,8 @@ Unlike standard Erlang, `pose` looks for a module by unpackaged filename,
 and upon finding such a file, loads it, returning the fully-qualified
 packaged module name.  This means that `pose` would look for `fum` (per
 our example above), as `/home/user/project/ebin/fum.beam`, and then upon
-successfully loading same, would return `{module, 'fee.foo.fum'}`.
+successfully loading same, would return
+`{module, 'fee.foo.fum'}`.
 
 
 
@@ -233,7 +234,8 @@ modules will run in their own unique namespace when loaded in a
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td></td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
+as necessary.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -249,8 +251,11 @@ modules will run in their own unique namespace when loaded in a
 <br></br>
 
 
+Locate command on `PATH`, compiling and loading updated module
+as necessary.
+
 __<font color="red">To do</font>__
 <br></br>
 
-* <font color="red">refactor as a no_return with all output on stdout/stderr</font>
-* <font color="red">get PATH from environment</font>
+* <font color="red">get PATH from environment
+</font>

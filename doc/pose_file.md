@@ -34,11 +34,11 @@ __<font color="red">To do</font>__
 
 
 
-###<a name="type-file_error">file_error()</a>##
+###<a name="type-file_err">file_err()</a>##
 
 
 
-<pre>file_error() = {error, {atom(), <a href="#type-filename">filename()</a>}}</pre>
+<pre>file_err() = {atom(), <a href="#type-filename">filename()</a>}</pre>
 
 
 
@@ -46,7 +46,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>filename() = string()</pre>
+<pre>filename() = nonempty_string()</pre>
 
 
 
@@ -55,6 +55,14 @@ __<font color="red">To do</font>__
 
 
 <pre>folder() = nonempty_string()</pre>
+
+
+
+###<a name="type-last_mod_rtn">last_mod_rtn()</a>##
+
+
+
+<pre>last_mod_rtn() = {ok, <a href="#type-date_time">date_time()</a>} | {error, <a href="#type-file_err">file_err()</a>}</pre>
 
 
 
@@ -104,7 +112,7 @@ __<font color="red">To do</font>__
 ###can_read/1##
 
 
-<pre>can_read(Filename::<a href="#type-filename">filename()</a>) -> boolean() | <a href="#type-file_error">file_error()</a></pre>
+<pre>can_read(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}</pre>
 <br></br>
 
 
@@ -113,7 +121,7 @@ Test if file or directory is readable.<a name="can_write-1"></a>
 ###can_write/1##
 
 
-<pre>can_write(Filename::<a href="#type-filename">filename()</a>) -> boolean() | <a href="#type-file_error">file_error()</a></pre>
+<pre>can_write(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}</pre>
 <br></br>
 
 
@@ -131,7 +139,7 @@ Walk absolute directory path, finding where parallel would occur.<a name="last_m
 ###last_modified/1##
 
 
-<pre>last_modified(Filename::<a href="#type-filename">filename()</a>) -> {ok, <a href="#type-date_time">date_time()</a>} | <a href="#type-file_error">file_error()</a></pre>
+<pre>last_modified(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-last_mod_rtn">last_mod_rtn()</a></pre>
 <br></br>
 
 

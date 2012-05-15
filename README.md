@@ -80,7 +80,7 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
        with this IO record should echo <code>stdin</code> back to <code>stdout</code>.  Defaults
        to false. </td></tr><tr><td> <code>?ARG(Command :: command(), Values :: [any()]) -> #arg{}</code></td><td> Create a <code>pose</code> Arg record. </td></tr><tr><td> <code>?ARG(Command :: command()) -> #arg{}</code></td><td> Create a <code>pose</code> Arg record, with no arguments. </td></tr><tr><td> <code>?ARGV(N) -> any()</code> </td><td> Return argument <i>N</i>.  Argument 0 corresponds to the name of
        the command run to start the current process.  Only available
-       in functions that receive an <code>ARG</code> parameter.</td></tr><tr><td> <code>?ENV -> #env{}</code> </td><td> Create a <code>pose</code> Env record, setting it to hold the global
+       in functions that receive an <code>ARG</code> parameter. </td></tr><tr><td> <code>?ENV -> #env{}</code> </td><td> Create a <code>pose</code> Env record, setting it to hold the global
        environment values of the current process. </td></tr></table>
 
 
@@ -105,6 +105,7 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose.md" class="module">pose</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_beam.md" class="module">pose_beam</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_code.md" class="module">pose_code</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_file.md" class="module">pose_file</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/safe.md" class="module">safe</a></td></tr></table>

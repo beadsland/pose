@@ -22,7 +22,7 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Intuitive module compiler and loader.
+%% @doc Intuitive module loader.
 %%
 %% <ul>
 %% <li> {@section Basic Load Process} </li>
@@ -101,7 +101,8 @@
 %% and upon finding such a file, loads it, returning the fully-qualified
 %% packaged module name.  This means that `pose' would look for `fum' (per
 %% our example above), as `/home/user/project/ebin/fum.beam', and then upon
-%% successfully loading same, would return <code>{module, 'fee.foo.fum'}</code>.
+%% successfully loading same, would return
+%% <code>{module, 'fee.foo.fum'}</code>.
 %%
 %% Additionally, `pose' uses a `-package' directive to identify files that
 %% have been compiled in the flat namespace standard to Erlang and
@@ -146,9 +147,9 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.5
+%% @version 0.1.6
 -module(pose_code).
--version("0.1.5").
+-version("0.1.6").
 
 %%
 %% Include files
@@ -158,9 +159,6 @@
 -include("interface.hrl").
 
 -include("macro.hrl").
-
--define(FILENAME(Path, Command, Extn), Path ++ "/" ++ Command ++ Extn).
--define(FILENAME(Path, Command), ?FILENAME(Path, Command, "")).
 
 %%
 %% Exported functions
@@ -174,7 +172,9 @@
 %% API functions
 %%
 
-%% Locate command on `PATH', compiling and loading updated module as necessary.
+%% @doc Locate command on `PATH', compiling and loading updated module
+%% as necessary.
+%% @end
 -type command() :: pose:command().
 -type load_warn() :: diff_path | flat_pkg.
 -type error() :: atom() | {atom(), error()}.
@@ -182,8 +182,8 @@
 -type load_rtn() :: {module, module()} | {module, module(), load_warn()}
                     | {error, load_err()}.
 -spec load(Command :: command()) -> load_rtn().
-%% @todo refactor as a no_return with all output on stdout/stderr
 %% @todo get PATH from environment
+%
 load(Command) when is_atom(Command) -> load(atom_to_list(Command));
 load(Command) ->
   Path = [filename:absname("ebin"),
@@ -206,7 +206,7 @@ load(Command) ->
 load(_Command, []) -> {error, notfound};
 load(Command, [Head | Tail]) ->
   ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
-  case ensure_compiled(Command, Head) of
+  case pose_compile:ensure_compiled(Command, Head) of
     {info, nobin}           -> load(Command, Tail);
     {info, Info}            -> ?DEBUG("l: ~p~n", [Info]),
                                load(Command, Head, slurp);
@@ -329,7 +329,7 @@ do_purge_delete(Module, [Head | Tail]) ->
 
 % Force recompilation if explicit package of 'default'
 ensure_packaged(Command, Dir, default) ->
-  case ensure_compiled(Command, Dir, true) of
+  case pose_compile:ensure_compiled(Command, Dir, true) of
     {ok, Module, Binary} 	->
       ensure_packaged(Command, Dir, Module, Binary);
     {error, What} 			->
@@ -344,166 +344,3 @@ ensure_packaged(_Command, _Dir, Module, Binary) ->
     {ok, Version, Package}	-> {ok, Module, Binary, Version, Package}
   end.
 
-%%%
-% Ensure compiled
-%%%
-
-% By default, we don't force compilation.
-ensure_compiled(Command, Path) -> ensure_compiled(Command, Path, false).
-
-% Check if we can write to the ebin directory.
-ensure_compiled(Cmd, Dir, Force) ->
-  case pose_file:can_write(Dir) of
-    {error, What}	-> {error, {file, What}};
-    false			-> {info, readonly_dir};
-    true			-> ensure_compiled(Cmd, Dir, Force, write_dir)
-  end.
-
-% Check if we can write to the beam file.
-ensure_compiled(Cmd, Dir, Force, write_dir) ->
-  Filename = ?FILENAME(Dir, Cmd, ".beam"),
-  case pose_file:can_write(Filename) of
-    {error, What}	-> {error, {file, What}};
-    false			-> ensure_binary(Cmd, Dir, readonly);
-    true			-> ensure_compiled(Cmd, Dir, Force, write_both)
-  end;
-
-% Find any source file, and get modification date of same.
-ensure_compiled(Cmd, BinDir, Force, write_both) ->
-  case parallel_src(BinDir, Cmd) of
-    nosrc			-> ensure_binary(Cmd, BinDir, nosrc);
-    {ok, SrcDir}	-> ensure_compiled(Cmd, BinDir, Force, SrcDir)
-  end;
-ensure_compiled(Cmd, BinDir, Force, SrcDir) ->
-  SrcFile = ?FILENAME(SrcDir, Cmd, ".erl"),
-  case pose_file:last_modified(SrcFile) of
-    {error, What}   ->
-      {error, {file, What}};
-    SrcMod          ->
-      ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod)
-  end.
-
-% If we can't compile from source file, confirm we can use binary we have.
-ensure_binary(Cmd, Dir, Why) ->
-    HaveBinary = pose_file:can_read(?FILENAME(Dir, Cmd, ".beam")),
-    if HaveBinary     -> {info, Why};
-       true           -> {info, nobin}  % i.e., search next dir in path
-    end.
-
-% Get modification date of binary file.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod) ->
-  BinFile = ?FILENAME(BinDir, Cmd, ".beam"),
-  case pose_file:last_modified(BinFile) of
-    {error, What}	->
-      {error, {file, What}};
-    BinMod 			->
-      ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinMod)
-  end.
-
-% Compare modification dates and compile if source is newer.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinMod) ->
-  if SrcMod > BinMod; Force	-> do_compile(SrcDir, Cmd, BinDir);
-     true				    -> {ok, ?FILENAME(BinDir, Cmd, ".beam")}
-  end.
-
-% Make sure we've got a directory to write to.
-do_compile(SrcDir, Cmd, BinDir)  ->
-  case file:make_dir(BinDir) of
-    ok				-> do_compile(SrcDir, Cmd, BinDir, true_dir);
-    {error, eexist} -> do_compile(SrcDir, Cmd, BinDir, true_dir);
-    {error, What}	-> {error, {What, BinDir}}
-  end.
-
-% Compile to a binary in memory.
-do_compile(SrcDir, Cmd, BinDir, true_dir) ->
-  case get_otp_includes(BinDir) of
-    {error, What}   -> {error, {includes, What}};
-    {ok, InclList}  -> do_compile(SrcDir, Cmd, BinDir, InclList)
-  end;
-do_compile(SrcDir, Cmd, BinDir, InclList) ->
-  case get_otp_package(BinDir) of
-    {error, What}   -> {error, {package, What}};
-    {ok, Package}   -> do_compile(SrcDir, Cmd, BinDir, InclList, Package)
-  end.
-
-do_compile(SrcDir, Cmd, BinDir, InclList, Package) ->
-  Options = [verbose, warnings_as_errors, return_errors, binary,
-            {d, package, Package}, {outdir, BinDir}] ++ InclList,
-  Filename = ?FILENAME(SrcDir, Cmd, ".erl"),
-  case compile:file(Filename, Options) of
-    error						->
-      {error, {compile, unspecified_error}};
-    {error, Errors, Warnings}	->
-      {error, {compile, {Errors, Warnings}}};
-    {ok, ModuleName, Binary} 	->
-      do_compile(SrcDir, Cmd, BinDir, ModuleName, Package, Binary)
-  end.
-
-% Write our binary out to file.
-do_compile(_SrcDir, Cmd, BinDir, ModuleName, _Package, Binary) ->
-  Outfile = ?FILENAME(BinDir, Cmd, ".beam"),
-  case file:write_file(Outfile, Binary) of
-    {error, What}	-> {error, {What, Outfile}};
-    ok				-> {ok, ModuleName, Binary}
-  end.
-
-%%%
-% Get OTP compliant package
-%%%
-
-%% @todo make this chdir safe
-get_otp_package(BinDir) ->
-  Pwd = filename:absname(""),
-  {ok, MP} = re:compile("^" ++ Pwd ++ "/(.*)$"),
-  case re:run(BinDir, MP, [{capture, [1], list}]) of
-    nomatch         -> {error, off_pwd};
-    {match, [Path]} -> get_otp_package(BinDir, Path)
-  end.
-
-get_otp_package(_BinDir, Path) ->
-  Package = re:replace(Path, "\/", ".", [{return, list}, global]),
-  ?DEBUG("package: ~s~n", [Package]),
-  {ok, list_to_atom(Package)}.
-
-
-%%%
-% Get OTP standard include paths
-%%%
-
-get_otp_includes(BinDir) ->
-  case pose_file:find_parallel_folder("ebin", "_temp_", BinDir) of
-    {true, TempDir}   ->
-      {ok, get_otp_includes(TempDir, ["deps", "apps"]) ++
-        get_otp_includes("deps", ["deps"])};
-    {false, BinDir}             ->
-      {error, not_otp}
-  end.
-
-get_otp_includes(_TempDir, []) -> [];
-get_otp_includes(TempDir, [Head | Tail]) ->
-  Include = re:replace(TempDir, "_temp_.*$", Head, [{return, list}]),
-  case pose_file:can_read(Include) of
-    true            -> [{i, Include} | get_otp_includes(TempDir, Tail)];
-    false           -> get_otp_includes(TempDir, Tail);
-    {error, What}   -> {error, {file, What}}
-  end.
-
-%%%
-% Find parallel source directory
-%%%
-
-% Find candidate src directory parallel to ebin.
- parallel_src(BinDir, Cmd) ->
-  ?DEBUG("Seeking parallel src\n"),
-  case pose_file:find_parallel_folder("ebin", "src", BinDir) of
-    {true, SrcPath} -> parallel_src(BinDir, Cmd, SrcPath);
-    _Else	        -> ?DEBUG("Didn't find parallel src\n"), nosrc
-  end.
-
-% Confirm it's readable and return result.
-parallel_src(_BinDir, Command, SrcDir) ->
-  Filename = ?FILENAME(SrcDir, Command, ".erl"),
-  case pose_file:can_read(Filename) of
-    true 	-> {ok, SrcDir};
-    false 	-> nosrc
-  end.

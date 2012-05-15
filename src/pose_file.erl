@@ -48,6 +48,8 @@
 % File Properties
 -export([can_read/1, can_write/1, last_modified/1, find_parallel_folder/3]).
 
+-export_type([filename/0, file_err/0]).
+
 %%
 %% API Functions
 %%
@@ -58,9 +60,9 @@
 %%%
 
 %% @doc Test if file or directory is writeable.
--type filename() :: string().
--type file_error() :: {error, {atom(), filename()}}.
--spec can_write(Filename :: filename()) -> boolean() | file_error().
+-type filename() :: nonempty_string().
+-type file_err() :: {atom(), filename()}.
+-spec can_write(Filename :: filename()) -> boolean() | {error, file_err()}.
 %
 can_write(Filename) ->
     case file:read_file_info(Filename) of
@@ -77,7 +79,7 @@ can_write(Filename) ->
     end.
 
 %% @doc Test if file or directory is readable.
--spec can_read(Filename :: filename()) -> boolean() | file_error().
+-spec can_read(Filename :: filename()) -> boolean() | {error, file_err()}.
 can_read(Filename) ->
     case file:read_file_info(Filename) of
         {ok, FileInfo}  ->
@@ -92,8 +94,8 @@ can_read(Filename) ->
 
 %% @doc Get last date and time file last modified.
 -type date_time() :: calendar:date_time().
--spec last_modified(Filename :: filename()) ->
-          {ok, date_time()} | file_error().
+-type last_mod_rtn() :: {ok, date_time()} | {error, file_err()}.
+-spec last_modified(Filename :: filename()) -> last_mod_rtn().
 %
 last_modified(Filename) ->
     case file:read_file_info(Filename) of
