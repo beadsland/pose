@@ -175,14 +175,11 @@
 %% API functions
 %%
 
-%% @equiv load_module(Command)
 -spec load(Command :: command()) -> load_rtn().
+%% @equiv load_module(Command)
 %% @deprecated should be load_command or load_project
 load(Command) -> load_module(Command).
 
-%% @doc Locate command on `PATH', compiling and loading updated module
-%% as necessary.
-%% @end
 -type command() :: pose:command().
 -type load_warn() :: diff_path | flat_pkg.
 -type error() :: atom() | {atom(), error()}.
@@ -190,6 +187,9 @@ load(Command) -> load_module(Command).
 -type load_rtn() :: {module, module()} | {module, module(), load_warn()}
                     | {error, load_err()}.
 -spec load_module(Command :: command()) -> load_rtn().
+%% @doc Locate command on `PATH', compiling and loading updated module
+%% as necessary.
+%% @end
 %% @todo get PATH from environment
 load_module(Command) when is_atom(Command) ->
   load_module(atom_to_list(Command));

@@ -54,18 +54,16 @@
 % Standard I/O functions
 %%%
 
-%% @doc Smart STDOUT/2 macro function.
 -type format() :: io:format().
 -spec send_stdout(IO :: #std{}, Format :: format(), What :: list()) -> ok.
-%
+%% @doc Smart STDOUT/2 macro function.
 send_stdout(IO, Format, What) ->
   send_stdout(IO, safe:format(Format, What)),
   ok.
 
-%% @doc Smart STDOUT/1 macro function.
 -type output() :: {atom(), any()} | string().
 -spec send_stdout(IO :: #std{}, What :: output()) -> ok.
-%
+%% @doc Smart STDOUT/1 macro function.
 send_stdout(IO, What) ->
   if is_tuple(What);
      is_atom(What)  -> IO#std.out ! {erlout, self(), What};
@@ -74,14 +72,14 @@ send_stdout(IO, What) ->
   end,
   ok.
 
-%% @doc Smart STDERR/2 macro function.
 -spec send_stderr(IO :: #std{}, Format:: format(), What :: list()) -> ok.
+%% @doc Smart STDERR/2 macro function.
 send_stderr(IO, Format, What) ->
   send_stderr(IO, safe:format(Format, What)),
   ok.
 
-%% @doc Smart STDERR/1 macro function.
 -spec send_stderr(IO :: #std{}, What :: output()) -> ok.
+%% @doc Smart STDERR/1 macro function.
 send_stderr(IO, What) ->
   if is_tuple(What);
      is_atom(What)  -> IO#std.out ! {erlerr, self(), What};
@@ -90,11 +88,10 @@ send_stderr(IO, What) ->
   end,
   ok.
 
+-spec send_debug(Format :: format(), What :: list()) -> ok.
 %% @doc Smart DEBUG/2 macro function.
 %% Retrieves debug pid from process dictionary.  (Set by macro.)
 %% @end
--spec send_debug(Format :: format(), What :: list()) -> ok.
-%
 send_debug(Format, What) ->
   Msg = safe:format(Format, What),
   case get(debug) of
@@ -104,8 +101,8 @@ send_debug(Format, What) ->
       throw({debug_unitialized, Msg})
   end.
 
-%% @doc Smartly format erlerr messages.
 -spec format_erlerr(What :: any()) -> string().
+%% @doc Smartly format erlerr messages.
 format_erlerr(What) ->
     case What of
         {{Atom, Data}, Trace} when is_atom(Atom), is_list(Trace)    ->

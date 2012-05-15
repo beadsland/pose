@@ -49,7 +49,6 @@
 %% API Functions
 %%
 
-%% @equiv ensure_compiled(Command, Dir, false)
 -type command() :: pose:command().
 -type directory() :: pose_file:filename().
 -type info_type() :: readonly_dir | readonly | nobin | nosrc.
@@ -63,16 +62,15 @@
                         | {info, info_type()} | {error, ensure_err()}.
 -spec ensure_compiled(Command :: command(), Dir :: directory()) ->
         ensure_rtn().
-%
+%% @equiv ensure_compiled(Command, Dir, false)
 ensure_compiled(Command, Dir) -> ensure_compiled(Command, Dir, false).
 
+-spec ensure_compiled(Command :: command(), Dir :: directory(),
+                      Force :: boolean()) -> ensure_rtn().
 %% @doc Confirm the most recently compiled binary for a command is
 %% available in the current directory, compiling same if necessary.
 %% If `Force' is true, binary will be recompiled if it can be.
 %% @end
--spec ensure_compiled(Command :: command(), Dir :: directory(),
-                      Force :: boolean()) -> ensure_rtn().
-%
 ensure_compiled(Cmd, Dir, Force) ->
   case pose_file:can_write(Dir) of
     {error, What}   -> {error, {file, What}};

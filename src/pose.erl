@@ -55,8 +55,8 @@
 %% API Functions
 %%
 
-%% @doc Run a pose-compliant command from the erl commandline.
 -spec start([Command :: atom()]) -> ok | no_return().
+%% @doc Run a pose-compliant command from the erl commandline.
 start([Command]) ->
   IO = ?IO(self()),
   ?INIT_POSE,
@@ -70,20 +70,19 @@ start([Command]) ->
       ?MODULE:loop(Command, CmdPid)
   end.
 
-%% @equiv spawn(IO, Command, [])
 -type command() :: nonempty_string() | atom().
 -type spawn_rtn() :: {error, pose_code:load_err()} | pid().
 -spec spawn(IO :: #std{}, Command :: command()) -> spawn_rtn().
-%
+%% @equiv spawn(IO, Command, [])
 spawn(IO, Command) -> spawn(IO, Command, []).
 
-%% @doc Run a pose-compliant command in its own process.
 -spec spawn(IO :: #std{}, Command :: command(), Param :: [any()]) ->
         spawn_rtn().
-% Fully qualified call to satisfy dialyzer, which otherwise doesn't see
-% spawn/4 ever run.
+%% @doc Run a pose-compliant command in its own process.
 spawn(IO, Command, Param) when is_atom(Command) ->
   ?MODULE:spawn(IO, atom_to_list(Command), Param);
+  % Fully qualified call to satisfy dialyzer,
+  % which otherwise doesn't see spawn/4 ever run.
 spawn(IO, Command, Param) ->
   case pose_code:load(Command) of
     {module, Module, diff_path} ->

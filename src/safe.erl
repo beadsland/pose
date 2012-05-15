@@ -55,10 +55,9 @@
 %% API Functions
 %%
 
-%% @doc Return a formatted string, catching any badarg runtime errors.
 -type format() :: io:format().
 -spec format(Format :: format(), What :: [any()]) -> string().
-%
+%% @doc Return a formatted string, catching any badarg runtime errors.
 format(Format, What) ->
   SafePid = spawn_link(?MODULE, format_run, [Format, What]),
   ?MODULE:format_loop(SafePid, Format, What).

@@ -43,7 +43,6 @@
 %% API Functions
 %%
 
-%% @doc Get version and package of binary
 -type attribute() :: atom().
 -type beam_lib_error() :: {beam_lib, term()}.
 -type binary_detail_error() :: beam_lib_error() | {missing_chunk, attribute()}.
@@ -51,14 +50,13 @@
 -type package() :: term().
 -spec get_binary_detail(Module :: module(), Binary ::  binary()) ->
           {ok, version(), package()} | {error, binary_detail_error()}.
-%
+%% @doc Get version and package of binary
 get_binary_detail(Module, Binary) ->
     case beam_lib:version(Binary) of
         {error, beam_lib, What} -> {error, {beam_lib, What}};
         {ok, {Module, Version}} -> get_binary_detail(Module, Binary, Version)
     end.
 
-%% @doc Read binary file into memory.
 -type posix() :: atom().
 -type file_error_reason() :: posix() | badarg | terminated | system_limit.
 -type slurp_error() :: {read, file_error_reason()} | beam_lib_error()
@@ -66,7 +64,7 @@ get_binary_detail(Module, Binary) ->
 -type filename() :: file:filename().
 -spec slurp_binary(Filename :: filename()) -> {ok, module(), binary()}
                                                 | {error, slurp_error()}.
-%
+%% @doc Read binary file into memory.
 slurp_binary(Filename) ->
     case file:read_file(Filename) of
         {ok, Binary}    -> slurp_binary(Filename, Binary);

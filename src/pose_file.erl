@@ -59,11 +59,10 @@
 % File property functions
 %%%
 
-%% @doc Test if file or directory is writeable.
 -type filename() :: nonempty_string().
 -type file_err() :: {atom(), filename()}.
 -spec can_write(Filename :: filename()) -> boolean() | {error, file_err()}.
-%
+%% @doc Test if file or directory is writeable.
 can_write(Filename) ->
     case file:read_file_info(Filename) of
         {ok, FileInfo}  ->
@@ -78,8 +77,8 @@ can_write(Filename) ->
             {error, {What, Filename}}
     end.
 
-%% @doc Test if file or directory is readable.
 -spec can_read(Filename :: filename()) -> boolean() | {error, file_err()}.
+%% @doc Test if file or directory is readable.
 can_read(Filename) ->
     case file:read_file_info(Filename) of
         {ok, FileInfo}  ->
@@ -92,11 +91,10 @@ can_read(Filename) ->
         {error, What}   -> {error, {What, Filename}}
     end.
 
-%% @doc Get last date and time file last modified.
 -type date_time() :: calendar:date_time().
 -type last_mod_rtn() :: {ok, date_time()} | {error, file_err()}.
 -spec last_modified(Filename :: filename()) -> last_mod_rtn().
-%
+%% @doc Get last date and time file last modified.
 last_modified(Filename) ->
     case file:read_file_info(Filename) of
         {ok, FileInfo}  -> {ok, FileInfo#file_info.mtime};
@@ -104,7 +102,6 @@ last_modified(Filename) ->
         {error, What}   -> {error, {What, Filename}}
     end.
 
-%% @doc Walk absolute directory path, finding where parallel would occur.
 -type folder() :: nonempty_string().
 -type path_string() :: nonempty_string().
 -type path_list() :: {folders, [folder()]}.
@@ -112,7 +109,7 @@ last_modified(Filename) ->
 -type parallel_result() :: {false, path_string()} | {true, path_string()}.
 -spec find_parallel_folder(OldFlder :: folder(), NewFolder :: folder(),
                            OldPath :: path()) -> parallel_result().
-%
+%% @doc Walk absolute directory path, finding where parallel would occur.
 find_parallel_folder(OldFldr, NewFldr, OldDir) when is_list(OldDir) ->
   Split = re:split(OldDir, "/", [{return, list}]),
   find_parallel_folder(OldFldr, NewFldr, {folders, Split});
