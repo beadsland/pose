@@ -17,6 +17,8 @@ __Version:__ 0.1.6
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
 __References__
+* For a project using `pose`, see
+[`nosh`](http://github.com/beadsland/nosh).
 * See discussion of
 [Packages in
 Erlang](http://www.erlang.se/publications/packages.md).
@@ -36,7 +38,13 @@ __<font color="red">To do</font>__
 
 * [Basic Load Process](#Basic_Load_Process)
 
+* [Purge Handling](#Purge_Handling)
+
+* [Warnings](#Warnings)
+
 * [Packaged Modules](#Packaged_Modules)
+
+* [Pose Namespace](#Pose_Namespace)
 
 
 
@@ -69,14 +77,46 @@ Otherwise, an error is returned.
 
 
 If no associated `.erl` file is found, the `.beam` file on the `PATH`
-is loaded and evaluation and execution goes forward.  If no `.beam`
-file is found, the search continues to the next directory on `PATH`,
-returning an error if no `.beam` file can be found or compiled from
-source before the `PATH` is exhausted.
+is loaded.  If no `.beam` file is found, the search continues to the
+next directory on `PATH`, returning an error if no `.beam` file can be
+found or compiled from source before the `PATH` is exhausted.
 
 
 
-####<a name="Warnings">Warnings</a>##
+###<a name="Purge_Handling">Purge Handling</a>##
+
+
+
+
+Whenever a new binary is obtained by `pose_code`, a `code:soft_purge/1`
+is called, and on a `true` result, current code for the binary is made
+old (`code:delete/1`) and the binary is loaded as current code.
+
+
+
+In the event of a `false` result from `code:soft_purge/1`, a message is
+broadcast to all active processes of the form
+`{purging, PurgePid, Module}`, where 'PurgePid' is the `pid()` of the
+process initiating the purge, and 'Module' is the atom identifying the
+module to be purged.
+
+
+
+In order to take advantage of this broadcast, and escape being killed
+for lingering in old code, `pose`-compatible modules should begin with
+a case clause in message loops to respond to `purging` messages with a
+fully-qualified call to the loop function.  As per the following example:
+
+<pre>
+  loop(...) ->
+    receive
+      {purging, _Pid, _Mod} -> ?MODULE:loop(...);
+                    *     *     *
+    end.</pre>
+
+
+
+###<a name="Warnings">Warnings</a>##
 
 
 
@@ -113,11 +153,6 @@ points in the file system.</td></tr>
 
 
 
-####<a name="Introduction">Introduction</a>##
-
-
-
-
 Erlang provides for namespace management through an experimental
 packages feature.  As implemented in Erlang, the package of a module
 is expressed as a dot-separated path in the `-module` directive.
@@ -132,12 +167,12 @@ is a subpackage of `fee`), would be declared as:
 The package hierarchy, in turn, corresponds to the file hierarchy of
 a module relative to the current code path.  So, continuing our example,
 if the current code path includes `/home/user/project/ebin`, the
-compiled `fee.foo.fum` module would be sought at
+compiled `fee.foo.fum` module would traditionally be sought at
 `/home/user/project/ebin/fee/foo/fum.beam`.
 
 
 
-####<a name="Pose_Namespace">Pose Namespace</a>##
+###<a name="Pose_Namespace">Pose Namespace</a>##
 
 
 
@@ -145,17 +180,17 @@ compiled `fee.foo.fum` module would be sought at
 Unlike standard Erlang, `pose` looks for a module by unpackaged filename,
 and upon finding such a file, loads it, returning the fully-qualified
 packaged module name.  This means that `pose` would look for `fum` (per
-our example above), as `/home/user/project/ebin/fum.beam`, and then upon
-successfully loading same, would return
+our example above), as `/home/user/project/ebin/fum.beam`, and then
+upon successfully loading same, would return
 `{module, 'fee.foo.fum'}`.
 
 
 
-Additionally, `pose` uses a `-package` directive to identify files that
-have been compiled in the flat namespace standard to Erlang and
-then recompile those files with a package assigned by `pose` so as to
-ensure that each such package is uniqely identified in the namespace
-of the currently running node.
+Additionally, `pose` uses a `-package` directive to identify
+`pose`-compatible files that have been compiled in the flat namespace
+standard to Erlang and then recompile those files with a package
+assigned by `pose` so as to ensure that each such package is uniqely
+identified in the namespace of the currently running node.
 
 
 
