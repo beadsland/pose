@@ -49,15 +49,14 @@ SUCCINCT	=	grep -v "Entering directory" \
 				| grep -v "Leaving directory"
 
 ERL_PATH	= 	-pa ebin
-SUPERL		=	-pa ../superl/ebin -s superl -s init stop
+
+SUPERL	=	-pa ../superl/ebin -s superl -s init stop
 
 #
 # Build rules start
 #
 
 all:	push good
-
-run:	current good
 
 good:	compile
 	@if [ "$(DEV)" == yes ]; \

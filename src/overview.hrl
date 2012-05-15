@@ -133,7 +133,7 @@
 %% <tr><td> `?ARGV(N) -> any()' </td>
 %% <td> Return argument <i>N</i>.  Argument 0 corresponds to the name of
 %%      the command run to start the current process.  Only available
-%%      in functions that receive an `ARG' parameter.</td></tr>
+%%      in functions that receive an `ARG' parameter. </td></tr>
 %% <tr><td> `?ENV -> #env{}' </td>
 %% <td> Create a `pose' Env record, setting it to hold the global
 %%      environment values of the current process. </td></tr>
