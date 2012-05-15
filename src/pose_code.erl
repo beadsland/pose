@@ -22,9 +22,6 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @reference For a project using `pose', see
-%% <a href="http://github.com/beadsland/nosh">`nosh'</a>.
-%% @end
 %% @doc Intuitive module loader.
 %%
 %% <ul>

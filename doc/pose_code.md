@@ -17,8 +17,6 @@ __Version:__ 0.1.6
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
 __References__
-* For a project using `pose`, see
-[`nosh`](http://github.com/beadsland/nosh).
 * See discussion of
 [Packages in
 Erlang](http://www.erlang.se/publications/packages.md).

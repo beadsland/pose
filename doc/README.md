@@ -9,6 +9,11 @@ __Version:__ 0.1.0
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
+__References__
+* For a project using `pose`, see
+[`nosh`](http://github.com/beadsland/nosh).
+
+
 This is the POSIX-like interface emulation for use with the[`nosh`](http://github.com/beadsland/nosh) Bourne shell
   emulator and `nosh`-compatible projects.
 * [Installation](#Installation)

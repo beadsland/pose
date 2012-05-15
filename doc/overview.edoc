@@ -7,3 +7,7 @@
 @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 @copyright 2012 Beads D. Land-Trujillo
 @headerfile "../src/overview.hrl"
+
+@reference For a project using `pose', see
+<a href="http://github.com/beadsland/nosh">`nosh'</a>.
+@end
