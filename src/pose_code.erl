@@ -155,7 +155,7 @@
 %% Include files
 %%
 
--define(debug, true).
+%-define(debug, true).
 -include("interface.hrl").
 
 -include("macro.hrl").
@@ -166,11 +166,19 @@
 
 % used from within pose applications
 -export([load/1]).
+-export([load_module/1]).
 -export_type([load_err/0]).
+
+-compile({no_auto_import, [load_module/2]}).
 
 %%
 %% API functions
 %%
+
+%% @equiv load_module(Command)
+-spec load(Command :: command()) -> load_rtn().
+%% @deprecated should be load_command or load_project
+load(Command) -> load_module(Command).
 
 %% @doc Locate command on `PATH', compiling and loading updated module
 %% as necessary.
@@ -181,52 +189,52 @@
 -type load_err() :: {load, error()} | {slurp, error()} | error().
 -type load_rtn() :: {module, module()} | {module, module(), load_warn()}
                     | {error, load_err()}.
--spec load(Command :: command()) -> load_rtn().
+-spec load_module(Command :: command()) -> load_rtn().
 %% @todo get PATH from environment
-%
-load(Command) when is_atom(Command) -> load(atom_to_list(Command));
-load(Command) ->
+load_module(Command) when is_atom(Command) ->
+  load_module(atom_to_list(Command));
+load_module(Command) ->
   Path = [filename:absname("ebin"),
           filename:absname("deps/superl/ebin"),
           filename:absname("deps/bin/ebin"),
           filename:absname("deps/erl/ebin"),
           filename:absname("deps/nosql/ebin")],
-  load(Command, Path).
+  load_module(Command, Path).
 
 %%
 %% Local functions
 %%
-
 
 %%%
 % Load command
 %%%
 
 % Iterate over path list in search of command.
-load(_Command, []) -> {error, notfound};
-load(Command, [Head | Tail]) ->
+% @hidden exposed to avoid overridden bif warning
+load_module(_Command, []) -> {error, notfound};
+load_module(Command, [Head | Tail]) ->
   ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
   case pose_compile:ensure_compiled(Command, Head) of
-    {info, nobin}           -> load(Command, Tail);
+    {info, nobin}           -> load_module(Command, Tail);
     {info, Info}            -> ?DEBUG("l: ~p~n", [Info]),
-                               load(Command, Head, slurp);
+                               load_module(Command, Head, slurp);
     {ok, Filename}			-> ?DEBUG("l: ~s~n", [Filename]),
-                               load(Command, Head, slurp);
+                               load_module(Command, Head, slurp);
     {ok, Module, Binary}	-> ?DEBUG("l: ~p~n", [Module]),
-                               load(Command, Head, Module, Binary);
+                               load_module(Command, Head, Module, Binary);
     {error, What}			-> {error, {load, What}}
   end.
 
 % Having found command, slurp binary from file.
-load(Command, Dir, slurp) ->
+load_module(Command, Dir, slurp) ->
   Filename = ?FILENAME(Dir, Command, ".beam"),
   case pose_beam:slurp_binary(Filename) of
-    {ok, Module, Binary}	-> load(Command, Dir, Module, Binary);
+    {ok, Module, Binary}	-> load_module(Command, Dir, Module, Binary);
     {error, What}			-> {error, {slurp, What}}
   end.
 
 % Load new current module from binary.
-load(Command, Dir, OrigModule, Binary) ->
+load_module(Command, Dir, OrigModule, Binary) ->
   case do_load(Command, Dir, OrigModule, Binary) of
     {ok, Module, diff_path}	-> {module, Module, diff_path};
     {ok, Module, flat_pkg} 	-> {module, Module, flat_pkg};

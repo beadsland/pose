@@ -45,20 +45,23 @@
 -export([start/1, spawn/2, spawn/3]).
 -export_type([command/0]).
 
+-compile({no_auto_import, [spawn/2, spawn/3, spawn/4]}).
+-export([spawn/4]).
+
 % hidden functions
--export([loop/2, argv/2, spawn/4]).
+-export([loop/2, argv/2]).
 
 %%
 %% API Functions
 %%
 
-%% Run a pose-compliant command from the erl commandline.
+%% @doc Run a pose-compliant command from the erl commandline.
 -spec start([Command :: atom()]) -> ok | no_return().
 start([Command]) ->
   IO = ?IO(self()),
   ?INIT_POSE,
   io:format("Starting pose ~p~n", [self()]),
-  case ?MODULE:spawn(IO, Command) of
+  case spawn(IO, Command) of
     {error, Reason} ->
       Erlerr = ?FORMAT_ERLERR({pose, {Command, Reason}}),
       io:format(standard_error, "** ~s~n", [Erlerr]),
@@ -67,30 +70,30 @@ start([Command]) ->
       ?MODULE:loop(Command, CmdPid)
   end.
 
-%% Run a pose-compliant command from within an application.
 %% @equiv spawn(IO, Command, [])
 -type command() :: nonempty_string() | atom().
 -type spawn_rtn() :: {error, pose_code:load_err()} | pid().
 -spec spawn(IO :: #std{}, Command :: command()) -> spawn_rtn().
 %
-spawn(IO, Command) -> ?MODULE:spawn(IO, Command, []).
+spawn(IO, Command) -> spawn(IO, Command, []).
 
-%% Run a pose-compliant command from within an application.
+%% @doc Run a pose-compliant command in its own process.
 -spec spawn(IO :: #std{}, Command :: command(), Param :: [any()]) ->
         spawn_rtn().
-%
+% Fully qualified call to satisfy dialyzer, which otherwise doesn't see
+% spawn/4 ever run.
 spawn(IO, Command, Param) when is_atom(Command) ->
   ?MODULE:spawn(IO, atom_to_list(Command), Param);
 spawn(IO, Command, Param) ->
   case pose_code:load(Command) of
     {module, Module, diff_path} ->
         ?STDERR("~s: namespace collision~n", [Command]),
-        ?MODULE:spawn(IO, Command, Param, Module);
+        spawn(IO, Command, Param, Module);
     {module, Module, flat_pkg}  ->
         ?STDERR("~s: flat package unsafe~n", [Command]),
-        ?MODULE:spawn(IO, Command, Param, Module);
+        spawn(IO, Command, Param, Module);
     {module, Module}            ->
-        ?MODULE:spawn(IO, Command, Param, Module);
+        spawn(IO, Command, Param, Module);
     {error, Else}               ->
         {error, Else}
   end.
@@ -120,7 +123,9 @@ argv(ARG, N) ->
 %%
 
 % Run pose-compliant command.
-% @hidden Only exported to avoid warnings about overriding BIF.
+% @hidden shouldn't need to be called fully qualified...
+-spec spawn(IO :: #std{}, Command :: command(), Param :: [any()],
+            Module :: module()) -> pid().
 spawn(MyIO, Command, Param, Module) ->
   IO = ?IO(self(), self(), MyIO#std.err),
   ARG = ?ARG(Command, Param),

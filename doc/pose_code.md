@@ -234,7 +234,7 @@ modules will run in their own unique namespace when loaded in a
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
 as necessary.</td></tr></table>
 
 
@@ -251,11 +251,21 @@ as necessary.</td></tr></table>
 <br></br>
 
 
+Equivalent to [`load_module(Command)`](#load_module-1).
+
+__This function is deprecated:__ should be load_command or load_project<a name="load_module-1"></a>
+
+###load_module/1##
+
+
+<pre>load_module(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_rtn">load_rtn()</a></pre>
+<br></br>
+
+
 Locate command on `PATH`, compiling and loading updated module
 as necessary.
 
 __<font color="red">To do</font>__
 <br></br>
 
-* <font color="red">get PATH from environment
-</font>
+* <font color="red">get PATH from environment</font>

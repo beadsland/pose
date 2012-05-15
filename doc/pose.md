@@ -40,7 +40,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td></td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td></td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td>Run a pose-compliant command in its own process.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Run a pose-compliant command from the erl commandline.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -65,7 +65,7 @@ Equivalent to [`spawn(IO, Command, [])`](#spawn-3).<a name="spawn-3"></a>
 <br></br>
 
 
-<a name="start-1"></a>
+Run a pose-compliant command in its own process.<a name="start-1"></a>
 
 ###start/1##
 
@@ -74,3 +74,4 @@ Equivalent to [`spawn(IO, Command, [])`](#spawn-3).<a name="spawn-3"></a>
 <br></br>
 
 
+Run a pose-compliant command from the erl commandline.
