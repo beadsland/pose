@@ -34,23 +34,23 @@
 %%
 %% ==Installation==
 %%
-%% `pose' should be included in any `nosh'-compatible project as a project
+%% `pose' should be included in any `pose'-compatible project as a project
 %% dependency via `rebar.config':
 %%
-%% <blockquote>
+%% <pre>
 %% {deps, [
 %%    {pose, ".*",
 %%      {git, "git://github.com/beadsland/pose", {branch, master}}}
 %%   ]}
-%% </blockquote>
+%% </pre>
 %%
 %% Any module that uses `pose' macros should then include the `pose'
 %% interface header file:
 %%
-%% <blockquote>
-%% %-define(debug, true).<br />
+%% <pre>
+%% %-define(debug, true).
 %% -include("pose/include/interface.hrl").
-%% </blockquote>
+%% </pre>
 %%
 %% (The `debug' macro definition can be uncommented when `pose' debugging
 %% output is to be included on `stderr'.)
@@ -68,9 +68,9 @@
 %% pass this record as the first parameter to functions performing or
 %% implementing I/O functionality as `IO', as in:
 %%
-%% <blockquote>
+%% <pre>
 %% loop(IO, ...)
-%% </blockquote>
+%% </pre>
 %%
 %% Each I/O stream is a process that sends (in the case of `stdin') or
 %% receives (in the case of `stdout' and `stderr') messages, such that
@@ -109,6 +109,8 @@
 %% The `pose' interface provides a number of macros for use by
 %% `pose'-compatible modules.
 %%
+%% ===Process Run===
+%%
 %% <table>
 %% <tr><td> `?INIT_POSE' </td>
 %% <td> Initialize the `pose' interface.  Must be called by entry-function
@@ -124,6 +126,22 @@
 %%      flag.  Setting the flag to `true' indicates that the process run
 %%      with this IO record should echo `stdin' back to `stdout'.  Defaults
 %%      to false. </td></tr>
+%% <tr><td> `?ARG(Command :: command(), Values :: [any()]) -> #arg{}'</td>
+%% <td> Create a `pose' Arg record. </td></tr>
+%% <tr><td> `?ARG(Command :: command()) -> #arg{}'</td>
+%% <td> Create a `pose' Arg record, with no arguments. </td></tr>
+%% <tr><td> `?ARGV(N) -> any()' </td>
+%% <td> Return argument <i>N</i>.  Argument 0 corresponds to the name of
+%%      the command run to start the current process.  Only available
+%%      in functions that receive an `ARG' parameter.</td></tr>
+%% <tr><td> `?ENV -> #env{}' </td>
+%% <td> Create a `pose' Env record, setting it to hold the global
+%%      environment values of the current process. </td></tr>
+%% </table>
+%%
+%% ===Output and Error Output===
+%%
+%% <table>
 %% <tr><td> `?STDOUT(Format :: format(), What :: list())' </td>
 %% <td> Send a `io_lib:format/2` formatted `string()' message to `stdout'
 %%      process.
