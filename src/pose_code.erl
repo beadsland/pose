@@ -283,7 +283,7 @@ ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false) ->
 ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile) ->
   MemVsn = ?ATTRIB(Module, vsn),
   if BinFile == MemFile, BinVsn == MemVsn	->
-       {ok, Module};
+       if Pkg == '' -> {ok, Module, flat_pkg}; true -> {ok, Module} end;
      BinFile /= MemFile					  	->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_path);
      BinVsn /= MemVsn						->
@@ -343,4 +343,3 @@ ensure_packaged(_Command, _Dir, Module, Binary) ->
     {error, What}			-> {error, {get_detail, What}};
     {ok, Version, Package}	-> {ok, Module, Binary, Version, Package}
   end.
-
