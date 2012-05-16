@@ -8,7 +8,7 @@
 * [Function Details](#functions)
 
 
-Intuitive module loader.
+Intuitive module loader, used by [`pose_command`](pose_command.md).
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 
@@ -31,6 +31,10 @@ __<font color="red">To do</font>__
 
 ##Description##
 
+
+ Only loads
+one module at a time.  Use [`pose_command:load_command/1`](pose_command.md#load_command-1) to
+load a command inclusive of any submodules.
 
 
 
@@ -233,19 +237,19 @@ modules will run in their own unique namespace when loaded in a
 
 
 
+###<a name="type-directory">directory()</a>##
+
+
+
+<pre>directory() = <a href="file.md#type-filename">file:filename()</a></pre>
+
+
+
 ###<a name="type-error">error()</a>##
 
 
 
 <pre>error() = atom() | {atom(), <a href="#type-error">error()</a>}</pre>
-
-
-
-###<a name="type-load_cmd_rtn">load_cmd_rtn()</a>##
-
-
-
-<pre>load_cmd_rtn() = <a href="#type-load_mod_rtn">load_mod_rtn()</a> | {module, module(), [<a href="#type-load_mod_warn">load_mod_warn()</a>]}</pre>
 
 
 
@@ -265,26 +269,27 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-###<a name="type-load_mod_warn">load_mod_warn()</a>##
-
-
-
-<pre>load_mod_warn() = {module(), <a href="#type-load_warn">load_warn()</a>} | <a href="#type-load_warn">load_warn()</a></pre>
-
-
-
 ###<a name="type-load_warn">load_warn()</a>##
 
 
 
 <pre>load_warn() = diff_path | flat_pkg</pre>
+
+
+
+###<a name="type-search_path">search_path()</a>##
+
+
+
+<pre>search_path() = [<a href="#type-directory">directory()</a>]</pre>
 <a name="index"></a>
 
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_command-1">load_command/1</a></td><td>Load a command module and all submodules in the same directory.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
-as necessary.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on search path supplied by <code>PATH</code> environment
+variable, compiling and loading updated module as necessary.</td></tr><tr><td valign="top"><a href="#load_module-2">load_module/2</a></td><td>Locate command on search path supplied by <code>Path</code> parameter,
+compiling and loading updated module as necessary.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -300,20 +305,7 @@ as necessary.</td></tr></table>
 <br></br>
 
 
-Equivalent to [`load_module(Command)`](#load_module-1).
-
-__This function is deprecated:__ should be load_command or load_project<a name="load_command-1"></a>
-
-###load_command/1##
-
-
-<pre>load_command(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a></pre>
-<br></br>
-
-
-Load a command module and all submodules in the same directory.
-Here, a submodule is indicated by the syntax
-`<i>module</i>_<i>subpart</i>`.<a name="load_module-1"></a>
+Equivalent to [`load_module(Command)`](#load_module-1).<a name="load_module-1"></a>
 
 ###load_module/1##
 
@@ -322,10 +314,21 @@ Here, a submodule is indicated by the syntax
 <br></br>
 
 
-Locate command on `PATH`, compiling and loading updated module
-as necessary.
+Locate command on search path supplied by `PATH` environment
+variable, compiling and loading updated module as necessary.
 
 __<font color="red">To do</font>__
 <br></br>
 
 * <font color="red">get PATH from environment</font>
+<a name="load_module-2"></a>
+
+###load_module/2##
+
+
+<pre>load_module(Command::<a href="#type-command">command()</a>, Path::<a href="#type-search_path">search_path()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a></pre>
+<br></br>
+
+
+Locate command on search path supplied by `Path` parameter,
+compiling and loading updated module as necessary.

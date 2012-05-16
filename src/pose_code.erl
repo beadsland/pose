@@ -22,7 +22,9 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Intuitive module loader.
+%% @doc Intuitive module loader, used by {@link pose_command}.  Only loads
+%% one module at a time.  Use {@link pose_command:load_command/1} to
+%% load a command inclusive of any submodules.
 %%
 %% <ul>
 %% <li> {@section Basic Load Process} </li>
@@ -190,9 +192,8 @@
 %%
 
 % used from within pose applications
--export([load/1]).  % deprecated
--export([load_module/1, load_command/1]).
--export_type([load_err/0]).
+-export([load/1, load_module/1, load_module/2]).
+-export_type([load_err/0, load_warn/0, load_mod_rtn/0]).
 
 -compile({no_auto_import, [load_module/2]}).
 
@@ -209,26 +210,11 @@
                         | {error, load_err()}.
 -spec load(Command :: command()) -> load_mod_rtn().
 %% @equiv load_module(Command)
-%% @deprecated should be load_command or load_project
 load(Command) -> load_module(Command).
 
--type load_mod_warn() :: {module(), load_warn()} | load_warn().
--type load_cmd_rtn() :: load_mod_rtn() | {module, module(), [load_mod_warn()]}.
--spec load_command(Command :: command()) -> load_cmd_rtn().
-% @doc Load a command module and all submodules in the same directory.
-% Here, a submodule is indicated by the syntax
-% <code><i>module</i>_<i>subpart</i></code>.
-% @end
-load_command(Command) ->
-  case load_module(Command) of
-    {module, Module, Warning} -> load_command(Command, Module, [Warning]);
-    {module, Module}          -> load_command(Command, Module, []);
-    {error, What}             -> {error, What}
-  end.
-
 -spec load_module(Command :: command()) -> load_mod_rtn().
-%% @doc Locate command on `PATH', compiling and loading updated module
-%% as necessary.
+%% @doc Locate command on search path supplied by `PATH' environment
+%% variable, compiling and loading updated module as necessary.
 %% @end
 %% @todo get PATH from environment
 load_module(Command) when is_atom(Command) ->
@@ -241,62 +227,12 @@ load_module(Command) ->
           filename:absname("deps/nosql/ebin")],
   load_module(Command, Path).
 
-%%
-%% Local functions
-%%
-
-%%%
-% Load command
-%%%
-
-% Determine if we can refer to a parallel source folder.
-load_command(Command, Module, Warnings) ->
-  BinPath = filename:dirname(code:which(Module)),
-  case pose_file:find_parallel_folder("ebin", "src", BinPath) of
-    {true, SrcPath}     ->
-      SubModList = get_submodule_list(Command, BinPath, {srcpath, SrcPath});
-    {false, BinPath}    ->
-      SubModList = get_submodule_list(Command, BinPath, ".beam")
-  end,
-  load_command(Command, Module, BinPath, Warnings, SubModList).
-
-% List submodules, in source folder, if readable, or else in binaries folder.
-get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
-  case pose_file:can_read(SrcPath) of
-    true            -> get_submodule_list(Command, SrcPath, ".erl");
-    false           -> get_submodule_list(Command, BinPath, ".beam");
-    {error, _What}  -> get_submodule_list(Command, BinPath, ".beam")
-  end;
-get_submodule_list(Command, Path, Extension) ->
-  Pattern = lists:append(Path, "/", Command, "_*.", Extension),
-  WildList = filelib:wildcard(Pattern),
-  [get_submodule_subpattern(X) || X <- WildList].
-
-% Predicate function for get_submodule_list/3 list comprehension.
-get_submodule_subpattern(File) ->
-  {ok, MP} = re:compile("^.*/([^/]*)\.[beamrl]+$"),
-  Options = [{capture, [1], list}],
-  {match, [Module]} = re:run(File, MP, Options),
-  list_to_atom(Module).
-
-% Load each submodule, appending to warnings list as necessary.
-load_command(_Command, Module, _BinPath, Warnings, []) ->
-  if Warnings == [] -> {ok, Module}; true -> {ok, Module, Warnings} end;
-load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
-  case load_module(Head, [BinPath]) of
-    {module, Module, NewWarn}   ->
-      load_command(Command, Module, BinPath, [NewWarn | Warnings], Tail);
-    {module, Module}            ->
-      load_command(Command, Module, BinPath, Warnings, Tail);
-    {error, What}               ->
-      {error, {Head, What}}
-  end.
-
-%%%
-% Load module
-%%%
-
-% Iterate over path list in search of command.
+-type directory() :: file:filename().
+-type search_path() :: [directory()].
+-spec load_module(Command :: command(), Path :: search_path()) -> load_mod_rtn().
+%% @doc Locate command on search path supplied by `Path' parameter,
+%% compiling and loading updated module as necessary.
+%% @end
 load_module(_Command, []) -> {error, notfound};
 load_module(Command, [Head | Tail]) ->
   ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
@@ -304,12 +240,21 @@ load_module(Command, [Head | Tail]) ->
     {info, nobin}           -> load_module(Command, Tail);
     {info, Info}            -> ?DEBUG("l: ~p~n", [Info]),
                                load_module(Command, Head, slurp);
-    {ok, Filename}			-> ?DEBUG("l: ~s~n", [Filename]),
+    {ok, Filename}          -> ?DEBUG("l: ~s~n", [Filename]),
                                load_module(Command, Head, slurp);
-    {ok, Module, Binary}	-> ?DEBUG("l: ~p~n", [Module]),
+    {ok, Module, Binary}    -> ?DEBUG("l: ~p~n", [Module]),
                                load_module(Command, Head, Module, Binary);
-    {error, What}			-> {error, {load, What}}
+    {error, What}           -> {error, {load, What}}
   end.
+
+
+%%
+%% Local functions
+%%
+
+%%%
+% Load module
+%%%
 
 % Having found command, slurp binary from file.
 load_module(Command, Dir, slurp) ->

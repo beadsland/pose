@@ -110,6 +110,7 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
 <tr><td><a href="pose.md" class="module">pose</a></td></tr>
 <tr><td><a href="pose_beam.md" class="module">pose_beam</a></td></tr>
 <tr><td><a href="pose_code.md" class="module">pose_code</a></td></tr>
+<tr><td><a href="pose_command.md" class="module">pose_command</a></td></tr>
 <tr><td><a href="pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="pose_file.md" class="module">pose_file</a></td></tr>
 <tr><td><a href="pose_stdio.md" class="module">pose_stdio</a></td></tr>
