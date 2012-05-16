@@ -229,7 +229,8 @@ load_module(Command) ->
 
 -type directory() :: file:filename().
 -type search_path() :: [directory()].
--spec load_module(Command :: command(), Path :: search_path()) -> load_mod_rtn().
+-spec load_module(Command :: command(), Path :: search_path())
+           -> load_mod_rtn().
 %% @doc Locate command on search path supplied by `Path' parameter,
 %% compiling and loading updated module as necessary.
 %% @end
