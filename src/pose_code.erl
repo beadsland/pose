@@ -38,10 +38,9 @@
 %% A call to `pose_code:load/1` results in a search of the directories
 %% listed on the current `PATH' environment variable, with a twist:
 %%
-%% For each directory on
-%% `PATH' that ends in `ebin\', and for which the current user has write
-%% access, `pose' will look for a parallel `src\' directory, and if found,
-%% search for a matching `.erl' file therein.
+%% For each directory on `PATH' that ends in `ebin\', and for which the
+%% current user has write access, `pose' will look for a parallel `src\'
+%% directory, and if found, search for a matching `.erl' file therein.
 %%
 %% If an associated `.erl' file is found, and it is newer that the `.beam'
 %% file, or if an `.erl' file is found for which no `.beam' file appears,
@@ -190,8 +189,8 @@
 %%
 
 % used from within pose applications
--export([load/1]).
--export([load_module/1]).
+-export([load/1]).  % deprecated
+-export([load_module/1, load_command/1]).
 -export_type([load_err/0]).
 
 -compile({no_auto_import, [load_module/2]}).
@@ -200,18 +199,31 @@
 %% API functions
 %%
 
--spec load(Command :: command()) -> load_rtn().
-%% @equiv load_module(Command)
-%% @deprecated should be load_command or load_project
-load(Command) -> load_module(Command).
-
 -type command() :: pose:command().
 -type load_warn() :: diff_path | flat_pkg.
 -type error() :: atom() | {atom(), error()}.
 -type load_err() :: {load, error()} | {slurp, error()} | error().
--type load_rtn() :: {module, module()} | {module, module(), load_warn()}
-                    | {error, load_err()}.
--spec load_module(Command :: command()) -> load_rtn().
+-type load_mod_rtn() :: {module, module()}
+                        | {module, module(), load_warn()}
+                        | {error, load_err()}.
+-spec load(Command :: command()) -> load_mod_rtn().
+%% @equiv load_module(Command)
+%% @deprecated should be load_command or load_project
+load(Command) -> load_module(Command).
+
+-type load_mod_warn() :: {module(), load_warn()} | load_warn().
+-type load_cmd_rtn() :: load_mod_rtn() | {module, module(), [load_mod_warn()]}.
+-spec load_command(Command :: command()) -> load_cmd_rtn().
+% @doc Load a command module and all submodules to same.  Here, a submodule
+% is indicated by the syntax <code><i>module</i>_<i>subpart</i></code>.
+load_command(Command) ->
+  case load_module(Command) of
+    {module, Module, Warning} -> load_command(Command, Module, [Warning]);
+    {module, Module}          -> load_command(Command, Module, []);
+    {error, What}             -> {error, What}
+  end.
+
+-spec load_module(Command :: command()) -> load_mod_rtn().
 %% @doc Locate command on `PATH', compiling and loading updated module
 %% as necessary.
 %% @end
@@ -234,8 +246,54 @@ load_module(Command) ->
 % Load command
 %%%
 
+% Determine if we can refer to a parallel source folder.
+load_command(Command, Module, Warnings) ->
+  BinPath = filename:dirname(code:which(Module)),
+  case pose_file:find_parallel_folder("ebin", "src", BinPath) of
+    {true, SrcPath}     ->
+      SubModList = get_submodule_list(Command, BinPath, {srcpath, SrcPath});
+    {false, BinPath}    ->
+      SubModList = get_submodule_list(Command, BinPath, ".beam")
+  end,
+  load_command(Command, Module, BinPath, Warnings, SubModList).
+
+% List submodules, in source folder, if readable, or else in binaries folder.
+get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
+  case pose_file:can_read(SrcPath) of
+    true            -> get_submodule_list(Command, SrcPath, ".erl");
+    false           -> get_submodule_list(Command, BinPath, ".beam");
+    {error, _What}  -> get_submodule_list(Command, BinPath, ".beam")
+  end;
+get_submodule_list(Command, Path, Extension) ->
+  Pattern = lists:append(Path, "/", Command, "_*.", Extension),
+  WildList = filelib:wildcard(Pattern),
+  [get_submodule_subpattern(X) || X <- WildList].
+
+% Predicate function for get_submodule_list/3 list comprehension.
+get_submodule_subpattern(File) ->
+  {ok, MP} = re:compile("^.*/([^/]*)\.[beamrl]+$"),
+  Options = [{capture, [1], list}],
+  {match, [Module]} = re:run(File, MP, Options),
+  list_to_atom(Module).
+
+% Load each submodule, appending to warnings list as necessary.
+load_command(_Command, Module, _BinPath, Warnings, []) ->
+  if Warnings == [] -> {ok, Module}; true -> {ok, Module, Warnings} end;
+load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
+  case load_module(Head, [BinPath]) of
+    {module, Module, NewWarn}   ->
+      load_command(Command, Module, BinPath, [NewWarn | Warnings], Tail);
+    {module, Module}            ->
+      load_command(Command, Module, BinPath, Warnings, Tail);
+    {error, What}               ->
+      {error, {Head, What}}
+  end.
+
+%%%
+% Load module
+%%%
+
 % Iterate over path list in search of command.
-% @hidden exposed to avoid overridden bif warning
 load_module(_Command, []) -> {error, notfound};
 load_module(Command, [Head | Tail]) ->
   ?DEBUG("looking for ~s in ~s~n", [Command, Head]),

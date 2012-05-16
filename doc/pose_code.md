@@ -59,10 +59,9 @@ listed on the current `PATH` environment variable, with a twist:
 
 
 
-For each directory on
-`PATH` that ends in `ebin\`, and for which the current user has write
-access, `pose` will look for a parallel `src\` directory, and if found,
-search for a matching `.erl` file therein.
+For each directory on `PATH` that ends in `ebin\`, and for which the
+current user has write access, `pose` will look for a parallel `src\`
+directory, and if found, search for a matching `.erl` file therein.
 
 
 
@@ -241,6 +240,14 @@ modules will run in their own unique namespace when loaded in a
 
 
 
+###<a name="type-load_cmd_rtn">load_cmd_rtn()</a>##
+
+
+
+<pre>load_cmd_rtn() = <a href="#type-load_mod_rtn">load_mod_rtn()</a> | {module, module(), [<a href="#type-load_mod_warn">load_mod_warn()</a>]}</pre>
+
+
+
 ###<a name="type-load_err">load_err()</a>##
 
 
@@ -249,11 +256,19 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-###<a name="type-load_rtn">load_rtn()</a>##
+###<a name="type-load_mod_rtn">load_mod_rtn()</a>##
 
 
 
-<pre>load_rtn() = {module, module()} | {module, module(), <a href="#type-load_warn">load_warn()</a>} | {error, <a href="#type-load_err">load_err()</a>}</pre>
+<pre>load_mod_rtn() = {module, module()} | {module, module(), <a href="#type-load_warn">load_warn()</a>} | {error, <a href="#type-load_err">load_err()</a>}</pre>
+
+
+
+###<a name="type-load_mod_warn">load_mod_warn()</a>##
+
+
+
+<pre>load_mod_warn() = {module(), <a href="#type-load_warn">load_warn()</a>} | <a href="#type-load_warn">load_warn()</a></pre>
 
 
 
@@ -267,7 +282,7 @@ modules will run in their own unique namespace when loaded in a
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_command-1">load_command/1</a></td><td>Load a command module and all submodules to same.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
 as necessary.</td></tr></table>
 
 
@@ -280,18 +295,28 @@ as necessary.</td></tr></table>
 ###load/1##
 
 
-<pre>load(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_rtn">load_rtn()</a></pre>
+<pre>load(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a></pre>
 <br></br>
 
 
 Equivalent to [`load_module(Command)`](#load_module-1).
 
-__This function is deprecated:__ should be load_command or load_project<a name="load_module-1"></a>
+__This function is deprecated:__ should be load_command or load_project<a name="load_command-1"></a>
+
+###load_command/1##
+
+
+<pre>load_command(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a></pre>
+<br></br>
+
+
+Load a command module and all submodules to same.  Here, a submodule
+is indicated by the syntax `<i>module</i>_<i>subpart</i>`.<a name="load_module-1"></a>
 
 ###load_module/1##
 
 
-<pre>load_module(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_rtn">load_rtn()</a></pre>
+<pre>load_module(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a></pre>
 <br></br>
 
 

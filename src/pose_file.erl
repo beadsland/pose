@@ -119,12 +119,12 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
   ?DEBUG("~s(~p, ~p, {folders, [~p | Tail]})~n",
          [?MODULE, OldFldr, NewFldr, Head]),
   case find_parallel_folder(OldFldr, NewFldr, {folders, Tail}) of
+    {true, NewDir}                          ->
+      {true, lists:append([Head, "/", NewDir])};
     {false, OldDir} when Head == OldFldr    ->
       {true, lists:append([NewFldr, "/", OldDir])};
     {false, OldDir}                         ->
-      {false, lists:append([Head, "/", OldDir])};
-    {true, NewDir}                          ->
-      {true, lists:append([Head, "/", NewDir])}
+      {false, lists:append([Head, "/", OldDir])}
   end.
 
 %%
