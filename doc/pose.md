@@ -35,19 +35,38 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 <pre>spawn_rtn() = {error, <a href="pose_code.md#type-load_err">pose_code:load_err()</a>} | pid()</pre>
+
+
+
+###<a name="type-warning">warning()</a>##
+
+
+
+<pre>warning() = <a href="pose_command.md#type-load_mod_warn">pose_command:load_mod_warn()</a></pre>
 <a name="index"></a>
 
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td>Run a pose-compliant command in its own process.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Run a pose-compliant command from the erl commandline.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load_warn-3">load_warn/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received
+from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td>Run a pose-compliant command in its own process.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Run a pose-compliant command from the erl commandline.</td></tr></table>
 
 
 <a name="functions"></a>
 
 ##Function Details##
 
-<a name="spawn-2"></a>
+<a name="load_warn-3"></a>
+
+###load_warn/3##
+
+
+<pre>load_warn(IO::#std{}, Command::<a href="#type-command">command()</a>, Warnings::[<a href="#type-warning">warning()</a>]) -> ok</pre>
+<br></br>
+
+
+Send messages to `stderr` process detailing any warnings received
+from `pose_command:load/1`.<a name="spawn-2"></a>
 
 ###spawn/2##
 

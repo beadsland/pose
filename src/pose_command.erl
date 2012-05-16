@@ -112,7 +112,9 @@ get_submodule_subpattern(File) ->
 
 % Load each submodule, appending to warnings list as necessary.
 load_command(_Command, Module, _BinPath, Warnings, []) ->
-  if Warnings == [] -> {ok, Module}; true -> {ok, Module, Warnings} end;
+  if Warnings == [] -> {module, Module};
+     true           -> {module, Module, Warnings}
+  end;
 load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
   case pose_code:load_module(Head, [BinPath]) of
     {module, Module, NewWarn}   ->

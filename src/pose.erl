@@ -86,9 +86,9 @@ spawn(IO, Command, Param) when is_atom(Command) ->
   % Fully qualified call to satisfy dialyzer,
   % which otherwise doesn't see spawn/4 ever run.
 spawn(IO, Command, Param) ->
-  case pose_code:load(Command) of
+  case pose_command:load(Command) of
     {module, Module, Warnings}  ->
-        load_warn(IO, Command, [Warnings]),
+        load_warn(IO, Command, Warnings),
         spawn(IO, Command, Param, Module);
     {module, Module}            ->
         spawn(IO, Command, Param, Module);
