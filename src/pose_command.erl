@@ -46,6 +46,7 @@
 %%
 
 -export([load/1, load_command/1]).
+-export_type([load_mod_warn/0]).
 
 %%
 %% API Functions
@@ -115,7 +116,8 @@ load_command(_Command, Module, _BinPath, Warnings, []) ->
 load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
   case pose_code:load_module(Head, [BinPath]) of
     {module, Module, NewWarn}   ->
-      load_command(Command, Module, BinPath, [NewWarn | Warnings], Tail);
+      UpdatedWarnings = [{Head, NewWarn} | Warnings],
+      load_command(Command, Module, BinPath, UpdatedWarnings, Tail);
     {module, Module}            ->
       load_command(Command, Module, BinPath, Warnings, Tail);
     {error, What}               ->

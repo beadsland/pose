@@ -41,12 +41,14 @@
 %% Exported Functions
 %%
 
+-compile({no_auto_import, [spawn/2, spawn/3, spawn/4]}).
+
 % pose entry functions
 -export([start/1, spawn/2, spawn/3]).
 -export_type([command/0]).
 
--compile({no_auto_import, [spawn/2, spawn/3, spawn/4]}).
--export([spawn/4]).
+% pose_command helper function
+-export([load_warn/3]).
 
 % hidden functions
 -export([loop/2, argv/2]).
@@ -85,17 +87,36 @@ spawn(IO, Command, Param) when is_atom(Command) ->
   % which otherwise doesn't see spawn/4 ever run.
 spawn(IO, Command, Param) ->
   case pose_code:load(Command) of
-    {module, Module, diff_path} ->
-        ?STDERR("~s: namespace collision~n", [Command]),
-        spawn(IO, Command, Param, Module);
-    {module, Module, flat_pkg}  ->
-        ?STDERR("~s: flat package unsafe~n", [Command]),
+    {module, Module, Warnings}  ->
+        load_warn(IO, Command, [Warnings]),
         spawn(IO, Command, Param, Module);
     {module, Module}            ->
         spawn(IO, Command, Param, Module);
     {error, Else}               ->
         {error, Else}
   end.
+
+-type warning() :: pose_command:load_mod_warn().
+-spec load_warn(IO :: #std{}, Command :: command(),
+                Warnings :: [warning()]) -> ok.
+%% @doc Send messages to `stderr' process detailing any warnings received
+%% from `pose_command:load/1'.
+%% @end
+load_warn(_IO, _Command, []) -> ok;
+load_warn(IO, Command, Warnings) when is_atom(Command) ->
+  load_warn(IO, atom_to_list(Command), Warnings);
+load_warn(IO, Command, [Head | Tail]) ->
+  case Head of
+    diff_path           ->
+      ?STDERR("~s: namespace collision~n", [Command]);
+    flat_pkg            ->
+      ?STDERR("~s: flat package unsafe~n", [Command]);
+    {Module, diff_path} ->
+      ?STDERR("~p: namespace collision~n", [Module]);
+    {Module, flat_pkg}  ->
+      ?STDERR("~p: flat package unsafe~n", [Module])
+  end,
+  load_warn(IO, Command, Tail).
 
 %%
 %% Hidden functions
