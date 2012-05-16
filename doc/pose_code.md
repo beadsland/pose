@@ -54,8 +54,9 @@ __<font color="red">To do</font>__
 
 
 Each Erlang module is treated as a potential executable command in `pose`.
-A call to `pose_code:load/1` results in a search of the directories
-listed on the current `PATH` environment variable, with a twist:
+A call to `pose_code:load_module/1` results in a search of the
+directories listed on the current `PATH` environment variable, with a
+twist:
 
 
 
@@ -282,7 +283,7 @@ modules will run in their own unique namespace when loaded in a
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_command-1">load_command/1</a></td><td>Load a command module and all submodules to same.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_command-1">load_command/1</a></td><td>Load a command module and all submodules in the same directory.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on <code>PATH</code>, compiling and loading updated module
 as necessary.</td></tr></table>
 
 
@@ -310,8 +311,9 @@ __This function is deprecated:__ should be load_command or load_project<a name="
 <br></br>
 
 
-Load a command module and all submodules to same.  Here, a submodule
-is indicated by the syntax `<i>module</i>_<i>subpart</i>`.<a name="load_module-1"></a>
+Load a command module and all submodules in the same directory.
+Here, a submodule is indicated by the syntax
+`<i>module</i>_<i>subpart</i>`.<a name="load_module-1"></a>
 
 ###load_module/1##
 

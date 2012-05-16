@@ -35,8 +35,9 @@
 %% ==Basic Load Process==
 %%
 %% Each Erlang module is treated as a potential executable command in `pose'.
-%% A call to `pose_code:load/1` results in a search of the directories
-%% listed on the current `PATH' environment variable, with a twist:
+%% A call to `pose_code:load_module/1` results in a search of the
+%% directories listed on the current `PATH' environment variable, with a
+%% twist:
 %%
 %% For each directory on `PATH' that ends in `ebin\', and for which the
 %% current user has write access, `pose' will look for a parallel `src\'
@@ -214,8 +215,10 @@ load(Command) -> load_module(Command).
 -type load_mod_warn() :: {module(), load_warn()} | load_warn().
 -type load_cmd_rtn() :: load_mod_rtn() | {module, module(), [load_mod_warn()]}.
 -spec load_command(Command :: command()) -> load_cmd_rtn().
-% @doc Load a command module and all submodules to same.  Here, a submodule
-% is indicated by the syntax <code><i>module</i>_<i>subpart</i></code>.
+% @doc Load a command module and all submodules in the same directory.
+% Here, a submodule is indicated by the syntax
+% <code><i>module</i>_<i>subpart</i></code>.
+% @end
 load_command(Command) ->
   case load_module(Command) of
     {module, Module, Warning} -> load_command(Command, Module, [Warning]);
