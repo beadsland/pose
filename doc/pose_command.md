@@ -48,14 +48,23 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load_command-1">load_command/1</a></td><td>Load a command module and all submodules in the same directory.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>Equivalent to <a href="#load_command-1"><tt>load_command(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_command-1">load_command/1</a></td><td>Load a command module and all submodules in the same directory.</td></tr></table>
 
 
 <a name="functions"></a>
 
 ##Function Details##
 
-<a name="load_command-1"></a>
+<a name="load-1"></a>
+
+###load/1##
+
+
+<pre>load(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a></pre>
+<br></br>
+
+
+Equivalent to [`load_command(Command)`](#load_command-1).<a name="load_command-1"></a>
 
 ###load_command/1##
 

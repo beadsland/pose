@@ -45,7 +45,7 @@
 %% Exported Functions
 %%
 
--export([load_command/1]).
+-export([load/1, load_command/1]).
 
 %%
 %% API Functions
@@ -55,6 +55,10 @@
 -type load_mod_warn() :: {module(), load_warn()} | load_warn().
 -type load_cmd_rtn() :: pose_code:load_mod_rtn()
                         | {module, module(), [load_mod_warn()]}.
+-spec load(Command :: pose:command()) -> load_cmd_rtn().
+%% @equiv load_command(Command)
+load(Command) -> load_command(Command).
+
 -spec load_command(Command :: pose:command()) -> load_cmd_rtn().
 % @doc Load a command module and all submodules in the same directory.
 % Here, a submodule is indicated by the syntax
