@@ -83,7 +83,6 @@ start() ->
 %% @doc Start posure package import check as a
 %% <a href="http://github.com/beadsland/pose">pose</a> process.
 %% @end
-%% @todo Error on direct calls to non-submodule commands
 run(IO, _ARG, _ENV) ->
   ?INIT_POSE,
   ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
@@ -160,7 +159,7 @@ get_imported_modules(Data) ->
   end.
 
 get_called_modules(Data) ->
-  {ok, MP} = re:compile("[\\s\\[\\{\\(\\,]([a-z_]+)\\:[a-z_]+\\(",
+  {ok, MP} = re:compile("^[^\\%]*[\\s\\[\\{\\(\\,]([a-z_]+)\\:[a-z_]+\\(",
                         [multiline]),
   case re:run(Data, MP, [global, {capture, [1], list}]) of
     nomatch             -> [];

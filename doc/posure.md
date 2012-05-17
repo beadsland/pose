@@ -40,13 +40,7 @@ command modules for unimported library modules.<a name="index"></a>
 
 
 Start posure package import check as a
-[pose](http://github.com/beadsland/pose) process.
-
-__<font color="red">To do</font>__
-<br></br>
-
-* <font color="red">Error on direct calls to non-submodule commands</font>
-<a name="start-0"></a>
+[pose](http://github.com/beadsland/pose) process.<a name="start-0"></a>
 
 ###start/0##
 
