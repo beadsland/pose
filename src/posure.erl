@@ -49,7 +49,7 @@
 %%
 
 %-define(debug, true).
--include("interface.hrl").
+-include("pose/include/interface.hrl").
 
 -include("macro.hrl").
 
