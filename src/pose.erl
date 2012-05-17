@@ -88,12 +88,11 @@ spawn(IO, Command, Param) when is_atom(Command) ->
 spawn(IO, Command, Param) ->
   case pose_command:load(Command) of
     {module, Module, Warnings}  ->
-        load_warn(IO, Command, Warnings),
-        spawn(IO, Command, Param, Module);
-    {module, Module}            ->
-        spawn(IO, Command, Param, Module);
-    {error, Else}               ->
-        {error, Else}
+      load_warn(IO, Command, Warnings),
+      spawn(IO, Command, Param, Module);
+    {error, Else, Warnings}     ->
+      load_warn(IO, Command, Warnings),
+      {error, Else}
   end.
 
 -type warning() :: pose_command:load_mod_warn().

@@ -193,7 +193,7 @@
 
 % used from within pose applications
 -export([load/1, load_module/1, load_module/2]).
--export_type([load_err/0, load_warn/0, load_mod_rtn/0]).
+-export_type([load_err/0, load_warn/0]).
 
 -compile({no_auto_import, [load_module/2]}).
 

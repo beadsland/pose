@@ -53,9 +53,10 @@
 %%
 
 -type load_warn() :: pose_code:load_warn().
+-type load_err() :: pose_code:load_err().
 -type load_mod_warn() :: {module(), load_warn()} | load_warn().
--type load_cmd_rtn() :: pose_code:load_mod_rtn()
-                        | {module, module(), [load_mod_warn()]}.
+-type load_cmd_rtn() :: {module, module(), [load_mod_warn()]}
+                        | {error, load_err(), [load_mod_warn()]}.
 -spec load(Command :: pose:command()) -> load_cmd_rtn().
 %% @equiv load_command(Command)
 load(Command) -> load_command(Command).
@@ -112,9 +113,7 @@ get_submodule_subpattern(File) ->
 
 % Load each submodule, appending to warnings list as necessary.
 load_command(_Command, Module, _BinPath, Warnings, []) ->
-  if Warnings == [] -> {module, Module};
-     true           -> {module, Module, Warnings}
-  end;
+  {module, Module, Warnings};
 load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
   case pose_code:load_module(Head, [BinPath]) of
     {module, Module, NewWarn}   ->
@@ -123,5 +122,5 @@ load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
     {module, Module}            ->
       load_command(Command, Module, BinPath, Warnings, Tail);
     {error, What}               ->
-      {error, {Head, What}}
+      {error, {Head, What}, Warnings}
   end.
