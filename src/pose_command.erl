@@ -106,6 +106,7 @@ get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
 get_submodule_list(Command, Path, Extension) ->
   Pattern = lists:append([Path, "/", Command, "_*.", Extension]),
   WildList = filelib:wildcard(Pattern),
+  ?DEBUG("wild list: ~s -> ~p~n", [Pattern, WildList]),
   [get_submodule_subpattern(X) || X <- WildList].
 
 % Predicate function for get_submodule_list/3 list comprehension.
