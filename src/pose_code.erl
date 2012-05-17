@@ -221,6 +221,7 @@ load_module(Command) when is_atom(Command) ->
   load_module(atom_to_list(Command));
 load_module(Command) ->
   Path = [filename:absname("ebin"),
+          filename:absname("deps/pose/ebin"),
           filename:absname("deps/superl/ebin"),
           filename:absname("deps/bin/ebin"),
           filename:absname("deps/erl/ebin"),
