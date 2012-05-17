@@ -71,7 +71,7 @@ load_command(Command) ->
   case pose_code:load_module(Command) of
     {module, Module, Warning} -> load_command(Command, Module, [Warning]);
     {module, Module}          -> load_command(Command, Module, []);
-    {error, What}             -> {error, What}
+    {error, What}             -> {error, What, []}
   end.
 
 %%
