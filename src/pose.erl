@@ -48,7 +48,7 @@
 -export_type([command/0]).
 
 % pose_command helper function
--export([load_warn/3]).
+-export([send_load_warnings/3]).
 
 % hidden functions
 -export([loop/2, argv/2]).
@@ -88,23 +88,22 @@ spawn(IO, Command, Param) when is_atom(Command) ->
 spawn(IO, Command, Param) ->
   case pose_command:load(Command) of
     {module, Module, Warnings}  ->
-      load_warn(IO, Command, Warnings),
+      send_load_warnings(IO, Command, Warnings),
       spawn(IO, Command, Param, Module);
     {error, Else, Warnings}     ->
-      load_warn(IO, Command, Warnings),
+      send_load_warnings(IO, Command, Warnings),
       {error, Else}
   end.
 
 -type warning() :: pose_command:load_mod_warn().
--spec load_warn(IO :: #std{}, Command :: command(),
-                Warnings :: [warning()]) -> ok.
+-spec send_load_warnings(IO :: #std{}, Command :: command(),
+                         Warnings :: [warning()]) -> ok.
 %% @doc Send messages to `stderr' process detailing any warnings received
 %% from `pose_command:load/1'.
-%% @end
-load_warn(_IO, _Command, []) -> ok;
-load_warn(IO, Command, Warnings) when is_atom(Command) ->
-  load_warn(IO, atom_to_list(Command), Warnings);
-load_warn(IO, Command, Warnings) ->
+send_load_warnings(_IO, _Command, []) -> ok;
+send_load_warnings(IO, Command, Warnings) when is_atom(Command) ->
+  send_load_warnings(IO, atom_to_list(Command), Warnings);
+send_load_warnings(IO, Command, Warnings) ->
   Pred = fun(X) -> case X of flat_pkg -> true;
                              {_Module, flat_pkg} -> true;
                              true -> false end end,
@@ -112,9 +111,9 @@ load_warn(IO, Command, Warnings) ->
   TotalFlat = length(Flat),
   if length(Flat) > 2   ->
        ?STDERR("~s: flat packages unsafe (~p total)~n", [Command, TotalFlat]),
-       load_warn(IO, Command, Warnings, true);
+       send_load_warnings(IO, Command, Warnings, true);
      true               ->
-       load_warn(IO, Command, Warnings, false)
+       send_load_warnings(IO, Command, Warnings, false)
   end.
 
 %%
@@ -178,7 +177,7 @@ do_noise(Command, RunPid, Noise) ->
 %%%
 
 % Send warning messages for namespace collisions and some flat packages
-load_warn(IO, Command, [Head | Tail], ManyFlat) ->
+send_load_warnings(IO, Command, [Head | Tail], ManyFlat) ->
   case Head of
     diff_path                                   ->
       ?STDERR("~s: namespace collision~n", [Command]);
@@ -189,4 +188,4 @@ load_warn(IO, Command, [Head | Tail], ManyFlat) ->
     {Module, flat_pkg} when ManyFlat == false   ->
       ?STDERR("~p: flat package unsafe~n", [Module])
   end,
-  load_warn(IO, Command, Tail, ManyFlat).
+  send_load_warnings(IO, Command, Tail, ManyFlat).
