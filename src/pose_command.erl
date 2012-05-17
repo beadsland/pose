@@ -93,6 +93,8 @@ load_command(Command, Module, Warnings) ->
   load_command(Command, Module, BinPath, Warnings, SubModList).
 
 % List submodules, in source folder, if readable, or else in binaries folder.
+get_submodule_list(Command, BinPath, Data) when is_atom(Command) ->
+  get_submodule_list(atom_to_list(Command), BinPath, Data);
 get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
   case pose_file:can_read(SrcPath) of
     true            -> get_submodule_list(Command, SrcPath, ".erl");
