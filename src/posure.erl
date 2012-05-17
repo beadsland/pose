@@ -75,7 +75,6 @@
 %% All results are written to standard output.
 %% @end
 start() ->
-  posure_test:hello(),
   IO = ?IO(self()),
   RunPid = spawn_link(?MODULE, run, [IO, ?ARG(?MODULE), ?ENV]),
   ?MODULE:loop(IO, RunPid).
