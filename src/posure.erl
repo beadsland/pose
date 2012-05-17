@@ -53,8 +53,14 @@
 
 -include("macro.hrl").
 
+-import(filelib).
 -import(filename).
+-import(file).
+-import(io).
+-import(lists).
 -import(re).
+-import(sets).
+-import(proplists).
 
 %%
 %% Exported Functions
@@ -113,18 +119,40 @@ warn_nonimported_modules(IO, Commands, [{File, Data} | Tail]) ->
   ?DEBUG("imports: ~p~n", [Imports]),
   Called = get_called_modules(Data),
   ?DEBUG("called: ~p~n", [Called]),
-  Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
-  [send_unimported_error(IO, ThisCommand, X) || X <- Unimported],
+
+  Unimported = test_unimported(IO, ThisCommand, Imports, Called, Commands),
+  BadDirect = test_baddirect(IO, ThisCommand, Called, Commands),
+  _Noncalled = test_noncalled(IO, ThisCommand, Imports, Called),
+
+  case length(Unimported ++ BadDirect) of
+    0       -> warn_nonimported_modules(IO, Tail);
+    _Else   -> ?STDOUT("Not so sure.\n"), exit(notsure)
+  end.
+
+test_baddirect(IO, ThisCommand, Called, Commands) ->
   BadDirect = [X || X <- Called, lists:member(X, Commands),
                     is_submodule(X, ThisCommand) == false],
   [send_baddirect_error(IO, ThisCommand, X) || X <- BadDirect],
+  BadDirect.
+
+send_baddirect_error(IO, Command, Module) ->
+  ?STDOUT("~s: calls pose command module '~s'~n", [Command, Module]).
+
+test_noncalled(IO, ThisCommand, Imports, Called) ->
   Noncalled = lists:subtract(Imports, Called),
   [send_noncalled_error(IO, ThisCommand, X) || X <- Noncalled],
-  case length(Unimported ++ BadDirect) of
-    0       -> warn_nonimported_modules(IO, Tail);
-    _Else   -> ?STDOUT("Not so sure.\n"),
-               exit(notsure)
-  end.
+  Noncalled.
+
+send_noncalled_error(IO, Command, Module) ->
+  ?STDOUT("~s: imports unused module '~s'~n", [Command, Module]).
+
+test_unimported(IO, ThisCommand, Imports, Called, Commands) ->
+  Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
+  [send_unimported_error(IO, ThisCommand, X) || X <- Unimported],
+  Unimported.
+
+send_unimported_error(IO, Command, Module) ->
+  ?STDOUT("~s: calls unimported module '~s'~n", [Command, Module]).
 
 is_submodule(X, Y) ->
   Test1 = lists:prefix(X ++ "_", Y),
@@ -132,15 +160,6 @@ is_submodule(X, Y) ->
   if Test1; Test2   -> true;
      true           -> false
   end.
-
-send_unimported_error(IO, Command, Module) ->
-  ?STDOUT("~s: calls unimported module '~s'~n", [Command, Module]).
-
-send_noncalled_error(IO, Command, Module) ->
-  ?STDOUT("~s: imports unused module '~s'~n", [Command, Module]).
-
-send_baddirect_error(IO, Command, Module) ->
-  ?STDOUT("~s: calls pose command module '~s'~n", [Command, Module]).
 
 get_command_name(File) ->
   {ok, MP} = re:compile("\\/([^\\/]+)\\.erl$"),
