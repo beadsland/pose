@@ -123,7 +123,7 @@ warn_nonimported_modules(IO, Commands, [{File, Data} | Tail]) ->
   [send_baddirect_error(IO, ThisCommand, X) || X <- BadDirect],
   Noncalled = lists:subtract(Imports, Called),
   [send_noncalled_error(IO, ThisCommand, X) || X <- Noncalled],
-  case length(Unimported) of
+  case length(Unimported ++ BadDirect) of
     0       -> warn_nonimported_modules(IO, Tail);
     _Else   -> ?STDOUT("Not so sure.\n"),
                exit(notsure)
