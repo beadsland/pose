@@ -2,7 +2,7 @@
 %% Created: May 17, 2012
 %% Description: TODO: Add description to test
 
--define(module, test).
+-define(module, posure_test).
 
 % BEGIN POSE PACKAGE PATTERN
 -ifndef(package).

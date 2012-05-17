@@ -75,7 +75,7 @@
 %% All results are written to standard output.
 %% @end
 start() ->
-  test:hello(),
+  posure_test:hello(),
   IO = ?IO(self()),
   RunPid = spawn_link(?MODULE, run, [IO, ?ARG(?MODULE), ?ENV]),
   ?MODULE:loop(IO, RunPid).
@@ -119,13 +119,21 @@ warn_nonimported_modules(IO, Commands, [{File, Data} | Tail]) ->
   ?DEBUG("called: ~p~n", [Called]),
   Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
   [send_unimported_error(IO, ThisCommand, X) || X <- Unimported],
-  BadDirect = [X || X <- Called, lists:member(X, Commands)],
+  BadDirect = [X || X <- Called, lists:member(X, Commands),
+                    is_submodule(X, ThisCommand) == false],
   [send_baddirect_error(IO, ThisCommand, X) || X <- BadDirect],
   Noncalled = lists:subtract(Imports, Called),
   [send_noncalled_error(IO, ThisCommand, X) || X <- Noncalled],
   case length(Unimported) of
     0       -> warn_nonimported_modules(IO, Tail);
     _Else   -> exit(notsure)
+  end.
+
+is_submodule(X, Y) ->
+  Test1 = lists:prefix(X ++ "_", Y),
+  Test2 = lists:prefix(Y ++ "_", X),
+  if Test1; Test2   -> true;
+     true           -> false
   end.
 
 send_unimported_error(IO, Command, Module) ->
