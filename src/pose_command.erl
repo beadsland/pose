@@ -106,7 +106,6 @@ get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
 get_submodule_list(Command, Path, Extension) ->
   Pattern = lists:append([Path, "/", Command, "_*", Extension]),
   WildList = filelib:wildcard(Pattern),
-  ?DEBUG("wild list: ~s -> ~p~n", [Pattern, WildList]),
   [get_submodule_subpattern(X) || X <- WildList].
 
 % Predicate function for get_submodule_list/3 list comprehension.
@@ -121,10 +120,10 @@ load_command(_Command, Module, _BinPath, Warnings, []) ->
   {module, Module, Warnings};
 load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
   case pose_code:load_module(Head, [BinPath]) of
-    {module, Module, NewWarn}   ->
+    {module, Head, NewWarn}     ->
       UpdatedWarnings = [{Head, NewWarn} | Warnings],
       load_command(Command, Module, BinPath, UpdatedWarnings, Tail);
-    {module, Module}            ->
+    {module, Head}              ->
       load_command(Command, Module, BinPath, Warnings, Tail);
     {error, What}               ->
       {error, {Head, What}, Warnings}
