@@ -135,7 +135,7 @@ send_noncalled_error(IO, Command, Module) ->
   ?STDERR("~s: imports unused module '~s'~n", [Command, Module]).
 
 send_baddirect_error(IO, Command, Module) ->
-  ?STDERR("~s: direct call to pose command module '~s'~n", [Command, Module]).
+  ?STDERR("~s: calls pose command module '~s'~n", [Command, Module]).
 
 get_command_name(File) ->
   {ok, MP} = re:compile("\\/([^\\/]+)\\.erl$"),
