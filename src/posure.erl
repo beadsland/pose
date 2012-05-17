@@ -138,13 +138,13 @@ is_submodule(X, Y) ->
   end.
 
 send_unimported_error(IO, Command, Module) ->
-  ?STDERR("~s: calls unimported module '~s'~n", [Command, Module]).
+  ?STDOUT("~s: calls unimported module '~s'~n", [Command, Module]).
 
 send_noncalled_error(IO, Command, Module) ->
-  ?STDERR("~s: imports unused module '~s'~n", [Command, Module]).
+  ?STDOUT("~s: imports unused module '~s'~n", [Command, Module]).
 
 send_baddirect_error(IO, Command, Module) ->
-  ?STDERR("~s: calls pose command module '~s'~n", [Command, Module]).
+  ?STDOUT("~s: calls pose command module '~s'~n", [Command, Module]).
 
 get_command_name(File) ->
   {ok, MP} = re:compile("\\/([^\\/]+)\\.erl$"),
