@@ -70,7 +70,7 @@
 %% API Functions
 %%
 
--spec start() -> ok | notsure | {error, {atom(), file:filename()}.
+-spec start() -> ok | notsure | {error, {atom(), file:filename()}}.
 %% @doc Start posure package import check as a blocking function.
 %% All results are written to standard output.
 %% @end
