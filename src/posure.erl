@@ -112,15 +112,17 @@ warn_nonimported_modules(IO, _Commands, []) ->
   ?STDOUT("Quite sure!"),
   exit(ok);
 warn_nonimported_modules(IO, Commands, [{File, Data} | Tail]) ->
-  Command = get_command_name(File),
+  ThisCommand = get_command_name(File),
   Imports = get_imported_modules(Data),
   ?DEBUG("imports: ~p~n", [Imports]),
   Called = get_called_modules(Data),
   ?DEBUG("called: ~p~n", [Called]),
   Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
-  [send_unimported_error(IO, Command, X) || X <- Unimported],
+  [send_unimported_error(IO, ThisCommand, X) || X <- Unimported],
+  BadDirect = [X || X <- Called, lists:member(X, Commands)],
+  [send_baddirect_error(IO, ThisCommand, X) || X <- BadDirect],
   Noncalled = lists:subtract(Imports, Called),
-  [send_noncalled_error(IO, Command, X) || X <- Noncalled],
+  [send_noncalled_error(IO, ThisCommand, X) || X <- Noncalled],
   case length(Unimported) of
     0       -> warn_nonimported_modules(IO, Tail);
     _Else   -> exit(notsure)
@@ -131,6 +133,9 @@ send_unimported_error(IO, Command, Module) ->
 
 send_noncalled_error(IO, Command, Module) ->
   ?STDERR("~s: imports unused module '~s'~n", [Command, Module]).
+
+send_baddirect_error(IO, Command, Module) ->
+  ?STDERR("~s: direct call to pose command module '~s'~n", [Command, Module]).
 
 get_command_name(File) ->
   {ok, MP} = re:compile("\\/([^\\/]+)\\.erl$"),
