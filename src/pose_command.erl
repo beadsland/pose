@@ -99,7 +99,7 @@ get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
     {error, _What}  -> get_submodule_list(Command, BinPath, ".beam")
   end;
 get_submodule_list(Command, Path, Extension) ->
-  Pattern = lists:append(Path, "/", Command, "_*.", Extension),
+  Pattern = lists:append([Path, "/", Command, "_*.", Extension]),
   WildList = filelib:wildcard(Pattern),
   [get_submodule_subpattern(X) || X <- WildList].
 
