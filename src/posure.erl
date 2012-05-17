@@ -55,8 +55,6 @@
 
 -import(filename).
 -import(re).
--import(re).
--import(ets).
 
 %%
 %% Exported Functions
@@ -159,7 +157,7 @@ get_imported_modules(Data) ->
   end.
 
 get_called_modules(Data) ->
-  {ok, MP} = re:compile("^[^\\%]*[\\s\\[\\{\\(\\,]([a-z_]+)\\:[a-z_]+\\(",
+  {ok, MP} = re:compile("^[^\\%\\n]*[\\s\\[\\{\\(\\,]([a-z_]+)\\:[a-z_]+\\(",
                         [multiline]),
   case re:run(Data, MP, [global, {capture, [1], list}]) of
     nomatch             -> [];
