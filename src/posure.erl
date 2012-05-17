@@ -22,8 +22,8 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Sure package checker for pose.  Checks pose-compatible command
-%% modules for unimported library modules.
+%% @doc Posure package import checker for pose.  Checks pose-compatible
+%% command modules for unimported library modules.
 %% @end
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
@@ -53,6 +53,9 @@
 
 -include("macro.hrl").
 
+-import(filename).
+-import(re).
+
 %%
 %% Exported Functions
 %%
@@ -66,7 +69,7 @@
 %%
 
 -spec start() -> ok | notsure.
-%% @doc Start posure import check as a blocking function.
+%% @doc Start posure package import check as a blocking function.
 %% All results are written to standard output.
 %% @end
 start() ->
@@ -75,29 +78,44 @@ start() ->
   ?MODULE:loop(IO, RunPid).
 
 -spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
-%% @doc Start posure import check as a
+%% @doc Start posure package import check as a
 %% <a href="http://github.com/beadsland/pose">pose</a> process.
 %% @end
-%% @todo Insert include files
 %% @todo Match all fully qualified function calls
 %% @todo Identify non-imports
-%% @todo Filter out fellow packaged modules
+%% @todo Filter out fellow package modules
 run(IO, _ARG, _ENV) ->
   ?INIT_POSE,
-  ?STDOUT("Running Posure ~s import checker~n", [?VERSION(?MODULE)]),
+  ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
   Src = filename:absname("src"),
   Pattern = lists:append(Src, "/*.erl"),
   Source = filelib:wildcard(Pattern),
   case slurp_pose_sources(Source) of
     {error, What} -> ?STDERR("posure: ~s~n", ?FORMAT_ERLERR(What)),
                      exit({error, What});
-    {ok, Slurps}  -> ?DEBUG("slurped: ~p~n", [proplists:get_keys(Slurps)]),
-                     exit(ok)
+    {ok, Slurps}  -> warn_nonimported_modules(IO, Slurps)
   end.
 
 %%
 %% Local Functions
 %%
+
+warn_nonimported_modules(_IO, []) -> exit(ok);
+warn_nonimported_modules(IO, [{_File, Data} | Tail]) ->
+  Imports = get_imported_modules(Data),
+  ?DEBUG("imports: ~p~n", [Imports]),
+  warn_nonimported_modules(IO, Tail).
+
+get_imported_modules(Data) ->
+  {ok, MP} = re:compile("-import\\(([^)]+)\\)", [multiline]),
+  case re:run(Data, MP, [global, {capture, [1], list}]) of
+    nomatch             -> [];
+    {match, Imports}    -> [lists:nth(1, X) || X <- Imports]
+  end.
+
+%%%
+% Slurp pose sources
+%%%
 
 slurp_pose_sources([]) -> {ok, []};
 slurp_pose_sources([Head | Tail]) ->
