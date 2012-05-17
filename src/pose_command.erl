@@ -91,6 +91,7 @@ load_command(Command, Module, Warnings) ->
     {false, BinPath}    ->
       SubModList = get_submodule_list(Command, BinPath, ".beam")
   end,
+  ?DEBUG("submodule list: ~p~n", [SubModList]),
   load_command(Command, Module, BinPath, Warnings, SubModList).
 
 % List submodules, in source folder, if readable, or else in binaries folder.
@@ -105,7 +106,6 @@ get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
 get_submodule_list(Command, Path, Extension) ->
   Pattern = lists:append([Path, "/", Command, "_*.", Extension]),
   WildList = filelib:wildcard(Pattern),
-  ?DEBUG("submodule list: ~p~n", [WildList]),
   [get_submodule_subpattern(X) || X <- WildList].
 
 % Predicate function for get_submodule_list/3 list comprehension.
