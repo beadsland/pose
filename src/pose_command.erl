@@ -111,7 +111,7 @@ get_submodule_list(Command, Path, Extension) ->
 
 % Predicate function for get_submodule_list/3 list comprehension.
 get_submodule_subpattern(File) ->
-  {ok, MP} = re:compile("^.*/([^/]*)\.[beamrl]+$"),
+  {ok, MP} = re:compile("^.*/([^/]+)\\.[beamrl]+$"),
   Options = [{capture, [1], list}],
   {match, [Module]} = re:run(File, MP, Options),
   list_to_atom(Module).
