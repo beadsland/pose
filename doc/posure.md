@@ -45,8 +45,6 @@ Start posure package import check as a
 __<font color="red">To do</font>__
 <br></br>
 
-* <font color="red">Match all fully qualified function calls</font>
-* <font color="red">Identify non-imports</font>
 * <font color="red">Filter out fellow package modules</font>
 <a name="start-0"></a>
 

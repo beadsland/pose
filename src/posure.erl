@@ -70,7 +70,7 @@
 %% API Functions
 %%
 
--spec start() -> ok | notsure.
+-spec start() -> ok | notsure | {error, {atom(), file:filename()}.
 %% @doc Start posure package import check as a blocking function.
 %% All results are written to standard output.
 %% @end
@@ -83,8 +83,6 @@ start() ->
 %% @doc Start posure package import check as a
 %% <a href="http://github.com/beadsland/pose">pose</a> process.
 %% @end
-%% @todo Match all fully qualified function calls
-%% @todo Identify non-imports
 %% @todo Filter out fellow package modules
 run(IO, _ARG, _ENV) ->
   ?INIT_POSE,
@@ -104,18 +102,32 @@ run(IO, _ARG, _ENV) ->
 
 warn_nonimported_modules(_IO, []) -> exit(ok);
 warn_nonimported_modules(IO, [{File, Data} | Tail]) ->
+  Command = get_command_name(File),
   Imports = get_imported_modules(Data),
   ?DEBUG("imports: ~p~n", [Imports]),
   Called = get_called_modules(Data),
   ?DEBUG("called: ~p~n", [Called]),
-  Nonimported = lists:subtract(Called, Imports),
-  [send_unimported_error(IO, File, X) || X <- Nonimported],
+  Unimported = lists:subtract(Called, Imports),
+  [send_unimported_error(IO, Command, X) || X <- Unimported],
   Noncalled = lists:subtract(Imports, Called),
-  ?DEBUG("noncalled: ~p~n", [Noncalled]),
-  warn_nonimported_modules(IO, Tail).
+  [send_noncalled_error(IO, Command, X) || X <- Noncalled],
+  case length(Unimported) of
+    0       -> warn_nonimported_modules(IO, Tail);
+    _Else   -> exit(notsure)
+  end.
 
-send_unimported_error(IO, File, Module) ->
-  ?STDERR("~s: calls unimported module ~s~n", [File, Module]).
+send_unimported_error(IO, Command, Module) ->
+  ?STDERR("~s: calls unimported module '~s'~n", [Command, Module]).
+
+send_noncalled_error(IO, Command, Module) ->
+  ?STDERR("~s: imports unused module '~s'~n", [Command, Module]).
+
+get_command_name(File) ->
+  {ok, MP} = re:compile("\\/([^\\/]+)\\.erl$"),
+  case re:run(File, MP, [{capture, [1], list}]) of
+    nomatch             -> File;
+    {match, Command}    -> Command
+  end.
 
 get_imported_modules(Data) ->
   {ok, MP} = re:compile("-import\\(([^)]+)\\)", [multiline]),
@@ -132,7 +144,6 @@ get_called_modules(Data) ->
     {match, Imports}    -> List = [lists:nth(1, X) || X <- Imports],
                            sets:to_list(sets:from_list(List))
   end.
-
 
 %%%
 % Slurp pose sources
@@ -154,7 +165,6 @@ slurp_pose_sources(Tail, {Head, Data}) ->
                  {ok, Slurps}   -> {ok, [{Head, Data} | Slurps]}
                end
   end.
-
 
 %%%
 % Start loop
