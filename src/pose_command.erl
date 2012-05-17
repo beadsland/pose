@@ -67,7 +67,7 @@ load(Command) -> load_command(Command).
 % <code><i>module</i>_<i>subpart</i></code>.
 % @end
 load_command(Command) ->
-  ?DEBUG("Pose loading ~p~n", [Command]),
+  ?DEBUG("Pose loading command ~p~n", [Command]),
   case pose_code:load_module(Command) of
     {module, Module, Warning} -> load_command(Command, Module, [Warning]);
     {module, Module}          -> load_command(Command, Module, []);
