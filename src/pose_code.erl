@@ -217,8 +217,6 @@ load(Command) -> load_module(Command).
 %% variable, compiling and loading updated module as necessary.
 %% @end
 %% @todo get PATH from environment
-load_module(Command) when is_atom(Command) ->
-  load_module(atom_to_list(Command));
 load_module(Command) ->
   Path = [filename:absname("ebin"),
           filename:absname("deps/pose/ebin"),
@@ -236,6 +234,8 @@ load_module(Command) ->
 %% compiling and loading updated module as necessary.
 %% @end
 load_module(_Command, []) -> {error, notfound};
+load_module(Command, Path) when is_atom(Command) ->
+  load_module(atom_to_list(Command), Path);
 load_module(Command, [Head | Tail]) ->
   ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
   case pose_compile:ensure_compiled(Command, Head) of
@@ -248,7 +248,6 @@ load_module(Command, [Head | Tail]) ->
                                load_module(Command, Head, Module, Binary);
     {error, What}           -> {error, {load, What}}
   end.
-
 
 %%
 %% Local functions
