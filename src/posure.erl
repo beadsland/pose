@@ -96,24 +96,28 @@ run(IO, _ARG, _ENV) ->
   case slurp_pose_sources(Source) of
     {error, What} -> ?STDERR("posure: ~s~n", ?FORMAT_ERLERR(What)),
                      exit({error, What});
-    {ok, Slurps}  -> warn_nonimported_modules(IO, Slurps)
+    {ok, Slurps}  -> send_warnings(IO, Slurps)
   end.
 
 %%
 %% Local Functions
 %%
 
-warn_nonimported_modules(IO, Slurps) ->
+%%%
+% Warn nonimported modules
+%%%
+
+send_warnings(IO, Slurps) ->
   Keys = proplists:get_keys(Slurps),
   ?DEBUG("slurps: ~p~n", [Keys]),
   Commands = [get_command_name(X) || X <- Keys],
   ?DEBUG("pose commands: ~p~n", [Commands]),
-  warn_nonimported_modules(IO, Commands, Slurps).
+  send_warnings(IO, Commands, Slurps).
 
-warn_nonimported_modules(IO, _Commands, []) ->
+send_warnings(IO, _Commands, []) ->
   ?STDOUT("Quite sure!\n"),
   exit(ok);
-warn_nonimported_modules(IO, Commands, [{File, Data} | Tail]) ->
+send_warnings(IO, Commands, [{File, Data} | Tail]) ->
   ThisCommand = get_command_name(File),
   Imports = get_imported_modules(Data),
   ?DEBUG("imports: ~p~n", [Imports]),
@@ -125,33 +129,33 @@ warn_nonimported_modules(IO, Commands, [{File, Data} | Tail]) ->
   _Noncalled = test_noncalled(IO, ThisCommand, Imports, Called),
 
   case length(Unimported ++ BadDirect) of
-    0       -> warn_nonimported_modules(IO, Tail);
+    0       -> send_warnings(IO, Tail);
     _Else   -> ?STDOUT("Not so sure.\n"), exit(notsure)
   end.
 
 test_baddirect(IO, ThisCommand, Called, Commands) ->
   BadDirect = [X || X <- Called, lists:member(X, Commands),
                     is_submodule(X, ThisCommand) == false],
-  [send_baddirect_error(IO, ThisCommand, X) || X <- BadDirect],
+  [send_baddirect_warning(IO, ThisCommand, X) || X <- BadDirect],
   BadDirect.
 
-send_baddirect_error(IO, Command, Module) ->
+send_baddirect_warning(IO, Command, Module) ->
   ?STDOUT("~s: calls pose command module '~s'~n", [Command, Module]).
 
 test_noncalled(IO, ThisCommand, Imports, Called) ->
   Noncalled = lists:subtract(Imports, Called),
-  [send_noncalled_error(IO, ThisCommand, X) || X <- Noncalled],
+  [send_noncalled_warning(IO, ThisCommand, X) || X <- Noncalled],
   Noncalled.
 
-send_noncalled_error(IO, Command, Module) ->
+send_noncalled_warning(IO, Command, Module) ->
   ?STDOUT("~s: imports unused module '~s'~n", [Command, Module]).
 
 test_unimported(IO, ThisCommand, Imports, Called, Commands) ->
   Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
-  [send_unimported_error(IO, ThisCommand, X) || X <- Unimported],
+  [send_unimported_warning(IO, ThisCommand, X) || X <- Unimported],
   Unimported.
 
-send_unimported_error(IO, Command, Module) ->
+send_unimported_warning(IO, Command, Module) ->
   ?STDOUT("~s: calls unimported module '~s'~n", [Command, Module]).
 
 is_submodule(X, Y) ->
