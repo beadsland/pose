@@ -28,7 +28,7 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @version 0.1.0
+%% @version 0.1.1
 
 -define(module, posure).
 
@@ -42,14 +42,14 @@
 -endif.
 % END POSE PACKAGE PATTERN
 
--version("0.1.0").
+-version("0.1.1").
 
 %%
 %% Include files
 %%
 
 -define(debug, true).
--include("pose/include/interface.hrl").
+-include("interface.hrl").
 
 -include("macro.hrl").
 
@@ -78,9 +78,6 @@ start() ->
 %% @doc Start posure import check as a
 %% <a href="http://github.com/beadsland/pose">pose</a> process.
 %% @end
-%% @todo Find source files
-%% @todo Filter package patterned files
-%% @todo Slurp source code
 %% @todo Insert include files
 %% @todo Match all fully qualified function calls
 %% @todo Identify non-imports
@@ -91,12 +88,38 @@ run(IO, _ARG, _ENV) ->
   Src = filename:absname("src"),
   Pattern = lists:append(Src, "/*.erl"),
   Source = filelib:wildcard(Pattern),
-  ?DEBUG("source: ~p~n", [Source]),
-  exit(ok).
+  case slurp_pose_sources(Source) of
+    {error, What} -> ?STDERR("posure: ~s~n", ?FORMAT_ERLERR(What)),
+                     exit({error, What});
+    {ok, Slurps}  -> ?DEBUG("slurped: ~p~n", [proplists:get_keys(Slurps)]),
+                     exit(ok)
+  end.
 
 %%
 %% Local Functions
 %%
+
+slurp_pose_sources([]) -> {ok, []};
+slurp_pose_sources([Head | Tail]) ->
+  case file:read_file(Head) of
+    {error, What}   -> {error, {What, Head}};
+    {ok, Data}      -> slurp_pose_sources(Tail, {Head, Data})
+  end.
+
+slurp_pose_sources(Tail, {Head, Data}) ->
+  {ok, MP} = re:compile("^-package\\(default\\)\\.", [multiline]),
+  case re:run(Data, MP, [{capture, none}]) of
+    nomatch -> slurp_pose_sources(Tail);
+    match   -> case slurp_pose_sources(Tail) of
+                 {error, What}  -> {error, What};
+                 {ok, Slurps}   -> {ok, [{Head, Data} | Slurps]}
+               end
+  end.
+
+
+%%%
+% Start loop
+%%%
 
 % @hidden Export to allow for hotswap.
 loop(IO, RunPid) ->
