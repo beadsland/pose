@@ -34,7 +34,7 @@
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include("interface.hrl").
 
 -include("macro.hrl").
@@ -67,6 +67,7 @@ load(Command) -> load_command(Command).
 % <code><i>module</i>_<i>subpart</i></code>.
 % @end
 load_command(Command) ->
+  ?DEBUG("Pose loading ~p~n", [Command]),
   case pose_code:load_module(Command) of
     {module, Module, Warning} -> load_command(Command, Module, [Warning]);
     {module, Module}          -> load_command(Command, Module, []);
