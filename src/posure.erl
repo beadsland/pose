@@ -28,7 +28,7 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @version 0.1.1
+%% @version 0.1.2
 
 -define(module, posure).
 
@@ -42,7 +42,7 @@
 -endif.
 % END POSE PACKAGE PATTERN
 
--version("0.1.1").
+-version("0.1.2").
 
 %%
 %% Include files
@@ -75,6 +75,7 @@
 %% All results are written to standard output.
 %% @end
 start() ->
+  test:hello(),
   IO = ?IO(self()),
   RunPid = spawn_link(?MODULE, run, [IO, ?ARG(?MODULE), ?ENV]),
   ?MODULE:loop(IO, RunPid).
@@ -83,7 +84,7 @@ start() ->
 %% @doc Start posure package import check as a
 %% <a href="http://github.com/beadsland/pose">pose</a> process.
 %% @end
-%% @todo Filter out fellow package modules
+%% @todo Error on direct calls to non-submodule commands
 run(IO, _ARG, _ENV) ->
   ?INIT_POSE,
   ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
@@ -100,14 +101,23 @@ run(IO, _ARG, _ENV) ->
 %% Local Functions
 %%
 
-warn_nonimported_modules(_IO, []) -> exit(ok);
-warn_nonimported_modules(IO, [{File, Data} | Tail]) ->
+warn_nonimported_modules(IO, Slurps) ->
+  Keys = proplists:get_keys(Slurps),
+  ?DEBUG("slurps: ~p~n", [Keys]),
+  Commands = [get_command_name(X) || X <- Keys],
+  ?DEBUG("pose commands: ~p~n", [Commands]),
+  warn_nonimported_modules(IO, Commands, Slurps).
+
+warn_nonimported_modules(IO, _Commands, []) ->
+  ?STDOUT("Quite sure!"),
+  exit(ok);
+warn_nonimported_modules(IO, Commands, [{File, Data} | Tail]) ->
   Command = get_command_name(File),
   Imports = get_imported_modules(Data),
   ?DEBUG("imports: ~p~n", [Imports]),
   Called = get_called_modules(Data),
   ?DEBUG("called: ~p~n", [Called]),
-  Unimported = lists:subtract(Called, Imports),
+  Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
   [send_unimported_error(IO, Command, X) || X <- Unimported],
   Noncalled = lists:subtract(Imports, Called),
   [send_noncalled_error(IO, Command, X) || X <- Noncalled],
@@ -125,8 +135,8 @@ send_noncalled_error(IO, Command, Module) ->
 get_command_name(File) ->
   {ok, MP} = re:compile("\\/([^\\/]+)\\.erl$"),
   case re:run(File, MP, [{capture, [1], list}]) of
-    nomatch             -> File;
-    {match, Command}    -> Command
+    nomatch                 -> File;
+    {match, [Command]}      -> Command
   end.
 
 get_imported_modules(Data) ->

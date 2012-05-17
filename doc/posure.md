@@ -11,7 +11,7 @@ Posure package import checker for pose.
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 
-__Version:__ 0.1.1
+__Version:__ 0.1.2
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).<a name="description"></a>
 
@@ -45,13 +45,13 @@ Start posure package import check as a
 __<font color="red">To do</font>__
 <br></br>
 
-* <font color="red">Filter out fellow package modules</font>
+* <font color="red">Error on direct calls to non-submodule commands</font>
 <a name="start-0"></a>
 
 ###start/0##
 
 
-<pre>start() -&gt; ok | notsure</pre>
+<pre>start() -> ok | notsure | {error, {atom(), <a href="file.md#type-filename">file:filename()</a>}}</pre>
 <br></br>
 
 
