@@ -26,7 +26,15 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>load_cmd_rtn() = <a href="pose_code.md#type-load_mod_rtn">pose_code:load_mod_rtn()</a> | {module, module(), [<a href="#type-load_mod_warn">load_mod_warn()</a>]}</pre>
+<pre>load_cmd_rtn() = {module, module(), [<a href="#type-load_mod_warn">load_mod_warn()</a>]} | {error, <a href="#type-load_err">load_err()</a>, [<a href="#type-load_mod_warn">load_mod_warn()</a>]}</pre>
+
+
+
+###<a name="type-load_err">load_err()</a>##
+
+
+
+<pre>load_err() = <a href="pose_code.md#type-load_err">pose_code:load_err()</a></pre>
 
 
 

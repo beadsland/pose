@@ -48,7 +48,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load_warn-3">load_warn/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received
 from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td>Run a pose-compliant command in its own process.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Run a pose-compliant command from the erl commandline.</td></tr></table>
 
 
@@ -56,12 +56,12 @@ from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#s
 
 ##Function Details##
 
-<a name="load_warn-3"></a>
+<a name="send_load_warnings-3"></a>
 
-###load_warn/3##
+###send_load_warnings/3##
 
 
-<pre>load_warn(IO::#std{}, Command::<a href="#type-command">command()</a>, Warnings::[<a href="#type-warning">warning()</a>]) -> ok</pre>
+<pre>send_load_warnings(IO::#std{}, Command::<a href="#type-command">command()</a>, Warnings::[<a href="#type-warning">warning()</a>]) -> ok</pre>
 <br></br>
 
 

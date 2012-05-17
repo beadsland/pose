@@ -50,7 +50,8 @@ SUCCINCT	=	grep -v "Entering directory" \
 
 ERL_PATH	= 	-pa ebin
 
-SUPERL	=	-pa ../superl/ebin -s superl -s init stop
+POSURE	=	-pa ebin -s posure
+SUPERL	=	-pa ../superl/ebin -s superl $(POSURE) -s init stop
 
 #
 # Build rules start
