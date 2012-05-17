@@ -55,6 +55,8 @@
 
 -import(filename).
 -import(re).
+-import(re).
+-import(ets).
 
 %%
 %% Exported Functions
@@ -101,10 +103,19 @@ run(IO, _ARG, _ENV) ->
 %%
 
 warn_nonimported_modules(_IO, []) -> exit(ok);
-warn_nonimported_modules(IO, [{_File, Data} | Tail]) ->
+warn_nonimported_modules(IO, [{File, Data} | Tail]) ->
   Imports = get_imported_modules(Data),
   ?DEBUG("imports: ~p~n", [Imports]),
+  Called = get_called_modules(Data),
+  ?DEBUG("called: ~p~n", [Called]),
+  Nonimported = lists:subtract(Called, Imports),
+  [send_unimported_error(IO, File, X) || X <- Nonimported],
+  Noncalled = lists:subtract(Imports, Called),
+  ?DEBUG("noncalled: ~p~n", [Noncalled]),
   warn_nonimported_modules(IO, Tail).
+
+send_unimported_error(IO, File, Module) ->
+  ?STDERR("~s: calls unimported module ~s~n", [File, Module]).
 
 get_imported_modules(Data) ->
   {ok, MP} = re:compile("-import\\(([^)]+)\\)", [multiline]),
@@ -112,6 +123,16 @@ get_imported_modules(Data) ->
     nomatch             -> [];
     {match, Imports}    -> [lists:nth(1, X) || X <- Imports]
   end.
+
+get_called_modules(Data) ->
+  {ok, MP} = re:compile("[\\s\\[\\{\\(\\,]([a-z_]+)\\:[a-z_]+\\(",
+                        [multiline]),
+  case re:run(Data, MP, [global, {capture, [1], list}]) of
+    nomatch             -> [];
+    {match, Imports}    -> List = [lists:nth(1, X) || X <- Imports],
+                           sets:to_list(sets:from_list(List))
+  end.
+
 
 %%%
 % Slurp pose sources
