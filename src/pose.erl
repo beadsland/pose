@@ -177,6 +177,7 @@ do_noise(Command, RunPid, Noise) ->
 %%%
 
 % Send warning messages for namespace collisions and some flat packages
+send_load_warnings(_IO, _Command, [], _ManyFlat) -> ok;
 send_load_warnings(IO, Command, [Head | Tail], ManyFlat) ->
   case Head of
     diff_path                                   ->
