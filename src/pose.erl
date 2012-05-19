@@ -59,10 +59,13 @@
 
 -spec start([Command :: atom()]) -> ok | no_return().
 %% @doc Run a pose-compliant command from the erl commandline.
-start([Command]) ->
-  IO = ?IO(self()),
+start([Command | Args]) ->
+  start(?IO(self()), ?ARG(Command, Args), ?ENV).
+
+start(IO, ARG, ENV) ->
   ?INIT_POSE,
   io:format("Starting pose ~p~n", [self()]),
+  Command = ?ARGV(0),
   case spawn(IO, Command) of
     {error, Reason} ->
       Erlerr = ?FORMAT_ERLERR({pose, {Command, Reason}}),
