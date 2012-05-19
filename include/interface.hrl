@@ -23,9 +23,12 @@
 %% CDDL HEADER END
 
 -import(code).
--define(INIT_POSE, init_pose, process_flag(trap_exit, true),
+-define(INIT_POSE, init_pose,
+                   process_flag(trap_exit, true),
                    code:add_patha("deps/pose/ebin"),
-                   put(debug, IO#std.err)).
+                   put(debug, IO#std.err),
+                   put(env, ENV)
+       ).
 
 % IO is first parameter to pose entry points.
 -record(std, {in = self() :: pid(), out = self() :: pid(),
