@@ -104,9 +104,10 @@ run(IO, _ARG, _ENV) ->
 %%
 
 %%%
-% Warn nonimported modules
+% Send warnings to stdout
 %%%
 
+% Get names of all modules slurped.
 send_warnings(IO, Slurps) ->
   Keys = proplists:get_keys(Slurps),
   ?DEBUG("slurps: ~p~n", [Keys]),
@@ -114,6 +115,7 @@ send_warnings(IO, Slurps) ->
   ?DEBUG("pose commands: ~p~n", [Commands]),
   send_warnings(IO, Commands, Slurps).
 
+% For each file, identify where imports and calls don't match up.
 send_warnings(IO, _Commands, []) ->
   ?STDOUT("Quite sure!\n"),
   exit(ok);
@@ -133,6 +135,16 @@ send_warnings(IO, Commands, [{File, Data} | Tail]) ->
     _Else   -> ?STDOUT("Not so sure.\n"), exit(notsure)
   end.
 
+% Identify and warn about called modules that haven't been imported.
+test_unimported(IO, ThisCommand, Imports, Called, Commands) ->
+  Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
+  [send_unimported_warning(IO, ThisCommand, X) || X <- Unimported],
+  Unimported.
+
+send_unimported_warning(IO, Command, Module) ->
+  ?STDOUT("~s: calls unimported module '~s'~n", [Command, Module]).
+
+% Identify and warn about imported modules that are actually pose commands.
 test_baddirect(IO, ThisCommand, Called, Commands) ->
   BadDirect = [X || X <- Called, lists:member(X, Commands),
                     is_submodule(X, ThisCommand) == false],
@@ -142,6 +154,7 @@ test_baddirect(IO, ThisCommand, Called, Commands) ->
 send_baddirect_warning(IO, Command, Module) ->
   ?STDOUT("~s: calls pose command module '~s'~n", [Command, Module]).
 
+% Identify and warn about imported modules that haven't been called.
 test_noncalled(IO, ThisCommand, Imports, Called) ->
   Noncalled = lists:subtract(Imports, Called),
   [send_noncalled_warning(IO, ThisCommand, X) || X <- Noncalled],
@@ -150,14 +163,11 @@ test_noncalled(IO, ThisCommand, Imports, Called) ->
 send_noncalled_warning(IO, Command, Module) ->
   ?STDOUT("~s: imports unused module '~s'~n", [Command, Module]).
 
-test_unimported(IO, ThisCommand, Imports, Called, Commands) ->
-  Unimported = lists:subtract(lists:subtract(Called, Imports), Commands),
-  [send_unimported_warning(IO, ThisCommand, X) || X <- Unimported],
-  Unimported.
+%%%
+% Analysis utility functions
+%%%
 
-send_unimported_warning(IO, Command, Module) ->
-  ?STDOUT("~s: calls unimported module '~s'~n", [Command, Module]).
-
+% Is either of these two modules a submodule of the other?
 is_submodule(X, Y) ->
   Test1 = lists:prefix(X ++ "_", Y),
   Test2 = lists:prefix(Y ++ "_", X),
@@ -165,6 +175,7 @@ is_submodule(X, Y) ->
      true           -> false
   end.
 
+% Extract the module name from a full source file path.
 get_command_name(File) ->
   {ok, MP} = re:compile("\\/([^\\/]+)\\.erl$"),
   case re:run(File, MP, [{capture, [1], list}]) of
@@ -172,6 +183,7 @@ get_command_name(File) ->
     {match, [Command]}      -> Command
   end.
 
+% Scan a file for all -import directives.
 get_imported_modules(Data) ->
   {ok, MP} = re:compile("-import\\(([^)]+)\\)", [multiline]),
   case re:run(Data, MP, [global, {capture, [1], list}]) of
@@ -179,6 +191,7 @@ get_imported_modules(Data) ->
     {match, Imports}    -> [lists:nth(1, X) || X <- Imports]
   end.
 
+% Scan a file for all fully qualified module calls.
 get_called_modules(Data) ->
   {ok, MP} = re:compile("^[^\\%\\n]*[\\s\\[\\{\\(\\,]([a-z_]+)\\:[a-z_]+\\(",
                         [multiline]),
@@ -192,6 +205,7 @@ get_called_modules(Data) ->
 % Slurp pose sources
 %%%
 
+% Read the contents of each file into memory.
 slurp_pose_sources([]) -> {ok, []};
 slurp_pose_sources([Head | Tail]) ->
   case file:read_file(Head) of
@@ -199,6 +213,7 @@ slurp_pose_sources([Head | Tail]) ->
     {ok, Data}      -> slurp_pose_sources(Tail, {Head, Data})
   end.
 
+% Discard files that aren't actually pose-compatible commands.
 slurp_pose_sources(Tail, {Head, Data}) ->
   {ok, MP} = re:compile("^-package\\(default\\)\\.", [multiline]),
   case re:run(Data, MP, [{capture, none}]) of
