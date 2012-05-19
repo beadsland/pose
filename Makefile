@@ -50,7 +50,7 @@ SUCCINCT	=	grep -v "Entering directory" \
 
 ERL_PATH	= 	-pa ebin
 
-POSURE	=	-pa ebin -s posure
+POSURE	=	-i .. -pa ebin -s posure
 SUPERL	=	-pa ../superl/ebin -s superl $(POSURE) -s init stop
 
 #
@@ -73,6 +73,8 @@ current:
 	@rebar update-deps compile doc | $(HIDE_EDOC_WARN) | $(SUCCINCT)
 
 clean: 	online
+	@rm doc/*.md
+	@rm doc/*.html
 	@if [ "$(ONLINE)" == yes ]; \
 		then (rm -rf deps; rebar clean get-deps | $(SUCCINCT)); \
 		else (rebar clean | $(SUCCINCT)); fi
