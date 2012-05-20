@@ -55,6 +55,7 @@
 
 -include("macro.hrl").
 
+-import(gen_command).
 -import(filelib).
 -import(filename).
 -import(file).
