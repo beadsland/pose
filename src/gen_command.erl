@@ -53,7 +53,7 @@
 -type callback() :: {function(), arity()}.
 -spec behaviour_info(callbacks) -> [callback()] | undefined.
 % Callback list for modules implementing `gen_command' behaviour.
-behaviour_info(callbacks) -> [{start, 0}, {start, 1}, {do_run, 2}];
+behaviour_info(callbacks) -> [{start, 0}, {start, 1}, {run, 3}, {do_run, 2}];
 behaviour_info(_) -> undefined.
 
 -spec start(Param :: [any()], Module :: module()) -> no_return().
