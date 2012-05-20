@@ -81,12 +81,15 @@ run(IO, ARG, ENV, Module) ->
 
 % @hidden Export to allow for hotswap.
 loop(IO, RunPid) ->
+  SelfPid = self(),
   receive
     {purging, _Pid, _Mod}           -> ?MODULE:loop(IO, RunPid);
     {'EXIT', RunPid, ok}            -> ok;
     {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What), {ok, What};
     {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason), Reason;
-    {MsgTag, RunPid, Line}          -> do_output(MsgTag, Line),
+    {debug, SelfPid, Output}        -> do_output(debug, Output),    
+                                       ?MODULE:loop(IO, RunPid);
+    {MsgTag, RunPid, Output}        -> do_output(MsgTag, Output),
                                        ?MODULE:loop(IO, RunPid);
     Noise                           -> do_noise(Noise),
                                        ?MODULE:loop(IO, RunPid)
