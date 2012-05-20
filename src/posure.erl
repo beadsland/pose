@@ -70,6 +70,8 @@
 
 -export([start/0, start/1, do_run/2]).
 
+-export([run/3]).
+
 %%
 %% API Functions
 %%
@@ -81,6 +83,11 @@ start() -> start([]).
 -spec start(Param :: [atom()]) -> no_return().
 %% @doc Start posure package import check as a blocking function.
 start(Param) -> gen_command:start(Param, ?MODULE).
+
+
+% Testing...
+run(IO, ARG, _ENV) -> do_run(IO, ARG).
+
 
 -spec do_run(IO :: #std{}, ARG :: #arg{}) -> no_return().
 %% @doc Callback function for
