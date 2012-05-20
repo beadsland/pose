@@ -102,7 +102,12 @@ do_run(IO, _ARG) ->
   case slurp_pose_sources(Source) of
     {error, What} -> ?STDERR("posure: ~s~n", ?FORMAT_ERLERR(What)),
                      exit({error, What});
-    {ok, Slurps}  -> send_warnings(IO, Slurps)
+    {ok, Slurps}  -> case send_warnings(IO, Slurps) of
+                       sure     -> ?STDOUT("Quite sure!\n"),
+                                   exit(ok);
+                       notsure  -> ?STDOUT("Not all that sure.\n"),
+                                   exit(notsure)
+                     end
   end.
 
 %%
@@ -122,8 +127,7 @@ send_warnings(IO, Slurps) ->
   send_warnings(IO, Commands, Slurps).
 
 % For each file, identify where imports and calls don't match up.
-send_warnings(IO, _Commands, []) ->
-  ?STDOUT("Quite sure!\n");
+send_warnings(_IO, _Commands, []) -> sure;
 send_warnings(IO, Commands, [{File, Data} | Tail]) ->
   ThisCommand = get_command_name(File),
   Imports = get_imported_modules(Data),
@@ -137,7 +141,7 @@ send_warnings(IO, Commands, [{File, Data} | Tail]) ->
 
   case length(Unimported ++ BadDirect) of
     0       -> send_warnings(IO, Tail);
-    _Else   -> ?STDOUT("Not so sure.\n"), exit(notsure)
+    _Else   -> notsure
   end.
 
 % Identify and warn about called modules that haven't been imported.

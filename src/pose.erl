@@ -129,7 +129,6 @@ loop(Command, RunPid) ->
   receive
     {purging, _Pid, _Mod}       -> ?MODULE:loop(Command, RunPid);
     {'EXIT', RunPid, ok}        -> ok;
-    {'EXIT', RunPid, normal}    -> ok;
     {'EXIT', RunPid, Reason}    -> exit({Command, Reason});
     {debug, SelfPid, Output}    -> do_output(Command, RunPid, debug, Output);
     {MsgTag, RunPid, Output}    -> do_output(Command, RunPid, MsgTag, Output);
