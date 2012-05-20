@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @version 0.1.6
+%% @version 0.1.7
 -module(pose).
--version("0.1.6").
+-version("0.1.7").
 
 %%
 %% Include files
@@ -41,50 +41,70 @@
 %% Exported Functions
 %%
 
--compile({no_auto_import, [spawn/2, spawn/3, spawn/4]}).
+-behaviour(gen_command).
 
-% pose entry functions
--export([start/1, spawn/2, spawn/3]).
+% API entry points
+-export([start/0, start/1, run/3]).
+
+% Hidden callbacks
+-export([do_run/2]).
+
+% Internal entry functions
+-compile({no_auto_import, [spawn/2, spawn/3, spawn/4]}).
+-export([spawn/2, spawn/3]).
 -export_type([command/0]).
 
 % pose_command helper function
 -export([send_load_warnings/3]).
 
 % hidden functions
--export([loop/2, argv/2]).
+-export([argv/2]).
+
+%%
+%% gen_command functions
+%%
+
+-spec start() -> no_return().
+%% @equiv start([])
+start() -> start([]).
+
+-spec start(Param :: [atom()]) -> no_return().
+%% @doc Start as a blocking function.
+start(Param) -> gen_command:start(Param, ?MODULE).
+
+-spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
+%% doc Start as a `pose' command.
+run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 
 %%
 %% API Functions
 %%
 
--spec start([Command :: atom()]) -> ok | no_return().
-%% @doc Run a pose-compliant command from the erl commandline.
-start([Command | Args]) ->
-  start(?IO(self()), ?ARG(Command, Args), ?ENV).
-
-% hack pending refactoring
-start(IO, ARG, ENV) ->
-  ?INIT_POSE,
+do_run(IO, PoseARG) ->
   io:format("Starting pose ~p~n", [self()]),
-  Command = ?ARGV(0),
-  case spawn(IO, Command, ARG#arg.v) of
-    {error, Reason} ->
-      Erlerr = ?FORMAT_ERLERR({pose, {Command, Reason}}),
-      io:format(standard_error, "** ~s~n", [Erlerr]),
-      exit({Command, Reason});
-    CmdPid          ->
-      ?MODULE:loop(Command, CmdPid)
+  [Command | Param] = PoseARG#arg.v,
+  ARG = ?ARG(Command, Param),
+  case pose_command:load(Command) of
+    {module, Module, Warnings}    ->
+      pose:send_load_warnings(IO, superl, Warnings),
+      Module:run(IO, ARG, ?ENV);
+    {error, What, Warnings}       ->
+      pose:send_load_warnings(IO, superl, Warnings),
+      ?STDERR({Command, What}),
+      exit(What)
   end.
 
 -type command() :: nonempty_string() | atom().
 -type spawn_rtn() :: {error, pose_code:load_err()} | pid().
 -spec spawn(IO :: #std{}, Command :: command()) -> spawn_rtn().
 %% @equiv spawn(IO, Command, [])
+%% @deprecated Only nosh uses this
 spawn(IO, Command) -> spawn(IO, Command, []).
 
 -spec spawn(IO :: #std{}, Command :: command(), Param :: [any()]) ->
         spawn_rtn().
 %% @doc Run a pose-compliant command in its own process.
+%% @deprecated
 spawn(IO, Command, Param) when is_atom(Command) ->
   ?MODULE:spawn(IO, atom_to_list(Command), Param);
   % Fully qualified call to satisfy dialyzer,
@@ -124,18 +144,6 @@ send_load_warnings(IO, Command, Warnings) ->
 %% Hidden functions
 %%
 
-% @hidden Fully qualified loop waiting for output and then exiting.
-loop(Command, RunPid) ->
-  SelfPid = self(),
-  receive
-    {purging, _Pid, _Mod}       -> ?MODULE:loop(Command, RunPid);
-    {'EXIT', RunPid, ok}        -> ok;
-    {'EXIT', RunPid, Reason}    -> exit({Command, Reason});
-    {debug, SelfPid, Output}    -> do_output(Command, RunPid, debug, Output);
-    {MsgTag, RunPid, Output}    -> do_output(Command, RunPid, MsgTag, Output);
-    Noise                       -> do_noise(Command, RunPid, Noise)
-  end.
-
 % @hidden Smart argument lookup function for ?ARGV(X) macro.
 argv(ARG, N) ->
   if N == 0 -> ARG#arg.cmd; N > 0 -> lists:nth(N, ARG#arg.v) end.
@@ -154,27 +162,6 @@ spawn(MyIO, Command, Param, Module) ->
   CmdPid = spawn_link(Module, run, [IO, ARG, ?ENV]),
   ?DEBUG("Running ~p as ~p ~p~n", [Command, Module, CmdPid]),
   CmdPid.
-
-%%%
-% Loop handlers
-%%%
-
-% Relay standard output to console.
-do_output(Command, RunPid, MsgTag, Output) ->
-  case MsgTag of
-    erlout  -> io:format("~p: ~p~n", [Command, Output]);
-    erlerr  -> io:format(standard_error, "** ~p: ~s~n",
-                         [Command, ?FORMAT_ERLERR(Output)]);
-    stdout  -> io:format(Output);
-    stderr  -> io:format(standard_error, "** ~s", [Output]);
-    debug   -> io:format(standard_error, "-- ~s", [Output])
-  end,
-  ?MODULE:loop(Command, RunPid).
-
-% Handle noise on message queue.
-do_noise(Command, RunPid, Noise) ->
-  io:format(standard_error, "noise: ~p ~p~n", [Noise, self()]),
-  ?MODULE:loop(Command, RunPid).
 
 %%%
 % Send load warnings

@@ -12,7 +12,9 @@ Entry points for running `pose`-compatible commands.
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 
-__Version:__ 0.1.6
+__Version:__ 0.1.7
+
+__Behaviours:__ [`gen_command`](gen_command.md).
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -48,13 +50,29 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received
-from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td>Run a pose-compliant command in its own process.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Run a pose-compliant command from the erl commandline.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#do_run-2">do_run/2</a></td><td></td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received
+from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td>Run a pose-compliant command in its own process.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr></table>
 
 
 <a name="functions"></a>
 
 ##Function Details##
+
+<a name="do_run-2"></a>
+
+###do_run/2##
+
+
+`do_run(IO, PoseARG) -> any()`
+
+<a name="run-3"></a>
+
+###run/3##
+
+
+<pre>run(IO::#std{}, ARG::#arg{}, ENV::#env{}) -&gt; no_return()</pre>
+<br></br>
+
 
 <a name="send_load_warnings-3"></a>
 
@@ -75,7 +93,9 @@ from `pose_command:load/1`.<a name="spawn-2"></a>
 <br></br>
 
 
-Equivalent to [`spawn(IO, Command, [])`](#spawn-3).<a name="spawn-3"></a>
+Equivalent to [`spawn(IO, Command, [])`](#spawn-3).
+
+__This function is deprecated:__ Only nosh uses this<a name="spawn-3"></a>
 
 ###spawn/3##
 
@@ -84,13 +104,22 @@ Equivalent to [`spawn(IO, Command, [])`](#spawn-3).<a name="spawn-3"></a>
 <br></br>
 
 
-Run a pose-compliant command in its own process.<a name="start-1"></a>
+Run a pose-compliant command in its own process.<a name="start-0"></a>
+
+###start/0##
+
+
+<pre>start() -&gt; no_return()</pre>
+<br></br>
+
+
+Equivalent to [`start([])`](#start-1).<a name="start-1"></a>
 
 ###start/1##
 
 
-<pre>start(Command::[Command::atom()]) -&gt; ok | no_return()</pre>
+<pre>start(Param::[atom()]) -&gt; no_return()</pre>
 <br></br>
 
 
-Run a pose-compliant command from the erl commandline.
+Start as a blocking function.
