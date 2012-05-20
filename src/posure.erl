@@ -44,8 +44,6 @@
 
 -version("0.1.3").
 
--behaviour(gen_command).
-
 %%
 %% Include files
 %%
@@ -68,9 +66,13 @@
 %% Exported Functions
 %%
 
--export([start/0, start/1, do_run/2]).
+-behaviour(gen_command).
 
--export([run/3]).
+% API entry points
+-export([start/0, start/1, run/3]).
+
+% Hidden callbacks
+-export([do_run/2]).
 
 %%
 %% API Functions
@@ -81,19 +83,18 @@
 start() -> start([]).
 
 -spec start(Param :: [atom()]) -> no_return().
-%% @doc Start posure package import check as a blocking function.
+%% @doc Start as a blocking function.
 start(Param) -> gen_command:start(Param, ?MODULE).
 
-
-% Testing...
+-spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
+%% doc Start as a `pose' command.
 run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 
+%%
+%% Callback Functions
+%%
 
--spec do_run(IO :: #std{}, ARG :: #arg{}) -> no_return().
-%% @doc Callback function for
-%% <a href="http://github.com/beadsland/pose">pose</a>
-%% `gen_command' behaviour.
-%% @end
+%% @hidden Callback entry point for gen_command behaviour.
 do_run(IO, _ARG) ->
   ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
   Src = filename:absname("src"),

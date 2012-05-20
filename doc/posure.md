@@ -24,27 +24,23 @@ command modules for unimported library modules.<a name="index"></a>
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#do_run-2">do_run/2</a></td><td>Callback function for
-<a href="http://github.com/beadsland/pose">pose</a>
-<code>gen_command</code> behaviour.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start posure package import check as a blocking function.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr></table>
 
 
 <a name="functions"></a>
 
 ##Function Details##
 
-<a name="do_run-2"></a>
+<a name="run-3"></a>
 
-###do_run/2##
+###run/3##
 
 
-<pre>do_run(IO::#std{}, ARG::#arg{}) -&gt; no_return()</pre>
+<pre>run(IO::#std{}, ARG::#arg{}, ENV::#env{}) -&gt; no_return()</pre>
 <br></br>
 
 
-Callback function for
-[pose](http://github.com/beadsland/pose)
-`gen_command` behaviour.<a name="start-0"></a>
+<a name="start-0"></a>
 
 ###start/0##
 
@@ -62,4 +58,4 @@ Equivalent to [`start([])`](#start-1).<a name="start-1"></a>
 <br></br>
 
 
-Start posure package import check as a blocking function.
+Start as a blocking function.

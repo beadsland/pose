@@ -85,7 +85,7 @@ loop(IO, RunPid) ->
     {purging, _Pid, _Mod}           -> ?MODULE:loop(IO, RunPid);
     {'EXIT', RunPid, ok}            -> ok;
     {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What), {ok, What};
-    {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason), halt(1);
+    {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason), Reason;
     {MsgTag, RunPid, Line}          -> do_output(MsgTag, Line),
                                        ?MODULE:loop(IO, RunPid);
     Noise                           -> do_noise(Noise),
