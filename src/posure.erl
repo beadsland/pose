@@ -50,7 +50,7 @@
 %% Include files
 %%
 
--define(debug, true).
+%-define(debug, true).
 -include("pose/include/interface.hrl").
 
 -include("macro.hrl").
@@ -116,8 +116,7 @@ send_warnings(IO, Slurps) ->
 
 % For each file, identify where imports and calls don't match up.
 send_warnings(IO, _Commands, []) ->
-  ?STDOUT("Quite sure!\n"),
-  exit(ok);
+  ?STDOUT("Quite sure!\n");
 send_warnings(IO, Commands, [{File, Data} | Tail]) ->
   ThisCommand = get_command_name(File),
   Imports = get_imported_modules(Data),
