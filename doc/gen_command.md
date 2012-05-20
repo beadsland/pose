@@ -64,7 +64,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ###start/2##
 
 
-<pre>start(Param::[any()], Module::module()) -&gt; done</pre>
+<pre>start(Param::[any()], Module::module()) -&gt; no_return()</pre>
 <br></br>
 
 

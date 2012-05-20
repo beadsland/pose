@@ -57,7 +57,7 @@
 behaviour_info(callbacks) -> [{start, 0}, {start, 1}, {do_run, 2}];
 behaviour_info(_) -> undefined.
 
--spec start(Param :: [any()], Module :: module()) -> done.
+-spec start(Param :: [any()], Module :: module()) -> no_return().
 % Start as a `pose' command as a blocking function.
 start(Param, Module) ->
   IO = ?IO(self()),
@@ -84,9 +84,11 @@ run(IO, ARG, ENV, Module) ->
 loop(IO, RunPid) ->
   receive
     {purging, _Pid, _Mod}           -> ?MODULE:loop(IO, RunPid);
-    {'EXIT', RunPid, ok}            -> ok;
-    {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What);
-    {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason);
+    {'EXIT', RunPid, ok}            -> exit(normal);
+    {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What),
+                                       exit(normal);
+    {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason),
+                                       exit(Reason);
     {MsgTag, RunPid, Line}          -> do_output(MsgTag, Line),
                                        ?MODULE:loop(IO, RunPid);
     Noise                           -> do_noise(Noise),
