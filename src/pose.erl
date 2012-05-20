@@ -62,11 +62,12 @@
 start([Command | Args]) ->
   start(?IO(self()), ?ARG(Command, Args), ?ENV).
 
+% hack pending refactoring
 start(IO, ARG, ENV) ->
   ?INIT_POSE,
   io:format("Starting pose ~p~n", [self()]),
   Command = ?ARGV(0),
-  case spawn(IO, Command) of
+  case spawn(IO, Command, ARG#arg.v) of
     {error, Reason} ->
       Erlerr = ?FORMAT_ERLERR({pose, {Command, Reason}}),
       io:format(standard_error, "** ~s~n", [Erlerr]),
