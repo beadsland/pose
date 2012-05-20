@@ -32,7 +32,7 @@
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include("pose/include/interface.hrl").
 
 %%
@@ -60,6 +60,7 @@ behaviour_info(_) -> undefined.
 -spec start(Param :: [any()], Module :: module()) -> no_return().
 % Start as a `pose' command as a blocking function.
 start(Param, Module) ->
+  ?DEBUG("Starting ~p~n", [Module]),
   IO = ?IO(self()),
   ARG = ?ARG(Module, Param),
   RunPid = spawn_link(?MODULE, run, [IO, ARG, ?ENV, Module]),
@@ -84,11 +85,9 @@ run(IO, ARG, ENV, Module) ->
 loop(IO, RunPid) ->
   receive
     {purging, _Pid, _Mod}           -> ?MODULE:loop(IO, RunPid);
-    {'EXIT', RunPid, ok}            -> exit(normal);
-    {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What),
-                                       exit(normal);
-    {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason),
-                                       exit(Reason);
+    {'EXIT', RunPid, ok}            -> ok;
+    {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What);
+    {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason);
     {MsgTag, RunPid, Line}          -> do_output(MsgTag, Line),
                                        ?MODULE:loop(IO, RunPid);
     Noise                           -> do_noise(Noise),
