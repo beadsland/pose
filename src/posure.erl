@@ -28,7 +28,7 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @version 0.1.2
+%% @version 0.1.3
 
 -define(module, posure).
 
@@ -42,7 +42,9 @@
 -endif.
 % END POSE PACKAGE PATTERN
 
--version("0.1.2").
+-version("0.1.3").
+
+-behaviour(gen_command).
 
 %%
 %% Include files
@@ -53,10 +55,10 @@
 
 -include("macro.hrl").
 
+-import(gen_command).
 -import(filelib).
 -import(filename).
 -import(file).
--import(io).
 -import(lists).
 -import(re).
 -import(sets).
@@ -66,29 +68,25 @@
 %% Exported Functions
 %%
 
--export([start/0, run/3]).
-
--export([loop/2]).  % hidden
+-export([start/0, start/1, do_run/2]).
 
 %%
 %% API Functions
 %%
 
--spec start() -> ok | notsure | {error, {atom(), file:filename()}}.
+-spec start() -> no_return().
+%% @equiv start([])
+start() -> start([]).
+
+-spec start(Param :: [atom()]) -> no_return().
 %% @doc Start posure package import check as a blocking function.
 %% All results are written to standard output.
 %% @end
-start() ->
-  IO = ?IO(self()),
-  RunPid = spawn_link(?MODULE, run, [IO, ?ARG(?MODULE), ?ENV]),
-  ?MODULE:loop(IO, RunPid).
+start(Param) -> gen_command:start(Param, ?MODULE).
 
--spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
-%% @doc Start posure package import check as a
-%% <a href="http://github.com/beadsland/pose">pose</a> process.
-%% @end
-run(IO, _ARG, ENV) ->
-  ?INIT_POSE,
+-spec do_run(IO :: #std{}, ARG :: #arg{}) -> no_return().
+%% @doc Callback function for `gen_command' behaviour.
+do_run(IO, _ARG) ->
   ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
   Src = filename:absname("src"),
   Pattern = lists:append(Src, "/*.erl"),
@@ -223,33 +221,3 @@ slurp_pose_sources(Tail, {Head, Data}) ->
                  {ok, Slurps}   -> {ok, [{Head, Data} | Slurps]}
                end
   end.
-
-%%%
-% Start loop
-%%%
-
-% @hidden Export to allow for hotswap.
-loop(IO, RunPid) ->
-  receive
-    {purging, _Pid, _Mod}       -> ?MODULE:loop(IO, RunPid);
-    {'EXIT', RunPid, Reason}    -> Reason;
-    {MsgTag, RunPid, Line}      -> do_output(MsgTag, Line),
-                                   ?MODULE:loop(IO, RunPid);
-    Noise                       -> do_noise(Noise),
-                                   ?MODULE:loop(IO, RunPid)
-  end.
-
-% Handle stderr and stdout messages.
-do_output(MsgTag, Output) ->
-  case MsgTag of
-    stdout  -> io:format("~s", [Output]);
-    erlout  -> io:format("~p: data: ~p~n", [?MODULE, Output]);
-    erlerr  -> Erlerr = ?FORMAT_ERLERR(Output),
-               io:format(standard_error, "** ~s~n", [Erlerr]);
-    stderr  -> io:format(standard_error, "** ~s", [Output]);
-    debug   -> io:format(standard_error, "-- ~s", [Output])
-  end.
-
-% Handle message queue noise.
-do_noise(Noise) ->
-  io:format(standard_error, "noise: ~p ~p~n", [Noise, self()]).

@@ -41,7 +41,7 @@
 
 -export([behaviour_info/1]).
 
-% helper functions
+% entry functions
 -export([start/2, run/4]).
 
 % hidden functions
@@ -54,10 +54,8 @@
 -type callback() :: {function(), arity()}.
 -spec behaviour_info(callbacks) -> [callback()] | undefined.
 % Callback list for modules implementing `gen_command' behaviour.
-behaviour_info(callbacks) ->
-  [{start, 2}, {do_run, 2}];
-behaviour_info(_) ->
-  undefined.
+behaviour_info(callbacks) -> [{start, 0}, {start, 1}, {do_run, 2}];
+behaviour_info(_) -> undefined.
 
 -spec start(Params :: [any()], Module :: module()) -> done.
 % Start as a `pose' command as a blocking function.
