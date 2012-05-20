@@ -87,7 +87,7 @@ start() ->
 %% @doc Start posure package import check as a
 %% <a href="http://github.com/beadsland/pose">pose</a> process.
 %% @end
-run(IO, _ARG, _ENV) ->
+run(IO, _ARG, ENV) ->
   ?INIT_POSE,
   ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
   Src = filename:absname("src"),
