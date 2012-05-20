@@ -34,7 +34,7 @@
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include("interface.hrl").
 
 %%
@@ -103,6 +103,7 @@ do_run(IO, PoseARG) ->
 %% @doc Execute a command within the current process.
 exec(IO, ARG) ->
   Command = ?ARGV(0),
+  ?DEBUG("Executing ~p~n", [Command]),
   case pose_command:load(Command) of
     {module, Module, Warnings}  ->
       pose:send_load_warnings(IO, Command, Warnings),
