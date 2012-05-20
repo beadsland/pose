@@ -14,7 +14,7 @@ Copyright (c) 2012 Beads D. Land-Trujillo
 
 __This module defines the `gen_command` behaviour.__
 <br></br>
- Required callback functions: `start/1`, `do_run/2`.
+ Required callback functions: `start/0`, `start/1`, `do_run/2`.
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -64,7 +64,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ###start/2##
 
 
-<pre>start(Params::[any()], Module::module()) -&gt; done</pre>
+<pre>start(Param::[any()], Module::module()) -&gt; done</pre>
 <br></br>
 
 

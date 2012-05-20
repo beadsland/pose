@@ -57,11 +57,11 @@
 behaviour_info(callbacks) -> [{start, 0}, {start, 1}, {do_run, 2}];
 behaviour_info(_) -> undefined.
 
--spec start(Params :: [any()], Module :: module()) -> done.
+-spec start(Param :: [any()], Module :: module()) -> done.
 % Start as a `pose' command as a blocking function.
-start(Params, Module) ->
+start(Param, Module) ->
   IO = ?IO(self()),
-  ARG = ?ARG(Module, Params),
+  ARG = ?ARG(Module, Param),
   RunPid = spawn_link(?MODULE, run, [IO, ARG, ?ENV, Module]),
   ?MODULE:loop(IO, RunPid).
 

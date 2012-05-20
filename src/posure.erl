@@ -80,12 +80,13 @@ start() -> start([]).
 
 -spec start(Param :: [atom()]) -> no_return().
 %% @doc Start posure package import check as a blocking function.
-%% All results are written to standard output.
-%% @end
 start(Param) -> gen_command:start(Param, ?MODULE).
 
 -spec do_run(IO :: #std{}, ARG :: #arg{}) -> no_return().
-%% @doc Callback function for `gen_command' behaviour.
+%% @doc Callback function for
+%% <a href="http://github.com/beadsland/pose">pose</a>
+%% `gen_command' behaviour.
+%% @end
 do_run(IO, _ARG) ->
   ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
   Src = filename:absname("src"),
