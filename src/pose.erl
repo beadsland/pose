@@ -51,7 +51,7 @@
 
 % Internal entry functions
 -compile({no_auto_import, [spawn/2, spawn/3, spawn/4]}).
--export([spawn/2, spawn/3]).
+-export([exec/2, spawn/2, spawn/3]).
 -export_type([command/0]).
 
 % pose_command helper function
@@ -80,6 +80,7 @@ run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 %% gen_command callback functions
 %%
 
+%% @hidden Callback entry point for gen_command behaviour.
 do_run(IO, PoseARG) ->
   io:format("Starting pose ~p~n", [self()]),
   [Command | Param] = PoseARG#arg.v,
@@ -97,6 +98,20 @@ do_run(IO, PoseARG) ->
 %%
 %% other API functions
 %%
+
+-spec exec(IO :: #std{}, ARG :: #arg{}) -> no_return().
+%% @doc Execute a command within the current process.
+exec(IO, ARG) ->
+  Command = ?ARGV(0),
+  case pose_command:load(Command) of
+    {module, Module, Warnings}  ->
+      pose:send_load_warnings(IO, Command, Warnings),
+      Module:do_run(IO, ARG);           % only difference
+    {error, What, Warnings}     ->
+      pose:send_load_warnings(IO, Command, Warnings),
+      ?STDERR({Command, What}),
+      exit(What)
+  end.
 
 -type command() :: nonempty_string() | atom().
 -type spawn_rtn() :: {error, pose_code:load_err()} | pid().

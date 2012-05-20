@@ -14,7 +14,7 @@ Copyright (c) 2012 Beads D. Land-Trujillo
 
 __This module defines the `gen_command` behaviour.__
 <br></br>
- Required callback functions: `start/0`, `start/1`, `do_run/2`.
+ Required callback functions: `start/0`, `start/1`, `run/3`, `do_run/2`.
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>

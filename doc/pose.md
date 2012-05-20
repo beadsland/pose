@@ -50,7 +50,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#do_run-2">do_run/2</a></td><td></td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#exec-2">exec/2</a></td><td>Execute a command within the current process.</td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received
 from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#spawn-2">spawn/2</a></td><td>(<em>Deprecated</em>.) Equivalent to <a href="#spawn-3"><tt>spawn(IO, Command, [])</tt></a>.</td></tr><tr><td valign="top"><a href="#spawn-3">spawn/3</a></td><td>Run a pose-compliant command in its own process.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr></table>
 
 
@@ -58,14 +58,16 @@ from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#s
 
 ##Function Details##
 
-<a name="do_run-2"></a>
+<a name="exec-2"></a>
 
-###do_run/2##
+###exec/2##
 
 
-`do_run(IO, PoseARG) -> any()`
+<pre>exec(IO::#std{}, ARG::#arg{}) -&gt; no_return()</pre>
+<br></br>
 
-<a name="run-3"></a>
+
+Execute a command within the current process.<a name="run-3"></a>
 
 ###run/3##
 
