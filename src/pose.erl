@@ -61,7 +61,7 @@
 -export([argv/2]).
 
 %%
-%% gen_command functions
+%% gen_command API functions
 %%
 
 -spec start() -> no_return().
@@ -77,7 +77,7 @@ start(Param) -> gen_command:start(Param, ?MODULE).
 run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 
 %%
-%% API Functions
+%% gen_command callback functions
 %%
 
 do_run(IO, PoseARG) ->
@@ -86,13 +86,17 @@ do_run(IO, PoseARG) ->
   ARG = ?ARG(Command, Param),
   case pose_command:load(Command) of
     {module, Module, Warnings}    ->
-      pose:send_load_warnings(IO, superl, Warnings),
+      pose:send_load_warnings(IO, Command, Warnings),
       Module:run(IO, ARG, ?ENV);
     {error, What, Warnings}       ->
-      pose:send_load_warnings(IO, superl, Warnings),
+      pose:send_load_warnings(IO, Command, Warnings),
       ?STDERR({Command, What}),
       exit(What)
   end.
+
+%%
+%% other API functions
+%%
 
 -type command() :: nonempty_string() | atom().
 -type spawn_rtn() :: {error, pose_code:load_err()} | pid().
