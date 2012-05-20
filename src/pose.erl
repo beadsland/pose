@@ -185,11 +185,15 @@ send_load_warnings(IO, Command, [Head | Tail], ManyFlat) ->
   case Head of
     diff_path                                   ->
       ?STDERR("~s: namespace collision~n", [Command]);
-    flat_pkg when ManyFlat == false             ->
-      ?STDERR("~s: flat package unsafe~n", [Command]);
+    flat_pkg                                    ->
+      if ManyFlat == false  -> ?STDERR("~s: flat package unsafe~n", [Command]);
+         true               -> false
+      end;
     {Module, diff_path}                         ->
       ?STDERR("~p: namespace collision~n", [Module]);
-    {Module, flat_pkg} when ManyFlat == false   ->
-      ?STDERR("~p: flat package unsafe~n", [Module])
+    {Module, flat_pkg}                          ->
+      if ManyFlat == false  -> ?STDERR("~s: flat package unsafe~n", [Module]);
+         true               -> false
+      end
   end,
   send_load_warnings(IO, Command, Tail, ManyFlat).
