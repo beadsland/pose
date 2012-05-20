@@ -86,7 +86,7 @@ start(Param) -> gen_command:start(Param, ?MODULE).
 
 
 % Testing...
-run(IO, ARG, _ENV) -> do_run(IO, ARG).
+run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 
 
 -spec do_run(IO :: #std{}, ARG :: #arg{}) -> no_return().
