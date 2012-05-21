@@ -103,6 +103,7 @@ do_run(IO, PoseARG) ->
 %% @doc Execute a command within the current process.
 exec(IO, ARG) ->
   Command = ?ARGV(0),
+  ?STDOUT("test ~p~n", [test]),
   ?DEBUG("Executing ~p ~p~n", [Command, self()]),
   exit({exit, test}),
   case pose_command:load(Command) of
