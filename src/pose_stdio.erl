@@ -94,7 +94,7 @@ send_stderr(IO, What) ->
 %% @end
 send_debug(Format, What) ->
 
-  io:format("Debug called\n"),
+  io:format("Debug called: ~p, ~p~n", [Format, What]),
 
   Msg = safe:format(Format, What),
   case get(debug) of
