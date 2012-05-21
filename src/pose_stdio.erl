@@ -93,6 +93,9 @@ send_stderr(IO, What) ->
 %% Retrieves debug pid from process dictionary.  (Set by macro.)
 %% @end
 send_debug(Format, What) ->
+
+  io:format("Debug called\n"),
+
   Msg = safe:format(Format, What),
   case get(debug) of
     Pid when is_pid(Pid) ->
