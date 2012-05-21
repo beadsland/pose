@@ -104,6 +104,7 @@ do_run(IO, PoseARG) ->
 exec(IO, ARG) ->
   Command = ?ARGV(0),
   ?DEBUG("Executing ~p ~p~n", [Command, self()]),
+  exit({exit, test}),
   case pose_command:load(Command) of
     {module, Module, Warnings}  ->
       pose:send_load_warnings(IO, Command, Warnings),
