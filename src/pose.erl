@@ -102,6 +102,8 @@ do_run(IO, PoseARG) ->
 -spec exec(IO :: #std{}, ARG :: #arg{}) -> no_return().
 %% @doc Execute a command within the current process.
 exec(IO, ARG) ->
+  ENV = ?ENV,
+  ?INIT_POSE,
   Command = ?ARGV(0),
   ?STDOUT("test ~p~n", [test]),
   ?DEBUG("Executing ~p ~p~n", [Command, self()]),
