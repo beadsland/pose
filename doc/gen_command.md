@@ -16,7 +16,31 @@ __This module defines the `gen_command` behaviour.__
 <br></br>
  Required callback functions: `start/0`, `start/1`, `run/3`, `do_run/2`.
 
-__Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
+__Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).<a name="description"></a>
+
+##Description##
+
+
+ Provides helper functions for
+handling command entry points.
+
+
+
+Each `pose` compatible command module will use the following pattern
+when implementing this behaviour:
+
+<pre>
+  -spec start() -> no_return().
+  %% @equiv start([])
+  start() -> start([]).
+  -spec start(Param :: [atom()]) -> no_return().
+  %% @doc Start as a blocking function.
+  start(Param) -> gen_command:start(Param, ?MODULE).
+  -spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
+  %% doc Start as a <code>pose</code> command.
+  run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
+  %% @hidden Callback entry point for gen_command behaviour.
+  do_run(IO, ARG) -> <i>command functionality goes here</i>.</pre>
 <a name="types"></a>
 
 ##Data Types##

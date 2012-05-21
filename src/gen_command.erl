@@ -22,7 +22,28 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Generic `pose' command behaviour.
+%% @doc Generic `pose' command behaviour.  Provides helper functions for
+%% handling command entry points.
+%%
+%% Each `pose' compatible command module will use the following pattern
+%% when implementing this behaviour:
+%%
+%% <pre>
+%% -spec start() -> no_return().
+%% %% @equiv start([])
+%% start() -> start([]).
+%%
+%% -spec start(Param :: [atom()]) -> no_return().
+%% %% @@doc Start as a blocking function.
+%% start(Param) -> gen_command:start(Param, ?MODULE).
+%%
+%% -spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
+%% %% doc Start as a `pose' command.
+%% run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
+%%
+%% %% @@hidden Callback entry point for gen_command behaviour.
+%% do_run(IO, ARG) -> <i>command functionality goes here</i>.
+%% </pre>
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
