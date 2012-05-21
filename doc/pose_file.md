@@ -30,7 +30,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>date_time() = <a href="calendar.md#type-date_time">calendar:date_time()</a></pre>
+	date_time() = <a href="calendar.md#type-date_time">calendar:date_time()</a>
 
 
 
@@ -38,7 +38,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>file_err() = {atom(), <a href="#type-filename">filename()</a>}</pre>
+	file_err() = {atom(), <a href="#type-filename">filename()</a>}
 
 
 
@@ -46,7 +46,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>filename() = nonempty_string()</pre>
+	filename() = nonempty_string()
 
 
 
@@ -54,7 +54,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>folder() = nonempty_string()</pre>
+	folder() = nonempty_string()
 
 
 
@@ -62,7 +62,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>last_mod_rtn() = {ok, <a href="#type-date_time">date_time()</a>} | {error, <a href="#type-file_err">file_err()</a>}</pre>
+	last_mod_rtn() = {ok, <a href="#type-date_time">date_time()</a>} | {error, <a href="#type-file_err">file_err()</a>}
 
 
 
@@ -70,7 +70,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>parallel_result() = {false, <a href="#type-path_string">path_string()</a>} | {true, <a href="#type-path_string">path_string()</a>}</pre>
+	parallel_result() = {false, <a href="#type-path_string">path_string()</a>} | {true, <a href="#type-path_string">path_string()</a>}
 
 
 
@@ -78,7 +78,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>path() = <a href="#type-path_string">path_string()</a> | <a href="#type-path_list">path_list()</a></pre>
+	path() = <a href="#type-path_string">path_string()</a> | <a href="#type-path_list">path_list()</a>
 
 
 
@@ -86,7 +86,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>path_list() = {folders, [<a href="#type-folder">folder()</a>]}</pre>
+	path_list() = {folders, [<a href="#type-folder">folder()</a>]}
 
 
 
@@ -94,7 +94,7 @@ __<font color="red">To do</font>__
 
 
 
-<pre>path_string() = nonempty_string()</pre>
+	path_string() = nonempty_string()
 <a name="index"></a>
 
 ##Function Index##
@@ -112,7 +112,7 @@ __<font color="red">To do</font>__
 ###can_read/1##
 
 
-<pre>can_read(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}</pre>
+	can_read(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}
 <br></br>
 
 
@@ -121,7 +121,7 @@ Test if file or directory is readable.<a name="can_write-1"></a>
 ###can_write/1##
 
 
-<pre>can_write(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}</pre>
+	can_write(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}
 <br></br>
 
 
@@ -130,7 +130,7 @@ Test if file or directory is writeable.<a name="find_parallel_folder-3"></a>
 ###find_parallel_folder/3##
 
 
-<pre>find_parallel_folder(OldFlder::<a href="#type-folder">folder()</a>, NewFolder::<a href="#type-folder">folder()</a>, OldPath::<a href="#type-path">path()</a>) -> <a href="#type-parallel_result">parallel_result()</a></pre>
+	find_parallel_folder(OldFlder::<a href="#type-folder">folder()</a>, NewFolder::<a href="#type-folder">folder()</a>, OldPath::<a href="#type-path">path()</a>) -> <a href="#type-parallel_result">parallel_result()</a>
 <br></br>
 
 
@@ -139,7 +139,7 @@ Walk absolute directory path, finding where parallel would occur.<a name="last_m
 ###last_modified/1##
 
 
-<pre>last_modified(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-last_mod_rtn">last_mod_rtn()</a></pre>
+	last_modified(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-last_mod_rtn">last_mod_rtn()</a>
 <br></br>
 
 

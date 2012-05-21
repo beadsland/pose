@@ -26,7 +26,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>load_cmd_rtn() = {module, module(), [<a href="#type-load_mod_warn">load_mod_warn()</a>]} | {error, <a href="#type-load_err">load_err()</a>, [<a href="#type-load_mod_warn">load_mod_warn()</a>]}</pre>
+	load_cmd_rtn() = {module, module(), [<a href="#type-load_mod_warn">load_mod_warn()</a>]} | {error, <a href="#type-load_err">load_err()</a>, [<a href="#type-load_mod_warn">load_mod_warn()</a>]}
 
 
 
@@ -34,7 +34,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>load_err() = <a href="pose_code.md#type-load_err">pose_code:load_err()</a></pre>
+	load_err() = <a href="pose_code.md#type-load_err">pose_code:load_err()</a>
 
 
 
@@ -42,7 +42,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>load_mod_warn() = {module(), <a href="#type-load_warn">load_warn()</a>} | <a href="#type-load_warn">load_warn()</a></pre>
+	load_mod_warn() = {module(), <a href="#type-load_warn">load_warn()</a>} | <a href="#type-load_warn">load_warn()</a>
 
 
 
@@ -50,7 +50,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>load_warn() = <a href="pose_code.md#type-load_warn">pose_code:load_warn()</a></pre>
+	load_warn() = <a href="pose_code.md#type-load_warn">pose_code:load_warn()</a>
 <a name="index"></a>
 
 ##Function Index##
@@ -68,7 +68,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ###load/1##
 
 
-<pre>load(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a></pre>
+	load(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a>
 <br></br>
 
 
@@ -77,7 +77,7 @@ Equivalent to [`load_command(Command)`](#load_command-1).<a name="load_command-1
 ###load_command/1##
 
 
-<pre>load_command(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a></pre>
+	load_command(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a>
 <br></br>
 
 

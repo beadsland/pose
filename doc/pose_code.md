@@ -33,7 +33,7 @@ __<font color="red">To do</font>__
 
 
  Only loads
-one module at a time.  Use [`pose_command:load_command/1`](pose_command.md#load_command-1) to
+one module at a time.  Use [`pose_command:load_command/1`](pose_command.md#load_command-1) to  
 load a command inclusive of any submodules.
 
 
@@ -59,7 +59,7 @@ load a command inclusive of any submodules.
 
 Each Erlang module is treated as a potential executable command in `pose`.
 A call to `pose_code:load_module/1` results in a search of the
-directories listed on the current `PATH` environment variable, with a
+directories listed on the current `PATH` environment variable, with a  
 twist:
 
 
@@ -72,8 +72,8 @@ directory, and if found, search for a matching `.erl` file therein.
 
 If an associated `.erl` file is found, and it is newer that the `.beam`
 file, or if an `.erl` file is found for which no `.beam` file appears,
-the `.erl` file will be compiled to its `ebin\` directory.  If this
-compilation is successful, the module will be loaded.
+the `.erl` file will be compiled to its `ebin\` directory.  If this  
+compilation is successful, the module will be loaded.  
 Otherwise, an error is returned.
 
 
@@ -98,23 +98,24 @@ old (`code:delete/1`) and the binary is loaded as current code.
 
 In the event of a `false` result from `code:soft_purge/1`, a message is
 broadcast to all active processes of the form
-`{purging, PurgePid, Module}`, where 'PurgePid' is the `pid()` of the
-process initiating the purge, and 'Module' is the atom identifying the
+`{purging, PurgePid, Module}`, where 'PurgePid' is the `pid()` of the  
+process initiating the purge, and 'Module' is the atom identifying the  
 module to be purged.
 
 
 
 In order to take advantage of this broadcast, and escape being killed
 for lingering in old code, `pose`-compatible modules should begin with
-a case clause in message loops to respond to `purging` messages with a
+a case clause in message loops to respond to `purging` messages with a  
 fully-qualified call to the loop function.  As per the following example:
 
-<pre>
-  loop(...) ->
-    receive
-      {purging, _Pid, _Mod} -> ?MODULE:loop(...);
-                    *     *     *
-    end.</pre>
+	
+	  loop(...) ->
+	    receive
+	      {purging, _Pid, _Mod} -> ?MODULE:loop(...);
+	                    *     *     *
+	    end.
+	  
 
 
 
@@ -161,8 +162,9 @@ is expressed as a dot-separated path in the `-module` directive.
 For instance, a package `fum` in the `fee.foo` package (where `fee.foo`
 is a subpackage of `fee`), would be declared as:
 
-<pre>
-  -module(fee.foo.fum).</pre>
+	
+	  -module(fee.foo.fum).
+	  
 
 
 
@@ -191,7 +193,7 @@ upon successfully loading same, would return
 Additionally, `pose` uses a `-package` directive to identify
 `pose`-compatible files that have been compiled in the flat namespace
 standard to Erlang and then recompile those files with a package
-assigned by `pose` so as to ensure that each such package is uniqely
+assigned by `pose` so as to ensure that each such package is uniqely  
 identified in the namespace of the currently running node.
 
 
@@ -199,23 +201,25 @@ identified in the namespace of the currently running node.
 Users can take advantage of the `-package` directive by including the
 following pattern in their `pose`-compatible modules.
 
-<pre>
-  -define(module, fum).
-  % BEGIN POSE PACKAGE PATTERN
-  -ifndef(package).
-  -module(?module).
-  -package(default).
-  -else.
-  -module(?package.?module).
-  -package(?package).
-  -endif.
-  % END POSE PACKAGE PATTERN</pre>
+	
+	  -define(module, fum).
+	 
+	  % BEGIN POSE PACKAGE PATTERN
+	  -ifndef(package).
+	  -module(?module).
+	  -package(default).
+	  -else.
+	  -module(?package.?module).
+	  -package(?package).
+	  -endif.
+	  % END POSE PACKAGE PATTERN
+	  
 
 
 
 When `pose` sees that a module has been compiled with a `-package`
-attribute of `default`, it recompiles the module with the macro `?package`
-set to a path unique to that module and the other modules in the same
+attribute of `default`, it recompiles the module with the macro `?package`  
+set to a path unique to that module and the other modules in the same  
 directory.
 
 This allows modules to be developed in the flat namespace recognized by
@@ -233,7 +237,7 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-<pre>command() = <a href="pose.md#type-command">pose:command()</a></pre>
+	command() = <a href="pose.md#type-command">pose:command()</a>
 
 
 
@@ -241,7 +245,7 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-<pre>directory() = <a href="file.md#type-filename">file:filename()</a></pre>
+	directory() = <a href="file.md#type-filename">file:filename()</a>
 
 
 
@@ -249,7 +253,7 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-<pre>error() = atom() | {atom(), <a href="#type-error">error()</a>}</pre>
+	error() = atom() | {atom(), <a href="#type-error">error()</a>}
 
 
 
@@ -257,7 +261,7 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-<pre>load_err() = {load, <a href="#type-error">error()</a>} | {slurp, <a href="#type-error">error()</a>} | <a href="#type-error">error()</a></pre>
+	load_err() = {load, <a href="#type-error">error()</a>} | {slurp, <a href="#type-error">error()</a>} | <a href="#type-error">error()</a>
 
 
 
@@ -265,7 +269,7 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-<pre>load_mod_rtn() = {module, module()} | {module, module(), <a href="#type-load_warn">load_warn()</a>} | {error, <a href="#type-load_err">load_err()</a>}</pre>
+	load_mod_rtn() = {module, module()} | {module, module(), <a href="#type-load_warn">load_warn()</a>} | {error, <a href="#type-load_err">load_err()</a>}
 
 
 
@@ -273,7 +277,7 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-<pre>load_warn() = diff_path | flat_pkg</pre>
+	load_warn() = diff_path | flat_pkg
 
 
 
@@ -281,7 +285,7 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-<pre>search_path() = [<a href="#type-directory">directory()</a>]</pre>
+	search_path() = [<a href="#type-directory">directory()</a>]
 <a name="index"></a>
 
 ##Function Index##
@@ -301,7 +305,7 @@ compiling and loading updated module as necessary.</td></tr></table>
 ###load/1##
 
 
-<pre>load(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a></pre>
+	load(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a>
 <br></br>
 
 
@@ -310,7 +314,7 @@ Equivalent to [`load_module(Command)`](#load_module-1).<a name="load_module-1"><
 ###load_module/1##
 
 
-<pre>load_module(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a></pre>
+	load_module(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a>
 <br></br>
 
 
@@ -326,7 +330,7 @@ __<font color="red">To do</font>__
 ###load_module/2##
 
 
-<pre>load_module(Command::<a href="#type-command">command()</a>, Path::<a href="#type-search_path">search_path()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a></pre>
+	load_module(Command::<a href="#type-command">command()</a>, Path::<a href="#type-search_path">search_path()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a>
 <br></br>
 
 

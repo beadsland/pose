@@ -21,32 +21,30 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Description##
 
 
- Provides helper functions for
+ Provides helper functions for  
 handling command entry points.
 
 
 
-Each `pose` compatible command module will use the following pattern
+Each `pose` compatible command module will use the following pattern  
 when implementing this behaviour:
 
-<pre>
-  -spec start() -> no_return().
-  %% @equiv start([])
-  start() -> start([]).</pre>
-
-<pre>
-  -spec start(Param :: [atom()]) -> no_return().
-  %% @doc Start as a blocking function.
-  start(Param) -> gen_command:start(Param, ?MODULE).</pre>
-
-<pre>
-  -spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
-  %% doc Start as a <code>pose</code> command.
-  run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).</pre>
-
-<pre>
-  %% @hidden Callback entry point for gen_command behaviour.
-  do_run(IO, ARG) -> <i>command functionality goes here</i>.</pre>
+	
+	  -spec start() -> no_return().
+	  %% @equiv start([])
+	  start() -> start([]).
+	 
+	  -spec start(Param :: [atom()]) -> no_return().
+	  %% @doc Start as a blocking function.
+	  start(Param) -> gen_command:start(Param, ?MODULE).
+	 
+	  -spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
+	  %% doc Start as a <code>pose</code> command.
+	  run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
+	 
+	  %% @hidden Callback entry point for gen_command behaviour.
+	  do_run(IO, ARG) -> <i>command functionality goes here</i>.
+	  
 
 The `do_run/2` function should finish with an `exit/1`, either with
 a zero status (`ok` or `{ok, any()}`) or a non-zero status (any other
@@ -63,7 +61,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 
 
 
-<pre>callback() = {function(), arity()}</pre>
+	callback() = {function(), arity()}
 
 
 
@@ -71,7 +69,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 
 
 
-<pre>load_rtn() = {module, module()} | {error, <a href="pose_code.md#type-load_err">pose_code:load_err()</a>}</pre>
+	load_rtn() = {module, module()} | {error, <a href="pose_code.md#type-load_err">pose_code:load_err()</a>}
 <a name="index"></a>
 
 ##Function Index##
@@ -89,7 +87,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 ###behaviour_info/1##
 
 
-<pre>behaviour_info(X1::callbacks) -> [<a href="#type-callback">callback()</a>] | undefined</pre>
+	behaviour_info(X1::callbacks) -> [<a href="#type-callback">callback()</a>] | undefined
 <br></br>
 
 
@@ -98,7 +96,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 ###load_command/2##
 
 
-<pre>load_command(IO::#std{}, Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_rtn">load_rtn()</a></pre>
+	load_command(IO::#std{}, Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_rtn">load_rtn()</a>
 <br></br>
 
 
@@ -107,7 +105,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 ###run/4##
 
 
-<pre>run(IO::#std{}, ARG::#arg{}, ENV::#env{}, Module::module()) -&gt; no_return()</pre>
+	run(IO::#std{}, ARG::#arg{}, ENV::#env{}, Module::module()) -&gt; no_return()
 <br></br>
 
 
@@ -116,7 +114,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 ###start/2##
 
 
-<pre>start(Param::[any()], Module::module()) -&gt; no_return()</pre>
+	start(Param::[any()], Module::module()) -&gt; no_return()
 <br></br>
 
 

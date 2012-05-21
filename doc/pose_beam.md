@@ -24,7 +24,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>attribute() = atom()</pre>
+	attribute() = atom()
 
 
 
@@ -32,7 +32,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>beam_lib_error() = {beam_lib, term()}</pre>
+	beam_lib_error() = {beam_lib, term()}
 
 
 
@@ -40,7 +40,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>binary_detail_error() = <a href="#type-beam_lib_error">beam_lib_error()</a> | {missing_chunk, <a href="#type-attribute">attribute()</a>}</pre>
+	binary_detail_error() = <a href="#type-beam_lib_error">beam_lib_error()</a> | {missing_chunk, <a href="#type-attribute">attribute()</a>}
 
 
 
@@ -48,7 +48,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>file_error_reason() = <a href="#type-posix">posix()</a> | badarg | terminated | system_limit</pre>
+	file_error_reason() = <a href="#type-posix">posix()</a> | badarg | terminated | system_limit
 
 
 
@@ -56,7 +56,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>filename() = <a href="file.md#type-filename">file:filename()</a></pre>
+	filename() = <a href="file.md#type-filename">file:filename()</a>
 
 
 
@@ -64,7 +64,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>package() = term()</pre>
+	package() = term()
 
 
 
@@ -72,7 +72,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>posix() = atom()</pre>
+	posix() = atom()
 
 
 
@@ -80,7 +80,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>slurp_error() = {read, <a href="#type-file_error_reason">file_error_reason()</a>} | <a href="#type-beam_lib_error">beam_lib_error()</a> | no_module</pre>
+	slurp_error() = {read, <a href="#type-file_error_reason">file_error_reason()</a>} | <a href="#type-beam_lib_error">beam_lib_error()</a> | no_module
 
 
 
@@ -88,7 +88,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>version() = term()</pre>
+	version() = term()
 <a name="index"></a>
 
 ##Function Index##
@@ -106,7 +106,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ###get_binary_detail/2##
 
 
-<pre>get_binary_detail(Module::module(), Binary::binary()) -> {ok, <a href="#type-version">version()</a>, <a href="#type-package">package()</a>} | {error, <a href="#type-binary_detail_error">binary_detail_error()</a>}</pre>
+	get_binary_detail(Module::module(), Binary::binary()) -> {ok, <a href="#type-version">version()</a>, <a href="#type-package">package()</a>} | {error, <a href="#type-binary_detail_error">binary_detail_error()</a>}
 <br></br>
 
 
@@ -115,7 +115,7 @@ Get version and package of binary<a name="slurp_binary-1"></a>
 ###slurp_binary/1##
 
 
-<pre>slurp_binary(Filename::<a href="#type-filename">filename()</a>) -> {ok, module(), binary()} | {error, <a href="#type-slurp_error">slurp_error()</a>}</pre>
+	slurp_binary(Filename::<a href="#type-filename">filename()</a>) -> {ok, module(), binary()} | {error, <a href="#type-slurp_error">slurp_error()</a>}
 <br></br>
 
 

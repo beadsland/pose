@@ -26,7 +26,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>command() = <a href="pose.md#type-command">pose:command()</a></pre>
+	command() = <a href="pose.md#type-command">pose:command()</a>
 
 
 
@@ -34,7 +34,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>compile_err() = {compile, {<a href="#type-compile_error_list">compile_error_list()</a>, <a href="#type-compile_warning_list">compile_warning_list()</a>}}</pre>
+	compile_err() = {compile, {<a href="#type-compile_error_list">compile_error_list()</a>, <a href="#type-compile_warning_list">compile_warning_list()</a>}}
 
 
 
@@ -42,7 +42,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>compile_error_list() = [any()]</pre>
+	compile_error_list() = [any()]
 
 
 
@@ -50,7 +50,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>compile_warning_list() = [any()]</pre>
+	compile_warning_list() = [any()]
 
 
 
@@ -58,7 +58,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>directory() = <a href="pose_file.md#type-filename">pose_file:filename()</a></pre>
+	directory() = <a href="pose_file.md#type-filename">pose_file:filename()</a>
 
 
 
@@ -66,7 +66,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>ensure_err() = <a href="#type-file_err">file_err()</a> | <a href="#type-compile_err">compile_err()</a></pre>
+	ensure_err() = <a href="#type-file_err">file_err()</a> | <a href="#type-compile_err">compile_err()</a>
 
 
 
@@ -74,7 +74,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>ensure_rtn() = {ok, module(), binary()} | {ok, <a href="file.md#type-filename">file:filename()</a>} | {info, <a href="#type-info_type">info_type()</a>} | {error, <a href="#type-ensure_err">ensure_err()</a>}</pre>
+	ensure_rtn() = {ok, module(), binary()} | {ok, <a href="file.md#type-filename">file:filename()</a>} | {info, <a href="#type-info_type">info_type()</a>} | {error, <a href="#type-ensure_err">ensure_err()</a>}
 
 
 
@@ -82,7 +82,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>file_err() = {file, <a href="pose_file.md#type-file_err">pose_file:file_err()</a>}</pre>
+	file_err() = {file, <a href="pose_file.md#type-file_err">pose_file:file_err()</a>}
 
 
 
@@ -90,7 +90,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>info_type() = readonly_dir | readonly | nobin | nosrc</pre>
+	info_type() = readonly_dir | readonly | nobin | nosrc
 <a name="index"></a>
 
 ##Function Index##
@@ -109,7 +109,7 @@ available in the current directory, compiling same if necessary.</td></tr></tabl
 ###ensure_compiled/2##
 
 
-<pre>ensure_compiled(Command::<a href="#type-command">command()</a>, Dir::<a href="#type-directory">directory()</a>) -> <a href="#type-ensure_rtn">ensure_rtn()</a></pre>
+	ensure_compiled(Command::<a href="#type-command">command()</a>, Dir::<a href="#type-directory">directory()</a>) -> <a href="#type-ensure_rtn">ensure_rtn()</a>
 <br></br>
 
 
@@ -118,7 +118,7 @@ Equivalent to [`ensure_compiled(Command, Dir, false)`](#ensure_compiled-3).<a na
 ###ensure_compiled/3##
 
 
-<pre>ensure_compiled(Command::<a href="#type-command">command()</a>, Dir::<a href="#type-directory">directory()</a>, Force::boolean()) -> <a href="#type-ensure_rtn">ensure_rtn()</a></pre>
+	ensure_compiled(Command::<a href="#type-command">command()</a>, Dir::<a href="#type-directory">directory()</a>, Force::boolean()) -> <a href="#type-ensure_rtn">ensure_rtn()</a>
 <br></br>
 
 

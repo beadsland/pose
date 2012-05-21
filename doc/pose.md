@@ -28,7 +28,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>command() = atom() | string()</pre>
+	command() = atom() | string()
 
 
 
@@ -36,7 +36,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>warning() = <a href="pose_command.md#type-load_mod_warn">pose_command:load_mod_warn()</a></pre>
+	warning() = <a href="pose_command.md#type-load_mod_warn">pose_command:load_mod_warn()</a>
 <a name="index"></a>
 
 ##Function Index##
@@ -55,7 +55,7 @@ from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#s
 ###exec/2##
 
 
-<pre>exec(IO::#std{}, ARG::#arg{}) -&gt; no_return()</pre>
+	exec(IO::#std{}, ARG::#arg{}) -&gt; no_return()
 <br></br>
 
 
@@ -64,7 +64,7 @@ Execute a command within the current process.<a name="run-3"></a>
 ###run/3##
 
 
-<pre>run(IO::#std{}, ARG::#arg{}, ENV::#env{}) -&gt; no_return()</pre>
+	run(IO::#std{}, ARG::#arg{}, ENV::#env{}) -&gt; no_return()
 <br></br>
 
 
@@ -73,7 +73,7 @@ Execute a command within the current process.<a name="run-3"></a>
 ###send_load_warnings/3##
 
 
-<pre>send_load_warnings(IO::#std{}, Command::<a href="#type-command">command()</a>, Warnings::[<a href="#type-warning">warning()</a>]) -> ok</pre>
+	send_load_warnings(IO::#std{}, Command::<a href="#type-command">command()</a>, Warnings::[<a href="#type-warning">warning()</a>]) -> ok
 <br></br>
 
 
@@ -83,7 +83,7 @@ from `pose_command:load/1`.<a name="start-0"></a>
 ###start/0##
 
 
-<pre>start() -&gt; no_return()</pre>
+	start() -&gt; no_return()
 <br></br>
 
 
@@ -92,7 +92,7 @@ Equivalent to [`start([])`](#start-1).<a name="start-1"></a>
 ###start/1##
 
 
-<pre>start(Param::[atom()]) -&gt; no_return()</pre>
+	start(Param::[atom()]) -&gt; no_return()
 <br></br>
 
 

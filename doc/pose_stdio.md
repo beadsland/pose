@@ -26,7 +26,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>format() = <a href="io.md#type-format">io:format()</a></pre>
+	format() = <a href="io.md#type-format">io:format()</a>
 
 
 
@@ -34,7 +34,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-<pre>output() = {atom(), any()} | atom() | string()</pre>
+	output() = {atom(), any()} | atom() | string()
 <a name="index"></a>
 
 ##Function Index##
@@ -52,7 +52,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ###format_erlerr/1##
 
 
-<pre>format_erlerr(What::any()) -&gt; string()</pre>
+	format_erlerr(What::any()) -&gt; string()
 <br></br>
 
 
@@ -61,7 +61,7 @@ Smartly format erlerr messages.<a name="send_debug-1"></a>
 ###send_debug/1##
 
 
-<pre>send_debug(Output::any()) -&gt; ok | no_return()</pre>
+	send_debug(Output::any()) -&gt; ok | no_return()
 <br></br>
 
 
@@ -70,7 +70,7 @@ Smart DEBUG/1 macro function.<a name="send_debug-2"></a>
 ###send_debug/2##
 
 
-<pre>send_debug(Format::<a href="#type-format">format()</a>, What::list()) -> ok | no_return()</pre>
+	send_debug(Format::<a href="#type-format">format()</a>, What::list()) -> ok | no_return()
 <br></br>
 
 
@@ -79,7 +79,7 @@ Smart DEBUG/2 macro function.<a name="send_stderr-2"></a>
 ###send_stderr/2##
 
 
-<pre>send_stderr(IO::#std{}, Output::<a href="#type-output">output()</a>) -> ok</pre>
+	send_stderr(IO::#std{}, Output::<a href="#type-output">output()</a>) -> ok
 <br></br>
 
 
@@ -88,7 +88,7 @@ Smart STDERR/1 macro function.<a name="send_stderr-3"></a>
 ###send_stderr/3##
 
 
-<pre>send_stderr(IO::#std{}, Format::<a href="#type-format">format()</a>, What::list()) -> ok</pre>
+	send_stderr(IO::#std{}, Format::<a href="#type-format">format()</a>, What::list()) -> ok
 <br></br>
 
 
@@ -97,7 +97,7 @@ Smart STDERR/2 macro function.<a name="send_stdout-2"></a>
 ###send_stdout/2##
 
 
-<pre>send_stdout(IO::#std{}, Output::<a href="#type-output">output()</a>) -> ok</pre>
+	send_stdout(IO::#std{}, Output::<a href="#type-output">output()</a>) -> ok
 <br></br>
 
 
@@ -106,7 +106,7 @@ Smart STDOUT/1 macro function.<a name="send_stdout-3"></a>
 ###send_stdout/3##
 
 
-<pre>send_stdout(IO::#std{}, Format::<a href="#type-format">format()</a>, What::list()) -> ok</pre>
+	send_stdout(IO::#std{}, Format::<a href="#type-format">format()</a>, What::list()) -> ok
 <br></br>
 
 
