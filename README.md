@@ -114,6 +114,5 @@ The `pose` interface provides a number of macros for use by`pose`-compatible mod
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_command.md" class="module">pose_command</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_file.md" class="module">pose_file</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/safe.md" class="module">safe</a></td></tr></table>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr></table>
 
