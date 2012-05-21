@@ -47,6 +47,11 @@ when implementing this behaviour:
 <pre>
   %% @hidden Callback entry point for gen_command behaviour.
   do_run(IO, ARG) -> <i>command functionality goes here</i>.</pre>
+
+The `do_run/2` function should finish with an `exit/1`, either with
+a zero status (`ok` or `{ok, any()}`) or a non-zero status (any other
+value.  Note that the implicit default exit status, `normal` is treated
+as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 <a name="types"></a>
 
 ##Data Types##
