@@ -32,15 +32,21 @@
 %% -spec start() -> no_return().
 %% %% @equiv start([])
 %% start() -> start([]).
+%% </pre>
 %%
+%% <pre>
 %% -spec start(Param :: [atom()]) -> no_return().
 %% %% @@doc Start as a blocking function.
 %% start(Param) -> gen_command:start(Param, ?MODULE).
+%% </pre>
 %%
+%% <pre>
 %% -spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
 %% %% doc Start as a `pose' command.
 %% run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
+%% </pre>
 %%
+%% <pre>
 %% %% @@hidden Callback entry point for gen_command behaviour.
 %% do_run(IO, ARG) -> <i>command functionality goes here</i>.
 %% </pre>
