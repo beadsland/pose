@@ -220,6 +220,7 @@ load(Command) -> load_module(Command).
 load_module(Command) ->
   Path = [filename:absname("ebin"),
           filename:absname("deps/pose/ebin"),
+          filename:absname("deps/noterm/ebin"),
           filename:absname("deps/superl/ebin"),
           filename:absname("deps/bin/ebin"),
           filename:absname("deps/erl/ebin"),
