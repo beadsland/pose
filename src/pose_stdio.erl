@@ -43,63 +43,61 @@
 %%
 
 % Standard I/O
--export([send_stderr/2, send_stderr/3, send_stdout/2, send_stdout/3,
-         send_debug/2, format_erlerr/1]).
+-export([send_stderr/2, send_stderr/3,
+         send_stdout/2, send_stdout/3,
+         send_debug/1, send_debug/2,
+         format_erlerr/1]).
 
 %%
 %% API Functions
 %%
 
 %%%
-% Standard I/O functions
+% Standard Output
 %%%
 
 -type format() :: io:format().
+-type output() :: {atom(), any()} | atom() | string().
+
 -spec send_stdout(IO :: #std{}, Format :: format(), What :: list()) -> ok.
 %% @doc Smart STDOUT/2 macro function.
-send_stdout(IO, Format, What) ->
-  send_stdout(IO, safe:format(Format, What)),
-  ok.
+send_stdout(IO, Format, What) -> send(IO, Format, What, IO#std.out).
 
--type output() :: {atom(), any()} | string().
--spec send_stdout(IO :: #std{}, What :: output()) -> ok.
+-spec send_stdout(IO :: #std{}, Output :: output()) -> ok.
 %% @doc Smart STDOUT/1 macro function.
-send_stdout(IO, What) ->
-  if is_tuple(What);
-     is_atom(What)  -> IO#std.out ! {erlout, self(), What};
-     is_list(What)  -> IO#std.out ! {stdout, self(), What};
-     true           -> ?STDOUT("~p", [What])
-  end,
-  ok.
+send_stdout(IO, Output) -> send(IO, Output, IO#std.out).
 
--spec send_stderr(IO :: #std{}, Format:: format(), What :: list()) -> ok.
+%%%
+% Standard Error
+%%%
+
+-spec send_stderr(IO :: #std{}, Format :: format(), What :: list()) -> ok.
 %% @doc Smart STDERR/2 macro function.
-send_stderr(IO, Format, What) ->
-  send_stderr(IO, safe:format(Format, What)),
-  ok.
+send_stderr(IO, Format, What) -> send(IO, Format, What, IO#std.err).
 
--spec send_stderr(IO :: #std{}, What :: output()) -> ok.
+-spec send_stderr(IO :: #std{}, Output :: output()) -> ok.
 %% @doc Smart STDERR/1 macro function.
-send_stderr(IO, What) ->
-  if is_tuple(What);
-     is_atom(What)  -> IO#std.out ! {erlerr, self(), What};
-     is_list(What)  -> IO#std.out ! {stderr, self(), What};
-     true           -> ?STDERR("~p", [What])
-  end,
-  ok.
+send_stderr(IO, Output) -> send(IO, Output, IO#std.err).
 
--spec send_debug(Format :: format(), What :: list()) -> ok.
+%%%
+% Debug
+%%%
+
+-spec send_debug(Output :: any()) -> ok | no_return().
+%% @doc Smart DEBUG/1 macro function.
+send_debug(Output) ->
+  if is_list(Output)    -> get_debug() ! {debug, self(), Output};
+     true               -> send_debug("~p", [Output])
+  end, ok.
+
+-spec send_debug(Format :: format(), What :: list()) -> ok | no_return().
 %% @doc Smart DEBUG/2 macro function.
-%% Retrieves debug pid from process dictionary.  (Set by macro.)
-%% @end
 send_debug(Format, What) ->
-  Msg = safe:format(Format, What),
-  case get(debug) of
-    Pid when is_pid(Pid) ->
-      get(debug) ! {debug, self(), Msg}, ok;
-    _Else                ->
-      throw({debug_unitialized, Msg})
-  end.
+  get_debug() ! {debug, self(), safe_format(Format, What)}, ok.
+
+%%%
+% Format erlerr
+%%%
 
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
@@ -122,7 +120,30 @@ format_erlerr(What) ->
     end,
     lists:flatten(String).
 
-
 %%
 %% Local Functions
 %%
+
+send(_IO, Output, OutPid) ->
+  if is_tuple(Output);
+     is_atom(Output)    -> OutPid ! {erlout, self(), Output};
+     is_list(Output)    -> OutPid ! {stdout, self(), Output};
+     true               -> String = safe_format("~p", [Output]),
+                           OutPid ! {stdout, self(), String}
+  end, ok.
+
+send(IO, Format, What, OutPid) ->
+  send(IO, safe_format(Format, What), OutPid).
+
+get_debug() ->
+  case get(debug) of
+    Pid when is_pid(Pid)    -> Pid;
+    _Else                   -> throw({debug_uninitialized, self()})
+  end.
+
+safe_format(Format, What) ->
+  try io_lib:format(Format, What)
+  catch
+    error:badarg ->
+      io_lib:format("format: badarg: ~s, ~p~n", [Format, What])
+  end.

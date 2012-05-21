@@ -54,19 +54,22 @@
 
 % STDERR and STDOUT work only in functions that receive IO parameter
 -import(pose_stdio).  % May be used by packaged modules.
--define(STDERR(Format, What),
-        stderr, pose_stdio:send_stderr(IO, Format, What)).
--define(STDERR(What), stderr, pose_stdio:send_stderr(IO, What)).
+
 -define(STDOUT(Format, What),
         stdout, pose_stdio:send_stdout(IO, Format, What)).
--define(STDOUT(What), stdout, pose_stdio:send_stdout(IO, What)).
+-define(STDOUT(Output), stdout, pose_stdio:send_stdout(IO, Output)).
+
+-define(STDERR(Format, What),
+        stderr, pose_stdio:send_stderr(IO, Format, What)).
+-define(STDERR(Output), stderr, pose_stdio:send_stderr(IO, Output)).
 
 -define(FORMAT_ERLERR(What), pose_stdio:format_erlerr(What)).
 
 % DEBUG is a special case of STDERR that does not require IO
 -ifdef(debug).
 -define(DEBUG(Format, What), debug, pose_stdio:send_debug(Format, What)).
+-define(DEBUG(Output), debug, pose_stdio:send_debug(Output)).
 -else.
 -define(DEBUG(Format, What), debug, put(devnull, {Format, What})).
+-define(DEBUG(Output), debug, put(devnull, Output)).
 -endif.
--define(DEBUG(String), ?DEBUG("~s", [String])).
