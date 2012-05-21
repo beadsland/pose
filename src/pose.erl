@@ -105,9 +105,7 @@ exec(IO, ARG) ->
   ENV = ?ENV,
   ?INIT_POSE,
   Command = ?ARGV(0),
-  ?STDOUT("test ~p~n", [test]),
   ?DEBUG("Executing ~p ~p~n", [Command, self()]),
-  exit({exit, test}),
   case pose_command:load(Command) of
     {module, Module, Warnings}  ->
       pose:send_load_warnings(IO, Command, Warnings),
