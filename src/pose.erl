@@ -50,9 +50,7 @@
 -export([do_run/2]).
 
 % Internal entry functions
--compile({no_auto_import, [spawn/2, spawn/3, spawn/4]}).
--export([exec/2, spawn/2, spawn/3]).
--export_type([command/0]).
+-export([exec/2]).
 
 % pose_command helper function
 -export([send_load_warnings/3]).
@@ -116,31 +114,7 @@ exec(IO, ARG) ->
       exit(What)
   end.
 
--type command() :: nonempty_string() | atom().
--type spawn_rtn() :: {error, pose_code:load_err()} | pid().
--spec spawn(IO :: #std{}, Command :: command()) -> spawn_rtn().
-%% @equiv spawn(IO, Command, [])
-%% @deprecated Only nosh uses this
-spawn(IO, Command) -> spawn(IO, Command, []).
-
--spec spawn(IO :: #std{}, Command :: command(), Param :: [any()]) ->
-        spawn_rtn().
-%% @doc Run a pose-compliant command in its own process.
-%% @deprecated
-spawn(IO, Command, Param) when is_atom(Command) ->
-  ?MODULE:spawn(IO, atom_to_list(Command), Param);
-  % Fully qualified call to satisfy dialyzer,
-  % which otherwise doesn't see spawn/4 ever run.
-spawn(IO, Command, Param) ->
-  case pose_command:load(Command) of
-    {module, Module, Warnings}  ->
-      send_load_warnings(IO, Command, Warnings),
-      spawn(IO, Command, Param, Module);
-    {error, Else, Warnings}     ->
-      send_load_warnings(IO, Command, Warnings),
-      {error, Else}
-  end.
-
+-type command() :: atom() | string().
 -type warning() :: pose_command:load_mod_warn().
 -spec send_load_warnings(IO :: #std{}, Command :: command(),
                          Warnings :: [warning()]) -> ok.
@@ -173,17 +147,6 @@ argv(ARG, N) ->
 %%
 %% Local Functions
 %%
-
-% Run pose-compliant command.
-% @hidden shouldn't need to be called fully qualified...
--spec spawn(IO :: #std{}, Command :: command(), Param :: [any()],
-            Module :: module()) -> pid().
-spawn(MyIO, Command, Param, Module) ->
-  IO = ?IO(self(), self(), MyIO#std.err),
-  ARG = ?ARG(Command, Param),
-  CmdPid = spawn_link(Module, run, [IO, ARG, ?ENV]),
-  ?DEBUG("Running ~p as ~p ~p~n", [Command, Module, CmdPid]),
-  CmdPid.
 
 %%%
 % Send load warnings
