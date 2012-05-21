@@ -21,12 +21,12 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Description##
 
 
- Provides helper functions for  
+ Provides helper functions for
 handling command entry points.
 
 
 
-Each `pose` compatible command module will use the following pattern  
+Each `pose` compatible command module will use the following pattern
 when implementing this behaviour:
 
 	

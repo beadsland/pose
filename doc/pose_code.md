@@ -33,7 +33,7 @@ __<font color="red">To do</font>__
 
 
  Only loads
-one module at a time.  Use [`pose_command:load_command/1`](pose_command.md#load_command-1) to  
+one module at a time.  Use [`pose_command:load_command/1`](pose_command.md#load_command-1) to
 load a command inclusive of any submodules.
 
 
@@ -59,7 +59,7 @@ load a command inclusive of any submodules.
 
 Each Erlang module is treated as a potential executable command in `pose`.
 A call to `pose_code:load_module/1` results in a search of the
-directories listed on the current `PATH` environment variable, with a  
+directories listed on the current `PATH` environment variable, with a
 twist:
 
 
@@ -72,7 +72,7 @@ directory, and if found, search for a matching `.erl` file therein.
 
 If an associated `.erl` file is found, and it is newer that the `.beam`
 file, or if an `.erl` file is found for which no `.beam` file appears,
-the `.erl` file will be compiled to its `ebin\` directory.  If this  
+the `.erl` file will be compiled to its `ebin\` directory.  If this
 compilation is successful, the module will be loaded.  
 Otherwise, an error is returned.
 
@@ -98,15 +98,15 @@ old (`code:delete/1`) and the binary is loaded as current code.
 
 In the event of a `false` result from `code:soft_purge/1`, a message is
 broadcast to all active processes of the form
-`{purging, PurgePid, Module}`, where 'PurgePid' is the `pid()` of the  
-process initiating the purge, and 'Module' is the atom identifying the  
+`{purging, PurgePid, Module}`, where 'PurgePid' is the `pid()` of the
+process initiating the purge, and 'Module' is the atom identifying the
 module to be purged.
 
 
 
 In order to take advantage of this broadcast, and escape being killed
 for lingering in old code, `pose`-compatible modules should begin with
-a case clause in message loops to respond to `purging` messages with a  
+a case clause in message loops to respond to `purging` messages with a
 fully-qualified call to the loop function.  As per the following example:
 
 	
@@ -193,7 +193,7 @@ upon successfully loading same, would return
 Additionally, `pose` uses a `-package` directive to identify
 `pose`-compatible files that have been compiled in the flat namespace
 standard to Erlang and then recompile those files with a package
-assigned by `pose` so as to ensure that each such package is uniqely  
+assigned by `pose` so as to ensure that each such package is uniqely
 identified in the namespace of the currently running node.
 
 
@@ -213,13 +213,12 @@ following pattern in their `pose`-compatible modules.
 	  -package(?package).
 	  -endif.
 	  % END POSE PACKAGE PATTERN
-	  
 
 
 
 When `pose` sees that a module has been compiled with a `-package`
 attribute of `default`, it recompiles the module with the macro `?package`  
-set to a path unique to that module and the other modules in the same  
+set to a path unique to that module and the other modules in the same
 directory.
 
 This allows modules to be developed in the flat namespace recognized by

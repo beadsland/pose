@@ -14,8 +14,7 @@ __References__
 [`nosh`](http://github.com/beadsland/nosh).
 
 
-This is the POSIX-like interface emulation for use with the
-  [`nosh`](http://github.com/beadsland/nosh) Bourne shell
+This is the POSIX-like interface emulation for use with the[`nosh`](http://github.com/beadsland/nosh) Bourne shell
   emulator and `nosh`-compatible projects.
  
   
@@ -67,8 +66,7 @@ Any application using the `pose` interface must initialize `pose`
  
   
 
-Any process using the debugging feature must additionally call the
-  `?INIT_DEBUG` macro.
+Any process using the debugging feature must additionally call the`?INIT_DEBUG` macro.
  
   
 
@@ -89,8 +87,8 @@ Processes using the `pose` interface simulate POSIX-style
   
 
 Each I/O stream is a process that sends (in the case of `stdin`) or
-  receives (in the case of `stdout` and `stderr`) messages, such that  
-message queues simulate POSIX buffers.  The pids of each standard I/O  
+  receives (in the case of `stdout` and `stderr`) messages, such that
+message queues simulate POSIX buffers.  The pids of each standard I/O
 process can be addressed as follows:
  
   
@@ -105,8 +103,7 @@ process can be addressed as follows:
  
   
 
-Messages from and to `pose` processes are of the form
-  `{Tag, SendingPid, Data}` and may be tagged as follows.
+Messages from and to `pose` processes are of the form`{Tag, SendingPid, Data}` and may be tagged as follows.
  
   
 
@@ -137,8 +134,7 @@ Messages from and to `pose` processes are of the form
  
   
 
-The `pose` interface provides a number of macros for use by
-  `pose`-compatible modules.
+The `pose` interface provides a number of macros for use by`pose`-compatible modules.
  
   
 
@@ -152,8 +148,7 @@ The `pose` interface provides a number of macros for use by
   <td> Initialize the <code>pose</code> interface.  Must be called by entry-function
        of any <code>pose</code>-compatible process. </td></tr>
   <tr><td> <code>?IO(Pid :: pid()) -> #std{}</code> </td>
-  <td> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and
-       <code>stderr</code> to Pid </td></tr>
+  <td> Create a <code>pose</code> I/O record, setting each of <code>stdin</code>, <code>stdout</code> and<code>stderr</code> to Pid </td></tr>
   <tr><td> <code>?IO(In :: pid(), Out :: pid(), Err :: pid()) -> #std{}</code> </td>
   <td> Create a <code>pose</code> I/O record. </td></tr>
   <tr><td width="30%"> <code>?IO(In :: pid(), Out :: pid(), Err :: pid(),
@@ -209,8 +204,7 @@ The `pose` interface provides a number of macros for use by
        <code>debug</code> tagged message to <code>stderr</code> process.  Otherwise, quietly
        do nothing. <i>Does not require IO parameter.</i></td></tr>
   <tr><td> <code>?DEBUG(What :: string())</code> </td>
-  <td> If <code>debug</code> macro is <code>true</code>, send a <code>debug</code> tagged message to
-       <code>stderr</code> process.  Otherwise, quietly do nothing.
+  <td> If <code>debug</code> macro is <code>true</code>, send a <code>debug</code> tagged message to<code>stderr</code> process.  Otherwise, quietly do nothing.
        <i>Does not require IO parameter.</i></td></tr>
   </table>
 
