@@ -29,12 +29,20 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 <pre>callback() = {function(), arity()}</pre>
+
+
+
+###<a name="type-load_rtn">load_rtn()</a>##
+
+
+
+<pre>load_rtn() = {module, module()} | {error, <a href="pose_code.md#type-load_err">pose_code:load_err()</a>}</pre>
 <a name="index"></a>
 
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#behaviour_info-1">behaviour_info/1</a></td><td></td></tr><tr><td valign="top"><a href="#run-4">run/4</a></td><td></td></tr><tr><td valign="top"><a href="#start-2">start/2</a></td><td></td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#behaviour_info-1">behaviour_info/1</a></td><td></td></tr><tr><td valign="top"><a href="#load_command-2">load_command/2</a></td><td></td></tr><tr><td valign="top"><a href="#run-4">run/4</a></td><td></td></tr><tr><td valign="top"><a href="#start-2">start/2</a></td><td></td></tr></table>
 
 
 <a name="functions"></a>
@@ -47,6 +55,15 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 <pre>behaviour_info(X1::callbacks) -> [<a href="#type-callback">callback()</a>] | undefined</pre>
+<br></br>
+
+
+<a name="load_command-2"></a>
+
+###load_command/2##
+
+
+<pre>load_command(IO::#std{}, Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_rtn">load_rtn()</a></pre>
 <br></br>
 
 

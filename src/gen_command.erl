@@ -43,6 +43,9 @@
 % entry functions
 -export([start/2, run/4]).
 
+% helper functions
+-export([load_command/2]).
+
 % hidden functions
 -export([loop/2]).
 
@@ -71,6 +74,19 @@ run(IO, ARG, ENV, Module) ->
   ?INIT_POSE,
   Module:do_run(IO, ARG).
 
+-type load_rtn() :: {module, module()} | {error, pose_code:load_err()}.
+-spec load_command(IO :: #std{}, Command :: pose:command()) ->  load_rtn().
+% Load a pose command, sending off any warnings returned.
+load_command(IO, Command) ->
+   case pose_command:load(Command) of
+    {module, Module, Warnings}  ->
+      pose:send_load_warnings(IO, Command, Warnings),
+      {module, Module};
+    {error, What, Warnings}     ->
+      pose:send_load_warnings(IO, Command, Warnings),
+      {error, What}
+  end.
+
 %%
 %% Local Functions
 %%
@@ -87,7 +103,7 @@ loop(IO, RunPid) ->
     {'EXIT', RunPid, ok}            -> ok;
     {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What), {ok, What};
     {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason), Reason;
-    {debug, SelfPid, Output}        -> do_output(debug, Output),    
+    {debug, SelfPid, Output}        -> do_output(debug, Output),
                                        ?MODULE:loop(IO, RunPid);
     {MsgTag, RunPid, Output}        -> do_output(MsgTag, Output),
                                        ?MODULE:loop(IO, RunPid);
