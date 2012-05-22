@@ -113,10 +113,13 @@ format_erlerr(What) ->
             String = io_lib:format(Format, NewWhat);
         {Atom, Data} when is_atom(Atom)                             ->
             String = io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
-        List when is_list(List)                                     ->
-            String = io_lib:format("~s", [List]);
-        _Else                                                       ->
-            String = io_lib:format("~p", [What])
+        Else                                                        ->
+          IsString = io_lib:printable_list(Else),
+          if IsString   ->
+               String = io_lib:format("~s", [Else]);
+             true       ->
+               String = io_lib:format("~p", [Else])
+          end
     end,
     lists:flatten(String).
 
