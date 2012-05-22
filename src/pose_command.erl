@@ -120,11 +120,11 @@ load_command(_Command, Module, _BinPath, Warnings, []) ->
   {module, Module, Warnings};
 load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
   case pose_code:load_module(Head, [BinPath]) of
-    {module, Head, NewWarn}     ->
+    {module, _SubModule, NewWarn}   ->
       UpdatedWarnings = [{Head, NewWarn} | Warnings],
       load_command(Command, Module, BinPath, UpdatedWarnings, Tail);
-    {module, Head}              ->
+    {module, _SubModule}            ->
       load_command(Command, Module, BinPath, Warnings, Tail);
-    {error, What}               ->
+    {error, What}                   ->
       {error, {Head, What}, Warnings}
   end.
