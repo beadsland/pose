@@ -141,7 +141,7 @@ send_warnings(IO, Commands, [{File, Data} | Tail]) ->
   _Noncalled = test_noncalled(IO, ThisCommand, Imports, Called),
 
   case length(Unimported ++ BadDirect) of
-    0       -> send_warnings(IO, Tail);
+    0       -> send_warnings(IO, Commands, Tail);
     _Else   -> notsure
   end.
 
