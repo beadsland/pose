@@ -217,8 +217,10 @@ load(Command) -> load_module(Command).
 %% variable, compiling and loading updated module as necessary.
 %% @end
 %% @todo get PATH from environment
+%% @todo add to PATH from erl commandline
 load_module(Command) ->
   Path = [filename:absname("ebin"),
+          filename:absname("../nosh/ebin"),
           filename:absname("deps/pose/ebin"),
           filename:absname("deps/noterm/ebin"),
           filename:absname("deps/superl/ebin"),
