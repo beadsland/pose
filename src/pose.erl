@@ -101,7 +101,7 @@ exec(IO, ARG) ->
   ?DEBUG("Executing ~p ~p~n", [Command, self()]),
   case gen_command:load_command(IO, Command) of
     {module, Module}  -> Module:do_run(IO, ARG);
-    {error, What}     -> ?STDERR({Command, What}), exit(What)
+    {error, What}     -> exit(What)
   end.
 
 -type command() :: atom() | string().
