@@ -179,9 +179,22 @@ send_noncalled_warning(IO, Command, Module) ->
 
 % Is either of these two modules a submodule of the other?
 is_submodule(X, Y) ->
-  Test1 = lists:prefix(X ++ "_", Y),
-  Test2 = lists:prefix(Y ++ "_", X),
-  if Test1; Test2   -> true;
+  TestX1 = lists:prefix(X ++ "_", Y),
+  TestY1 = lists:prefix(Y ++ "_", X),
+  {ok, MP} = re:compile("^([^_]+)_"),
+  if TestX1; TestY1     ->
+       true;
+     true               ->
+       TestX2 = re:match(X, MP, [{capture, [1], list}]),
+       TestY2 = re:match(X, MP, [{capture, [1], list}]),
+       is_submodule(X, Y, TestX2, TestY2)
+  end.
+
+% Are both submodules of the same command?
+is_submodule(_X, _Y, nomatch, _) -> false;
+is_submodule(_X, _Y, _, nomatch) -> false;
+is_submodule(_X, _Y, {match, XPre}, {match, YPre}) ->
+  if XPre == YPre   -> true;
      true           -> false
   end.
 
