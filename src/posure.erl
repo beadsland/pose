@@ -185,8 +185,8 @@ is_submodule(X, Y) ->
   if TestX1; TestY1     ->
        true;
      true               ->
-       TestX2 = re:match(X, MP, [{capture, [1], list}]),
-       TestY2 = re:match(X, MP, [{capture, [1], list}]),
+       TestX2 = re:run(X, MP, [{capture, [1], list}]),
+       TestY2 = re:run(X, MP, [{capture, [1], list}]),
        is_submodule(X, Y, TestX2, TestY2)
   end.
 
