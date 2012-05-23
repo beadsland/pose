@@ -61,11 +61,12 @@
 
 -spec send_stdout(IO :: #std{}, Format :: format(), What :: list()) -> ok.
 %% @doc Smart STDOUT/2 macro function.
-send_stdout(IO, Format, What) -> send(IO, Format, What, IO#std.out).
+send_stdout(IO, Format, What) ->
+  send(IO, Format, What, IO#std.out, stdout, erlout).
 
 -spec send_stdout(IO :: #std{}, Output :: output()) -> ok.
 %% @doc Smart STDOUT/1 macro function.
-send_stdout(IO, Output) -> send(IO, Output, IO#std.out).
+send_stdout(IO, Output) -> send(IO, Output, IO#std.out, stdout, erlout).
 
 %%%
 % Standard Error
@@ -73,11 +74,12 @@ send_stdout(IO, Output) -> send(IO, Output, IO#std.out).
 
 -spec send_stderr(IO :: #std{}, Format :: format(), What :: list()) -> ok.
 %% @doc Smart STDERR/2 macro function.
-send_stderr(IO, Format, What) -> send(IO, Format, What, IO#std.err).
+send_stderr(IO, Format, What) ->
+  send(IO, Format, What, IO#std.err, stderr, erlerr).
 
 -spec send_stderr(IO :: #std{}, Output :: output()) -> ok.
 %% @doc Smart STDERR/1 macro function.
-send_stderr(IO, Output) -> send(IO, Output, IO#std.err).
+send_stderr(IO, Output) -> send(IO, Output, IO#std.err, stderr, erlerr).
 
 %%%
 % Debug
@@ -127,16 +129,16 @@ format_erlerr(What) ->
 %% Local Functions
 %%
 
-send(_IO, Output, OutPid) ->
+send(_IO, Output, OutPid, Stdout, Erlout) ->
   if is_tuple(Output);
-     is_atom(Output)    -> OutPid ! {erlout, self(), Output};
-     is_list(Output)    -> OutPid ! {stdout, self(), Output};
+     is_atom(Output)    -> OutPid ! {Erlout, self(), Output};
+     is_list(Output)    -> OutPid ! {Stdout, self(), Output};
      true               -> String = safe_format("~p", [Output]),
-                           OutPid ! {stdout, self(), String}
+                           OutPid ! {Stdout, self(), String}
   end, ok.
 
-send(IO, Format, What, OutPid) ->
-  send(IO, safe_format(Format, What), OutPid).
+send(IO, Format, What, OutPid, Stdout, Erlout) ->
+  send(IO, safe_format(Format, What), OutPid, Stdout, Erlout).
 
 get_debug() ->
   case get(debug) of
