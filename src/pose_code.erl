@@ -220,7 +220,7 @@ load(Command) -> load_module(Command).
 %% @todo add to PATH from erl commandline
 load_module(Command) ->
   Path = [filename:absname("ebin"),
-          filename:absname("../nosh/ebin"),
+          filename:absname_join(filename:absname(""), "../nosh/ebin"),
           filename:absname("deps/pose/ebin"),
           filename:absname("deps/noterm/ebin"),
           filename:absname("deps/superl/ebin"),
