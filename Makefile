@@ -65,6 +65,7 @@ good:	compile
 		else (echo Good only in development); fi 
 		
 compile:
+	@rm -f doc/edoc-info *.dump
 	@rebar compile doc | $(HIDE_EDOC_WARN) | $(SUCCINCT)
 
 doc:	compile
