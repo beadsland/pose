@@ -130,9 +130,10 @@ format_erlerr(What) ->
 %%
 
 send(_IO, Output, OutPid, Stdout, Erlout) ->
-  if is_tuple(Output);
+  IsString = io_lib:printable_list(Output),
+  if IsString           -> OutPid ! {Stdout, self(), Output};
+     is_tuple(Output);
      is_atom(Output)    -> OutPid ! {Erlout, self(), Output};
-     is_list(Output)    -> OutPid ! {Stdout, self(), Output};
      true               -> String = safe_format("~p", [Output]),
                            OutPid ! {Stdout, self(), String}
   end, ok.
