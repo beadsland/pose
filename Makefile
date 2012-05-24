@@ -63,15 +63,12 @@ good:	compile
 		then (erl $(ERL_PATH) -i deps -noshell $(SUPERL)); \
 		else (echo Good only in development); fi 
 		
-compile:	clean-doc
-	@rm -f *.dump
+compile:
+	@rm -f *.dump doc/*.md doc/*.html
 	@ERL_DOC=deps; export ERL_DOC
 	@rebar compile doc | $(SUCCINCT)
 
-doc:	clean-doc compile
-
-clean-doc:
-	@rm -f doc/*.md doc/*.html
+doc:	compile
 	
 current:
 	@rebar update-deps compile doc | $(SUCCINCT)
