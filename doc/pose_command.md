@@ -1,7 +1,6 @@
 
 
 #Module pose_command#
-
 * [Description](#description)
 * [Data Types](#types)
 * [Function Index](#index)

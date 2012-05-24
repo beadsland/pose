@@ -1,7 +1,6 @@
 
 
 #Module pose_beam#
-
 * [Description](#description)
 * [Data Types](#types)
 * [Function Index](#index)

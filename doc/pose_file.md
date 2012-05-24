@@ -1,7 +1,6 @@
 
 
 #Module pose_file#
-
 * [Description](#description)
 * [Data Types](#types)
 * [Function Index](#index)
@@ -16,7 +15,6 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 __<font color="red">To do</font>__
 <br></br>
-
 * <font color="red">spec API functions</font>
 
 <a name="types"></a>

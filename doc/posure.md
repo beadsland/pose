@@ -1,7 +1,6 @@
 
 
 #Module ?module#
-
 * [Description](#description)
 * [Function Index](#index)
 * [Function Details](#functions)
@@ -11,7 +10,7 @@ Posure package import checker for pose.
 
 Copyright (c) 2012 Beads D. Land-Trujillo
 
-__Version:__ 0.1.3
+__Version:__ 0.1.4
 
 __Behaviours:__ [`gen_command`](gen_command.md).
 

@@ -1,7 +1,6 @@
 
 
 #Module pose_code#
-
 * [Description](#description)
 * [Data Types](#types)
 * [Function Index](#index)
@@ -16,15 +15,13 @@ __Version:__ 0.1.6
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
-__References__
-* See discussion of
+__References__* See discussion of
 [Packages in
 Erlang](http://www.erlang.se/publications/packages.md).
 
 
 __<font color="red">To do</font>__
 <br></br>
-
 * <font color="red"> module binary service (to avoid repetitive slurps)</font>
 * <font color="red"> conservative module loader (to preserve against collisions)</font>
 <a name="description"></a>
@@ -35,7 +32,6 @@ __<font color="red">To do</font>__
  Only loads
 one module at a time.  Use [`pose_command:load_command/1`](pose_command.md#load_command-1) to
 load a command inclusive of any submodules.
-
 
 
 * [Basic Load Process](#Basic_Load_Process)
@@ -73,7 +69,7 @@ directory, and if found, search for a matching `.erl` file therein.
 If an associated `.erl` file is found, and it is newer that the `.beam`
 file, or if an `.erl` file is found for which no `.beam` file appears,
 the `.erl` file will be compiled to its `ebin\` directory.  If this
-compilation is successful, the module will be loaded.  
+compilation is successful, the module will be loaded.
 Otherwise, an error is returned.
 
 
@@ -115,7 +111,7 @@ fully-qualified call to the loop function.  As per the following example:
 	      {purging, _Pid, _Mod} -> ?MODULE:loop(...);
 	                    *     *     *
 	    end.
-	  
+
 
 
 
@@ -164,7 +160,7 @@ is a subpackage of `fee`), would be declared as:
 
 	
 	  -module(fee.foo.fum).
-	  
+
 
 
 
@@ -216,8 +212,9 @@ following pattern in their `pose`-compatible modules.
 
 
 
+
 When `pose` sees that a module has been compiled with a `-package`
-attribute of `default`, it recompiles the module with the macro `?package`  
+attribute of `default`, it recompiles the module with the macro `?package`
 set to a path unique to that module and the other modules in the same
 directory.
 
@@ -322,8 +319,8 @@ variable, compiling and loading updated module as necessary.
 
 __<font color="red">To do</font>__
 <br></br>
-
 * <font color="red">get PATH from environment</font>
+* <font color="red">add to PATH from erl commandline</font>
 <a name="load_module-2"></a>
 
 ###load_module/2##

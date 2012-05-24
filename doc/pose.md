@@ -1,7 +1,6 @@
 
 
 #Module pose#
-
 * [Description](#description)
 * [Data Types](#types)
 * [Function Index](#index)

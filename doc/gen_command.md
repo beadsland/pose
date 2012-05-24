@@ -1,7 +1,6 @@
 
 
 #Module gen_command#
-
 * [Description](#description)
 * [Data Types](#types)
 * [Function Index](#index)
@@ -44,7 +43,7 @@ when implementing this behaviour:
 	 
 	  %% @hidden Callback entry point for gen_command behaviour.
 	  do_run(IO, ARG) -> <i>command functionality goes here</i>.
-	  
+
 
 The `do_run/2` function should finish with an `exit/1`, either with
 a zero status (`ok` or `{ok, any()}`) or a non-zero status (any other
