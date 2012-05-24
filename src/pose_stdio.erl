@@ -88,7 +88,7 @@ send_stderr(IO, Output) -> send(IO, Output, IO#std.err, stderr, erlerr).
 -spec send_debug(Output :: any()) -> ok | no_return().
 %% @doc Smart DEBUG/1 macro function.
 send_debug(Output) ->
-  IsString = io_lib:printable_list(lists:flatten(Output)),
+  IsString = is_string(Output),
   if IsString   -> get_debug() ! {debug, self(), Output};
      true       -> send_debug("~p", [Output])
   end, ok.
@@ -117,7 +117,7 @@ format_erlerr(What) ->
         {Atom, Data} when is_atom(Atom)                             ->
             String = io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
         Else                                                        ->
-          IsString = io_lib:printable_list(lists:flatten(Else)),
+          IsString = is_string(Else),
           if IsString   ->
                String = io_lib:format("~s", [Else]);
              true       ->
@@ -131,7 +131,7 @@ format_erlerr(What) ->
 %%
 
 send(_IO, Output, OutPid, Stdout, Erlout) ->
-  IsString = io_lib:printable_list(lists:flatten(Output)),
+  IsString = is_string(Output),
   if IsString           -> OutPid ! {Stdout, self(), Output};
      is_tuple(Output);
      is_atom(Output)    -> OutPid ! {Erlout, self(), Output};
@@ -153,4 +153,9 @@ safe_format(Format, What) ->
   catch
     error:badarg ->
       io_lib:format("format: badarg: ~s, ~p~n", [Format, What])
+  end.
+
+is_string(Data) ->
+  if is_list(Data)  -> io_lib:printable_list(lists:flatten(Else));
+     true           -> false
   end.
