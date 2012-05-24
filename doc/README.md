@@ -219,7 +219,6 @@ The `pose` interface provides a number of macros for use by
 
 
 <table width="100%" border="0" summary="list of modules">
-<tr><td><a href="edoc.md" class="module">edoc</a></td></tr>
 <tr><td><a href="gen_command.md" class="module">gen_command</a></td></tr>
 <tr><td><a href="pose.md" class="module">pose</a></td></tr>
 <tr><td><a href="pose_beam.md" class="module">pose_beam</a></td></tr>

@@ -44,7 +44,6 @@ ONLINE	=	`$(PING) www.google.com 2>&1 >/dev/null; \
 			if [ "$$?" -eq "0" ]; then (echo yes); \
 			else (echo no); fi`
 
-HIDE_EDOC_WARN	=	grep -v "cannot handle URI.*edoc-info"
 SUCCINCT	=	grep -v "Entering directory" \
 				| grep -v "Leaving directory"
 
@@ -64,17 +63,20 @@ good:	compile
 		then (erl $(ERL_PATH) -i deps -noshell $(SUPERL)); \
 		else (echo Good only in development); fi 
 		
-compile:
-	@rm -f doc/edoc-info *.dump
-	@rebar compile doc | $(HIDE_EDOC_WARN) | $(SUCCINCT)
+compile:	clean-doc
+	@rm -f *.dump
+	@ERL_DOC=deps; export ERL_DOC
+	@rebar compile doc | $(SUCCINCT)
 
-doc:	compile
+doc:	clean-doc compile
 
+clean-doc:
+	@rm -f doc/*.md doc/*.html
+	
 current:
-	@rebar update-deps compile doc | $(HIDE_EDOC_WARN) | $(SUCCINCT)
+	@rebar update-deps compile doc | $(SUCCINCT)
 
 clean: 	online
-	@rm -f doc/*.md doc/*.html
 	@if [ "$(ONLINE)" == yes ]; \
 		then (rm -rf deps; rebar clean get-deps | $(SUCCINCT)); \
 		else (rebar clean | $(SUCCINCT)); fi

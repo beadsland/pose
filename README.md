@@ -219,7 +219,6 @@ The `pose` interface provides a number of macros for use by
 
 
 <table width="100%" border="0" summary="list of modules">
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/edoc.md" class="module">edoc</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/gen_command.md" class="module">gen_command</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose.md" class="module">pose</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_beam.md" class="module">pose_beam</a></td></tr>
