@@ -156,6 +156,6 @@ safe_format(Format, What) ->
   end.
 
 is_string(Data) ->
-  if is_list(Data)  -> io_lib:printable_list(lists:flatten(Else));
+  if is_list(Data)  -> io_lib:printable_list(lists:flatten(Data));
      true           -> false
   end.
