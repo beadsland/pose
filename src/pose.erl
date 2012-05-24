@@ -132,7 +132,10 @@ send_load_warnings(IO, Command, Warnings) ->
 
 % @hidden Smart argument lookup function for ?ARGV(X) macro.
 argv(ARG, N) ->
-  if N == 0 -> ARG#arg.cmd; N > 0 -> lists:nth(N, ARG#arg.v) end.
+  if N == 0                             -> ARG#arg.cmd;
+     N > 0, length(ARG#arg.v) <= N      -> lists:nth(N, ARG#arg.v)
+     true                               -> undefined
+  end.
 
 %%
 %% Local Functions
