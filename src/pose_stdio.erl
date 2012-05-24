@@ -88,8 +88,9 @@ send_stderr(IO, Output) -> send(IO, Output, IO#std.err, stderr, erlerr).
 -spec send_debug(Output :: any()) -> ok | no_return().
 %% @doc Smart DEBUG/1 macro function.
 send_debug(Output) ->
-  if is_list(Output)    -> get_debug() ! {debug, self(), Output};
-     true               -> send_debug("~p", [Output])
+  IsString = io_lib:printable_list(Output),
+  if IsString   -> get_debug() ! {debug, self(), Output};
+     true       -> send_debug("~p", [Output])
   end, ok.
 
 -spec send_debug(Format :: format(), What :: list()) -> ok | no_return().
