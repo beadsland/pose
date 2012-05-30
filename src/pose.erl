@@ -46,7 +46,7 @@
 % API entry points
 -export([start/0, start/1, run/3]).
 
-% Hidden callbacks
+% Private callbacks
 -export([do_run/2]).
 
 % Internal entry functions
@@ -55,7 +55,7 @@
 % pose_command helper function
 -export([send_load_warnings/3]).
 
-% hidden functions
+% private functions
 -export([argv/2]).
 
 %%
@@ -78,7 +78,7 @@ run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 %% gen_command callback functions
 %%
 
-%% @hidden Callback entry point for gen_command behaviour.
+%% @private Callback entry point for gen_command behaviour.
 do_run(IO, PoseARG) ->
   io:format("Starting pose ~p~n", [self()]),
   [Command | Param] = PoseARG#arg.v,
@@ -127,10 +127,10 @@ send_load_warnings(IO, Command, Warnings) ->
   end.
 
 %%
-%% Hidden functions
+%% Private API functions
 %%
 
-% @hidden Smart argument lookup function for ?ARGV(X) macro.
+% @private Smart argument lookup function for ?ARGV(X) macro.
 argv(ARG, N) ->
   if N == 0                             -> ARG#arg.cmd;
      N > 0, length(ARG#arg.v) >= N      -> lists:nth(N, ARG#arg.v);

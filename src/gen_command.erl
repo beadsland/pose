@@ -32,16 +32,16 @@
 %% -spec start() -> no_return().
 %% %% @equiv start([])
 %% start() -> start([]).
-%% 
+%%
 %% -spec start(Param :: [atom()]) -> no_return().
 %% %% @@doc Start as a blocking function.
 %% start(Param) -> gen_command:start(Param, ?MODULE).
-%% 
+%%
 %% -spec run(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
 %% %% doc Start as a `pose' command.
 %% run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
-%% 
-%% %% @@hidden Callback entry point for gen_command behaviour.
+%%
+%% %% @@private Callback entry point for gen_command behaviour.
 %% do_run(IO, ARG) -> <i>command functionality goes here</i>.
 %% </pre>
 %%
@@ -72,7 +72,7 @@
 % helper functions
 -export([load_command/2]).
 
-% hidden functions
+% private functions
 -export([loop/2]).
 
 %%
@@ -121,7 +121,7 @@ load_command(IO, Command) ->
 % Start loop
 %%%
 
-% @hidden Export to allow for hotswap.
+% @private Export to allow for hotswap.
 loop(IO, RunPid) ->
   SelfPid = self(),
   receive
