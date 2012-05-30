@@ -227,8 +227,8 @@ load_module(Command) ->
           filename:absname("deps/pose/ebin"),
           filename:absname("deps/noterm/ebin"),
           filename:absname("deps/superl/ebin"),
-          filename:absname("deps/bin/ebin"),
-          filename:absname("deps/erl/ebin"),
+          filename:absname("deps/nosh_bin/ebin"),
+          filename:absname("deps/nosh_erl/ebin"),
           filename:absname("deps/nosql/ebin")],
   load_module(Command, Path).
 
