@@ -64,6 +64,14 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 
 
 
+###<a name="type-env_prop">env_prop()</a>##
+
+
+
+	env_prop() = atom() | {atom(), string()}
+
+
+
 ###<a name="type-load_rtn">load_rtn()</a>##
 
 
@@ -95,7 +103,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 ###load_command/2##
 
 
-	load_command(IO::#std{}, Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_rtn">load_rtn()</a>
+	load_command(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_rtn">load_rtn()</a>
 <br></br>
 
 
@@ -104,7 +112,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 ###run/4##
 
 
-	run(IO::#std{}, ARG::#arg{}, ENV::#env{}, Module::module()) -&gt; no_return()
+	run(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, ARG::#arg{cmd = atom(), v = list()}, ENV::#env{plist = [<a href="#type-env_prop">env_prop()</a>]}, Module::module()) -> no_return()
 <br></br>
 
 

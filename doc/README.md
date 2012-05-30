@@ -226,5 +226,6 @@ The `pose` interface provides a number of macros for use by
 <tr><td><a href="pose_command.md" class="module">pose_command</a></td></tr>
 <tr><td><a href="pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="pose_file.md" class="module">pose_file</a></td></tr>
-<tr><td><a href="pose_stdio.md" class="module">pose_stdio</a></td></tr></table>
+<tr><td><a href="pose_stdio.md" class="module">pose_stdio</a></td></tr>
+<tr><td><a href="posure.md" class="module">posure</a></td></tr></table>
 
