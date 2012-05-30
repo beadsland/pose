@@ -114,9 +114,9 @@ send_load_warnings(_IO, _Command, []) -> ok;
 send_load_warnings(IO, Command, Warnings) when is_atom(Command) ->
   send_load_warnings(IO, atom_to_list(Command), Warnings);
 send_load_warnings(IO, Command, Warnings) ->
-  Pred = fun(X) -> case X of flat_pkg -> true;
-                             {_Module, flat_pkg} -> true;
-                             true -> false end end,
+  Pred = fun(X) -> case X of flat_pkg               -> true;
+                             {_Module, flat_pkg}    -> true;
+                             _Else                  -> false end end,
   {Flat, _NotFlat} = lists:partition(Pred, Warnings),
   TotalFlat = length(Flat),
   if length(Flat) > 2   ->
