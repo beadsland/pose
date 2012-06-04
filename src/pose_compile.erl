@@ -201,8 +201,8 @@ get_otp_package(_BinDir, Path) ->
 %%%
 
 get_otp_includes(BinDir) ->
-  case init:get_argument(dev) of
-    {ok, [["yes"]]} -> Deps = "dev";
+  case init:get_argument(deps) of
+    {ok, [[Value]]} -> Deps = Value;
     _               -> Deps = "deps"
   end,
 

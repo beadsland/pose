@@ -219,8 +219,8 @@ load(Command) -> load_module(Command).
 %% @todo get PATH from environment
 %% @todo add to PATH from erl commandline
 load_module(Command) ->
-  case init:get_argument(dev) of
-    {ok, [["yes"]]} -> Deps = "dev";
+  case init:get_argument(deps) of
+    {ok, [[Value]]} -> Deps = Value;
     _               -> Deps = "deps"
   end,
 
