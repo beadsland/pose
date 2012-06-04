@@ -34,8 +34,8 @@
 %% Include files
 %%
 
-%-define(debug, true).
--include("interface.hrl").
+-define(debug, true).
+-include("pose/include/interface.hrl").
 
 -include("macro.hrl").
 

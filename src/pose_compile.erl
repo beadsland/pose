@@ -158,6 +158,9 @@ do_compile(SrcDir, Cmd, BinDir, InclList, Package) ->
   Options = [verbose, warnings_as_errors, return_errors, binary,
             {d, package, Package}, {outdir, BinDir}] ++ InclList,
   Filename = ?FILENAME(SrcDir, Cmd, ".erl"),
+
+  ?DEBUG("options: ~p~n", [Options]),
+
   case compile:file(Filename, Options) of
     error                       ->
       {error, {compile, unspecified_error}};
@@ -198,17 +201,27 @@ get_otp_package(_BinDir, Path) ->
 %%%
 
 get_otp_includes(BinDir) ->
+  case init:get_argument(dev) of
+    {ok, [["yes"]]} -> Deps = "dev";
+    _               -> Deps = "deps"
+  end,
+
+  ?DEBUG("deps: ~p~n", [Deps]),
+
   case pose_file:find_parallel_folder("ebin", "_temp_", BinDir) of
     {true, TempDir} ->
-      {ok, get_otp_includes(TempDir, ["deps", "apps"]) ++
-           get_otp_includes("deps", ["deps"])};
+      {ok, get_otp_includes(TempDir, ["apps"]) ++
+           get_otp_includes(filename:absname("_temp_"), [Deps])};
     {false, BinDir} ->
       {error, not_otp}
   end.
 
 get_otp_includes(_TempDir, []) -> [];
 get_otp_includes(TempDir, [Head | Tail]) ->
-  Include = re:replace(TempDir, "_temp_.*$", Head, [{return, list}]),
+  Include = re:replace(TempDir, "_temp_.*\$", Head, [{return, list}]),
+
+  ?DEBUG("include: ~p~n", [[TempDir, Include, Head]]),
+
   case pose_file:can_read(Include) of
     true            -> [{i, Include} | get_otp_includes(TempDir, Tail)];
     false           -> get_otp_includes(TempDir, Tail);

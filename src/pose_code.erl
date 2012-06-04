@@ -219,18 +219,17 @@ load(Command) -> load_module(Command).
 %% @todo get PATH from environment
 %% @todo add to PATH from erl commandline
 load_module(Command) ->
+  case init:get_argument(dev) of
+    {ok, [["yes"]]} -> Deps = "dev";
+    _               -> Deps = "deps"
+  end,
 
-%  exit(?MODULE:module_info(compile)),
+  DepsPath = filelib:wildcard(lists:append(filename:absname(Deps), "/*/ebin")),
 
-  Path = [filename:absname("ebin"),
-          filename:absname_join(filename:absname(""), "../nosh/ebin"),
-          filename:absname("deps/pose/ebin"),
-          filename:absname("deps/noterm/ebin"),
-          filename:absname("deps/superl/ebin"),
-          filename:absname("deps/nosh_bin/ebin"),
-          filename:absname("deps/nosh_erl/ebin"),
-          filename:absname("deps/nosql/ebin")],
-  load_module(Command, Path).
+  BasePath = [filename:absname("ebin"),
+              filename:absname_join(filename:absname(""), "../nosh/ebin")],
+
+  load_module(Command, lists:append(BasePath, DepsPath)).
 
 -type directory() :: file:filename().
 -type search_path() :: [directory()].

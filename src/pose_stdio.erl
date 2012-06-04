@@ -149,11 +149,11 @@ get_debug() ->
   end.
 
 safe_format(Format, What) ->
-  Trace = erlang:get_stacktrace(),
   try io_lib:format(Format, What)
   catch
     error:badarg ->
-      io_lib:format("format: badarg: ~s, ~p~n~p~n", [Format, What, Trace])
+      io_lib:format("format: badarg: ~s, ~p~n~Trace: p~n",
+                    [Format, What, erlang:get_stacktrace()])
   end.
 
 is_string(Data) ->

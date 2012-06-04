@@ -58,6 +58,7 @@
 %% Include files
 %%
 
+-define(debug, true).
 -include("pose/include/interface.hrl").
 
 %%
@@ -104,7 +105,7 @@ run(IO, ARG, ENV, Module) ->
 -spec load_command(IO :: #std{}, Command :: pose:command()) ->  load_rtn().
 % Load a pose command, sending off any warnings returned.
 load_command(IO, Command) ->
-   case pose_command:load(Command) of
+  case pose_command:load(Command) of
     {module, Module, Warnings}  ->
       pose:send_load_warnings(IO, Command, Warnings),
       {module, Module};
