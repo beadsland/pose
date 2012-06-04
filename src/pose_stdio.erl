@@ -152,7 +152,7 @@ safe_format(Format, What) ->
   try io_lib:format(Format, What)
   catch
     error:badarg ->
-      io_lib:format("format: badarg: ~s, ~p~n~Trace: p~n",
+      io_lib:format("format: badarg: ~s, ~p~nTrace: ~p~n",
                     [Format, What, erlang:get_stacktrace()])
   end.
 
