@@ -59,7 +59,7 @@
 %%
 
 -define(debug, true).
--include("pose/include/interface.hrl").
+-include_lib("pose/include/interface.hrl").
 
 %%
 %% Exported Functions
