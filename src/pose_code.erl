@@ -229,6 +229,8 @@ load_module(Command) ->
   BasePath = [filename:absname("ebin"),
               filename:absname_join(filename:absname(""), "../nosh/ebin")],
 
+  ?DEBUG("path: ~p~n", [lists:append(BasePath, DepsPath)]),
+
   load_module(Command, lists:append(BasePath, DepsPath)).
 
 -type directory() :: file:filename().

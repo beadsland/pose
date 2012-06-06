@@ -58,7 +58,7 @@
 %% Include files
 %%
 
--define(debug, true).
+%-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 
 %%
