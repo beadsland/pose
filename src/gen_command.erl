@@ -130,6 +130,8 @@ loop(IO, RunPid) ->
     {'EXIT', RunPid, ok}            -> ok;
     {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What), {ok, What};
     {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason), Reason;
+    {'EXIT', OtherPid, normal}      -> do_other_exit(OtherPid),
+                                       ?MODULE:loop(IO, RunPid);
     {debug, SelfPid, Output}        -> do_output(debug, Output),
                                        ?MODULE:loop(IO, RunPid);
     {MsgTag, RunPid, Output}        -> do_output(MsgTag, Output),
@@ -137,6 +139,11 @@ loop(IO, RunPid) ->
     Noise                           -> do_noise(Noise),
                                        ?MODULE:loop(IO, RunPid)
   end.
+
+% Handle extraneous exit messages
+do_other_exit(OtherPid) ->
+  Msg = io_lib:format("Saw ~p exit~n", [OtherPid]),
+  do_output(debug, Msg).
 
 % Handle stderr and stdout messages.
 do_output(MsgTag, Output) ->
