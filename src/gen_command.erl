@@ -142,8 +142,11 @@ loop(IO, RunPid) ->
 
 % Handle extraneous exit messages
 do_other_exit(OtherPid) ->
-  Msg = io_lib:format("Saw ~p exit~n", [OtherPid]),
-  do_output(debug, Msg).
+  case get(debug) of
+    undefined   -> false;
+    _Else       -> Msg = io_lib:format("Saw ~p exit~n", [OtherPid]),
+                   do_output(debug, Msg)
+  end.
 
 % Handle stderr and stdout messages.
 do_output(MsgTag, Output) ->
