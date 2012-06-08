@@ -80,7 +80,7 @@ run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 
 %% @private Callback entry point for gen_command behaviour.
 do_run(IO, PoseARG) ->
-  io:format("Starting pose ~p~n", [self()]),
+  ?DEBUG("Starting pose ~p~n", [self()]),
   [Command | Param] = PoseARG#arg.v,
   ARG = ?ARG(Command, Param),
   case gen_command:load_command(IO, Command) of
