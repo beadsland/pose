@@ -85,7 +85,7 @@ do_run(IO, PoseARG) ->
   ARG = ?ARG(Command, Param),
   case gen_command:load_command(IO, Command) of
     {module, Module}    -> Module:run(IO, ARG, ?ENV);
-    {error, What}       -> exit({list_to_atom(Command), What})
+    {error, What}       -> exit({Command, What})
   end.
 
 %%
