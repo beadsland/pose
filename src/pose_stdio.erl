@@ -36,7 +36,8 @@
 
 -include_lib("kernel/include/file.hrl").
 
--include("interface.hrl").
+%-define(debug, true).
+-include_lib("pose/include/interface.hrl").
 
 %%
 %% Exported Functions

@@ -37,7 +37,7 @@
 -include_lib("kernel/include/file.hrl").
 
 %-define(debug, true).
--include("interface.hrl").
+-include_lib("pose/include/interface.hrl").
 
 -include("macro.hrl").
 
