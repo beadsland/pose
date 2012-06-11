@@ -99,6 +99,7 @@ start(Param, Module) ->
 % Run as a `pose' command, spawned as a linked process.
 run(IO, ARG, ENV, Module) ->
   ?INIT_POSE,
+  put(command, Module),
   Module:do_run(IO, ARG).
 
 -type load_rtn() :: {module, module()} | {error, pose_code:load_err()}.
