@@ -52,6 +52,8 @@ ERL_PATH	= 	-pa ebin
 POSURE	=	-i .. -pa ebin -s posure
 SUPERL	=	-pa ../superl/ebin -s superl $(POSURE) -s init stop
 
+REBAR		=	rebar %OPS | $(SUCCINCT)
+
 #
 # Build rules start
 #
@@ -62,20 +64,20 @@ good:	compile
 	@if [ "$(DEV)" == yes ]; \
 		then (erl $(ERL_PATH) -i deps -noshell $(SUPERL)); \
 		else (echo Good only in development); fi 
-		
+
 compile:
 	@rm -f *.dump doc/*.md doc/*.html
-	@rebar compile doc | $(SUCCINCT)
+	@$(REBAR:%OPS=compile doc)
 
 doc:	compile
-	
-current:
-	@rebar update-deps compile doc | $(SUCCINCT)
 
-clean: 	online
+current:
+	@$(REBAR:%OPS=update-deps compile doc)
+
+clean: 		online
 	@if [ "$(ONLINE)" == yes ]; \
-		then (rm -rf deps; rebar clean get-deps | $(SUCCINCT)); \
-		else (rebar clean | $(SUCCINCT)); fi
+			then (rm -rf deps; $(REBAR:%OPS=clean get-deps)); \
+			else ($(REBAR:%OPS=clean)); fi
 	
 online:	
 	@if [ "$(ONLINE)" == yes ]; \
