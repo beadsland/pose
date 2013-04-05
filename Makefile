@@ -77,7 +77,7 @@ current:
 clean: 		online
 	@if [ "$(ONLINE)" == yes ]; \
 			then (rm -rf deps; $(REBAR:%OPS=clean get-deps)); \
-			else ($(REBAR:%OPS=clean)); fi
+			else $(REBAR:%OPS=clean); fi
 	
 online:	
 	@if [ "$(ONLINE)" == yes ]; \
