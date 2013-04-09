@@ -41,7 +41,7 @@ when implementing this behaviour:
 	  %% doc Start as a <code>pose</code> command.
 	  run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 	 
-	  %% @hidden Callback entry point for gen_command behaviour.
+	  %% @private Callback entry point for gen_command behaviour.
 	  do_run(IO, ARG) -> <i>command functionality goes here</i>.
 
 
