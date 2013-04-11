@@ -91,5 +91,4 @@ push:	make
 		
 make:
 	@if [ "$(shell basename $(CURDIR))" != nosh ]; \
-		then ($(UNISON:_mk_=Header.mk); \
-			  $(UNISON:_mk_=Common.mk)); fi
+		then $(UNISON:_mk_=*.mk); fi
