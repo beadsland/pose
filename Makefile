@@ -28,8 +28,16 @@
 
 include include/Header.mk
 
+SUPPATH = $(wildcard ../superl)
+
+ifdef DEV
+	SUPERL = $(if $(SUPPATH),-i .. -s pose start superl,)
+else
+	SUPERL = 
+endif
+
 POSEBIN	=	ebin
-SUBPASS	= 	POSEBIN=$(POSEBIN)
+SUBPASS	= 	POSEBIN=$(POSEBIN) SUPERL="$(SUPERL)"
 
 #
 # Run non-overridden common rules.

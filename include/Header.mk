@@ -103,7 +103,9 @@ endif
 ERL	=		erl -noshell -i $(DEPS) -deps $(DEPS) -pa $(POSEBIN)
 
 POSURE	=	-s pose start posure
-SUPERL	=	-s pose start superl
+ifndef SUPERL
+	SUPERL	=	-s pose start superl
+endif
 NOTERM	=	-s pose start noterm
 STOP	=	-s init stop
 
