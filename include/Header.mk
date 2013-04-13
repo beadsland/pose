@@ -86,8 +86,7 @@ CROWBAR	=	$(SUBPASS) $(REBAR) _cmds_ | $(SUCCINCT) 2>&1 | $(FOLD)
 
 B_PREFIX = 	.unison/
 B_SUFFIX =	.0.bak
-MERGE =		Name *.mk -> diff3 -m CURRENT1 CURRENTARCH CURRENT2 > NEW \
-				|| echo Diff merge $@
+MERGE =		Name *.mk -> diff3 -m CURRENT1 CURRENTARCH CURRENT2 > NEW
 UNISON =	unison ./include ../nosh/include -batch -terse \
 				-ignore "Name *.hrl" -ignore "Name .unison/*" \
 				-backupcurrent "Name *" -backuplocation local \
@@ -104,6 +103,8 @@ COMMAKE		= $(SUBMAKE:_param_=-f include/Common.mk $@)
 ifndef DEPS
 	DEPS = 		deps
 endif
+SUBPASS =	DEPS="$(DEPS)"
+
 ifndef POSEBIN
 	POSEBIN = 	$(DEPS)/pose/ebin
 endif
