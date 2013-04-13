@@ -37,7 +37,7 @@ else
 endif
 
 POSEBIN	=	ebin
-SUBPASS	= 	POSEBIN=$(POSEBIN) SUPERL="$(SUPERL)"
+SUBPASS	+= 	POSEBIN=$(POSEBIN) SUPERL="$(SUPERL)"
 
 #
 # Run non-overridden common rules.
