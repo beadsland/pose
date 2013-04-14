@@ -1,6 +1,6 @@
 /.project
 /.settings
-/doc/
+/doc
 !/doc/*.md
 !/doc/*.edoc
 /deps
