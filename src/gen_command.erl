@@ -135,12 +135,22 @@ loop(IO, RunPid) ->
                                        ?MODULE:loop(IO, RunPid);
     {debug, SelfPid, Output}        -> do_output(debug, Output),
                                        ?MODULE:loop(IO, RunPid);
+	{stdin, RunPid, captln}			-> do_input(RunPid),
+									   ?MODULE:loop(IO, RunPid);
     {MsgTag, RunPid, Output}        -> do_output(MsgTag, Output),
                                        ?MODULE:loop(IO, RunPid);
     Noise                           -> do_noise(Noise),
                                        ?MODULE:loop(IO, RunPid)
   end.
 
+% Handle captured line from standard input
+do_input(RunPid) ->
+  case io:get_line("") of
+	{error, Reason}	-> Erlerr = ?FORMAT_ERLERR(Reason),
+					   io:format(standard_error, "** stdin: ~s", [Erlerr]);
+	Line			-> RunPid ! {stdout, self(), Line}
+  end.
+	
 % Handle extraneous exit messages
 do_other_exit(OtherPid) ->
   case get(debug) of
