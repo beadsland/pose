@@ -62,7 +62,7 @@ from <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#s
 ###exec/2##
 
 
-	exec(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, ARG::#arg{cmd = atom(), v = list()}) -&gt; no_return()
+	exec(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, ARG::#arg{cmd = atom(), v = list()}) -&gt; no_return()
 <br></br>
 
 
@@ -71,7 +71,7 @@ Execute a command within the current process.<a name="run-3"></a>
 ###run/3##
 
 
-	run(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, ARG::#arg{cmd = atom(), v = list()}, ENV::#env{plist = [<a href="#type-env_prop">env_prop()</a>]}) -> no_return()
+	run(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, ARG::#arg{cmd = atom(), v = list()}, ENV::#env{plist = [<a href="#type-env_prop">env_prop()</a>]}) -> no_return()
 <br></br>
 
 
@@ -80,7 +80,7 @@ Execute a command within the current process.<a name="run-3"></a>
 ###send_load_warnings/3##
 
 
-	send_load_warnings(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, Command::<a href="#type-command">command()</a>, Warnings::[<a href="#type-warning">warning()</a>]) -> ok
+	send_load_warnings(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, Command::<a href="#type-command">command()</a>, Warnings::[<a href="#type-warning">warning()</a>]) -> ok
 <br></br>
 
 

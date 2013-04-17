@@ -78,7 +78,7 @@ Smart DEBUG/2 macro function.<a name="send_stderr-2"></a>
 ###send_stderr/2##
 
 
-	send_stderr(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, Output::<a href="#type-output">output()</a>) -> ok
+	send_stderr(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, Output::<a href="#type-output">output()</a>) -> ok
 <br></br>
 
 
@@ -87,7 +87,7 @@ Smart STDERR/1 macro function.<a name="send_stderr-3"></a>
 ###send_stderr/3##
 
 
-	send_stderr(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, Format::<a href="#type-format">format()</a>, What::list()) -> ok
+	send_stderr(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, Format::<a href="#type-format">format()</a>, What::list()) -> ok
 <br></br>
 
 
@@ -96,7 +96,7 @@ Smart STDERR/2 macro function.<a name="send_stdout-2"></a>
 ###send_stdout/2##
 
 
-	send_stdout(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, Output::<a href="#type-output">output()</a>) -> ok
+	send_stdout(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, Output::<a href="#type-output">output()</a>) -> ok
 <br></br>
 
 
@@ -105,7 +105,7 @@ Smart STDOUT/1 macro function.<a name="send_stdout-3"></a>
 ###send_stdout/3##
 
 
-	send_stdout(IO::#std{in = pid(), out = pid(), err = pid(), echo = boolean()}, Format::<a href="#type-format">format()</a>, What::list()) -> ok
+	send_stdout(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, Format::<a href="#type-format">format()</a>, What::list()) -> ok
 <br></br>
 
 
