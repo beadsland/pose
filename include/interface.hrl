@@ -40,6 +40,7 @@
 								#std{in=In, out=Out, err=Err, stop=Stop, echo=Echo}).
 -define(IO(In, Out, Err, Stop), #std{in=In, out=Out, err=Err, stop=Stop}).
 -define(IO(In, Out, Err), #std{in=In, out=Out, err=Err}).
+-define(IO(Pid, Stop), #std(in=Pid, out=Pid, err=Pid, stop=Stop).
 -define(IO(Pid), #std{in=Pid, out=Pid, err=Pid}).
 
 % ARG is second parameter to pose entry points.
