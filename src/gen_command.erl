@@ -89,7 +89,7 @@ behaviour_info(_) -> undefined.
 -spec start(Param :: [any()], Module :: module()) -> no_return().
 % Start as a `pose' command as a blocking function.
 start(Param, Module) ->
-  IO = ?IO(self()),
+  IO = ?IO(self(), true), % assume erlang io with no ctrl-d available for eof 
   ARG = ?ARG(Module, Param),
   RunPid = spawn_link(?MODULE, run, [IO, ARG, ?ENV, Module]),
   ?MODULE:loop(IO, RunPid).
