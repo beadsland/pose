@@ -18,17 +18,17 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
 %% @doc Module compiler for {@section pose_code}.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
-%% @copyright 2012 Beads D. Land-Trujillo
+%% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.6
+%% @version 0.1.7
 -module(pose_compile).
--version("0.1.6").
+-version("0.1.7").
 
 %%
 %% Include files
@@ -191,6 +191,10 @@ get_otp_package(BinDir) ->
     {match, [Path]} -> get_otp_package(BinDir, Path)
   end.
 
+get_otp_package(BinDir, [First | Rest]) when First == $\. ->
+  Path = re:replace([First | Rest], "^..", "__", [{return, list}, global]),
+  ?DEBUG("package: .. as __\n"),
+  get_otp_package(BinDir, Path);
 get_otp_package(_BinDir, Path) ->
   Package = re:replace(Path, "\/", ".", [{return, list}, global]),
   ?DEBUG("package: ~s~n", [Package]),
