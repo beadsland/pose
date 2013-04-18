@@ -89,7 +89,7 @@ behaviour_info(_) -> undefined.
 -spec start(Param :: [any()], Module :: module()) -> no_return().
 % Start as a `pose' command as a blocking function.
 start(Param, Module) ->
-  IO = ?IO(self(), true), % assume erlang io with no ctrl-d available for eof 
+  IO = ?IO(self(), true), % assume erlang io with no ctrl-d available for eof
   ARG = ?ARG(Module, Param),
   RunPid = spawn_link(?MODULE, run, [IO, ARG, ?ENV, Module]),
   ?MODULE:loop(IO, RunPid).
@@ -135,8 +135,8 @@ loop(IO, RunPid) ->
                                        ?MODULE:loop(IO, RunPid);
     {debug, SelfPid, Output}        -> do_output(debug, Output),
                                        ?MODULE:loop(IO, RunPid);
-	{stdin, RunPid, captln}			-> do_input(RunPid),
-									   ?MODULE:loop(IO, RunPid);
+    {stdin, RunPid, captln}			-> do_input(RunPid),
+                                       ?MODULE:loop(IO, RunPid);
     {MsgTag, RunPid, Output}        -> do_output(MsgTag, Output),
                                        ?MODULE:loop(IO, RunPid);
     Noise                           -> do_noise(Noise),
@@ -146,11 +146,11 @@ loop(IO, RunPid) ->
 % Handle captured line from standard input
 do_input(RunPid) ->
   case io:get_line("") of
-	{error, Reason}	-> Erlerr = ?FORMAT_ERLERR(Reason),
-					   io:format(standard_error, "** stdin: ~s", [Erlerr]);
-	Line			-> RunPid ! {stdout, self(), Line}
+    {error, Reason}	-> Erlerr = ?FORMAT_ERLERR(Reason),
+                       io:format(standard_error, "** stdin: ~s", [Erlerr]);
+    Line			-> RunPid ! {stdout, self(), Line}
   end.
-	
+
 % Handle extraneous exit messages
 do_other_exit(OtherPid) ->
   case get(debug) of

@@ -32,12 +32,12 @@
 
 % IO is first parameter to pose entry points.
 -record(std, {in = self() :: pid(), out = self() :: pid(),
-              err = self() :: pid(), 
-		      stop = false :: boolean(), echo = false :: boolean()
-			 }).
+              err = self() :: pid(),
+              stop = false :: boolean(), echo = false :: boolean()
+      }).
 
--define(IO(In, Out, Err, Stop, Echo), 
-								#std{in=In, out=Out, err=Err, stop=Stop, echo=Echo}).
+-define(IO(In, Out, Err, Stop, Echo),
+                     #std{in=In, out=Out, err=Err, stop=Stop, echo=Echo}).
 -define(IO(In, Out, Err, Stop), #std{in=In, out=Out, err=Err, stop=Stop}).
 -define(IO(In, Out, Err), #std{in=In, out=Out, err=Err}).
 -define(IO(Pid, Stop), #std{in=Pid, out=Pid, err=Pid, stop=Stop}).

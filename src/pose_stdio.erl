@@ -18,17 +18,17 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
 %% @doc Standard I/O functions underlying `interface.hrl' macros.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
-%% @copyright 2012 Beads D. Land-Trujillo
+%% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.2.0
+%% @version 0.2.1
 -module(pose_stdio).
--version("0.2.0").
+-version("0.2.1").
 
 %%
 %% Include files
@@ -117,20 +117,22 @@ format_erlerr(What) ->
             String = io_lib:format(Format, NewWhat);
         {Atom, Data} when is_atom(Atom)                             ->
             String = io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
-        Else                                                        ->
-          IsString = is_string(Else),
-          if IsString   ->
-               String = io_lib:format("~s", [Else]);
-             true       ->
-               String = io_lib:format("~p", [Else])
-          end
-    end,
+        _Else                                                       ->
+            String = format_erlerr_else(What)
+      end,
     lists:flatten(String).
 
 %%
 %% Local Functions
 %%
 
+format_erlerr_else(What) ->
+  IsString = is_string(What),
+  if IsString 	-> io_lib:format("~s", [What]);
+     true		-> io_lib:format("~p", [What])
+  end.
+
+% Send output as #std IO message.
 send(_IO, Output, OutPid, Stdout, Erlout) ->
   IsString = is_string(Output),
   if IsString           -> OutPid ! {Stdout, self(), Output};
@@ -143,12 +145,14 @@ send(_IO, Output, OutPid, Stdout, Erlout) ->
 send(IO, Format, What, OutPid, Stdout, Erlout) ->
   send(IO, safe_format(Format, What), OutPid, Stdout, Erlout).
 
+% Throw an exception if we fail to initialize debugger.
 get_debug() ->
   case get(debug) of
     Pid when is_pid(Pid)    -> Pid;
     _Else                   -> throw({debug_uninitialized, self()})
   end.
 
+% Don't let bad arguments supress error reporting.
 safe_format(Format, What) ->
   try io_lib:format(Format, What)
   catch
@@ -157,9 +161,9 @@ safe_format(Format, What) ->
                     [Format, What, erlang:get_stacktrace()])
   end.
 
-% Erlang's printable_list functions don't acknowledge escape and control
-% characters as legitimate, but shell sometimes passes these to us, so
-% we need a more lenient method for detecting strings.
+%% Erlang's printable_list functions don't acknowledge escape and control
+%% characters as legitimate, but shell sometimes passes these to us, so
+%% we need a more lenient method for detecting strings.
 is_string(Data) ->
   if is_list(Data)  -> is_legit_string(lists:flatten(Data));
      true           -> false
@@ -168,6 +172,6 @@ is_string(Data) ->
 is_legit_string([First | Rest]) when is_integer(First), First > -1 ->
   Printable = io_lib:printable_unicode_list([First | Rest]),
   if Printable	-> true;
-	 true		-> is_legit_string(Rest)
+    true		-> is_legit_string(Rest)
   end;
 is_legit_string(_List) -> false.
