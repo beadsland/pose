@@ -157,7 +157,17 @@ safe_format(Format, What) ->
                     [Format, What, erlang:get_stacktrace()])
   end.
 
+% Erlang's printable_list functions don't acknowledge escape and control
+% characters as legitimate, but shell sometimes passes these to us, so
+% we need a more lenient method for detecting strings.
 is_string(Data) ->
-  if is_list(Data)  -> io_lib:printable_list(lists:flatten(Data));
+  if is_list(Data)  -> is_legit_string(lists:flatten(Data));
      true           -> false
   end.
+
+is_legit_string([First | Rest]) when is_integer(First), First > -1 ->
+  Printable = io_lib:printable_unicode_list([First | Rest]),
+  if Printable	-> true;
+	 true		-> is_legit_string(Rest)
+  end;
+is_legit_string(_List) -> false.
