@@ -30,14 +30,14 @@ include include/Header.mk
 
 SUPPATH = $(wildcard ../superl)
 
-ifdef DEV
-	SUPERL = $(if $(SUPPATH),-i .. -s pose start superl,)
-else
-	SUPERL = 
+ifeq ("$(SUPPATH)","")
+	SUPERL	=
+   $(warning superl not found parallel: skipping)
 endif
 
+DEPS =		..
 POSEBIN	=	ebin
-SUBPASS	+= 	POSEBIN=$(POSEBIN) SUPERL="$(SUPERL)"
+SUBPASS	+= 	POSEBIN=$(POSEBIN) DEPS=$(DEPS) SUPERL="$(SUPERL)"
 
 #
 # Run non-overridden common rules.
