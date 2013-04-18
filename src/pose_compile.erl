@@ -234,7 +234,7 @@ get_otp_includes(TempDir, [Head | Tail]) ->
 
 % Find candidate src directory parallel to ebin.
 parallel_src(BinDir, Cmd) ->
-  ?DEBUG("Seeking parallel src\n"),
+  ?DEBUG("Seeking parallel src: ~s~n", [BinDir]),
   case pose_file:find_parallel_folder("ebin", "src", BinDir) of
     {true, SrcPath} -> parallel_src(BinDir, Cmd, SrcPath);
     _Else           -> ?DEBUG("Didn't find parallel src\n"), nosrc
