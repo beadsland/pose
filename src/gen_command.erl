@@ -60,6 +60,7 @@
 
 %-define(debug, true).
 -include_lib("pose/include/interface.hrl").
+-include_lib("pose/include/macro.hrl").
 
 %%
 %% Exported Functions
@@ -72,6 +73,9 @@
 
 % helper functions
 -export([load_command/2]).
+
+% macro functions
+-export([get_version/1]).
 
 % private functions
 -export([loop/2]).
@@ -114,6 +118,17 @@ load_command(IO, Command) ->
       pose:send_load_warnings(IO, Command, Warnings),
       {error, What}
   end.
+
+-spec get_version(Module :: module()) -> string().
+%% @doc Smart VERSION/1 macro function.
+get_version(Module) ->
+  Suffix = case .init:get_argument(deps) of
+    {ok, [["deps"]]} 	-> "";
+    {ok, [[""]]} 		-> ""; 
+    {ok, [[Value]]} 	-> "-" ++ Value;
+    _					-> "" 
+  end,
+  ?ATTRIB(Module, version) ++ Suffix.
 
 %%
 %% Local Functions

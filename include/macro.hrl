@@ -22,16 +22,10 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
--define(__DEPS, case .init:get_argument(deps) of
-                {ok, [["deps"]]} 	-> "";
-                {ok, [[""]]} 		-> ""; 
-                {ok, [[__Value]]} 	-> "-" ++ __Value;
-                _ 					-> "" end).
-
 -import(proplists).
 -define(ATTRIB(Module, Attribute),
     proplists:get_value(Attribute, Module:module_info(attributes))).
--define(VERSION(Module), ?ATTRIB(Module, version) ++ ?__DEPS).
+-define(VERSION(Module), gen_command:get_version(?MODULE)).
 
 -define(FILENAME(Path, Command, Extn), Path ++ "/" ++ Command ++ Extn).
 -define(FILENAME(Path, Command), ?FILENAME(Path, Command, "")).
