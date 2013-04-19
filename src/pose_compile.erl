@@ -18,7 +18,7 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved.
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
@@ -36,8 +36,7 @@
 
 %-define(debug, true).
 -include_lib("pose/include/interface.hrl").
-
--include("macro.hrl").
+-include_lib("pose/include/macro.hrl").
 
 %%
 %% Exported Functions
