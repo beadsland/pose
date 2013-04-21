@@ -113,16 +113,12 @@ send_debug(Format, What) ->
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
 format_erlerr(What) ->
-  case What of
+  case What of	  
     {{Atom, Data}, Trace} when is_atom(Atom), is_list(Trace)    ->
-      Format = "~p ~p~nReason: ~p~nTrace: ~p~n",
-      NewWhat = [Atom, self(), Data, Trace],
-      String = io_lib:format(Format, NewWhat);
+      String = format_erlerr_trace(Atom, Data, Trace);
     {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
-      Format = "~p ~p~nTrace: ~p~n",
-      NewWhat = [Atom, self(), [Head | Tail]],
-      String = io_lib:format(Format, NewWhat);
-    {Atom, Data} when is_atom(Atom)                             ->
+      String = format_erlerr_trace(Atom, [], [Head | Tail]);
+	{Atom, Data} when is_atom(Atom)                             ->
       String = io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
 	Atom when is_atom(Atom)										->
 	  IsFileErr = lists:member(Atom, ?FILE_ERR),
@@ -138,6 +134,13 @@ format_erlerr(What) ->
 %% Local Functions
 %%
 
+format_erlerr_trace(Atom, [], Trace) ->
+  Format = "~p ~p~nTrace: ~p~n",
+  io_lib:format(Format, [Atom, self(), Trace]);
+format_erlerr_trace(Atom, Reason, Trace) ->
+  Format = "~p ~p~nReason: ~p~nTrace: ~p~n",
+  io_lib:format(Format, [Atom, self(), Reason, Trace]).
+  
 format_erlerr_else({List, Data}) when is_list(List) ->
   IsString = is_string(List),
   if IsString	-> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
