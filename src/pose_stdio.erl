@@ -18,7 +18,7 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved.
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
@@ -26,18 +26,25 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.2.1
+%% @version 0.2.2
 -module(pose_stdio).
--version("0.2.1").
+-version("0.2.2").
 
 %%
 %% Include files
 %%
 
--include_lib("kernel/include/file.hrl").
-
 %-define(debug, true).
 -include_lib("pose/include/interface.hrl").
+
+-include_lib("kernel/include/file.hrl").
+
+-define(POSIX, [eacces, eagain, ebadf, ebusy, edquot, eexist, efault, 
+				efbig, eintr, einval, eio, eisdir, eloop, emfile,
+				emlink, enametoolong, enfile, enodev, enoent, enomem, enospc,
+				enotblk, enotdir, enotsup, enxio, eperm, epipe, erofs,
+				espipe, esrch, estale, exdev]).
+-define(FILE_ERR, ?POSIX ++ [badarg, terminated, system_limit]).
 
 %%
 %% Exported Functions
@@ -106,26 +113,36 @@ send_debug(Format, What) ->
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
 format_erlerr(What) ->
-    case What of
-        {{Atom, Data}, Trace} when is_atom(Atom), is_list(Trace)    ->
-            Format = "~p ~p~nReason: ~p~nTrace: ~p~n",
-            NewWhat = [Atom, self(), Data, Trace],
-            String = io_lib:format(Format, NewWhat);
-        {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
-            Format = "~p ~p~nTrace: ~p~n",
-            NewWhat = [Atom, self(), [Head | Tail]],
-            String = io_lib:format(Format, NewWhat);
-        {Atom, Data} when is_atom(Atom)                             ->
-            String = io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
-        _Else                                                       ->
-            String = format_erlerr_else(What)
-      end,
-    lists:flatten(String).
+  case What of
+    {{Atom, Data}, Trace} when is_atom(Atom), is_list(Trace)    ->
+      Format = "~p ~p~nReason: ~p~nTrace: ~p~n",
+      NewWhat = [Atom, self(), Data, Trace],
+      String = io_lib:format(Format, NewWhat);
+    {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
+      Format = "~p ~p~nTrace: ~p~n",
+      NewWhat = [Atom, self(), [Head | Tail]],
+      String = io_lib:format(Format, NewWhat);
+    {Atom, Data} when is_atom(Atom)                             ->
+      String = io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
+	Atom when is_atom(Atom)										->
+	  IsFileErr = lists:member(Atom, ?FILE_ERR),
+	  if IsFileErr 	-> String = file:format_error(Atom); 
+		 true		-> String = format_erlerr_else(Atom)
+	  end;
+    _Else                                                       ->
+      String = format_erlerr_else(What)
+  end,
+  lists:flatten(String).
 
 %%
 %% Local Functions
 %%
 
+format_erlerr_else({List, Data}) when is_list(List) ->
+  IsString = is_string(List),
+  if IsString	-> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
+	 true		-> io_lib:format("~p", [{List, Data}])
+  end;
 format_erlerr_else(What) ->
   IsString = is_string(What),
   if IsString 	-> io_lib:format("~s", [What]);
