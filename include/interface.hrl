@@ -60,6 +60,9 @@
 % STDERR and STDOUT work only in functions that receive IO parameter
 -import(pose_stdio).  % May be used by packaged modules.
 
+-define(CAPTLN, ?CAPTLN(IO#std.in)).
+-define(CAPTLN(IOPid), IOPid ! {stdin, self(), captln}).
+
 -define(STDOUT(Format, What),
         stdout, pose_stdio:send_stdout(IO, Format, What)).
 -define(STDOUT(Output), stdout, pose_stdio:send_stdout(IO, Output)).
