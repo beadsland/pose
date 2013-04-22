@@ -39,11 +39,11 @@
 
 -include_lib("kernel/include/file.hrl").
 
--define(POSIX, [eacces, eagain, ebadf, ebusy, edquot, eexist, efault, 
-				efbig, eintr, einval, eio, eisdir, eloop, emfile,
-				emlink, enametoolong, enfile, enodev, enoent, enomem, enospc,
-				enotblk, enotdir, enotsup, enxio, eperm, epipe, erofs,
-				espipe, esrch, estale, exdev]).
+-define(POSIX, [eacces, eagain, ebadf, ebusy, edquot, eexist, efault,
+                efbig, eintr, einval, eio, eisdir, eloop, emfile,
+                emlink, enametoolong, enfile, enodev, enoent, enomem, enospc,
+                enotblk, enotdir, enotsup, enxio, eperm, epipe, erofs,
+                espipe, esrch, estale, exdev]).
 -define(FILE_ERR, ?POSIX ++ [badarg, terminated, system_limit]).
 
 %%
@@ -113,18 +113,18 @@ send_debug(Format, What) ->
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
 format_erlerr(What) ->
-  case What of	  
+  case What of
     {{Atom, Data}, Trace} when is_atom(Atom), is_list(Trace)    ->
       String = format_erlerr_trace(Atom, Data, Trace);
     {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
       String = format_erlerr_trace(Atom, [], [Head | Tail]);
-	{Atom, Data} when is_atom(Atom)                             ->
+    {Atom, Data} when is_atom(Atom)                             ->
       String = io_lib:format("~p: ~s", [Atom, format_erlerr(Data)]);
-	Atom when is_atom(Atom)										->
-	  IsFileErr = lists:member(Atom, ?FILE_ERR),
-	  if IsFileErr 	-> String = file:format_error(Atom); 
-		 true		-> String = format_erlerr_else(Atom)
-	  end;
+    Atom when is_atom(Atom)										->
+      IsFileErr = lists:member(Atom, ?FILE_ERR),
+      if IsFileErr 	-> String = file:format_error(Atom);
+         true		-> String = format_erlerr_else(Atom)
+      end;
     _Else                                                       ->
       String = format_erlerr_else(What)
   end,
@@ -140,11 +140,11 @@ format_erlerr_trace(Atom, [], Trace) ->
 format_erlerr_trace(Atom, Reason, Trace) ->
   Format = "~p ~p~nReason: ~p~nTrace: ~p~n",
   io_lib:format(Format, [Atom, self(), Reason, Trace]).
-  
+
 format_erlerr_else({List, Data}) when is_list(List) ->
   IsString = is_string(List),
   if IsString	-> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
-	 true		-> io_lib:format("~p", [{List, Data}])
+     true		-> io_lib:format("~p", [{List, Data}])
   end;
 format_erlerr_else(What) ->
   IsString = is_string(What),
