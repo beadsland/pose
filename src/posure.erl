@@ -28,7 +28,7 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.4
+%% @version 0.1.5
 
 -define(module, posure).
 
@@ -42,7 +42,7 @@
 -endif.
 % END POSE PACKAGE PATTERN
 
--version("0.1.4").
+-version("0.1.5").
 
 %%
 %% Include files
@@ -60,6 +60,7 @@
 -import(re).
 -import(sets).
 -import(proplists).
+-import(ordsets).
 
 %%
 %% Exported Functions
@@ -137,9 +138,10 @@ send_warnings(IO, Commands, [{File, Data} | Tail]) ->
 
   Unimported = test_unimported(IO, ThisCommand, Imports, Called, Commands),
   BadDirect = test_baddirect(IO, ThisCommand, Called, Commands),
+  UnqualLoops = test_unqualloops(IO, ThisCommand, Data),
   _Noncalled = test_noncalled(IO, ThisCommand, Imports, Called),
 
-  case length(Unimported ++ BadDirect) of
+  case length(Unimported ++ BadDirect ++ UnqualLoops) of
     0       -> send_warnings(IO, Commands, Tail);
     _Else   -> notsure
   end.
@@ -162,6 +164,29 @@ test_baddirect(IO, ThisCommand, Called, Commands) ->
 
 send_baddirect_warning(IO, Command, Module) ->
   ?STDOUT("~s: calls pose command module '~s'~n", [Command, Module]).
+
+% Identify calls to loop functions that are not fully qualified.
+test_unqualloops(IO, ThisCommand, Data) ->
+  Pattern = "^(.*[^a-zA-Z0-9_@])([a-zA-Z0-9_@]*loop)\\(",
+  {ok, MP} = re:compile(Pattern, [multiline]),
+    case re:run(Data, MP, [global, {capture, [1,2], list}]) of
+    nomatch			->
+      [];
+    {match, Loops}	->
+      Tests = [test_unqualloop_matches(X) || X <- Loops],
+      Set = ordsets:from_list(Tests),
+      Unquals = ordsets:to_list(ordsets:del_element(nomatch, Set)),
+      [send_unqualloop_warning(IO, ThisCommand, X) || X <- Unquals],
+      Unquals
+  end.
+
+test_unqualloop_matches(["", _Loop]) -> nomatch;
+test_unqualloop_matches(["-spec ", _Loop]) -> nomatch;
+test_unqualloop_matches([Prefix, Loop]) ->
+  case lists:last(Prefix) of $: -> nomatch; $\n -> nomatch; _ -> Loop end.
+
+send_unqualloop_warning(IO, Command, Module) ->
+  ?STDOUT("~s: unqualified call to '~s'~n", [Command, Module]).
 
 % Identify and warn about imported modules that haven't been called.
 test_noncalled(IO, ThisCommand, Imports, Called) ->
