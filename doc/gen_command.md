@@ -82,7 +82,7 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#behaviour_info-1">behaviour_info/1</a></td><td></td></tr><tr><td valign="top"><a href="#load_command-2">load_command/2</a></td><td></td></tr><tr><td valign="top"><a href="#run-4">run/4</a></td><td></td></tr><tr><td valign="top"><a href="#start-2">start/2</a></td><td></td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#behaviour_info-1">behaviour_info/1</a></td><td></td></tr><tr><td valign="top"><a href="#get_version-1">get_version/1</a></td><td>Smart VERSION/1 macro function.</td></tr><tr><td valign="top"><a href="#load_command-2">load_command/2</a></td><td></td></tr><tr><td valign="top"><a href="#run-4">run/4</a></td><td></td></tr><tr><td valign="top"><a href="#start-2">start/2</a></td><td></td></tr></table>
 
 
 <a name="functions"></a>
@@ -98,7 +98,16 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 <br></br>
 
 
-<a name="load_command-2"></a>
+<a name="get_version-1"></a>
+
+###get_version/1##
+
+
+	get_version(Module::module()) -&gt; string()
+<br></br>
+
+
+Smart VERSION/1 macro function.<a name="load_command-2"></a>
 
 ###load_command/2##
 

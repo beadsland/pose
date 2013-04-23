@@ -3,14 +3,18 @@
 #Welcome to the POSIX-like interface emulation (pose)#
 
 
-Copyright (c) 2012 Beads D. Land-Trujillo
+Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.0
+__Version:__ 0.1.1
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
 __References__* For a project using `pose`, see
 [`nosh`](http://github.com/beadsland/nosh).
+* This project and its dependent projects require
+[Erlang/OTP R15B01](http://www.erlang.org/download_release/14).
+The `nosh` architecture depends on the experimental `package` feature,
+which was removed in Erlang/OTP R16.
 
 
 This is the POSIX-like interface emulation for use with the
@@ -226,6 +230,7 @@ The `pose` interface provides a number of macros for use by
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_command.md" class="module">pose_command</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_file.md" class="module">pose_file</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_open.md" class="module">pose_open</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/posure.md" class="module">posure</a></td></tr></table>
 

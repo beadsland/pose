@@ -9,7 +9,7 @@
 
 Load command modules and submodules in a single operation.
 
-Copyright (c) 2012 Beads D. Land-Trujillo
+Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
 __Version:__ 0.1.7
 
