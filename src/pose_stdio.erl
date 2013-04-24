@@ -119,7 +119,7 @@ format_erlerr(What) ->
     {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
       String = format_erlerr_trace(Atom, [], [Head | Tail]);
     {Atom, Data} when is_atom(Atom)                             ->
-      List = atom_to_list(Atom),  % trim single quotes, if any
+      List = format_erlerr_else(Atom),
       String = io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
     Atom when is_atom(Atom)										->
       String = format_erlerr_file(Atom);
@@ -152,6 +152,8 @@ format_erlerr_else({List, Data}) when is_list(List) ->
   if IsString	-> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
      true		-> io_lib:format("~p", [{List, Data}])
   end;
+format_erlerr_else(Atom) when is_atom(Atom) ->
+  String = atom_to_list(Atom), re:replace(String, "_", " ");
 format_erlerr_else(What) ->
   IsString = is_string(What),
   if IsString 	-> io_lib:format("~s", [What]);
