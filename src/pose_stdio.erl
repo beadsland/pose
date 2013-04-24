@@ -122,10 +122,7 @@ format_erlerr(What) ->
       List = atom_to_list(Atom),  % trim single quotes, if any
       String = io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
     Atom when is_atom(Atom)										->
-      IsFileErr = lists:member(Atom, ?FILE_ERR),
-      if IsFileErr 	-> String = file:format_error(Atom);
-         true		-> String = format_erlerr_else(Atom)
-      end;
+      String = format_erlerr_file(Atom);
     _Else                                                       ->
       String = format_erlerr_else(What)
   end,
@@ -135,12 +132,20 @@ format_erlerr(What) ->
 %% Local Functions
 %%
 
+format_erlerr_file(Atom) ->
+  IsFileErr = lists:member(Atom, ?FILE_ERR),
+  if IsFileErr  -> file:format_error(Atom);
+     true       -> format_erlerr_else(Atom)
+  end.
+
 format_erlerr_trace(Atom, [], Trace) ->
-  Format = "~p ~p~nTrace: ~p~n",
-  io_lib:format(Format, [Atom, self(), Trace]);
+  Format = "~s ~p~nTrace: ~p~n",
+  String = format_erlerr_file(Atom),      
+  io_lib:format(Format, [String, self(), Trace]);
 format_erlerr_trace(Atom, Reason, Trace) ->
-  Format = "~p ~p~nReason: ~p~nTrace: ~p~n",
-  io_lib:format(Format, [Atom, self(), Reason, Trace]).
+  Format = "~s ~p~nReason: ~p~nTrace: ~p~n",
+  String = format_erlerr_file(Atom),
+  io_lib:format(Format, [String, self(), Reason, Trace]).
 
 format_erlerr_else({List, Data}) when is_list(List) ->
   IsString = is_string(List),
