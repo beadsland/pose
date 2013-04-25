@@ -80,7 +80,7 @@ run(IO, File, Mode)  ->
   IsRead = lists:member(read, Mode),
   IsWrite = lists:member(write, Mode),
   case file:open(File, Mode) of
-    {error, Reason} -> exit(File, Reason);
+    {error, Reason} -> exit({error, {File, Reason}});
     {ok, Device}	-> ?MODULE:loop(IO, Device, {IsRead, IsWrite})
   end.
 
