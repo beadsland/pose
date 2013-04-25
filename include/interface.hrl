@@ -49,7 +49,7 @@
 -import(pose).
 -define(ARG(C), ?ARG(C, [])).
 -define(ARG(C, V), #arg{cmd = C, v = V}).
--define(ARGC, ARG#arg.cmd).
+-define(CMD, get(command)).
 -define(ARGV(X), pose:argv(ARG, X)).
 
 % ENV is third parameter to pose entry points.
