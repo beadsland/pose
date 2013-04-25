@@ -51,7 +51,7 @@
 -export([find_parallel_folder/3]).
 
 % Canonical paths
--export([realname/2]).
+-export([realname/1, realname/2]).
 
 % Utility functions
 -export([trim/1]).
@@ -135,14 +135,20 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
       {false, lists:append([Head, "/", OldDir])}
   end.
 
-%-spec realname(File :: path_string()) -> {ok, path_string().
-%% doc Ascend absolute directory path via os shell, to obtain canonical path.
-%realname(File) ->
-%  case file:get_cwd() of 
- 
+-spec realname(File :: path_string()) -> path_string().
+%% @doc Ascend absolute directory path of file relative to current working
+%% directory, to obtain its canonical system path.
+%% @end
+realname(File) ->
+  case file:get_cwd() of 
+    {error, Reason} -> {error, {cwd, Reason}};
+    {ok, Dir}       -> realname(File, Dir)
+  end.
+
 -spec realname(File :: path_string(), Dir :: folder()) -> path_string().
 %% @doc Ascend absolute directory path of a file relative to a directory, 
 %% to obtain its canonical system path.
+%% @end
 realname(File, Dir) ->
   AbsFile = filename:absname(File, Dir),
   AbsDir = filename:dirname(AbsFile),
