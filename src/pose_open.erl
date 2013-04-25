@@ -29,11 +29,11 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
  
-%% @version 0.0.2
+%% @version 0.0.3
 
 -module(pose_open).
 
--version("0.0.2").
+-version("0.0.3").
 
 %%
 %% Include files
@@ -69,8 +69,7 @@
 read(File) -> open(File, [read]).
 
 -spec open(File :: filename(), Mode :: modes()) -> file_pid().
-open(File, Mode) ->
-  spawn_link(?MODULE, run, [?IO(self()), File, Mode]).
+open(File, Mode) -> spawn_link(?MODULE, run, [?IO(self()), File, Mode]).
 
 %%
 %% Local Functions
@@ -81,7 +80,7 @@ run(IO, File, Mode)  ->
   IsRead = lists:member(read, Mode),
   IsWrite = lists:member(write, Mode),
   case file:open(File, Mode) of
-    {error, Reason} -> exit({File, Reason});
+    {error, Reason} -> exit(File, Reason);
     {ok, Device}	-> ?MODULE:loop(IO, Device, {IsRead, IsWrite})
   end.
 
