@@ -44,8 +44,17 @@
 %% Exported Functions
 %%
 
-% File Properties
--export([can_read/1, can_write/1, last_modified/1, find_parallel_folder/3]).
+% File properties
+-export([can_read/1, can_write/1, last_modified/1]).
+
+% Build environment
+-export([find_parallel_folder/3]).
+
+% Canonical paths
+-export([realname/2]).
+
+% Utility functions
+-export([trim/1]).
 
 -export_type([filename/0, file_err/0]).
 
@@ -126,8 +135,74 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
       {false, lists:append([Head, "/", OldDir])}
   end.
 
+%-spec realname(File :: path_string()) -> {ok, path_string().
+%% doc Ascend absolute directory path via os shell, to obtain canonical path.
+%realname(File) ->
+%  case file:get_cwd() of 
+ 
+-spec realname(File :: path_string(), Dir :: folder()) -> path_string().
+%% @doc Ascend absolute directory path of a file relative to a directory, 
+%% to obtain its canonical system path.
+realname(File, Dir) ->
+  AbsFile = filename:absname(File, Dir),
+  AbsDir = filename:dirname(AbsFile),
+  {PathSep, CmdSep, Pwd} = os_syntax(),
+  [First | Rest] = string:tokens(AbsDir, "/\\"),
+  case First of
+    []  -> [Second | [Third | [Fourth | Remain]]] = Rest,
+           case Second of
+             []   -> Format = "pushd \\\\~s\\~s & cd \\",                % UNC
+                     Pushd = io_lib:format(Format, [Third, Fourth]),
+                     Path = Remain;
+             _    -> Pushd = "cd \\",                                    % UNIX
+                     Path = Rest            
+           end;
+    _   -> Pushd = io_lib:format("pushd ~s & cd /", [First]),            % Win32
+           Path = Rest
+  end,
+  case os:type() of
+    {win32, _}  -> Shell = trim(os:cmd("echo %ComSpec%")), COpt = "/C";
+    {unix, _}   -> Shell = "/bin/sh", COpt = "-c"
+  end,
+
+  CdSeq = [io_lib:format("cd ~s", [X]) || X <- Path],  
+  CdCmd = [io_lib:format("~s ~s ", [X, CmdSep]) || X <- [Pushd | CdSeq]],
+  Cmd = io_lib:format("~s~s", [CdCmd, Pwd]),
+  
+  Args = {args, [io_lib:format("~s \"~s\"", [COpt, Cmd])]},
+  Port = open_port({spawn_executable, Shell}, [exit_status, Args]),
+  receive
+    {Port, {exit_status, N}}    -> 
+      exit({realname, {exit_status, N}});
+    {Port, {data, Data}}        ->
+      receive {Port, {exit_status, 0}}  ->
+        io_lib:format("~s~s~s", [trim(Data), PathSep, filename:basename(File)])
+      end
+  end.
+
+%%
+%% Exported utility functions
+%%
+
+%% @todo figure out better place for this to live
+trim(String) when is_list(String) -> trim(String, forward).
+
+
 %%
 %% Local Functions
 %%
 
+% Strip whitespace characters from both ends of a string.
+trim([$\s | String], Direction) -> trim(String, Direction);
+trim([$\t | String], Direction) -> trim(String, Direction);
+trim([$\n | String], Direction) -> trim(String, Direction);
+trim([$\r | String], Direction) -> trim(String, Direction);
+trim(String, backward) -> lists:reverse(String);
+trim(String, forward) -> trim(lists:reverse(String), backward).
 
+os_syntax() ->
+  case os:type() of
+    {unix, _}   -> {"/", ";", "pwd"}; 
+    {win32, _}  -> {"\\", "&", "chdir "}; % not recognized unless trailing space 
+    OS          -> exit({'unknown os', OS})
+  end.
