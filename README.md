@@ -19,10 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">create temp file
-</font>
-* <font color="red">pose temp files
-</font>
 * <font color="red">realname: redirect chdir to temp file
 </font>
 * <font color="red">realname: redirect stderr to stdout
@@ -33,7 +29,11 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">file_open: error handling
 </font>
-* <font color="red">...plus 4 more (see TODO.edoc)
+* <font color="red">realpath: functional rewrite
+</font>
+* <font color="red">realpath: error handling
+</font>
+* <font color="red">...plus 2 more (see TODO.edoc)
 </font>
 
 
