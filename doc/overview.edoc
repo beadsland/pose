@@ -3,10 +3,11 @@
 % syntax-check .hrl files.
 
 @title Welcome to the POSIX-like interface emulation (pose)
-@version 0.1.1
+@version 0.1.2
 @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 @copyright 2012, 2013 Beads D. Land-Trujillo
 @headerfile "../src/overview.hrl"
+@docfile "doc/TODO_head.edoc"
 
 @reference For a project using `pose', see
 <a href="http://github.com/beadsland/nosh">`nosh'</a>.
