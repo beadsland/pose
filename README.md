@@ -19,6 +19,12 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">install vbscript editor
+</font>
+* <font color="red">mkshort.vbs
+</font>
+* <font color="red">realname: create shortcut to compsec
+</font>
 * <font color="red">realname: The directory name is invalid
 </font>
 * <font color="red">reproduce dos path error
@@ -27,11 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">realpath: functional rewrite
 </font>
-* <font color="red">realpath: error handling
-</font>
-* <font color="red">remove FILENAME macro
-</font>
-* <font color="red">make good
+* <font color="red">...plus 3 more (see TODO.edoc)
 </font>
 
 
