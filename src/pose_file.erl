@@ -28,7 +28,9 @@
 
 %% @todo spec API functions
 
+%% @version 0.1.2
 -module(pose_file).
+-version("0.1.2").
 
 %%
 %% Include files
@@ -75,18 +77,18 @@
 -spec can_write(Filename :: filename()) -> permissions_return().
 %% @doc Test if file or directory is writeable.
 can_write(Filename) ->
-    case file:read_file_info(Filename) of
-        {ok, FileInfo}  ->
-            case FileInfo#file_info.access of
-                write       -> true;
-                read_write  -> true;
-                _Else       -> false
-            end;
-        {error, enoent} ->
-            true;   % File does not exist, so is writeable if directory is.
-        {error, What}   ->
-            {error, {Filename, What}}
-    end.
+  case file:read_file_info(Filename) of
+    {ok, FileInfo}  -> can_write(Filename, FileInfo);
+    {error, enoent} -> can_write(filename:dirname(Filename));
+    {error, What}   -> {error, {Filename, What}}
+  end.
+
+can_write(_Filename, FileInfo) -> 
+  case FileInfo#file_info.access of
+    write       -> true;
+    read_write  -> true;
+    _Else       -> false
+  end.
 
 -spec can_read(Filename :: filename()) -> permissions_return().
 %% @doc Test if file or directory is readable.

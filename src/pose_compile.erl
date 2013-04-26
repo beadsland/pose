@@ -71,10 +71,10 @@ ensure_compiled(Command, Dir) -> ensure_compiled(Command, Dir, false).
 %% If `Force' is true, binary will be recompiled if it can be.
 %% @end
 ensure_compiled(Cmd, Dir, Force) ->
-  case pose_file:can_write(Dir) of
+  case pose_file:can_write(?FILENAME(Dir, Cmd, ".beam")) of
     {error, What}   -> {error, {file, What}};
-    false           -> {info, readonly_dir};
-    true            -> ensure_compiled(Cmd, Dir, Force, write_dir)
+    false           -> ensure_binary(Cmd, Dir, readonly);
+    true            -> ensure_compiled(Cmd, Dir, Force, writable)
   end.
 
 %%
@@ -85,16 +85,8 @@ ensure_compiled(Cmd, Dir, Force) ->
 % Ensure compiled
 %%%
 
-% Check if we can write to the beam file.
-ensure_compiled(Cmd, Dir, Force, write_dir) ->
-  case pose_file:can_write(?FILENAME(Dir, Cmd, ".beam")) of
-    {error, What}   -> {error, {file, What}};
-    false           -> ensure_binary(Cmd, Dir, readonly);
-    true            -> ensure_compiled(Cmd, Dir, Force, write_both)
-  end;
-
 % Find any source file, and get modification date of same.
-ensure_compiled(Cmd, BinDir, Force, write_both) ->
+ensure_compiled(Cmd, BinDir, Force, writable) ->
   case parallel_src(BinDir, Cmd) of
     nosrc           -> ensure_binary(Cmd, BinDir, nosrc);
     {ok, SrcDir}    -> ensure_compiled(Cmd, BinDir, Force, SrcDir)
