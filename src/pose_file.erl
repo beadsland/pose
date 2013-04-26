@@ -28,9 +28,9 @@
 
 %% @todo spec API functions
 
-%% @version 0.1.3
+%% @version 0.1.4
 -module(pose_file).
--version("0.1.3").
+-version("0.1.4").
 
 %%
 %% Include files
@@ -50,7 +50,7 @@
 -export([can_read/1, can_write/1, last_modified/1]).
 
 % Build environment
--export([get_temp_dir/0, find_parallel_folder/3]).
+-export([get_temp_file/0, get_temp_dir/0, find_parallel_folder/3]).
 
 % Canonical paths
 -export([realname/1, realname/2]).
@@ -118,6 +118,12 @@ last_modified(Filename) ->
 %%%
 % Build environment
 %%%
+
+-spec get_temp_file() -> filename().
+%% @doc Get a uniquely named temporary file name.
+get_temp_file() ->
+  {A,B,C}=now(), N=node(), 
+  lists:flatten(io_lib:format("~p-~p.~p.~p",[N,A,B,C])).
 
 -spec get_temp_dir() -> filename() | {error, file:posix()}.
 %% @doc Get system temporary directory.
