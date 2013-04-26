@@ -191,7 +191,7 @@ realname(File) ->
 realname(File, Dir) ->
   AbsFile = filename:absname(File, Dir),
   AbsDir = filename:dirname(AbsFile),
-  {PathSep, CmdSep, Pwd} = os_syntax(),
+  {_PathSep, CmdSep, Pwd} = os_syntax(),
   [First | Rest] = string:tokens(AbsDir, "/\\"),
   case First of
     []  -> [Second | [Third | [Fourth | Remain]]] = Rest,
@@ -210,19 +210,24 @@ realname(File, Dir) ->
     {unix, _}   -> Shell = "/bin/sh", COpt = "-c"
   end,
 
+  Temp = filename:join(get_temp_dir(), get_temp_file()),
   CdSeq = [io_lib:format("cd ~s", [X]) || X <- Path],  
   CdCmd = [io_lib:format("~s ~s ", [X, CmdSep]) || X <- [Pushd | CdSeq]],
-  Cmd = io_lib:format("~s~s", [CdCmd, Pwd]),
+  Cmd = io_lib:format("~s ~s > ~s", [CdCmd, Pwd, Temp]),
 
+  os:putenv("CYGWIN", "nodosfilewarning"),
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, Cmd])]},
   Port = open_port({spawn_executable, Shell}, [exit_status, Args, hide]),
   receive
+    {Port, {exit_status, 0}}    ->
+      Cat = pose_file:trim(os:cmd("cat " ++ Temp)),
+      filename:join(Cat, filename:basename(File));
     {Port, {exit_status, N}}    ->
-      exit({realname, {exit_status, N}});
-    {Port, {data, Data}}        ->
-      receive {Port, {exit_status, 0}}  ->
-        io_lib:format("~s~s~s", [trim(Data), PathSep, filename:basename(File)])
-      end
+      exit({realname, {exit_status, N}})
+%    {Port, {data, Data}}        ->
+%      receive {Port, {exit_status, 0}}  ->
+%        io_lib:format("~s~s~s", [trim(Data), PathSep, filename:basename(File)])
+%      end
   end.
 
 %%%
