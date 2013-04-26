@@ -1,4 +1,5 @@
 @todo realname: The directory name is invalid
+@todo reproduce dos path error
 @todo file_open: error handling
 @todo realpath: functional rewrite
 @todo realpath: error handling
