@@ -47,7 +47,7 @@
 %%
 
 % File properties
--export([can_read/1, can_write/1, last_modified/1]).
+-export([exists/1, dir_exists/1, can_read/1, can_write/1, last_modified/1]).
 
 % Build environment
 -export([find_parallel_folder/3]).
@@ -64,12 +64,21 @@
 %% API Functions
 %%
 
-
 %%%
 % File property functions
 %%%
 
 -type filename() :: file:name_all().
+-spec exists(Filename :: filename()) -> boolean().
+%% @doc Test if file exists.
+exists(Filename) -> {Flag, _} = file:read_file_info(Filename), Flag == ok.
+
+-spec dir_exists(Filename :: filename()) -> boolean().
+%% @doc Test if directory exists.
+dir_exists(Filename) ->
+  {Flag, Info} = file:read_file_info(Filename),
+  (Flag == ok) andalso (element(3, Info) == directory).
+
 -type info_error_atom() :: file:posix() | badarg.
 -type file_info_error() :: {filename(), info_error_atom()}.
 -type permissions_return() :: boolean() | {error, file_info_error()}.
@@ -116,6 +125,10 @@ last_modified(Filename) ->
     {error, What}   -> {error, {Filename, What}}
   end.
 
+%%%
+% Build environment
+%%%
+
 -type folder() :: nonempty_string().
 -type path_string() :: nonempty_string().
 -type path_list() :: {folders, [folder()]}.
@@ -140,6 +153,10 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
     {false, OldDir}                         ->
       {false, lists:append([Head, "/", OldDir])}
   end.
+
+%%%
+% Canonical paths
+%%%
 
 -spec realname(File :: path_string()) -> path_string().
 %% @doc Ascend absolute directory path of file relative to current working
@@ -192,9 +209,9 @@ realname(File, Dir) ->
       end
   end.
 
-%%
-%% Exported utility functions
-%%
+%%%
+% Exported utility functions
+%%%
 
 -spec trim(String :: string()) -> string().
 %% @doc Strip whitespace characters from both ends of string.

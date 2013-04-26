@@ -11,6 +11,8 @@ File-related utility functions for use by [`pose_code`](pose_code.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
+__Version:__ 0.1.3
+
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
 __<font color="red">To do</font>__
