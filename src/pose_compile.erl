@@ -51,7 +51,7 @@
 -type command() :: pose:command().
 -type directory() :: pose_file:filename().
 -type info_type() :: readonly_dir | readonly | nobin | nosrc.
--type file_err() :: {file, pose_file:file_err()}.
+-type file_err() :: {file, pose_file:info_error_atom()}.
 -type compile_error_list() :: [any()].
 -type compile_warning_list() :: [any()].
 -type compile_err() :: {compile,

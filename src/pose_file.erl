@@ -56,7 +56,7 @@
 % Utility functions
 -export([trim/1]).
 
--export_type([filename/0, file_err/0]).
+-export_type([filename/0, info_error_atom/0]).
 
 %%
 %% API Functions
@@ -67,9 +67,12 @@
 % File property functions
 %%%
 
--type filename() :: nonempty_string().
--type file_err() :: {atom(), filename()}.
--spec can_write(Filename :: filename()) -> boolean() | {error, file_err()}.
+-type filename() :: file:name_all().
+-type info_error_atom() :: file:posix() | badarg.
+-type file_info_error() :: {filename(), info_error_atom()}.
+-type permissions_return() :: boolean() | {error, file_info_error()}.
+
+-spec can_write(Filename :: filename()) -> permissions_return().
 %% @doc Test if file or directory is writeable.
 can_write(Filename) ->
     case file:read_file_info(Filename) of
@@ -82,10 +85,10 @@ can_write(Filename) ->
         {error, enoent} ->
             true;   % File does not exist, so is writeable if directory is.
         {error, What}   ->
-            {error, {What, Filename}}
+            {error, {Filename, What}}
     end.
 
--spec can_read(Filename :: filename()) -> boolean() | {error, file_err()}.
+-spec can_read(Filename :: filename()) -> permissions_return().
 %% @doc Test if file or directory is readable.
 can_read(Filename) ->
     case file:read_file_info(Filename) of
@@ -100,14 +103,15 @@ can_read(Filename) ->
     end.
 
 -type date_time() :: calendar:date_time().
--type last_mod_rtn() :: {ok, date_time()} | {error, file_err()}.
--spec last_modified(Filename :: filename()) -> last_mod_rtn().
+-type datestamp_return() :: {ok, date_time()} | {error, file_info_error()}.
+
+-spec last_modified(Filename :: filename()) -> datestamp_return().
 %% @doc Get last date and time file last modified.
 last_modified(Filename) ->
     case file:read_file_info(Filename) of
         {ok, FileInfo}  -> {ok, FileInfo#file_info.mtime};
         {error, enoent} -> {ok, nofile};
-        {error, What}   -> {error, {What, Filename}}
+        {error, What}   -> {error, {Filename, What}}
     end.
 
 -type folder() :: nonempty_string().
@@ -174,11 +178,11 @@ realname(File, Dir) ->
   CdSeq = [io_lib:format("cd ~s", [X]) || X <- Path],  
   CdCmd = [io_lib:format("~s ~s ", [X, CmdSep]) || X <- [Pushd | CdSeq]],
   Cmd = io_lib:format("~s~s", [CdCmd, Pwd]),
-  
+
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, Cmd])]},
-  Port = open_port({spawn_executable, Shell}, [exit_status, Args]),
+  Port = open_port({spawn_executable, Shell}, [exit_status, Args, hide]),
   receive
-    {Port, {exit_status, N}}    -> 
+    {Port, {exit_status, N}}    ->
       exit({realname, {exit_status, N}});
     {Port, {data, Data}}        ->
       receive {Port, {exit_status, 0}}  ->
@@ -190,13 +194,10 @@ realname(File, Dir) ->
 %% Exported utility functions
 %%
 
+-spec trim(String :: string()) -> string().
+%% @doc Strip whitespace characters from both ends of string.
 %% @todo figure out better place for this to live
 trim(String) when is_list(String) -> trim(String, forward).
-
-
-%%
-%% Local Functions
-%%
 
 % Strip whitespace characters from both ends of a string.
 trim([$\s | String], Direction) -> trim(String, Direction);
@@ -205,6 +206,10 @@ trim([$\n | String], Direction) -> trim(String, Direction);
 trim([$\r | String], Direction) -> trim(String, Direction);
 trim(String, backward) -> lists:reverse(String);
 trim(String, forward) -> trim(lists:reverse(String), backward).
+
+%%
+%% Local Functions
+%%
 
 os_syntax() ->
   case os:type() of
