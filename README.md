@@ -5,7 +5,7 @@
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.1
+__Version:__ 0.1.2
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
@@ -15,6 +15,26 @@ __References__* For a project using `pose`, see
 [Erlang/OTP R15B01](http://www.erlang.org/download_release/14).
 The `nosh` architecture depends on the experimental `package` feature,
 which was removed in Erlang/OTP R16.
+
+
+__<font color="red">To do</font>__
+<br></br>
+* <font color="red">pose_file: clean up error reporting
+</font>
+* <font color="red">pose_file: clean up functions
+</font>
+* <font color="red">test if directory exists
+</font>
+* <font color="red">get temp dir
+</font>
+* <font color="red">create temp file
+</font>
+* <font color="red">pose temp files
+</font>
+* <font color="red">realname: redirect chdir to temp file
+</font>
+* <font color="red">...plus 6 more (see TODO.edoc)
+</font>
 
 
 This is the POSIX-like interface emulation for use with the

@@ -1,0 +1,14 @@
+@todo pose_file: clean up error reporting
+@todo pose_file: clean up functions
+@todo test if directory exists
+@todo get temp dir
+@todo create temp file
+@todo pose temp files
+@todo realname: redirect chdir to temp file
+@todo realname: redirect stderr to stdout
+@todo capture stderr from spawn_executable
+@todo realname: The directory name is invalid
+@todo file_open: error handling
+@todo realpath: functional rewrite
+@todo realpath: error handling
+@todo resume work on 2do_go4
