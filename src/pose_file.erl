@@ -119,6 +119,26 @@ last_modified(Filename) ->
 % Build environment
 %%%
 
+-spec get_temp_dir() -> filename() | {error, file:posix()}.
+%% @doc Get system temporary directory.
+get_temp_dir() ->
+  case os:type() of
+    {unix, _}   -> "/tmp";
+    {win32, _}  -> get_temp_dir(["TEMP", "TMP"])
+  end.
+
+get_temp_dir([]) ->
+  Temp = "c:\\Temp",
+  case filelib:ensure_dir(Temp) of
+    {error, Reason} -> {error, {Temp, Reason}};
+    ok              -> Temp
+  end;
+get_temp_dir([First | Rest]) ->  
+  case os:getenv(First) of
+    false   -> get_temp_dir(Rest);
+    Temp    -> Temp
+  end.
+  
 -type folder() :: nonempty_string().
 -type path_string() :: nonempty_string().
 -type path_list() :: {folders, [folder()]}.
