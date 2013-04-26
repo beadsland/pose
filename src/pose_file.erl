@@ -28,9 +28,9 @@
 
 %% @todo spec API functions
 
-%% @version 0.1.2
+%% @version 0.1.3
 -module(pose_file).
--version("0.1.2").
+-version("0.1.3").
 
 %%
 %% Include files
@@ -73,7 +73,6 @@
 -type info_error_atom() :: file:posix() | badarg.
 -type file_info_error() :: {filename(), info_error_atom()}.
 -type permissions_return() :: boolean() | {error, file_info_error()}.
-
 -spec can_write(Filename :: filename()) -> permissions_return().
 %% @doc Test if file or directory is writeable.
 can_write(Filename) ->
@@ -93,28 +92,29 @@ can_write(_Filename, FileInfo) ->
 -spec can_read(Filename :: filename()) -> permissions_return().
 %% @doc Test if file or directory is readable.
 can_read(Filename) ->
-    case file:read_file_info(Filename) of
-        {ok, FileInfo}  ->
-            case FileInfo#file_info.access of
-                read        -> true;
-                read_write  -> true;
-                _Else       -> false
-            end;
-        {error, enoent} -> false;
-        {error, What}   -> {error, {What, Filename}}
-    end.
+  case file:read_file_info(Filename) of
+    {ok, FileInfo}  -> can_read(Filename, FileInfo);
+    {error, enoent} -> false;
+    {error, What}   -> {error, {Filename, What}}
+  end.
 
+can_read(_Filename, FileInfo) ->
+  case FileInfo#file_info.access of
+    read        -> true;
+    read_write  -> true;
+    _Else       -> false
+  end.
+    
 -type date_time() :: calendar:date_time().
 -type datestamp_return() :: {ok, date_time()} | {error, file_info_error()}.
-
 -spec last_modified(Filename :: filename()) -> datestamp_return().
 %% @doc Get last date and time file last modified.
 last_modified(Filename) ->
-    case file:read_file_info(Filename) of
-        {ok, FileInfo}  -> {ok, FileInfo#file_info.mtime};
-        {error, enoent} -> {ok, nofile};
-        {error, What}   -> {error, {Filename, What}}
-    end.
+  case file:read_file_info(Filename) of
+    {ok, FileInfo}  -> {ok, FileInfo#file_info.mtime};
+    {error, enoent} -> {ok, nofile};
+    {error, What}   -> {error, {Filename, What}}
+  end.
 
 -type folder() :: nonempty_string().
 -type path_string() :: nonempty_string().
