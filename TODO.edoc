@@ -10,4 +10,5 @@
 @todo file_open: error handling
 @todo realpath: functional rewrite
 @todo realpath: error handling
+@todo remove FILENAME macro
 @todo resume work on 2do_go4
