@@ -19,10 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realname: redirect stderr to stdout
-</font>
-* <font color="red">capture stderr from spawn_executable
-</font>
 * <font color="red">realname: The directory name is invalid
 </font>
 * <font color="red">file_open: error handling
@@ -33,8 +29,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">remove FILENAME macro
 </font>
-* <font color="red">...plus 1 more (see TODO.edoc)
+* <font color="red">make good
 </font>
+* <font color="red">resume work on 2do_go4</font>
 
 
 This is the POSIX-like interface emulation for use with the

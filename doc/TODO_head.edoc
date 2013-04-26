@@ -1,8 +1,7 @@
-@todo realname: redirect stderr to stdout
-@todo capture stderr from spawn_executable
 @todo realname: The directory name is invalid
 @todo file_open: error handling
 @todo realpath: functional rewrite
 @todo realpath: error handling
 @todo remove FILENAME macro
-@todo ...plus 1 more (see TODO.edoc)
+@todo make good
+@todo resume work on 2do_go4
