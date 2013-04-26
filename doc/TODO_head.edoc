@@ -1,8 +1,8 @@
+@todo superl: why do 80 chars count as 81
 @todo test if directory exists
 @todo get temp dir
 @todo create temp file
 @todo pose temp files
 @todo realname: redirect chdir to temp file
 @todo realname: redirect stderr to stdout
-@todo capture stderr from spawn_executable
-@todo ...plus 6 more (see TODO.edoc)
+@todo ...plus 7 more (see TODO.edoc)
