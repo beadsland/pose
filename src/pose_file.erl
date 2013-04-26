@@ -28,9 +28,9 @@
 
 %% @todo spec API functions
 
-%% @version 0.1.4
+%% @version 0.1.5
 -module(pose_file).
--version("0.1.4").
+-version("0.1.5").
 
 %%
 %% Include files
@@ -53,7 +53,7 @@
 -export([get_temp_file/0, get_temp_dir/0, find_parallel_folder/3]).
 
 % Canonical paths
--export([realname/1, realname/2]).
+-export([realname/2, realname/3]).
 
 % Utility functions
 -export([trim/1]).
@@ -174,21 +174,22 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
 % Canonical paths
 %%%
 
--spec realname(File :: path_string()) -> path_string().
+-spec realname(IO :: #std{}, File :: path_string()) -> path_string().
 %% @doc Ascend absolute directory path of file relative to current working
 %% directory, to obtain its canonical system path.
 %% @end
-realname(File) ->
+realname(IO, File) ->
   case file:get_cwd() of 
     {error, Reason} -> {error, {cwd, Reason}};
-    {ok, Dir}       -> realname(File, Dir)
+    {ok, Dir}       -> realname(IO, File, Dir)
   end.
 
--spec realname(File :: path_string(), Dir :: folder()) -> path_string().
+-spec realname(IO :: #std{}, File :: path_string(), Dir :: folder()) -> 
+                                                                path_string().
 %% @doc Ascend absolute directory path of a file relative to a directory, 
 %% to obtain its canonical system path.
 %% @end
-realname(File, Dir) ->
+realname(IO, File, Dir) ->
   AbsFile = filename:absname(File, Dir),
   AbsDir = filename:dirname(AbsFile),
   {_PathSep, CmdSep, Pwd} = os_syntax(),
@@ -217,17 +218,20 @@ realname(File, Dir) ->
 
   os:putenv("CYGWIN", "nodosfilewarning"),
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, Cmd])]},
-  Port = open_port({spawn_executable, Shell}, [exit_status, Args, hide]),
+  Port = open_port({spawn_executable, Shell}, [exit_status, Args, hide,
+                                               stderr_to_stdout]),
+  realname_loop(IO, Port, Temp, File).
+
+realname_loop(IO, Port, Temp, File) ->
   receive
+    {Port, {data, Line}}         ->
+      ?STDERR({realname, pose_file:trim(Line)}),
+      realname_loop(IO, Port, Temp, File);
     {Port, {exit_status, 0}}    ->
       Cat = pose_file:trim(os:cmd("cat " ++ Temp)),
       filename:join(Cat, filename:basename(File));
     {Port, {exit_status, N}}    ->
       exit({realname, {exit_status, N}})
-%    {Port, {data, Data}}        ->
-%      receive {Port, {exit_status, 0}}  ->
-%        io_lib:format("~s~s~s", [trim(Data), PathSep, filename:basename(File)])
-%      end
   end.
 
 %%%
