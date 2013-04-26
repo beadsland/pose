@@ -81,7 +81,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-	file_err() = {file, <a href="pose_file.md#type-file_err">pose_file:file_err()</a>}
+	file_err() = {file, <a href="pose_file.md#type-info_error_atom">pose_file:info_error_atom()</a>}
 
 
 

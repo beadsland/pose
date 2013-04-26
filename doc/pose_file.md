@@ -32,11 +32,19 @@ __<font color="red">To do</font>__
 
 
 
-###<a name="type-file_err">file_err()</a>##
+###<a name="type-datestamp_return">datestamp_return()</a>##
 
 
 
-	file_err() = {atom(), <a href="#type-filename">filename()</a>}
+	datestamp_return() = {ok, <a href="#type-date_time">date_time()</a>} | {error, <a href="#type-file_info_error">file_info_error()</a>}
+
+
+
+###<a name="type-file_info_error">file_info_error()</a>##
+
+
+
+	file_info_error() = {<a href="#type-filename">filename()</a>, <a href="#type-info_error_atom">info_error_atom()</a>}
 
 
 
@@ -44,7 +52,7 @@ __<font color="red">To do</font>__
 
 
 
-	filename() = nonempty_string()
+	filename() = <a href="file.md#type-name_all">file:name_all()</a>
 
 
 
@@ -56,11 +64,11 @@ __<font color="red">To do</font>__
 
 
 
-###<a name="type-last_mod_rtn">last_mod_rtn()</a>##
+###<a name="type-info_error_atom">info_error_atom()</a>##
 
 
 
-	last_mod_rtn() = {ok, <a href="#type-date_time">date_time()</a>} | {error, <a href="#type-file_err">file_err()</a>}
+	info_error_atom() = <a href="file.md#type-posix">file:posix()</a> | badarg
 
 
 
@@ -93,12 +101,22 @@ __<font color="red">To do</font>__
 
 
 	path_string() = nonempty_string()
+
+
+
+###<a name="type-permissions_return">permissions_return()</a>##
+
+
+
+	permissions_return() = boolean() | {error, <a href="#type-file_info_error">file_info_error()</a>}
 <a name="index"></a>
 
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute directory path of file relative to current working
+directory, to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute directory path of a file relative to a directory,
+to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -110,7 +128,7 @@ __<font color="red">To do</font>__
 ###can_read/1##
 
 
-	can_read(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}
+	can_read(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-permissions_return">permissions_return()</a>
 <br></br>
 
 
@@ -119,7 +137,7 @@ Test if file or directory is readable.<a name="can_write-1"></a>
 ###can_write/1##
 
 
-	can_write(Filename::<a href="#type-filename">filename()</a>) -> boolean() | {error, <a href="#type-file_err">file_err()</a>}
+	can_write(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-permissions_return">permissions_return()</a>
 <br></br>
 
 
@@ -137,8 +155,41 @@ Walk absolute directory path, finding where parallel would occur.<a name="last_m
 ###last_modified/1##
 
 
-	last_modified(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-last_mod_rtn">last_mod_rtn()</a>
+	last_modified(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-datestamp_return">datestamp_return()</a>
 <br></br>
 
 
-Get last date and time file last modified.
+Get last date and time file last modified.<a name="realname-1"></a>
+
+###realname/1##
+
+
+	realname(File::<a href="#type-path_string">path_string()</a>) -> <a href="#type-path_string">path_string()</a>
+<br></br>
+
+
+Ascend absolute directory path of file relative to current working
+directory, to obtain its canonical system path.<a name="realname-2"></a>
+
+###realname/2##
+
+
+	realname(File::<a href="#type-path_string">path_string()</a>, Dir::<a href="#type-folder">folder()</a>) -> <a href="#type-path_string">path_string()</a>
+<br></br>
+
+
+Ascend absolute directory path of a file relative to a directory,
+to obtain its canonical system path.<a name="trim-1"></a>
+
+###trim/1##
+
+
+	trim(String::string()) -&gt; string()
+<br></br>
+
+
+Strip whitespace characters from both ends of string.
+
+__<font color="red">To do</font>__
+<br></br>
+* <font color="red">figure out better place for this to live</font>
