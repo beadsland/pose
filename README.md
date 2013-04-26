@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">get temp dir
-</font>
 * <font color="red">create temp file
 </font>
 * <font color="red">pose temp files
@@ -33,7 +31,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">realname: The directory name is invalid
 </font>
-* <font color="red">...plus 5 more (see TODO.edoc)
+* <font color="red">file_open: error handling
+</font>
+* <font color="red">...plus 4 more (see TODO.edoc)
 </font>
 
 
