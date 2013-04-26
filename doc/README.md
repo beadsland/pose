@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_file: clean up functions
-</font>
 * <font color="red">test if directory exists
 </font>
 * <font color="red">get temp dir
@@ -33,7 +31,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">realname: redirect stderr to stdout
 </font>
-* <font color="red">...plus 5 more (see TODO.edoc)
+* <font color="red">capture stderr from spawn_executable
+</font>
+* <font color="red">...plus 6 more (see TODO.edoc)
 </font>
 
 
