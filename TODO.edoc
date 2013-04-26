@@ -1,4 +1,3 @@
-@todo realname: redirect chdir to temp file
 @todo realname: redirect stderr to stdout
 @todo capture stderr from spawn_executable
 @todo realname: The directory name is invalid
