@@ -47,10 +47,10 @@
 %%
 
 % File properties
--export([exists/1, dir_exists/1, can_read/1, can_write/1, last_modified/1]).
+-export([can_read/1, can_write/1, last_modified/1]).
 
 % Build environment
--export([find_parallel_folder/3]).
+-export([get_temp_dir/0, find_parallel_folder/3]).
 
 % Canonical paths
 -export([realname/1, realname/2]).
@@ -69,16 +69,6 @@
 %%%
 
 -type filename() :: file:name_all().
--spec exists(Filename :: filename()) -> boolean().
-%% @doc Test if file exists.
-exists(Filename) -> {Flag, _} = file:read_file_info(Filename), Flag == ok.
-
--spec dir_exists(Filename :: filename()) -> boolean().
-%% @doc Test if directory exists.
-dir_exists(Filename) ->
-  {Flag, Info} = file:read_file_info(Filename),
-  (Flag == ok) andalso (element(3, Info) == directory).
-
 -type info_error_atom() :: file:posix() | badarg.
 -type file_info_error() :: {filename(), info_error_atom()}.
 -type permissions_return() :: boolean() | {error, file_info_error()}.

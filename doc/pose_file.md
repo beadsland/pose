@@ -116,7 +116,7 @@ __<font color="red">To do</font>__
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute directory path of file relative to current working
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#dir_exists-1">dir_exists/1</a></td><td>Test if directory exists.</td></tr><tr><td valign="top"><a href="#exists-1">exists/1</a></td><td>Test if file exists.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute directory path of file relative to current working
 directory, to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute directory path of a file relative to a directory,
 to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr></table>
 
@@ -143,7 +143,25 @@ Test if file or directory is readable.<a name="can_write-1"></a>
 <br></br>
 
 
-Test if file or directory is writeable.<a name="find_parallel_folder-3"></a>
+Test if file or directory is writeable.<a name="dir_exists-1"></a>
+
+###dir_exists/1##
+
+
+	dir_exists(Filename::<a href="#type-filename">filename()</a>) -> boolean()
+<br></br>
+
+
+Test if directory exists.<a name="exists-1"></a>
+
+###exists/1##
+
+
+	exists(Filename::<a href="#type-filename">filename()</a>) -> boolean()
+<br></br>
+
+
+Test if file exists.<a name="find_parallel_folder-3"></a>
 
 ###find_parallel_folder/3##
 
