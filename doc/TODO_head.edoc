@@ -1,5 +1,4 @@
-@todo reproduce dos path error
-@todo file_open: error handling
+@todo pose_open: error handling
 @todo realpath: functional rewrite
 @todo realpath: error handling
 @todo remove FILENAME macro

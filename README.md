@@ -19,9 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">reproduce dos path error
-</font>
-* <font color="red">file_open: error handling
+* <font color="red">pose_open: error handling
 </font>
 * <font color="red">realpath: functional rewrite
 </font>
