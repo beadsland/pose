@@ -81,7 +81,13 @@ run(IO, File, Mode)  ->
   IsWrite = lists:member(write, Mode),
   case file:open(File, Mode) of
     {error, Reason} -> exit({error, {File, Reason}});
-    {ok, Device}	-> ?MODULE:loop(IO, Device, {IsRead, IsWrite})
+    {ok, Device}	-> do_run(IO, File, Device, {IsRead, IsWrite})
+  end.
+
+do_run(IO, File, Device, Access) ->
+  case ?MODULE:loop(IO, Device, Access) of
+    {error, Reason} -> exit({error, {File, Reason}});
+    ok              -> exit(ok)
   end.
 
 %%@private Export to allow for hotswap.
@@ -89,7 +95,7 @@ loop(IO, Device, Access) ->
   {R, _W} = Access,
   receive
     {purging, _Pid, _Mod}									-> 
-      ?MODULE:loop(IO, Device, Access);					% chase your tail
+      ?MODULE:loop(IO, Device, Access);		% chase your tail
     {'EXIT', ExitPid, Reason}								->
       do_exit(IO, Device, Access, ExitPid, Reason);
     {stdin, Stdout, captln} when R, Stdout == IO#std.out	->
@@ -102,16 +108,16 @@ loop(IO, Device, Access) ->
 
 do_readln(IO, Device, Access) ->
   case io:get_line(Device, "") of
-    eof		-> file:close(Device), exit(ok);
+    eof		-> file:close(Device), ok;
     Line	-> ?STDOUT(Line), ?MODULE:loop(IO, Device, Access)
   end.
 
 do_exit(IO, Device, {R, W}, ExitPid, Reason) ->
   case ExitPid of
     Stdout when R, Stdout == IO#std.out	->
-      ?DEBUG("reader: ~p~n", [Reason]), exit(ok);
+      ?DEBUG("reader: ~p~n", [Reason]), ok;
     Stdin when W, Stdin == IO#std.in	->
-      ?DEBUG("writer: ~p~n", [Reason]), exit(ok);
+      ?DEBUG("writer: ~p~n", [Reason]), ok;
     _ 									->
       ?MODULE:loop(IO, Device, {R, W})
   end.

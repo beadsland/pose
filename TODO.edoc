@@ -1,4 +1,3 @@
-@todo pose_open: error handling
 @todo realpath: functional rewrite
 @todo realpath: error handling
 @todo remove FILENAME macro
