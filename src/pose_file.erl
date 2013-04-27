@@ -210,28 +210,40 @@ realname(IO, File, Dir) ->
     {win32, _}  -> Shell = trim(os:cmd("echo %ComSpec%")), COpt = "/C";
     {unix, _}   -> Shell = "/bin/sh", COpt = "-c"
   end,
-
+   
   Temp = filename:join(get_temp_dir(), get_temp_file()),
   CdSeq = [io_lib:format("cd ~s", [X]) || X <- Path],  
   CdCmd = [io_lib:format("~s ~s ", [X, CmdSep]) || X <- [Pushd | CdSeq]],
   Cmd = io_lib:format("~s ~s > ~s", [CdCmd, Pwd, Temp]),
 
-  os:putenv("CYGWIN", "nodosfilewarning"),
+   _Bat = "d:/workspace/pose/bin/test.bat > " ++ Temp,
+   _Lnk = "d:\\workspace\\pose\\bin\\cmd.exe.lnk",
+      
+  _Env = {env, ["CYGWIN", "nodosfilewarning"]},
+  Start = {cd, "d:\\cygwin\\home\\Beads"},
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, Cmd])]},
   Port = open_port({spawn_executable, Shell}, [exit_status, Args, hide,
-                                               stderr_to_stdout]),
-  realname_loop(IO, Port, Temp, File).
+                                               stderr_to_stdout, Start]),
+  realname_loop(IO, Port, Temp, File, false).
 
-realname_loop(IO, Port, Temp, File) ->
+realname_loop(IO, Port, Temp, File, DirInvBool) ->
+  DirInvStr = "The directory name is invalid.\r\n",
   receive
-    {Port, {data, Line}}         ->
+    {Port, {data, DirInvStr}} when DirInvBool==false    ->
+      realname_loop(IO, Port, Temp, File, true);
+    {Port, {data, Line}}                                ->
       ?STDERR({realname, pose_file:trim(Line)}),
-      realname_loop(IO, Port, Temp, File);
-    {Port, {exit_status, 0}}    ->
+      realname_loop(IO, Port, Temp, File, DirInvBool);
+    {Port, {exit_status, 0}}                            ->
       Cat = pose_file:trim(os:cmd("cat " ++ Temp)),
       filename:join(Cat, filename:basename(File));
-    {Port, {exit_status, N}}    ->
-      exit({realname, {exit_status, N}})
+    {Port, {exit_status, N}}                            ->
+      if DirInvBool -> 
+           Status = {N, io_lib:format("(also ~s)", pose_file:trim(DirInvStr))};
+         true -> 
+           Status = N
+      end,
+      exit({realname, {exit_status, Status}})
   end.
 
 %%%

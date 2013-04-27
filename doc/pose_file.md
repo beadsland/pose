@@ -11,7 +11,7 @@ File-related utility functions for use by [`pose_code`](pose_code.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.4
+__Version:__ 0.1.5
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
@@ -116,8 +116,8 @@ __<font color="red">To do</font>__
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#get_temp_dir-0">get_temp_dir/0</a></td><td>Get system temporary directory.</td></tr><tr><td valign="top"><a href="#get_temp_file-0">get_temp_file/0</a></td><td>Get a uniquely named temporary file name.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute directory path of file relative to current working
-directory, to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute directory path of a file relative to a directory,
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#get_temp_dir-0">get_temp_dir/0</a></td><td>Get system temporary directory.</td></tr><tr><td valign="top"><a href="#get_temp_file-0">get_temp_file/0</a></td><td>Get a uniquely named temporary file name.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute directory path of file relative to current working
+directory, to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-3">realname/3</a></td><td>Ascend absolute directory path of a file relative to a directory,
 to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr></table>
 
 
@@ -179,22 +179,22 @@ Get a uniquely named temporary file name.<a name="last_modified-1"></a>
 <br></br>
 
 
-Get last date and time file last modified.<a name="realname-1"></a>
-
-###realname/1##
-
-
-	realname(File::<a href="#type-path_string">path_string()</a>) -> <a href="#type-path_string">path_string()</a>
-<br></br>
-
-
-Ascend absolute directory path of file relative to current working
-directory, to obtain its canonical system path.<a name="realname-2"></a>
+Get last date and time file last modified.<a name="realname-2"></a>
 
 ###realname/2##
 
 
-	realname(File::<a href="#type-path_string">path_string()</a>, Dir::<a href="#type-folder">folder()</a>) -> <a href="#type-path_string">path_string()</a>
+	realname(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, File::<a href="#type-path_string">path_string()</a>) -> <a href="#type-path_string">path_string()</a>
+<br></br>
+
+
+Ascend absolute directory path of file relative to current working
+directory, to obtain its canonical system path.<a name="realname-3"></a>
+
+###realname/3##
+
+
+	realname(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, File::<a href="#type-path_string">path_string()</a>, Dir::<a href="#type-folder">folder()</a>) -> <a href="#type-path_string">path_string()</a>
 <br></br>
 
 
