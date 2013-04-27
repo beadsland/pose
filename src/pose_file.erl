@@ -216,14 +216,14 @@ realname(IO, File, Dir) ->
   CdCmd = [io_lib:format("~s ~s ", [X, CmdSep]) || X <- [Pushd | CdSeq]],
   Cmd = io_lib:format("~s ~s > ~s", [CdCmd, Pwd, Temp]),
 
-   _Bat = "d:/workspace/pose/bin/test.bat > " ++ Temp,
-   _Lnk = "d:\\workspace\\pose\\bin\\cmd.exe.lnk",
-      
-  _Env = {env, ["CYGWIN", "nodosfilewarning"]},
-  Start = {cd, "d:\\cygwin\\home\\Beads"},
+  Cygset = sets:from_list(string:tokens(os:getenv("CYGWIN"), " ")),
+  Cygadd = sets:add_element("nodosfilewarning", Cygset),
+  Cygwin = string:join(sets:to_list(Cygadd), " "),  
+  os:putenv("CYGWIN", Cygwin),
+  
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, Cmd])]},
   Port = open_port({spawn_executable, Shell}, [exit_status, Args, hide,
-                                               stderr_to_stdout, Start]),
+                                               stderr_to_stdout]),
   realname_loop(IO, Port, Temp, File, false).
 
 realname_loop(IO, Port, Temp, File, DirInvBool) ->
