@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realpath: clean up errors
-</font>
 * <font color="red">realpath: test with unc
 </font>
 * <font color="red">realpath: command stream as batch/shell script
