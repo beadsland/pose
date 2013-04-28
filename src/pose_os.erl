@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.3
+%% @version 0.0.4
 -module(pose_os).
--version("0.0.3").
+-version("0.0.4").
 
 %%
 %% Include files
@@ -56,7 +56,9 @@
 %%%
 % Temporary folder and unique file names
 %%%
--spec get_temp_file() -> file:filename().
+
+-type temp_file_error() :: {error, {temp_dir, file:posix()}}. 
+-spec get_temp_file() -> {ok, file:filename()} | temp_file_error().
 %% @doc Get a unique name for a temporary file in the system temporary 
 %% directory.
 %% @end
@@ -66,12 +68,12 @@ get_temp_file() ->
     {ok, Dir}       -> get_temp_file(Dir)
   end.
 
--spec get_temp_file(Dir :: file:filename()) -> file:filename_all().
+-spec get_temp_file(Dir :: file:filename()) -> {ok, file:filename_all()}.
 %% @doc Get a unique name for a temporary file in the specified directory.
 get_temp_file(Dir) -> 
   {A,B,C}=now(), N=node(),
   File = lists:flatten(io_lib:format("~p-~p.~p.~p",[N,A,B,C])),
-  filename:join(Dir, File).
+  {ok, filename:join(Dir, File)}.
   
 -spec get_temp_dir() -> {ok, file:filename()} | {error, file:posix()}.
 %% @doc Get system temporary directory.
@@ -85,12 +87,12 @@ get_temp_dir([]) ->
   Temp = "c:\\Temp",
   case filelib:ensure_dir(Temp) of
     {error, Reason} -> {error, {Temp, Reason}};
-    ok              -> Temp
+    Temp            -> {ok, Temp}
   end;
 get_temp_dir([First | Rest]) ->
   case os:getenv(First) of
-    false   -> get_temp_dir(Rest);
-    Temp    -> Temp
+    false       -> get_temp_dir(Rest);
+    Temp        -> {ok, Temp}
   end.
 
 %%%
@@ -118,7 +120,12 @@ shell_exec(Command, {unix, _}) -> shell_exec(Command, "/bin/sh", "-c").
 
 % Configure and spawn shell process.
 shell_exec(Command, Shell, COpt) ->
-  Temp = get_temp_file(),
+  case get_temp_file() of
+    {error, Reason} -> {error, {temp_file, Reason}};
+    {ok, Temp}      -> shell_exec(Command, Shell, COpt, Temp)
+  end.
+
+shell_exec(Command, Shell, COpt, Temp) ->
   RedirCmd = io_lib:format("~s > ~s", [Command, Temp]),
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, RedirCmd])]},
   Options = [exit_status, Args, hide, stderr_to_stdout],
