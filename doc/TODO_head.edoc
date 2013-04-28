@@ -1,4 +1,5 @@
 @todo realpath: functional rewrite
+@todo realpath: test with unc
 @todo realpath: command stream as batch/shell script
 @todo realpath: refactor command stream to pose_os
 @todo remove FILENAME macro
