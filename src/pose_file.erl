@@ -192,33 +192,39 @@ realname(File) ->
 %% to obtain its canonical system path.
 %% @end
 realname(File, Dir) when is_binary(File) -> realname(binary_to_list(File), Dir);
-realname([First | [Second | Rest]], _Dir) when First == $\\, Second == $\\;
-                                               First == $/, Second == $/ ->
-  [_Last | RevPath] = lists:reverse(string:tokens(Rest, "\\/")),
-  do_realname([$/ | [$/ | Rest]], unc, lists:reverse(RevPath));
-realname(File, Dir) ->
-  {OS, _} = os:type(),
-  AbsFile = filename:abspath(File, Dir),
-  [_Last | RevPath] = lists:reverse(string:tokens(AbsFile, "\\/")),
-  do_realname(File, OS, lists:reverse(RevPath)).
+realname(File, Dir) -> {OS, _} = os:type(), realname(File, Dir, OS).
 
-% Work out commands for UNC and Win32 drive paths.
-% First command depends on operating system.
-do_realname(File, unc, [Server | [Share | Path]]) ->
+% Deal seamlessly with UNC paths.
+realname([First | [Second | Rest]], Dir, win32) when First==$\\, Second==$\\;
+                                                     First==$/, Second==$/ ->
+  AbsFile = [First | [Second | Rest]],
+  realname(AbsFile, Dir, unc, AbsFile);
+realname(File, [First | [Second | Rest]], win32) when First==$\\, Second==$\\;
+                                                      First==$/, Second==$/ ->
+  AbsFile = filename:absname(File, [First | [Second | Rest]]),
+  realname(File, [First | [Second | Rest]], unc, AbsFile);
+realname(File, Dir, OS) -> realname(File, Dir, OS, filename:absname(File, Dir)).
+
+% Tokenize the rest of our path in preparation for walking directories in shell.
+realname(File, _Dir, OS, AbsFile) ->
+  [_Last | RevPath] = lists:reverse(string:tokens(AbsFile, "\\/")),
+  do_realname(filename:basename(File), OS, lists:reverse(RevPath)).
+
+% Determine first shell command as a function of operating system.
+do_realname(Base, unc, [Server | [Share | Path]]) ->
   Unc = io_lib:format("\\\\~s\\~s", [Server, Share]),
-  case do_realname(File, win32, [Unc | Path]) of
+  case do_realname(Base, win32, [Unc | Path]) of
     {error, Reason}             -> {error, Reason};
     {ok, [_L | [_C | Real]]}    -> Parts = [Server, Share, Real],
                                    {ok, io_lib:format("//~s/~s~s", Parts)}
   end;
-do_realname(File, win32, [Drive | Path]) ->
+do_realname(Base, win32, [Drive | Path]) ->
   Cmd = io_lib:format("pushd ~s & cd \\", [Drive]),
-  do_realname(File, win32, Path, [Cmd]);
-do_realname(File, unix, Path) -> do_realname(File, unix, Path, ["cd /"]).
+  do_realname(Base, win32, Path, [Cmd]);
+do_realname(Base, unix, Path) -> do_realname(Base, unix, Path, ["cd /"]).
 
 % Generate change directory sequence, and specify shell specifics.
-% @todo Rewrite this to write commands to a batch/shell script file.
-do_realname(File, win32, [], Cmds) ->
+do_realname(Base, win32, [], Cmds) ->
   Shell = trim(os:cmd("echo %ComSpec%")), COpt = "/C", Sep = " & ",
 
   % If invoked under Cygwin, this will keep quiet about DOS paths.
@@ -228,16 +234,16 @@ do_realname(File, win32, [], Cmds) ->
   os:putenv("CYGWIN", Cygwin),
 
   % Trailing space required by windows shell in order to get a `pwd' result.
-  do_realname(File, win32, [], ["chdir " | Cmds], Shell, COpt, Sep);
-do_realname(File, unix, [], Cmds) ->
+  do_realname(Base, win32, [], ["chdir " | Cmds], Shell, COpt, Sep);
+do_realname(Base, unix, [], Cmds) ->
   Shell = "/bin/sh", COpt = "-c", Sep = " ; ",
-  do_realname(File, unix, [], ["pwd" | Cmds], Shell, COpt, Sep);
-do_realname(File, OS, [Folder | Path], Cmds) ->
+  do_realname(Base, unix, [], ["pwd" | Cmds], Shell, COpt, Sep);
+do_realname(Base, OS, [Folder | Path], Cmds) ->
   Cmd = io_lib:format("cd \"~s\"", [Folder]),
-  do_realname(File, OS, Path, [Cmd | Cmds]).
+  do_realname(Base, OS, Path, [Cmd | Cmds]).
 
 % Assemble and execute commands.
-do_realname(File, _OS, _, Cmds, Shell, COpt, Sep) ->
+do_realname(Base, _OS, _, Cmds, Shell, COpt, Sep) ->
   Sequence = string:join(lists:reverse(Cmds), Sep),
   Temp = filename:join(get_temp_dir(), get_temp_file()),
   Command = io_lib:format("~s > ~s", [Sequence, Temp]),
@@ -245,19 +251,19 @@ do_realname(File, _OS, _, Cmds, Shell, COpt, Sep) ->
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, Command])]},
   Options = [exit_status, Args, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
-  realname_loop(Port, Temp, File, []).
+  realname_loop(Port, Temp, Base, []).
 
 % Loop through error output, and read in input following exit.
-realname_loop(Port, Temp, File, Errors) ->
+realname_loop(Port, Temp, Base, Errors) ->
   receive
     {Port, {data, [First | Rest]}}                      ->
       Line = [string:to_lower(First) | Rest],
       CleanLine = string:strip(pose_file:trim(Line), right, $.),
       NewErrors = [CleanLine | Errors],
-      realname_loop(Port, Temp, File, NewErrors);
+      realname_loop(Port, Temp, Base, NewErrors);
     {Port, {exit_status, 0}} when Errors==[]            ->
       Cat = pose_file:trim(os:cmd("cat " ++ Temp)),
-      {ok, filename:join(Cat, filename:basename(File))};
+      {ok, filename:join(Cat, Base)};
     {Port, {exit_status, 0}}                            ->
       {error, tuple_nest(Errors)};
     {Port, {exit_status, N}}                            ->

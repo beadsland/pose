@@ -1,5 +1,3 @@
-@todo realpath: abspath supporting unc
-@todo realpath: use new abspath
 @todo realpath: command stream as batch/shell script
 @todo realpath: refactor command stream to pose_os
 @todo remove FILENAME macro
