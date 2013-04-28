@@ -225,8 +225,8 @@ do_realname(File, win32, [], Cmds) ->
   Cygwin = string:join(sets:to_list(Cygadd), " "),  
   os:putenv("CYGWIN", Cygwin),
   
-  do_realname(File, win32, [], ["chdir " | Cmds], Shell, COpt, Sep); 
   % Trailing space required by windows shell in order to get a `pwd' result.
+  do_realname(File, win32, [], ["chdir " | Cmds], Shell, COpt, Sep); 
 do_realname(File, unix, [], Cmds) ->
   Shell = "/bin/sh", COpt = "-c", Sep = " ; ",
   do_realname(File, unix, [], ["pwd" | Cmds], Shell, COpt, Sep);
@@ -242,25 +242,27 @@ do_realname(File, _OS, _, Cmds, Shell, COpt, Sep) ->
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, Command])]},
   Options = [exit_status, Args, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
-  realname_loop(Port, Temp, File, false, []).
+  realname_loop(Port, Temp, File, []).
 
 % Loop through error output, and read in input following exit.
-realname_loop(Port, Temp, File, DirInvBool, Errors) ->
-  DirInvStr = "The directory name is invalid.\r\n",
+realname_loop(Port, Temp, File, Errors) ->
   receive
-    {Port, {data, Line}}                                ->
-      NewErrors = [pose_file:trim(Line) | Errors],
-      realname_loop(Port, Temp, File, DirInvBool, NewErrors);
+    {Port, {data, [First | Rest]}}                      ->
+      Line = [string:to_lower(First) | Rest],
+      CleanLine = string:strip(pose_file:trim(Line), right, $.),
+      NewErrors = [CleanLine | Errors],
+      realname_loop(Port, Temp, File, NewErrors);
     {Port, {exit_status, 0}} when Errors==[]            ->
       Cat = pose_file:trim(os:cmd("cat " ++ Temp)),
       {ok, filename:join(Cat, filename:basename(File))};    
     {Port, {exit_status, 0}}                            ->
-      {error, {0, lists:reverse(Errors)}};
-    {Port, {exit_status, N}} when DirInvBool            ->
-      {error, {N, [pose_file:trim(DirInvStr) | lists:reverse(Errors)]}};
+      {error, tuple_nest(Errors)};
     {Port, {exit_status, N}}                            ->
-      {error, {N, lists:reverse(Errors)}}
+      {error, {exit_status, {N, tuple_nest(Errors)}}}
   end.
+
+tuple_nest([First | []]) -> First;
+tuple_nest([First | Rest]) -> {First, tuple_nest(Rest)}.
 
 %%%
 % Exported utility functions
