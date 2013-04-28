@@ -19,9 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realpath: command stream as batch/shell script
-</font>
-* <font color="red">realpath: refactor command stream to pose_os
+* <font color="red">realpath: command stream as batch script
 </font>
 * <font color="red">remove FILENAME macro
 </font>
@@ -244,6 +242,7 @@ The `pose` interface provides a number of macros for use by
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_file.md" class="module">pose_file</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_open.md" class="module">pose_open</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_os.md" class="module">pose_os</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/posure.md" class="module">posure</a></td></tr></table>
 
