@@ -19,7 +19,9 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realpath: functional rewrite
+* <font color="red">realpath: extract dirname then reattach basename
+</font>
+* <font color="red">realpath: clean up errors
 </font>
 * <font color="red">realpath: test with unc
 </font>
@@ -31,7 +33,6 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">make good
 </font>
-* <font color="red">resume work on 2do_go4</font>
 
 
 This is the POSIX-like interface emulation for use with the

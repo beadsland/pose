@@ -1,7 +1,7 @@
-@todo realpath: functional rewrite
+@todo realpath: extract dirname then reattach basename
+@todo realpath: clean up errors
 @todo realpath: test with unc
 @todo realpath: command stream as batch/shell script
 @todo realpath: refactor command stream to pose_os
 @todo remove FILENAME macro
 @todo make good
-@todo resume work on 2do_go4

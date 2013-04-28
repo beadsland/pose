@@ -1,5 +1,4 @@
-@todo realpath: not getting directory name invalid error
-@todo realpath: extract dirname then reattach basename
+@todo realpath: clean up errors
 @todo realpath: test with unc
 @todo realpath: command stream as batch/shell script
 @todo realpath: refactor command stream to pose_os
