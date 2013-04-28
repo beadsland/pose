@@ -26,11 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @todo spec API functions
-
-%% @version 0.1.6
+%% @version 0.1.7
 -module(pose_file).
--version("0.1.6").
+-version("0.1.7").
 
 %%
 %% Include files
@@ -50,7 +48,7 @@
 -export([can_read/1, can_write/1, last_modified/1]).
 
 % Build environment
--export([get_temp_file/0, get_temp_dir/0, find_parallel_folder/3]).
+-export([find_parallel_folder/3]).
 
 % Canonical paths
 -export([realname/1, realname/2]).
@@ -58,7 +56,7 @@
 % Utility functions
 -export([trim/1]).
 
--export_type([info_error_atom/0]).
+%-export_type([info_error_atom/0]).
 
 %%
 %% API Functions
@@ -117,32 +115,6 @@ last_modified(Filename) ->
 %%%
 % Build environment
 %%%
-
--spec get_temp_file() -> file:filename().
-%% @doc Get a uniquely named temporary file name.
-get_temp_file() ->
-  {A,B,C}=now(), N=node(),
-  lists:flatten(io_lib:format("~p-~p.~p.~p",[N,A,B,C])).
-
--spec get_temp_dir() -> file:filename() | {error, file:posix()}.
-%% @doc Get system temporary directory.
-get_temp_dir() ->
-  case os:type() of
-    {unix, _}   -> "/tmp";
-    {win32, _}  -> get_temp_dir(["TEMP", "TMP"])
-  end.
-
-get_temp_dir([]) ->
-  Temp = "c:\\Temp",
-  case filelib:ensure_dir(Temp) of
-    {error, Reason} -> {error, {Temp, Reason}};
-    ok              -> Temp
-  end;
-get_temp_dir([First | Rest]) ->
-  case os:getenv(First) of
-    false   -> get_temp_dir(Rest);
-    Temp    -> Temp
-  end.
 
 -type folder() :: nonempty_string().
 -type path_string() :: nonempty_string().
@@ -225,53 +197,22 @@ do_realname(Base, unix, Path) -> do_realname(Base, unix, Path, ["cd /"]).
 
 % Generate change directory sequence, and specify shell specifics.
 do_realname(Base, win32, [], Cmds) ->
-  Shell = trim(os:cmd("echo %ComSpec%")), COpt = "/C", Sep = " & ",
-
-  % If invoked under Cygwin, this will keep quiet about DOS paths.
-  Cygset = sets:from_list(string:tokens(os:getenv("CYGWIN"), " ")),
-  Cygadd = sets:add_element("nodosfilewarning", Cygset),
-  Cygwin = string:join(sets:to_list(Cygadd), " "),
-  os:putenv("CYGWIN", Cygwin),
-
   % Trailing space required by windows shell in order to get a `pwd' result.
-  do_realname(Base, win32, [], ["chdir " | Cmds], Shell, COpt, Sep);
+  do_realname(Base, win32, [], ["chdir " | Cmds], " & ");
 do_realname(Base, unix, [], Cmds) ->
-  Shell = "/bin/sh", COpt = "-c", Sep = " ; ",
-  do_realname(Base, unix, [], ["pwd" | Cmds], Shell, COpt, Sep);
+  do_realname(Base, unix, [], ["pwd" | Cmds], " ; ");
 do_realname(Base, OS, [Folder | Path], Cmds) ->
   Cmd = io_lib:format("cd \"~s\"", [Folder]),
   do_realname(Base, OS, Path, [Cmd | Cmds]).
 
 % Assemble and execute commands.
-do_realname(Base, _OS, _, Cmds, Shell, COpt, Sep) ->
+do_realname(Base, _OS, _, Cmds, Sep) ->
   Sequence = string:join(lists:reverse(Cmds), Sep),
-  Temp = filename:join(get_temp_dir(), get_temp_file()),
-  Command = io_lib:format("~s > ~s", [Sequence, Temp]),
-  ?DEBUG("~s~n", [Command]),
-  Args = {args, [io_lib:format("~s \"~s\"", [COpt, Command])]},
-  Options = [exit_status, Args, hide, stderr_to_stdout],
-  Port = open_port({spawn_executable, Shell}, Options),
-  realname_loop(Port, Temp, Base, []).
-
-% Loop through error output, and read in input following exit.
-realname_loop(Port, Temp, Base, Errors) ->
-  receive
-    {Port, {data, [First | Rest]}}                      ->
-      Line = [string:to_lower(First) | Rest],
-      CleanLine = string:strip(pose_file:trim(Line), right, $.),
-      NewErrors = [CleanLine | Errors],
-      realname_loop(Port, Temp, Base, NewErrors);
-    {Port, {exit_status, 0}} when Errors==[]            ->
-      Cat = pose_file:trim(os:cmd("cat " ++ Temp)),
-      {ok, filename:join(Cat, Base)};
-    {Port, {exit_status, 0}}                            ->
-      {error, tuple_nest(Errors)};
-    {Port, {exit_status, N}}                            ->
-      {error, {exit_status, {N, tuple_nest(Errors)}}}
+  case pose_os:shell_exec(Sequence) of
+    {error, Reason} -> {error, Reason};
+    {ok, Result}    -> {ok, filename:join(Result, Base)}
   end.
-
-tuple_nest([First | []]) -> First;
-tuple_nest([First | Rest]) -> {First, tuple_nest(Rest)}.
+  
 
 %%%
 % Exported utility functions
