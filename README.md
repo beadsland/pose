@@ -21,7 +21,9 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">realpath: functional rewrite
 </font>
-* <font color="red">realpath: error handling
+* <font color="red">realpath: command stream as batch/shell script
+</font>
+* <font color="red">realpath: refactor command stream to pose_os
 </font>
 * <font color="red">remove FILENAME macro
 </font>
