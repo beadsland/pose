@@ -19,10 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realpath: abspath supporting unc
-</font>
-* <font color="red">realpath: use new abspath
-</font>
 * <font color="red">realpath: command stream as batch/shell script
 </font>
 * <font color="red">realpath: refactor command stream to pose_os
