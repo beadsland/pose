@@ -54,15 +54,7 @@ __<font color="red">To do</font>__
 
 
 
-	file_info_error() = {<a href="#type-filename">filename()</a>, <a href="#type-info_error_atom">info_error_atom()</a>}
-
-
-
-###<a name="type-filename">filename()</a>##
-
-
-
-	filename() = <a href="file.md#type-name_all">file:name_all()</a>
+	file_info_error() = {<a href="file.md#type-name_all">file:name_all()</a>, <a href="#type-info_error_atom">info_error_atom()</a>}
 
 
 
@@ -154,7 +146,7 @@ to obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#tri
 ###can_read/1##
 
 
-	can_read(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-permissions_return">permissions_return()</a>
+	can_read(Filename::<a href="file.md#type-name_all">file:name_all()</a>) -> <a href="#type-permissions_return">permissions_return()</a>
 <br></br>
 
 
@@ -163,7 +155,7 @@ Test if file or directory is readable.<a name="can_write-1"></a>
 ###can_write/1##
 
 
-	can_write(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-permissions_return">permissions_return()</a>
+	can_write(Filename::<a href="file.md#type-name_all">file:name_all()</a>) -> <a href="#type-permissions_return">permissions_return()</a>
 <br></br>
 
 
@@ -181,7 +173,7 @@ Walk absolute directory path, finding where parallel would occur.<a name="get_te
 ###get_temp_dir/0##
 
 
-	get_temp_dir() -> <a href="#type-filename">filename()</a> | {error, <a href="file.md#type-posix">file:posix()</a>}
+	get_temp_dir() -> <a href="file.md#type-filename">file:filename()</a> | {error, <a href="file.md#type-posix">file:posix()</a>}
 <br></br>
 
 
@@ -190,7 +182,7 @@ Get system temporary directory.<a name="get_temp_file-0"></a>
 ###get_temp_file/0##
 
 
-	get_temp_file() -> <a href="#type-filename">filename()</a>
+	get_temp_file() -> <a href="file.md#type-filename">file:filename()</a>
 <br></br>
 
 
@@ -199,7 +191,7 @@ Get a uniquely named temporary file name.<a name="last_modified-1"></a>
 ###last_modified/1##
 
 
-	last_modified(Filename::<a href="#type-filename">filename()</a>) -> <a href="#type-datestamp_return">datestamp_return()</a>
+	last_modified(Filename::<a href="file.md#type-name_all">file:name_all()</a>) -> <a href="#type-datestamp_return">datestamp_return()</a>
 <br></br>
 
 
@@ -208,7 +200,7 @@ Get last date and time file last modified.<a name="realname-1"></a>
 ###realname/1##
 
 
-	realname(File::<a href="#type-filename">filename()</a>) -> <a href="#type-path_string">path_string()</a>
+	realname(File::<a href="file.md#type-filename_all">file:filename_all()</a>) -> <a href="#type-path_string">path_string()</a>
 <br></br>
 
 
@@ -218,7 +210,7 @@ directory, to obtain its canonical system path.<a name="realname-2"></a>
 ###realname/2##
 
 
-	realname(File::<a href="#type-filename">filename()</a>, Dir::<a href="#type-filename">filename()</a>) -> <a href="#type-realname_result">realname_result()</a>
+	realname(File::<a href="file.md#type-filename_all">file:filename_all()</a>, Dir::<a href="file.md#type-filename_all">file:filename_all()</a>) -> <a href="#type-realname_result">realname_result()</a>
 <br></br>
 
 

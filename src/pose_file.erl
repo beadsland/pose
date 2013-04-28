@@ -192,9 +192,10 @@ realname(File) ->
 %% to obtain its canonical system path.
 %% @end
 realname(File, Dir) when is_binary(File) -> realname(binary_to_list(File), Dir);
-realname([First | [Second | Rest]], _Dir) when First == $\\, Second == $\\ ->
+realname([First | [Second | Rest]], _Dir) when First == $\\, Second == $\\;
+                                               First == $/, Second == $/ ->
   [_Last | RevPath] = lists:reverse(string:tokens(Rest, "\\/")),
-  do_realname([$\\ | [$\\ | Rest]], unc, lists:reverse(RevPath));
+  do_realname([$/ | [$/ | Rest]], unc, lists:reverse(RevPath));
 realname(File, Dir) ->
   {OS, _} = os:type(),
   AbsFile = filename:abspath(File, Dir),
@@ -207,7 +208,8 @@ do_realname(File, unc, [Server | [Share | Path]]) ->
   Unc = io_lib:format("\\\\~s\\~s", [Server, Share]),
   case do_realname(File, win32, [Unc | Path]) of
     {error, Reason}             -> {error, Reason};
-    {ok, [_L | [_C | Real]]}    -> {ok, io_lib:format("~s~s", [Unc, Real])}
+    {ok, [_L | [_C | Real]]}    -> Parts = [Server, Share, Real],
+                                   {ok, io_lib:format("//~s/~s~s", Parts)}
   end;
 do_realname(File, win32, [Drive | Path]) ->
   Cmd = io_lib:format("pushd ~s & cd \\", [Drive]),
@@ -231,7 +233,7 @@ do_realname(File, unix, [], Cmds) ->
   Shell = "/bin/sh", COpt = "-c", Sep = " ; ",
   do_realname(File, unix, [], ["pwd" | Cmds], Shell, COpt, Sep);
 do_realname(File, OS, [Folder | Path], Cmds) ->
-  Cmd = io_lib:format("cd ~s", [Folder]),
+  Cmd = io_lib:format("cd \"~s\"", [Folder]),
   do_realname(File, OS, Path, [Cmd | Cmds]).
 
 % Assemble and execute commands.
