@@ -43,7 +43,7 @@
 
 % API entry points
 
--export([get_temp_file/0, get_temp_dir/0, shell_exec/1]). 
+-export([get_temp_file/0, get_temp_file/1, get_temp_dir/0, shell_exec/1]). 
 
 % Private exports
 
@@ -53,13 +53,27 @@
 %% API Functions
 %%
 
+%%%
+% Temporary folder and unique file names
+%%%
 -spec get_temp_file() -> file:filename().
-%% @doc Get a uniquely named temporary file name.
-get_temp_file() ->
-  {A,B,C}=now(), N=node(),
-  lists:flatten(io_lib:format("~p-~p.~p.~p",[N,A,B,C])).
+%% @doc Get a unique name for a temporary file in the system temporary 
+%% directory.
+%% @end
+get_temp_file() -> 
+  case get_temp_dir() of
+    {error, Reason} -> {error, {temp_dir, Reason}};
+    {ok, Dir}       -> get_temp_file(Dir)
+  end.
 
--spec get_temp_dir() -> file:filename() | {error, file:posix()}.
+-spec get_temp_file(Dir :: file:filename()) -> file:filename_all().
+%% @doc Get a unique name for a temporary file in the specified directory.
+get_temp_file(Dir) -> 
+  {A,B,C}=now(), N=node(),
+  File = lists:flatten(io_lib:format("~p-~p.~p.~p",[N,A,B,C])),
+  filename:join(Dir, File).
+  
+-spec get_temp_dir() -> {ok, file:filename()} | {error, file:posix()}.
 %% @doc Get system temporary directory.
 get_temp_dir() ->
   case os:type() of
@@ -78,6 +92,10 @@ get_temp_dir([First | Rest]) ->
     false   -> get_temp_dir(Rest);
     Temp    -> Temp
   end.
+
+%%%
+% Execution of commands under OS shell
+%%%
 
 -type shell_error_term() :: string() | integer() | atom().
 -type shell_error_tuple() :: {shell_error_term(), 
@@ -100,7 +118,7 @@ shell_exec(Command, {unix, _}) -> shell_exec(Command, "/bin/sh", "-c").
 
 % Configure and spawn shell process.
 shell_exec(Command, Shell, COpt) ->
-  Temp = filename:join(get_temp_dir(), get_temp_file()),
+  Temp = get_temp_file(),
   RedirCmd = io_lib:format("~s > ~s", [Command, Temp]),
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, RedirCmd])]},
   Options = [exit_status, Args, hide, stderr_to_stdout],
