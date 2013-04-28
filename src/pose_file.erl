@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.7
+%% @version 0.1.8
 -module(pose_file).
--version("0.1.7").
+-version("0.1.8").
 
 %%
 %% Include files
@@ -146,8 +146,8 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
 %%%
 
 -spec realname(File :: file:filename_all()) -> path_string().
-%% @doc Ascend absolute directory path of file relative to current working
-%% directory, to obtain its canonical system path.
+%% @doc Ascend absolute path of file relative to current working directory, to 
+%% obtain its canonical system path.
 %% @end
 realname(File) ->
   case file:get_cwd() of
@@ -160,60 +160,57 @@ realname(File) ->
 -type realname_result() :: path_string() | realname_error().
 -spec realname(File :: file:filename_all(), Dir :: file:filename_all())
                                                         -> realname_result().
-%% @doc Ascend absolute directory path of a file relative to a directory,
-%% to obtain its canonical system path.
+%% @doc Ascend absolute path of a file relative to a given directory, to obtain 
+%% its canonical system path.
 %% @end
 realname(File, Dir) when is_binary(File) -> realname(binary_to_list(File), Dir);
 realname(File, Dir) -> {OS, _} = os:type(), realname(File, Dir, OS).
 
-% Deal seamlessly with UNC paths.
-realname([First | [Second | Rest]], Dir, win32) when First==$\\, Second==$\\;
-                                                     First==$/, Second==$/ ->
-  AbsFile = [First | [Second | Rest]],
-  realname(AbsFile, Dir, unc, AbsFile);
+% Determine absolute path, dealing as necessary with UNC paths.
+realname([First | [Second | Rest]], _Dir, win32) when First==$\\, Second==$\\;
+                                                      First==$/, Second==$/ ->
+  do_realname(unc, [First | [Second | Rest]]);
 realname(File, [First | [Second | Rest]], win32) when First==$\\, Second==$\\;
                                                       First==$/, Second==$/ ->
-  AbsFile = filename:absname(File, [First | [Second | Rest]]),
-  realname(File, [First | [Second | Rest]], unc, AbsFile);
-realname(File, Dir, OS) -> realname(File, Dir, OS, filename:absname(File, Dir)).
+  do_realname(unc, filename:absname(File, [First | [Second | Rest]]));
+realname(File, Dir, OS) -> do_realname(OS, filename:absname(File, Dir)).
 
 % Tokenize the rest of our path in preparation for walking directories in shell.
-realname(File, _Dir, OS, AbsFile) ->
-  [_Last | RevPath] = lists:reverse(string:tokens(AbsFile, "\\/")),
-  do_realname(filename:basename(File), OS, lists:reverse(RevPath)).
+do_realname(OS, File) ->
+  [_Last | RevPath] = lists:reverse(string:tokens(File, "\\/")),
+  do_realname(OS, File, lists:reverse(RevPath)).
 
 % Determine first shell command as a function of operating system.
-do_realname(Base, unc, [Server | [Share | Path]]) ->
+do_realname(unc, File, [Server | [Share | Path]]) ->
   Unc = io_lib:format("\\\\~s\\~s", [Server, Share]),
-  case do_realname(Base, win32, [Unc | Path]) of
+  case do_realname(win32, File, [Unc | Path]) of
     {error, Reason}             -> {error, Reason};
     {ok, [_L | [_C | Real]]}    -> Parts = [Server, Share, Real],
                                    {ok, io_lib:format("//~s/~s~s", Parts)}
   end;
-do_realname(Base, win32, [Drive | Path]) ->
-  Cmd = io_lib:format("pushd ~s & cd \\", [Drive]),
-  do_realname(Base, win32, Path, [Cmd]);
-do_realname(Base, unix, Path) -> do_realname(Base, unix, Path, ["cd /"]).
+do_realname(win32, File, [Drive | Path]) ->
+  do_realname(win32, File, Path, [io_lib:format("pushd ~s & cd \\", [Drive])]);
+do_realname(unix, File, Path) -> do_realname(unix, File, Path, ["cd /"]).
 
 % Generate change directory sequence, and specify shell specifics.
-do_realname(Base, win32, [], Cmds) ->
+do_realname(win32, File, [], Cmds) ->
   % Trailing space required by windows shell in order to get a `pwd' result.
-  do_realname(Base, win32, [], ["chdir " | Cmds], " & ");
-do_realname(Base, unix, [], Cmds) ->
-  do_realname(Base, unix, [], ["pwd" | Cmds], " ; ");
-do_realname(Base, OS, [Folder | Path], Cmds) ->
+  do_realname(win32, File, [], ["chdir\s" | Cmds], " & ");
+do_realname(unix, File, [], Cmds) -> 
+  do_realname(unix, File, [], ["pwd" | Cmds], " ; ");
+do_realname(OS, File, [Folder | Path], Cmds) ->
   Cmd = io_lib:format("cd \"~s\"", [Folder]),
-  do_realname(Base, OS, Path, [Cmd | Cmds]).
+  do_realname(OS, File, Path, [Cmd | Cmds]).
 
 % Assemble and execute commands.
-do_realname(Base, _OS, _, Cmds, Sep) ->
-  Sequence = string:join(lists:reverse(Cmds), Sep),
-  case pose_os:shell_exec(Sequence) of
+do_realname(_OS, File, _Path, Cmds, Sep) ->
+  case pose_os:shell_exec(string:join(lists:reverse(Cmds), Sep)) of
     {error, Reason} -> {error, Reason};
-    {ok, Result}    -> {ok, filename:join(Result, Base)}
+    {ok, [Result]}  -> AbsDir = string:strip(Result, right, $\n),
+                       {ok, filename:join(AbsDir, filename:basename(File))};
+    {ok, Results}   -> {error, {excessive_results, {Results}}}
   end.
-  
-
+ 
 %%%
 % Exported utility functions
 %%%

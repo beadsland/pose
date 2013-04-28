@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.2
+%% @version 0.0.3
 -module(pose_os).
--version("0.0.2").
+-version("0.0.3").
 
 %%
 %% Include files
@@ -41,7 +41,13 @@
 %% Exported Functions
 %%
 
+% API entry points
+
 -export([get_temp_file/0, get_temp_dir/0, shell_exec/1]). 
+
+% Private exports
+
+-export([shell_loop/3, shell_loop/4]).
 
 %%
 %% API Functions
@@ -73,42 +79,77 @@ get_temp_dir([First | Rest]) ->
     Temp    -> Temp
   end.
 
-
-
+-type shell_error_term() :: string() | integer() | atom().
+-type shell_error_tuple() :: {shell_error_term(), 
+                              shell_error_term() | shell_error_tuple()}.
+-type shell_error() :: {error, string() | shell_error_tuple()}.
+-spec shell_exec(Command :: string()) -> {ok, string()} | shell_error(). 
+%% @doc Execute a command in operating system shell, capturing stdout and 
+%% stderr independently.
+%% @end
 shell_exec(Command) -> shell_exec(Command, os:type()). 
 
+% Stop cygwin from nagging, and identify operation system specific shell.
 shell_exec(Command, {win32, _}) -> 
   Cygset = sets:from_list(string:tokens(os:getenv("CYGWIN"), " ")),
   Cygadd = sets:add_element("nodosfilewarning", Cygset),
   Cygwin = string:join(sets:to_list(Cygadd), " "),
-  os:putenv("CYGWIN", Cygwin),  % Keep Cygwin quiet about DOS paths.
+  os:putenv("CYGWIN", Cygwin),
   shell_exec(Command, pose_file:trim(os:cmd("echo %ComSpec%")), "/C");
 shell_exec(Command, {unix, _}) -> shell_exec(Command, "/bin/sh", "-c").
 
-shell_exec(Sequence, Shell, COpt) ->
+% Configure and spawn shell process.
+shell_exec(Command, Shell, COpt) ->
   Temp = filename:join(get_temp_dir(), get_temp_file()),
-  Command = io_lib:format("~s > ~s", [Sequence, Temp]),
-  ?DEBUG("~s~n", [Command]),
-  Args = {args, [io_lib:format("~s \"~s\"", [COpt, Command])]},
+  RedirCmd = io_lib:format("~s > ~s", [Command, Temp]),
+  Args = {args, [io_lib:format("~s \"~s\"", [COpt, RedirCmd])]},
   Options = [exit_status, Args, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   shell_loop(Port, Temp, []).
 
-% Loop through error output, and read in input following exit.
+% Loop through error output until shell finishes.    
 shell_loop(Port, Temp, Errors) ->
   receive
     {Port, {data, [First | Rest]}}                      ->
       Line = [string:to_lower(First) | Rest],
       CleanLine = string:strip(pose_file:trim(Line), right, $.),
-      NewErrors = [CleanLine | Errors],
-      shell_loop(Port, Temp, NewErrors);
+      shell_loop(Port, Temp, [CleanLine | Errors]);
     {Port, {exit_status, 0}} when Errors==[]            ->
-      {ok, pose_file:trim(os:cmd("cat " ++ Temp))};
+      ReadPid = pose_open:read(Temp),
+      ?CAPTLN(ReadPid),
+      shell_loop(Port, Temp, ReadPid, []);
     {Port, {exit_status, 0}}                            ->
       {error, tuple_nest(Errors)};
+    {Port, {exit_status, N}} when Errors==[]            ->
+      {error, {exit_status, N}};
     {Port, {exit_status, N}}                            ->
-      {error, {exit_status, {N, tuple_nest(Errors)}}}
+      {error, {exit_status, {N, tuple_nest(Errors)}}};
+    Noise                                               ->
+      ?DEBUG("noise: ~p~n", [Noise]),
+      ?MODULE:shell_loop(Port, Temp, Errors)
   end.
+
+% Loop through standard output, clean up temporary file, and return result.
+shell_loop(Port, Temp, ReadPid, Output) ->
+  receive
+    {'EXIT', Port, normal}      ->
+      shell_loop(Port, Temp, ReadPid, Output);
+    {'EXIT', ReadPid, Reason}   -> 
+      case file:delete(Temp) of
+        {error, Reason} -> {error, {delete, {Temp, Reason}}};
+        ok              -> {ok, lists:reverse(Output)}
+      end;
+    {stdout, ReadPid, Line}     -> 
+      ?CAPTLN(ReadPid),
+      shell_loop(Port, Temp, ReadPid, [Line | Output]);
+    Noise                       ->
+      ?DEBUG("noise: ~p~n", [Noise]),
+      ?MODULE:shell_loop(Port, Temp, ReadPid, Output)      
+  end.
+  
+%%
+%% Local Functions
+%%
 
 tuple_nest([First | []]) -> First;
 tuple_nest([First | Rest]) -> {First, tuple_nest(Rest)}.
