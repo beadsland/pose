@@ -1,3 +1,4 @@
+@todo bootstrap debug enable
 @todo realpath: functional rewrite
 @todo realpath: error handling
 @todo remove FILENAME macro
