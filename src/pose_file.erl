@@ -28,9 +28,9 @@
 
 %% @todo spec API functions
 
-%% @version 0.1.5
+%% @version 0.1.6
 -module(pose_file).
--version("0.1.5").
+-version("0.1.6").
 
 %%
 %% Include files
@@ -38,7 +38,7 @@
 
 -include_lib("kernel/include/file.hrl").
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -53,7 +53,7 @@
 -export([get_temp_file/0, get_temp_dir/0, find_parallel_folder/3]).
 
 % Canonical paths
--export([realname/2, realname/3]).
+-export([realname/1, realname/2]).
 
 % Utility functions
 -export([trim/1]).
@@ -159,8 +159,8 @@ find_parallel_folder(OldFldr, NewFldr, OldDir) when is_list(OldDir) ->
 find_parallel_folder(OldFldr, NewFldr, {folders, [Head | []]}) ->
   if Head == OldFldr -> {true, NewFldr}; true -> {false, Head} end;
 find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
-  ?DEBUG("~s(~p, ~p, {folders, [~p | Tail]})~n",
-         [?MODULE, OldFldr, NewFldr, Head]),
+%  ?DEBUG("~s(~p, ~p, {folders, [~p | Tail]})~n",
+%         [?MODULE, OldFldr, NewFldr, Head]),
   case find_parallel_folder(OldFldr, NewFldr, {folders, Tail}) of
     {true, NewDir}                          ->
       {true, lists:append([Head, "/", NewDir])};
@@ -174,76 +174,92 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
 % Canonical paths
 %%%
 
--spec realname(IO :: #std{}, File :: path_string()) -> path_string().
+-spec realname(File :: filename()) -> path_string().
 %% @doc Ascend absolute directory path of file relative to current working
 %% directory, to obtain its canonical system path.
 %% @end
-realname(IO, File) ->
+realname(File) ->
   case file:get_cwd() of 
     {error, Reason} -> {error, {cwd, Reason}};
-    {ok, Dir}       -> realname(IO, File, Dir)
+    {ok, Dir}       -> realname(File, Dir)
   end.
 
--spec realname(IO :: #std{}, File :: path_string(), Dir :: folder()) -> 
-                                                                path_string().
+-type exit_status() :: integer().
+-type realname_error() :: {error, {exit_status(), [string()]}}.
+-type realname_result() :: path_string() | realname_error().
+-spec realname(File :: filename(), Dir :: filename()) -> realname_result().
 %% @doc Ascend absolute directory path of a file relative to a directory, 
 %% to obtain its canonical system path.
 %% @end
-realname(IO, File, Dir) ->
-  AbsFile = filename:absname(File, Dir),
-  AbsDir = filename:dirname(AbsFile),
-  {_PathSep, CmdSep, Pwd} = os_syntax(),
-  [First | Rest] = string:tokens(AbsDir, "/\\"),
-  case First of
-    []  -> [Second | [Third | [Fourth | Remain]]] = Rest,
-           case Second of
-             []   -> Format = "pushd \\\\~s\\~s & cd \\",                % UNC
-                     Pushd = io_lib:format(Format, [Third, Fourth]),
-                     Path = Remain;
-             _    -> Pushd = "cd \\",                                    % UNIX
-                     Path = Rest            
-           end;
-    _   -> Pushd = io_lib:format("pushd ~s & cd /", [First]),            % Win32
-           Path = Rest
+realname(File, Dir) -> 
+  AbsFile = filename:absname(File, Dir), 
+  if is_binary(AbsFile) -> Result = do_realname(binary_to_list(AbsFile));
+     true               -> Result = do_realname(lists:flatten(AbsFile))
   end,
-  case os:type() of
-    {win32, _}  -> Shell = trim(os:cmd("echo %ComSpec%")), COpt = "/C";
-    {unix, _}   -> Shell = "/bin/sh", COpt = "-c"
-  end,
-   
-  Temp = filename:join(get_temp_dir(), get_temp_file()),
-  CdSeq = [io_lib:format("cd ~s", [X]) || X <- Path],  
-  CdCmd = [io_lib:format("~s ~s ", [X, CmdSep]) || X <- [Pushd | CdSeq]],
-  Cmd = io_lib:format("~s ~s > ~s", [CdCmd, Pwd, Temp]),
+  Result.
+
+% Determine type of operating system and tokenize path.
+do_realname(File) -> 
+  {OS, _} = os:type(),
+  [_Last | RevPath] = lists:reverse(string:tokens(File, "\\/")),
+  do_realname(File, OS, lists:reverse(RevPath)).
+
+% Work out first commands for UNC and Win32 drive paths.
+do_realname([F | [S | Rest]], win32, [Server | [Share | Path]]) 
+                                                when F == "\\", S == "\\" ->
+  Unc = io_lib:format("\\\\~s\\~s", [Server, Share]),
+  Real = do_realname([F | [S | Rest]], win32, [Unc | Path]),
+  re:replace(Real, "^[a-zA-Z]:", Unc);
+do_realname(File, win32, [Drive | Path]) ->
+  Cmd = io_lib:format("pushd ~s & cd \\", [Drive]),
+  do_realname(File, win32, Path, [Cmd]);
+do_realname(File, unix, Path) -> do_realname(File, unix, Path, []).
+
+% Generate command sequence, and specify shell specifics.
+% @todo Rewrite this to write commands to a batch/shell script file.
+do_realname(File, win32, [], Cmds) ->
+  Shell = trim(os:cmd("echo %ComSpec%")), COpt = "/C", Sep = " & ",
 
   Cygset = sets:from_list(string:tokens(os:getenv("CYGWIN"), " ")),
   Cygadd = sets:add_element("nodosfilewarning", Cygset),
   Cygwin = string:join(sets:to_list(Cygadd), " "),  
   os:putenv("CYGWIN", Cygwin),
   
-  Args = {args, [io_lib:format("~s \"~s\"", [COpt, Cmd])]},
-  Port = open_port({spawn_executable, Shell}, [exit_status, Args, hide,
-                                               stderr_to_stdout]),
-  realname_loop(IO, Port, Temp, File, false).
+  do_realname(File, win32, [], ["chdir " | Cmds], Shell, COpt, Sep); 
+  % Trailing space required by windows shell in order to get a `pwd' result.
+do_realname(File, unix, [], Cmds) ->
+  Shell = "/bin/sh", COpt = "-c", Sep = " ; ",
+  do_realname(File, unix, [], ["pwd" | Cmds], Shell, COpt, Sep);
+do_realname(File, OS, [Folder | Path], Cmds) ->
+  Cmd = io_lib:format("cd ~s", [Folder]),
+  do_realname(File, OS, Path, [Cmd | Cmds]). 
+ 
+% Assemble and execute commands.
+do_realname(File, _OS, _, Cmds, Shell, COpt, Sep) ->
+  Sequence = string:join(lists:reverse(Cmds), Sep),
+  Temp = filename:join(get_temp_dir(), get_temp_file()),
+  Command = io_lib:format("~s > ~s", [Sequence, Temp]),
+  Args = {args, [io_lib:format("~s \"~s\"", [COpt, Command])]},
+  Options = [exit_status, Args, hide, stderr_to_stdout],
+  Port = open_port({spawn_executable, Shell}, Options),
+  realname_loop(Port, Temp, File, false, []).
 
-realname_loop(IO, Port, Temp, File, DirInvBool) ->
+% Loop through error output, and read in input following exit.
+realname_loop(Port, Temp, File, DirInvBool, Errors) ->
   DirInvStr = "The directory name is invalid.\r\n",
   receive
-    {Port, {data, DirInvStr}} when DirInvBool==false    ->
-      realname_loop(IO, Port, Temp, File, true);
     {Port, {data, Line}}                                ->
-      ?STDERR({realname, pose_file:trim(Line)}),
-      realname_loop(IO, Port, Temp, File, DirInvBool);
-    {Port, {exit_status, 0}}                            ->
+      NewErrors = [pose_file:trim(Line) | Errors],
+      realname_loop(Port, Temp, File, DirInvBool, NewErrors);
+    {Port, {exit_status, 0}} when Errors==[]            ->
       Cat = pose_file:trim(os:cmd("cat " ++ Temp)),
-      filename:join(Cat, filename:basename(File));
+      {ok, filename:join(Cat, filename:basename(File))};    
+    {Port, {exit_status, 0}}                            ->
+      {error, {0, lists:reverse(Errors)}};
+    {Port, {exit_status, N}} when DirInvBool            ->
+      {error, {N, [pose_file:trim(DirInvStr) | lists:reverse(Errors)]}};
     {Port, {exit_status, N}}                            ->
-      if DirInvBool -> 
-           Status = {N, io_lib:format("(also ~s)", pose_file:trim(DirInvStr))};
-         true -> 
-           Status = N
-      end,
-      exit({realname, {exit_status, Status}})
+      {error, {N, lists:reverse(Errors)}}
   end.
 
 %%%
@@ -266,10 +282,3 @@ trim(String, forward) -> trim(lists:reverse(String), backward).
 %%
 %% Local Functions
 %%
-
-os_syntax() ->
-  case os:type() of
-    {unix, _}   -> {"/", ";", "pwd"}; 
-    {win32, _}  -> {"\\", "&", "chdir "}; % not recognized unless trailing space 
-    OS          -> exit({'unknown os', OS})
-  end.
