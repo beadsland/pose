@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">bootstrap debug enable
-</font>
 * <font color="red">realpath: functional rewrite
 </font>
 * <font color="red">realpath: error handling
