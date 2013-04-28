@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realpath: standardize slashes
-</font>
 * <font color="red">realpath: abspath supporting unc
 </font>
 * <font color="red">realpath: use new abspath
@@ -33,6 +31,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">make good
 </font>
+* <font color="red">resume work on 2do_go4</font>
 
 
 This is the POSIX-like interface emulation for use with the
