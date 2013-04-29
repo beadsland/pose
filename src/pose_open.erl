@@ -110,6 +110,8 @@ loop(IO, Device, Access) ->
       do_exit(IO, Device, Access, ExitPid, Reason);
     {stdin, Stdout, captln} when R, Stdout == IO#std.out	->
       do_readln(IO, Device, Access);
+    {stdout, Stdin, eof} when W, Stdin == IO#std.in         ->
+      do_close(Device, Access);      
     {stdout, Stdin, Line} when W, Stdin == IO#std.in		->
       do_writeln(IO, Device, Access, Line);
     Noise													->
@@ -118,8 +120,20 @@ loop(IO, Device, Access) ->
 
 do_readln(IO, Device, Access) ->
   case io:get_line(Device, "") of
-    eof		-> file:close(Device), ok;
+    eof		-> ?STDOUT(eof), do_close(Device, Access);
     Line	-> ?STDOUT(Line), ?MODULE:loop(IO, Device, Access)
+  end.
+
+do_close(Device, {_R, W, _D}) ->
+  case file:close(Device) of
+    {error, enospc} when W  -> do_close(Device, enospc);
+    {error, Reason}         -> {error, {close, Reason}};
+    ok                      -> ok
+  end;
+do_close(Device, enospc) ->
+  case file:close(Device) of
+    {error, Reason} -> {error, {writer_close, {Reason, enospc}}};
+    ok              -> {error, {writer, enospc}}
   end.
 
 do_writeln(IO, Device, {R, W, true}, Line) ->
@@ -142,5 +156,5 @@ do_exit(IO, Device, {R, W, D}, ExitPid, Reason) ->
   end.
 
 do_noise(IO, Device, Access, Noise) ->
-  ?STDERR("noise: ~p~n", [Noise]),
+  ?STDERR("~s: noise: ~p~n", [?MODULE, Noise]),
   ?MODULE:loop(IO, Device, Access).

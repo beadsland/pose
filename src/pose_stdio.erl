@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.2.2
+%% @version 0.2.3
 -module(pose_stdio).
--version("0.2.2").
+-version("0.2.3").
 
 %%
 %% Include files
@@ -119,7 +119,7 @@ format_erlerr(What) ->
     {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
       String = format_erlerr_trace(Atom, [], [Head | Tail]);
     {Atom, Data} when is_atom(Atom)                             ->
-      List = format_erlerr_else(Atom),
+      List = format_erlerr_file(Atom),
       String = io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
     Atom when is_atom(Atom)										->
       String = format_erlerr_file(Atom);
@@ -163,7 +163,8 @@ format_erlerr_else(What) ->
 % Send output as #std IO message.
 send(_IO, Output, OutPid, Stdout, Erlout) ->
   IsString = is_string(Output),
-  if IsString           -> OutPid ! {Stdout, self(), Output};
+  if IsString;
+     Output == eof      -> OutPid ! {Stdout, self(), Output};
      is_tuple(Output);
      is_atom(Output)    -> OutPid ! {Erlout, self(), Output};
      true               -> String = safe_format("~p", [Output]),

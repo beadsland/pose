@@ -150,28 +150,39 @@ shell_loop(Port, Temp, Errors) ->
     {Port, {exit_status, N}}                            ->
       {error, {exit_status, {N, tuple_nest(Errors)}}};
     Noise                                               ->
-      ?DEBUG("noise: ~p~n", [Noise]),
+      ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
       ?MODULE:shell_loop(Port, Temp, Errors)
   end.
 
 % Loop through standard output, clean up temporary file, and return result.
 shell_loop(Port, Temp, ReadPid, Output) ->
   receive
-    {'EXIT', Port, normal}      ->
+    {'EXIT', Port, normal}              ->
+      % Left over from first shell_loop.
       shell_loop(Port, Temp, ReadPid, Output);
-    {'EXIT', ReadPid, Reason}   -> 
-      case file:delete(Temp) of
-        {error, Reason} -> {error, {delete, {Temp, Reason}}};
-        ok              -> {ok, lists:reverse(Output)}
-      end;
-    {stdout, ReadPid, Line}     -> 
+    {'EXIT', ReadPid, Result}           ->
+      do_shell_exit(Temp, Result, Output);
+    {stdout, ReadPid, eof}              ->
+      shell_loop(Port, Temp, ReadPid, Output); % now wait for EXIT
+    {stdout, ReadPid, Line}             -> 
       ?CAPTLN(ReadPid),
       shell_loop(Port, Temp, ReadPid, [Line | Output]);
-    Noise                       ->
-      ?DEBUG("noise: ~p~n", [Noise]),
+    Noise                               ->
+      ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
       ?MODULE:shell_loop(Port, Temp, ReadPid, Output)      
   end.
-  
+
+do_shell_exit(Temp, ok, Output) ->
+  case file:delete(Temp) of
+    {error, Reason} -> {error, {temp_file, {delete, Reason}}};
+    ok              -> {ok, lists:reverse(Output)}
+  end;
+do_shell_exit(Temp, {error, ExitReason}, _Output) ->
+  case file:delete(Temp) of
+    {error, Reason} -> {error, {temp_file, {delete, {Reason, ExitReason}}}};
+    ok              -> {error, {temp_file, ExitReason}}
+  end.
+
 %%
 %% Local Functions
 %%
