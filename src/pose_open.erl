@@ -29,11 +29,11 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
  
-%% @version 0.0.4
+%% @version 0.0.5
 
 -module(pose_open).
 
--version("0.0.4").
+-version("0.0.5").
 
 %%
 %% Include files
@@ -118,12 +118,27 @@ loop(IO, Device, Access) ->
       do_noise(IO, Device, Access, Noise)
   end.
 
+% Read a line of text from file (triggered by captln).
 do_readln(IO, Device, Access) ->
   case io:get_line(Device, "") of
     eof		-> ?STDOUT(eof), do_close(Device, Access);
     Line	-> ?STDOUT(Line), ?MODULE:loop(IO, Device, Access)
   end.
 
+% Write a line of text to file, fixing eol if necessary.
+do_writeln(IO, Device, {R, W, D}, Line) when D ->
+  Opts = [global, {return, list}],
+  % better replace
+  Output = re:replace(re:replace(Line, "\n\r", "\n", Opts), "\n", "\n\r", Opts),
+  % check for errors
+  file:write(Device, Output),
+  ?MODULE:loop(IO, Device, {R, W, true});
+do_writeln(IO, Device, Access, Line) ->
+  % same check for errors
+  file:write(Device, Line), 
+  ?MODULE:loop(IO, Device, Access).
+
+% Close file, reporting any delayed write errors and/or errors in file close.
 do_close(Device, {_R, W, _D}) ->
   case file:close(Device) of
     {error, enospc} when W  -> do_close(Device, enospc);
@@ -136,25 +151,18 @@ do_close(Device, enospc) ->
     ok              -> {error, {writer, enospc}}
   end.
 
-do_writeln(IO, Device, {R, W, true}, Line) ->
-  Opts = [global, {return, list}],
-  % better replace
-  Output = re:replace(re:replace(Line, "\n\r", "\n", Opts), "\n", "\n\r", Opts),
-  % check for errors
-  file:write(Device, Output),
-  ?MODULE:loop(IO, Device, {R, W, true});
-do_writeln(IO, Device, Access, Line) ->
-  % same check for errors
-  file:write(Device, Line), 
-  ?MODULE:loop(IO, Device, Access).
-
-do_exit(IO, Device, {R, W, D}, ExitPid, Reason) ->
+% Handle exit messages, closing file if connected stdin or stdout process exits.
+do_exit(IO, Device, Access, ExitPid, Reason) ->
+  {R, W, _D} = Access, 
   case ExitPid of
-    Stdout when R, Stdout == IO#std.out	-> ?DEBUG("reader: ~p~n", [Reason]), ok;
-    Stdin when W, Stdin == IO#std.in	-> ?DEBUG("writer: ~p~n", [Reason]), ok;
-    _ 									-> ?MODULE:loop(IO, Device, {R, W, D})
+    Stdout when R, Stdout == IO#std.out	-> ?DEBUG("reader: ~p~n", [Reason]),
+                                           do_close(Device, Access);
+    Stdin when W, Stdin == IO#std.in	-> ?DEBUG("writer: ~p~n", [Reason]),
+                                           do_close(Device, Access);
+    _ 									-> ?MODULE:loop(IO, Device, Access)
   end.
 
+% Handle noise in the message queue.
 do_noise(IO, Device, Access, Noise) ->
   ?STDERR("~s: noise: ~p~n", [?MODULE, Noise]),
   ?MODULE:loop(IO, Device, Access).
