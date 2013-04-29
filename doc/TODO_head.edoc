@@ -1,3 +1,4 @@
+@todo eliminate unneeded noise
 @todo pose_open: eof message for writer
 @todo pose_open: better writer
 @todo realpath: command stream as batch script

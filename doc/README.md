@@ -19,6 +19,8 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">eliminate unneeded noise
+</font>
 * <font color="red">pose_open: eof message for writer
 </font>
 * <font color="red">pose_open: better writer
