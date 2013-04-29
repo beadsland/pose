@@ -52,7 +52,7 @@
 %%
 
 % API entry points
--export([read/1, read/2, write/1, write/2, open/2]).
+-export([reader/1, reader/2, writer/1, writer/2, file/2]).
 
 % private exports
 -export([loop/3, run/3]).
@@ -65,20 +65,20 @@
 -type modes() :: [file:mode() | ram | dos].
 -type file_pid() :: pid().
 
--spec read(File :: filename()) -> file_pid().
-read(File) -> open(File, [read]).
+-spec reader(File :: filename()) -> file_pid().
+reader(File) -> file(File, [read]).
 
--spec read(File :: filename(), Modes :: modes()) -> file_pid().
-read(File, Modes) -> open(File, [read | Modes]).
+-spec reader(File :: filename(), Modes :: modes()) -> file_pid().
+reader(File, Modes) -> file(File, [read | Modes]).
 
--spec write(File :: filename()) -> file_pid().
-write(File) -> open(File, [write]).
+-spec writer(File :: filename()) -> file_pid().
+writer(File) -> file(File, [write]).
 
--spec write(File :: filename(), Modes :: modes()) -> file_pid().
-write(File, Modes) -> open(File, [write | Modes]).
+-spec writer(File :: filename(), Modes :: modes()) -> file_pid().
+writer(File, Modes) -> file(File, [write | Modes]).
 
--spec open(File :: filename(), Modes :: modes()) -> file_pid().
-open(File, Modes) -> spawn_link(?MODULE, run, [?IO(self()), File, Modes]).
+-spec file(File :: filename(), Modes :: modes()) -> file_pid().
+file(File, Modes) -> spawn_link(?MODULE, run, [?IO(self()), File, Modes]).
 
 %%
 %% Local Functions
@@ -124,11 +124,14 @@ do_readln(IO, Device, Access) ->
 
 do_writeln(IO, Device, {R, W, true}, Line) ->
   Opts = [global, {return, list}],
+  % better replace
   Output = re:replace(re:replace(Line, "\n\r", "\n", Opts), "\n", "\n\r", Opts),
-  io:format(Device, "~s", [Output]),
+  % check for errors
+  file:write(Device, Output),
   ?MODULE:loop(IO, Device, {R, W, true});
 do_writeln(IO, Device, Access, Line) ->
-  io:format(Device, "~s", [Line]), 
+  % same check for errors
+  file:write(Device, Line), 
   ?MODULE:loop(IO, Device, Access).
 
 do_exit(IO, Device, {R, W, D}, ExitPid, Reason) ->

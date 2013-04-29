@@ -140,7 +140,7 @@ shell_loop(Port, Temp, Errors) ->
       CleanLine = string:strip(pose_file:trim(Line), right, $.),
       shell_loop(Port, Temp, [CleanLine | Errors]);
     {Port, {exit_status, 0}} when Errors==[]            ->
-      ReadPid = pose_open:read(Temp),
+      ReadPid = pose_open:reader(Temp),
       ?CAPTLN(ReadPid),
       shell_loop(Port, Temp, ReadPid, []);
     {Port, {exit_status, 0}}                            ->
