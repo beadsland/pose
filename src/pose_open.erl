@@ -29,11 +29,11 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
  
-%% @version 0.0.3
+%% @version 0.0.4
 
 -module(pose_open).
 
--version("0.0.3").
+-version("0.0.4").
 
 %%
 %% Include files
@@ -52,7 +52,7 @@
 %%
 
 % API entry points
--export([read/1, open/2]).
+-export([read/1, read/2, write/1, write/2, open/2]).
 
 % private exports
 -export([loop/3, run/3]).
@@ -62,26 +62,36 @@
 %%
 
 -type filename() :: file:name_all() | iodata().
--type modes() :: file:mode() | ram.
+-type modes() :: [file:mode() | ram | dos].
 -type file_pid() :: pid().
 
 -spec read(File :: filename()) -> file_pid().
 read(File) -> open(File, [read]).
 
--spec open(File :: filename(), Mode :: modes()) -> file_pid().
-open(File, Mode) -> spawn_link(?MODULE, run, [?IO(self()), File, Mode]).
+-spec read(File :: filename(), Modes :: modes()) -> file_pid().
+read(File, Modes) -> open(File, [read | Modes]).
+
+-spec write(File :: filename()) -> file_pid().
+write(File) -> open(File, [write]).
+
+-spec write(File :: filename(), Modes :: modes()) -> file_pid().
+write(File, Modes) -> open(File, [write | Modes]).
+
+-spec open(File :: filename(), Modes :: modes()) -> file_pid().
+open(File, Modes) -> spawn_link(?MODULE, run, [?IO(self()), File, Modes]).
 
 %%
 %% Local Functions
 %%
 
 %@private callback function.
-run(IO, File, Mode)  ->
-  IsRead = lists:member(read, Mode),
-  IsWrite = lists:member(write, Mode),
-  case file:open(File, Mode) of
+run(IO, File, Modes)  ->
+  IsRead = lists:member(read, Modes),
+  IsWrite = lists:member(write, Modes),
+  IsDos = lists:member(dos, Modes),
+  case file:open(File, lists:delete(dos, Modes)) of
     {error, Reason} -> exit({error, {File, Reason}});
-    {ok, Device}	-> do_run(IO, File, Device, {IsRead, IsWrite})
+    {ok, Device}	-> do_run(IO, File, Device, {IsRead, IsWrite, IsDos})
   end.
 
 do_run(IO, File, Device, Access) ->
@@ -90,9 +100,9 @@ do_run(IO, File, Device, Access) ->
     ok              -> exit(ok)
   end.
 
-%%@private Export to allow for hotswap.
+%@private Export to allow for hotswap.
 loop(IO, Device, Access) ->
-  {R, _W} = Access,
+  {R, W, _D} = Access,
   receive
     {purging, _Pid, _Mod}									-> 
       ?MODULE:loop(IO, Device, Access);		% chase your tail
@@ -100,8 +110,8 @@ loop(IO, Device, Access) ->
       do_exit(IO, Device, Access, ExitPid, Reason);
     {stdin, Stdout, captln} when R, Stdout == IO#std.out	->
       do_readln(IO, Device, Access);
-%    {stdout, Stdin, Line} when W, Stdin == IO#std.in		->
-%      do_writeln(IO, Device, Access);
+    {stdout, Stdin, Line} when W, Stdin == IO#std.in		->
+      do_writeln(IO, Device, Access, Line);
     Noise													->
       do_noise(IO, Device, Access, Noise)
   end.
@@ -112,14 +122,20 @@ do_readln(IO, Device, Access) ->
     Line	-> ?STDOUT(Line), ?MODULE:loop(IO, Device, Access)
   end.
 
-do_exit(IO, Device, {R, W}, ExitPid, Reason) ->
+do_writeln(IO, Device, {R, W, true}, Line) ->
+  Opts = [global, {return, list}],
+  Output = re:replace(re:replace(Line, "\n\r", "\n", Opts), "\n", "\n\r", Opts),
+  io:format(Device, "~s", [Output]),
+  ?MODULE:loop(IO, Device, {R, W, true});
+do_writeln(IO, Device, Access, Line) ->
+  io:format(Device, "~s", [Line]), 
+  ?MODULE:loop(IO, Device, Access).
+
+do_exit(IO, Device, {R, W, D}, ExitPid, Reason) ->
   case ExitPid of
-    Stdout when R, Stdout == IO#std.out	->
-      ?DEBUG("reader: ~p~n", [Reason]), ok;
-    Stdin when W, Stdin == IO#std.in	->
-      ?DEBUG("writer: ~p~n", [Reason]), ok;
-    _ 									->
-      ?MODULE:loop(IO, Device, {R, W})
+    Stdout when R, Stdout == IO#std.out	-> ?DEBUG("reader: ~p~n", [Reason]), ok;
+    Stdin when W, Stdin == IO#std.in	-> ?DEBUG("writer: ~p~n", [Reason]), ok;
+    _ 									-> ?MODULE:loop(IO, Device, {R, W, D})
   end.
 
 do_noise(IO, Device, Access, Noise) ->
