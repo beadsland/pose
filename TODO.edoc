@@ -1,4 +1,6 @@
-@todo realpath: command stream as batch script
+@todo watch file until writing finished
+@todo tail file process
+@todo spawn_shell prototype
 @todo remove FILENAME macro
 @todo make good
 @todo resume work on 2do_go4

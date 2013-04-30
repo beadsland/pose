@@ -19,7 +19,11 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realpath: command stream as batch script
+* <font color="red">watch file until writing finished
+</font>
+* <font color="red">tail file process
+</font>
+* <font color="red">spawn_shell prototype
 </font>
 * <font color="red">remove FILENAME macro
 </font>
