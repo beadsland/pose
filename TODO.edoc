@@ -1,4 +1,5 @@
 @todo pose_open: better writer
+@todo error on exit before eof
 @todo realpath: command stream as batch script
 @todo remove FILENAME macro
 @todo make good
