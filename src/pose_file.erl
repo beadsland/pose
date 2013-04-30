@@ -45,7 +45,7 @@
 %%
 
 % File properties
--export([can_read/1, can_write/1, last_modified/1]).
+-export([can_read/1, can_write/1, last_modified/1, size/1]).
 
 % Build environment
 -export([find_parallel_folder/3]).
@@ -67,8 +67,9 @@
 %%%
 
 -type info_error_atom() :: file:posix() | badarg.
--type file_info_error() :: {file:name_all(), info_error_atom()}.
--type permissions_return() :: boolean() | {error, file_info_error()}.
+-type file_info_reason() :: {file:name_all(), info_error_atom()}.
+-type file_info_error() :: {error, file_info_reason()}.
+-type permissions_return() :: boolean() | file_info_error().
 -spec can_write(Filename :: file:name_all()) -> permissions_return().
 %% @doc Test if file or directory is writeable.
 can_write(Filename) ->
@@ -76,7 +77,7 @@ can_write(Filename) ->
     {ok, FileInfo}  -> can_write(Filename, FileInfo);
     {error, enoent} -> Dir = filename:dirname(Filename),
                        filelib:is_dir(Filename) andalso can_write(Dir);
-    {error, What}   -> {error, {Filename, What}}
+    {error, Reason} -> {error, {Filename, Reason}}
   end.
 
 can_write(_Filename, FileInfo) ->
@@ -92,7 +93,7 @@ can_read(Filename) ->
   case file:read_file_info(Filename) of
     {ok, FileInfo}  -> can_read(Filename, FileInfo);
     {error, enoent} -> false;
-    {error, What}   -> {error, {Filename, What}}
+    {error, Reason} -> {error, {Filename, Reason}}
   end.
 
 can_read(_Filename, FileInfo) ->
@@ -102,15 +103,26 @@ can_read(_Filename, FileInfo) ->
     _Else       -> false
   end.
 
--type date_time() :: calendar:date_time().
--type datestamp_return() :: {ok, date_time()} | {error, file_info_error()}.
+-type datestamp_value() :: calendar:date_time() | nofile.
+-type datestamp_return() :: {ok, datestamp_value()} | file_info_error().
 -spec last_modified(Filename :: file:name_all()) -> datestamp_return().
 %% @doc Get last date and time file last modified.
 last_modified(Filename) ->
   case file:read_file_info(Filename) of
     {ok, FileInfo}  -> {ok, FileInfo#file_info.mtime};
     {error, enoent} -> {ok, nofile};
-    {error, What}   -> {error, {Filename, What}}
+    {error, Reason} -> {error, {Filename, Reason}}
+  end.
+
+-type size_value() :: integer() | nofile.
+-type size_return() :: {ok, size_value()} | file_info_error().
+-spec size(Filename :: file:name_all()) -> size_return().
+%% @doc Get current size of file.
+size(Filename) -> 
+  case file:read_file_info(Filename) of
+    {ok, FileInfo}  -> {ok, FileInfo#file_info.size};
+    {error, enoent} -> {ok, nofile};
+    {error, Reason} -> {error, {Filename, Reason}}
   end.
 
 %%%
