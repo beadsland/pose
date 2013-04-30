@@ -1,8 +1,7 @@
-@todo can_write only if directory exists
-@todo file:size()
 @todo watch file until writing finished
 @todo tail file process
 @todo refactor pose_os:spawn_shell to pose_shell:spawn
 @todo spawn_shell prototype
 @todo remove FILENAME macro
-@todo ...plus 1 more (see TODO.edoc)
+@todo make good
+@todo resume work on 2do_go4
