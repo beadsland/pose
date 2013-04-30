@@ -127,16 +127,23 @@ do_readln(IO, Device, Access) ->
 
 % Write a line of text to file, fixing eol if necessary.
 do_writeln(IO, Device, {R, W, D}, Line) when D ->
-  Opts = [global, {return, list}],
-  % better replace
-  Output = re:replace(re:replace(Line, "\n\r", "\n", Opts), "\n", "\n\r", Opts),
-  % check for errors
-  file:write(Device, Output),
-  ?MODULE:loop(IO, Device, {R, W, true});
-do_writeln(IO, Device, Access, Line) ->
-  % same check for errors
-  file:write(Device, Line), 
-  ?MODULE:loop(IO, Device, Access).
+  do_writeln(IO, Device, {R, W, D}, unix_to_dos(Line), dowrite);
+do_writeln(IO, Device, Access, Line) -> 
+  do_writeln(IO, Device, Access, Line, dowrite).
+
+do_writeln(IO, Device, Access, Line, dowrite) ->
+  case file:write(Device, Line) of
+    {error, Reason} -> {error, {writer, Reason}};
+    ok              -> ?MODULE:loop(IO, Device, Access)
+  end.
+
+% Swap unix single-character eol for dos double-character eol.
+unix_to_dos(Line) -> unix_to_dos(lists:flatten(Line), []).
+
+unix_to_dos([], Part) -> lists:reverse(Part);
+unix_to_dos([$\r | [$\n | Rest]], Part) -> unix_to_dos(Rest, ["\r\n" | Part]);
+unix_to_dos([$\n | Rest], Part) -> unix_to_dos(Rest, ["\r\n" | Part]);
+unix_to_dos([Next | Rest], Part) -> unix_to_dos(Rest, [Next | Part]).
 
 % Close file, reporting any delayed write errors and/or errors in file close.
 do_close(Device, {_R, W, _D}) ->
