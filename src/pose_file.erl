@@ -74,7 +74,8 @@
 can_write(Filename) ->
   case file:read_file_info(Filename) of
     {ok, FileInfo}  -> can_write(Filename, FileInfo);
-    {error, enoent} -> can_write(filename:dirname(Filename));
+    {error, enoent} -> Dir = filename:dirname(Filename),
+                       filelib:is_dir(Filename) andalso can_write(Dir);
     {error, What}   -> {error, {Filename, What}}
   end.
 
