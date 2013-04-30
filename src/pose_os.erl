@@ -49,6 +49,11 @@
 
 -export([shell_loop/3, shell_loop/4]).
 
+
+% Prototype functions
+
+-export([spawn_shell/0, send_command/2, shell_run/1, shell_run_loop/3]).
+
 %%
 %% API Functions
 %%
@@ -98,7 +103,7 @@ get_temp_dir([First | Rest]) ->
 %%%
 % Execution of commands under OS shell
 %%%
-
+  
 -type shell_error_term() :: string() | integer() | atom().
 -type shell_error_tuple() :: {shell_error_term(), 
                               shell_error_term() | shell_error_tuple()}.
@@ -109,28 +114,87 @@ get_temp_dir([First | Rest]) ->
 %% @end
 shell_exec(Command) -> shell_exec(Command, os:type()). 
 
-% Stop cygwin from nagging, and identify operation system specific shell.
+% Configure for operation system specific shell.
 shell_exec(Command, {win32, _}) -> 
-  Cygset = sets:from_list(string:tokens(os:getenv("CYGWIN"), " ")),
-  Cygadd = sets:add_element("nodosfilewarning", Cygset),
-  Cygwin = string:join(sets:to_list(Cygadd), " "),
-  os:putenv("CYGWIN", Cygwin),
+  cygwin_nodosfilewarning(),
   shell_exec(Command, pose_file:trim(os:cmd("echo %ComSpec%")), "/C");
 shell_exec(Command, {unix, _}) -> shell_exec(Command, "/bin/sh", "-c").
-
-% Configure and spawn shell process.
+  
+% Get temp file for capturing stdout.
 shell_exec(Command, Shell, COpt) ->
   case get_temp_file() of
     {error, Reason} -> {error, {temp_file, Reason}};
     {ok, Temp}      -> shell_exec(Command, Shell, COpt, Temp)
   end.
 
+% Open port to shell executing specified command.
 shell_exec(Command, Shell, COpt, Temp) ->
   RedirCmd = io_lib:format("~s > ~s", [Command, Temp]),
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, RedirCmd])]},
   Options = [exit_status, Args, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   shell_loop(Port, Temp, []).
+
+%%%
+% Prototype multi-command shell process.
+%%%
+
+% @private Not yet supported.
+spawn_shell() -> spawn_link(?MODULE, shell_run, [self()]).
+
+% @private Internal callback.
+shell_run(Caller) -> {OS, _} = os:type(), shell_run(Caller, OS).
+
+shell_run(Caller, win32) -> 
+  cygwin_nodosfilewarning(),
+  shell_run(Caller, win32, pose_file:trim(os:cmd("echo %ComSpec%")));
+shell_run(Caller, unix) -> shell_exec(Caller, unix, "/bin/sh").
+
+shell_run(Caller, OS, Shell) ->
+  Options = [exit_status, hide, stderr_to_stdout],
+  Port = open_port({spawn_executable, Shell}, Options),
+  case shell_run_loop(Caller, OS, Port) of
+    {error, Reason} -> exit({error, {shell, Reason}});
+    ok              -> exit(ok)
+  end.
+
+% @private Not yet supported.
+send_command(ShellPid, Command) -> ShellPid ! {command, self(), Command}.
+
+do_command(Caller, OS, Port, Command) ->
+  case get_temp_file() of
+    {error, Reason} -> {error, {temp_file, Reason}};
+    {ok, Temp}      -> do_command(Caller, OS, Port, Command, Temp)
+  end.
+
+do_command(Caller, unix, Port, Command, Temp) ->
+  do_command(Caller, unix, Port, Command, Temp, "\n");
+do_command(Caller, win32, Port, Command, Temp) ->
+  do_command(Caller, win32, Port, Command, Temp, "\r\n").
+
+do_command(Caller, OS, Port, Command, Temp, Eol) ->
+  Strip = string:strip(Command, right, $\n),
+  RedirCmd = io_lib:format("~s > ~s~s", [Strip, Temp, Eol]),
+  Port ! {self(), {command, RedirCmd}},
+  shell_run_loop(Caller, OS, Port).
+
+%hmm... how to determine command has run its course...?
+
+% @private Internal loop.
+shell_run_loop(Caller, OS, Port) ->
+  receive
+    {Port, {exit_status, N}}    -> do_port_exit(N);
+    {command, Caller, Command}  -> do_command(Caller, OS, Port, Command);
+    Noise                       -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
+                                   ?MODULE:shell_run_loop(Caller, OS, Port)
+  end.
+
+do_port_exit(0) -> ok;
+do_port_exit(N) -> {error, {exit_status, N}}.
+  
+%%
+%% Local Functions
+%%
 
 % Loop through error output until shell finishes.    
 shell_loop(Port, Temp, Errors) ->
@@ -183,9 +247,13 @@ do_shell_exit(Temp, {error, ExitReason}, _Output) ->
     ok              -> {error, {temp_file, ExitReason}}
   end.
 
-%%
-%% Local Functions
-%%
+% Stop cygwin from nagging.
+cygwin_nodosfilewarning() ->
+  Cygset = sets:from_list(string:tokens(os:getenv("CYGWIN"), " ")),
+  Cygadd = sets:add_element("nodosfilewarning", Cygset),
+  Cygwin = string:join(sets:to_list(Cygadd), " "),
+  os:putenv("CYGWIN", Cygwin).
 
+% Translate a list into a nested 2-tuples.
 tuple_nest([First | []]) -> First;
 tuple_nest([First | Rest]) -> {First, tuple_nest(Rest)}.
