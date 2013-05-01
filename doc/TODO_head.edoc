@@ -1,8 +1,8 @@
-@todo pose_shell: capture exit status per command
 @todo pose_shell: incorporate pose_shout
+@todo pose_shell: command.com errorlevel
+@todo pose_shell: cmd.exe %errorlevel%
+@todo pose_shell: /bin/sh $?
 @todo pose_shell: fully test
 @todo realname: use pose_shell
 @todo realname: use cwd
-@todo remove FILENAME macro
-@todo make good
-@todo ...plus 1 more (see TODO.edoc)
+@todo ...plus 3 more (see TODO.edoc)
