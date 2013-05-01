@@ -49,11 +49,6 @@
 
 -export([shell_loop/3, shell_loop/4]).
 
-
-% Prototype functions
-
--export([spawn_shell/0, send_command/2, shell_run/1, shell_run_loop/3]).
-
 %%
 %% API Functions
 %%
@@ -134,63 +129,6 @@ shell_exec(Command, Shell, COpt, Temp) ->
   Options = [exit_status, Args, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   shell_loop(Port, Temp, []).
-
-%%%
-% Prototype multi-command shell process.
-%%%
-
-% @private Not yet supported.
-spawn_shell() -> spawn_link(?MODULE, shell_run, [self()]).
-
-% @private Internal callback.
-shell_run(Caller) -> {OS, _} = os:type(), shell_run(Caller, OS).
-
-shell_run(Caller, win32) -> 
-  cygwin_nodosfilewarning(),
-  shell_run(Caller, win32, pose_file:trim(os:cmd("echo %ComSpec%")));
-shell_run(Caller, unix) -> shell_exec(Caller, unix, "/bin/sh").
-
-shell_run(Caller, OS, Shell) ->
-  Options = [exit_status, hide, stderr_to_stdout],
-  Port = open_port({spawn_executable, Shell}, Options),
-  case shell_run_loop(Caller, OS, Port) of
-    {error, Reason} -> exit({error, {shell, Reason}});
-    ok              -> exit(ok)
-  end.
-
-% @private Not yet supported.
-send_command(ShellPid, Command) -> ShellPid ! {command, self(), Command}.
-
-do_command(Caller, OS, Port, Command) ->
-  case get_temp_file() of
-    {error, Reason} -> {error, {temp_file, Reason}};
-    {ok, Temp}      -> do_command(Caller, OS, Port, Command, Temp)
-  end.
-
-do_command(Caller, unix, Port, Command, Temp) ->
-  do_command(Caller, unix, Port, Command, Temp, "\n");
-do_command(Caller, win32, Port, Command, Temp) ->
-  do_command(Caller, win32, Port, Command, Temp, "\r\n").
-
-do_command(Caller, OS, Port, Command, Temp, Eol) ->
-  Strip = string:strip(Command, right, $\n),
-  RedirCmd = io_lib:format("~s > ~s~s", [Strip, Temp, Eol]),
-  Port ! {self(), {command, RedirCmd}},
-  shell_run_loop(Caller, OS, Port).
-
-%hmm... how to determine command has run its course...?
-
-% @private Internal loop.
-shell_run_loop(Caller, OS, Port) ->
-  receive
-    {Port, {exit_status, N}}    -> do_port_exit(N);
-    {command, Caller, Command}  -> do_command(Caller, OS, Port, Command);
-    Noise                       -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
-                                   ?MODULE:shell_run_loop(Caller, OS, Port)
-  end.
-
-do_port_exit(0) -> ok;
-do_port_exit(N) -> {error, {exit_status, N}}.
   
 %%
 %% Local Functions
