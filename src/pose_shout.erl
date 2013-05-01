@@ -25,6 +25,9 @@
 %% @doc Watch for the creation of a text file, tail it until its associated 
 %% lock file has been removed, and then exit.  Used by {@link pose_shell} to 
 %% receive the `stdout' of a shell command.
+%%
+%% Note: Code is not Unicode safe. Assumes all shell commands produce `latin1'
+%% output.
 %% @end
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
@@ -63,7 +66,8 @@ monitor(File) -> spawn_link(?MODULE, run, [?IO(self()), File]).
 %%
 
 % @private callback function
-run(IO, File) -> 
+run(IO, File) ->
+  ENV = ?ENV, ?INIT_POSE,
   case loop(IO, File) of
     {error, Reason} -> exit({error, {filename:basename(File), Reason}});
     ok              -> exit(ok)
@@ -98,24 +102,35 @@ loop(IO, File, Handle, Chars, Size) ->
   end.
 
 do_test_lock(IO, File, Handle, Chars, Size) ->
-  Locked = filelib:is_file(io_lib:format("~s.lock", File)),
-  if not Locked -> send_chars(IO, Chars, "\n"), ok;
+  Locked = filelib:is_file(io_lib:format("~s.lock", [File])),
+  if not Locked -> flush_chars(IO, Chars), ok;
      true       -> loop(IO, File, Handle, Chars, Size)
   end.
 
 read_chars(File, Handle, Size) ->
-  NewSize = file:size(File),
-  if NewSize > Size -> read_chars(File, Handle, Size, NewSize);
-     true           -> ok
+  case pose_file:size(File) of
+    {error, Reason} -> {error, {file_size, Reason}};
+    {ok, nofile}    -> {error, {truncated, File}};
+    {ok, NewSize}   -> read_chars(File, Handle, Size, NewSize)
   end.
 
-read_chars(_File, Handle, Size, NewSize) ->
+read_chars(_File, _Handle, Size, NewSize) when NewSize == Size -> ok;
+read_chars(File, _Handle, Size, NewSize) when NewSize < Size ->
+  {error, {truncated, File}};
+read_chars(File, Handle, Size, NewSize) ->
   case file:read(Handle, NewSize - Size) of
     {error, Reason} -> {error, {read, Reason}};
-    eof             -> {error, {read, truncated}};
-    {ok, Data}      -> {ok, Data, NewSize}
+    eof             -> {error, {truncated, File}};
+    {ok, Data}      -> read_chars(File, Handle, Size, NewSize, Data)
   end.
 
+read_chars(File, _Handle, Size, NewSize, Data) ->
+  Length = string:len(Data),
+  SizeDiff = NewSize - Size,
+  if Length /= SizeDiff -> {error, {truncated, File}};
+     true               -> {ok, Data, NewSize}
+  end.
+  
 send_chars(_IO, Chars, []) -> Chars;
 send_chars(IO, Chars, [$\r | [$\n | Data]]) ->
   send_chars(IO, Chars, [$\n | Data]);
@@ -123,4 +138,6 @@ send_chars(IO, Chars, [$\n | Data]) ->
   ?STDOUT("~s~n", [lists:reverse(Chars)]), 
   send_chars(IO, [], Data);
 send_chars(IO, Chars, [Next | Data]) -> send_chars(IO, [Next | Chars], Data).
-  
+
+flush_chars(_IO, []) -> [];
+flush_chars(IO, Chars) -> send_chars(IO, Chars, "\n"). 
