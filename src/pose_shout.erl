@@ -53,12 +53,18 @@
 
 % Private exports
 
--export([run/2, loop/2]).
+-export([run/2, loop/2, loop/5]).
 
 %%
 %% API Functions
 %%
 
+-type filename() :: string().
+-spec monitor(File :: filename()) -> pid().
+%% @doc Watch a text file, copying each line written to it to calling process
+%% as standard output, until an associated lock file is removed (this signaling 
+%% that writing to the file has finished.)
+%% @end
 monitor(File) -> spawn_link(?MODULE, run, [?IO(self()), File]).
 
 %%
@@ -73,6 +79,7 @@ run(IO, File) ->
     ok              -> exit(ok)
   end.
 
+% @private exported for fully-qualified calls
 loop(IO, File) -> 
   receive 
     {'EXIT', Stdout, _Reason} when Stdout == IO#std.in -> ok
@@ -83,12 +90,14 @@ loop(IO, File) ->
     end
   end.
 
+% File has been created, so start reading it.
 do_open(IO, File) ->
   case file:open(File, [read]) of
     {error, Reason} -> {error, {open, Reason}};
     {ok, Handle}    -> loop(IO, File, Handle, [], 0)
   end.
 
+% @private exported for fully-qualified calls
 loop(IO, File, Handle, Chars, Size) ->
   receive
     {'EXIT', Stdout, _Reason} when Stdout == IO#std.in -> ok
@@ -101,12 +110,7 @@ loop(IO, File, Handle, Chars, Size) ->
     end
   end.
 
-do_test_lock(IO, File, Handle, Chars, Size) ->
-  Locked = filelib:is_file(io_lib:format("~s.lock", [File])),
-  if not Locked -> flush_chars(IO, Chars), ok;
-     true       -> loop(IO, File, Handle, Chars, Size)
-  end.
-
+% Read however many characters have been added to the file.  Assumes `latin1'.
 read_chars(File, Handle, Size) ->
   case pose_file:size(File) of
     {error, Reason} -> {error, {file_size, Reason}};
@@ -130,7 +134,8 @@ read_chars(File, _Handle, Size, NewSize, Data) ->
   if Length /= SizeDiff -> {error, {truncated, File}};
      true               -> {ok, Data, NewSize}
   end.
-  
+
+% Send complete lines to stdout, buffering pending an eol.
 send_chars(_IO, Chars, []) -> Chars;
 send_chars(IO, Chars, [$\r | [$\n | Data]]) ->
   send_chars(IO, Chars, [$\n | Data]);
@@ -139,5 +144,13 @@ send_chars(IO, Chars, [$\n | Data]) ->
   send_chars(IO, [], Data);
 send_chars(IO, Chars, [Next | Data]) -> send_chars(IO, [Next | Chars], Data).
 
+% Send any buffered characters as a final line.
 flush_chars(_IO, []) -> [];
 flush_chars(IO, Chars) -> send_chars(IO, Chars, "\n"). 
+
+% Test to see if associated lock file has been removed.
+do_test_lock(IO, File, Handle, Chars, Size) ->
+  Locked = filelib:is_file(io_lib:format("~s.lock", [File])),
+  if not Locked -> flush_chars(IO, Chars), ok;
+     true       -> loop(IO, File, Handle, Chars, Size)
+  end.

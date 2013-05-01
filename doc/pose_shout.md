@@ -16,8 +16,13 @@ __Version:__ 0.0.1
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).<a name="description"></a>
 
 ##Description##
+
+
  Used by [`pose_shell`](pose_shell.md) to
-receive the `stdout` of a shell command.<a name="index"></a>
+receive the `stdout` of a shell command.
+
+Note: Code is not Unicode safe. Assumes all shell commands produce `latin1`
+output.<a name="index"></a>
 
 ##Function Index##
 
