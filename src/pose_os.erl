@@ -138,8 +138,8 @@ shell_exec(Command, Shell, COpt, Temp) ->
 % Loop through error output until shell finishes.    
 shell_loop(Port, Temp, Errors) ->
   receive
-    {'EXIT', ExitPid, normal}                           ->
-      ?DEBUG("saw ~s exit: ~s~n", [ExitPid]),
+    {'EXIT', ExitPid, Reason}                           ->
+      ?DEBUG("saw ~p exit: ~p~n", [ExitPid, Reason]),
       shell_loop(Port, Temp, Errors);
     {Port, {data, [First | Rest]}}                      ->
       Line = [string:to_lower(First) | Rest],
@@ -168,8 +168,8 @@ shell_loop(Port, Temp, ReadPid, Output) ->
       shell_loop(Port, Temp, ReadPid, Output);
     {'EXIT', ReadPid, Result}           ->
       do_shell_exit(Temp, Result, Output);
-    {'EXIT', ExitPid, normal}           ->
-      ?DEBUG("saw ~s exit: ~s~n", [ExitPid]),
+    {'EXIT', ExitPid, Reason}           ->
+      ?DEBUG("saw ~p exit: ~p~n", [ExitPid, Reason]),
       shell_loop(Port, Temp, ReadPid, Output);
     {stdout, ReadPid, eof}              ->
       shell_loop(Port, Temp, ReadPid, Output); % now wait for EXIT
