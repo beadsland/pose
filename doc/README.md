@@ -27,7 +27,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: /bin/sh $?
 </font>
-* <font color="red">pose_shell: fully test
+* <font color="red">pose_shell: command/1 for one-shot shell
 </font>
 * <font color="red">realname: use pose_shell
 </font>
