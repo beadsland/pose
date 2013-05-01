@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.4
+%% @version 0.0.5
 -module(pose_shell).
--version("0.0.4").
+-version("0.0.5").
 
 %%
 %% Include files
@@ -43,79 +43,83 @@
 
 % API entry points
 
+-export([spawn/0, command/2]).
 
 % Private exports
 
-
-% Prototype functions
-
--export([spawn_shell/0, send_command/2, shell_run/1, shell_run_loop/3]).
+-export([run/1, loop/3]).
 
 %%
 %% API Functions
 %%
 
-%%%
-% Prototype multi-command shell process.
-%%%
+-type shell_pid() :: pid().
+-spec spawn() -> shell_pid().
+%% @doc Spawn an operating system shell interface as a new process.
+spawn() -> spawn_link(?MODULE, run, [self()]).
 
-% @private Not yet supported.
-spawn_shell() -> spawn_link(?MODULE, shell_run, [self()]).
+-type command() :: string().
+-spec command(ShellPid :: shell_pid(), Command :: command()) -> ok.
+%% @doc Send a command to an existing shell process.  Output and error output
+%% are returned as `stdout' and `stderr' messages.
+%% @end
+command(ShellPid, Command) -> ShellPid ! {command, self(), Command}, ok.
+
+%%
+%% Local Functions
+%%
 
 % @private Internal callback.
-shell_run(Caller) -> {OS, _} = os:type(), shell_run(Caller, OS).
+run(Caller) -> {OS, _} = os:type(), run(Caller, OS).
 
-shell_run(Caller, win32) -> 
+% Configure operating-system specific shell.
+run(Caller, win32) -> 
   cygwin_nodosfilewarning(),
-  shell_run(Caller, win32, pose_file:trim(os:cmd("echo %ComSpec%")));
-shell_run(Caller, unix) -> shell_run(Caller, unix, "/bin/sh"). 
+  run(Caller, win32, pose_file:trim(os:cmd("echo %ComSpec%")));
+run(Caller, unix) -> run(Caller, unix, "/bin/sh"). 
 
-shell_run(Caller, OS, Shell) ->
+% Spawn a shell executable, and start loop listening to same.
+run(Caller, OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
-  case shell_run_loop(Caller, OS, Port) of
+  case loop(Caller, OS, Port) of
     {error, Reason} -> exit({error, {shell, Reason}});
     ok              -> exit(ok)
   end.
 
-% @private Not yet supported.
-send_command(ShellPid, Command) -> ShellPid ! {command, self(), Command}.
+% @private exported for fully-qualified calls.
+loop(Caller, OS, Port) ->
+  receive
+    {Port, {exit_status, N}}    -> do_port_exit(N);
+    {command, Caller, Command}  -> do_command(Caller, OS, Port, Command);
+    Noise                       -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
+                                   ?MODULE:loop(Caller, OS, Port)
+  end.
 
+% Get a temp file to receive command's standard output channel.
 do_command(Caller, OS, Port, Command) ->
   case pose_os:get_temp_file() of
     {error, Reason} -> {error, {temp_file, Reason}};
     {ok, Temp}      -> do_command(Caller, OS, Port, Command, Temp)
   end.
 
+% Configure operating-system specific eol.
 do_command(Caller, unix, Port, Command, Temp) ->
   do_command(Caller, unix, Port, Command, Temp, "\n");
 do_command(Caller, win32, Port, Command, Temp) ->
   do_command(Caller, win32, Port, Command, Temp, "\r\n").
 
+% Send command to external shell process.
 do_command(Caller, OS, Port, Command, Temp, Eol) ->
   Strip = string:strip(Command, right, $\n),
   RedirCmd = io_lib:format("~s > ~s~s", [Strip, Temp, Eol]),
   Port ! {self(), {command, RedirCmd}},
-  shell_run_loop(Caller, OS, Port).
+  loop(Caller, OS, Port).
 
-%hmm... how to determine command has run its course...?
-
-% @private Internal loop.
-shell_run_loop(Caller, OS, Port) ->
-  receive
-    {Port, {exit_status, N}}    -> do_port_exit(N);
-    {command, Caller, Command}  -> do_command(Caller, OS, Port, Command);
-    Noise                       -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
-                                   ?MODULE:shell_run_loop(Caller, OS, Port)
-  end.
-
+% Final return value upon external shell exit.
 do_port_exit(0) -> ok;
 do_port_exit(N) -> {error, {exit_status, N}}.
   
-%%
-%% Local Functions
-%%
-
 % Stop cygwin from nagging.
 cygwin_nodosfilewarning() ->
   Cygset = sets:from_list(string:tokens(os:getenv("CYGWIN"), " ")),
