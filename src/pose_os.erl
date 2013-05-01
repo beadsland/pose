@@ -112,13 +112,13 @@ get_temp_dir([First | Rest]) ->
 %% @doc Execute a command in operating system shell, capturing stdout and 
 %% stderr independently.
 %% @end
-shell_exec(Command) -> shell_exec(Command, os:type()). 
+shell_exec(Command) -> {OS, _} = os:type(), shell_exec(Command, OS). 
 
 % Configure for operation system specific shell.
-shell_exec(Command, {win32, _}) -> 
+shell_exec(Command, win32) -> 
   cygwin_nodosfilewarning(),
   shell_exec(Command, pose_file:trim(os:cmd("echo %ComSpec%")), "/C");
-shell_exec(Command, {unix, _}) -> shell_exec(Command, "/bin/sh", "-c").
+shell_exec(Command, unix) -> shell_exec(Command, "/bin/sh", "-c").
   
 % Get temp file for capturing stdout.
 shell_exec(Command, Shell, COpt) ->
@@ -214,7 +214,7 @@ shell_loop(Port, Temp, Errors) ->
     {Port, {exit_status, N}}                            ->
       {error, {exit_status, {N, tuple_nest(Errors)}}};
     Noise                                               ->
-      ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
+      ?DEBUG("~s: shell_loop/3: noise: ~p~n", [?MODULE, Noise]),
       ?MODULE:shell_loop(Port, Temp, Errors)
   end.
 
@@ -232,7 +232,7 @@ shell_loop(Port, Temp, ReadPid, Output) ->
       ?CAPTLN(ReadPid),
       shell_loop(Port, Temp, ReadPid, [Line | Output]);
     Noise                               ->
-      ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
+      ?DEBUG("~s: shell_loop/4: noise: ~p~n", [?MODULE, Noise]),
       ?MODULE:shell_loop(Port, Temp, ReadPid, Output)      
   end.
 
