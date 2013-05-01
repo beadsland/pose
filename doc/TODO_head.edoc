@@ -1,7 +1,7 @@
-@todo watch file until writing finished
-@todo tail file process
-@todo refactor pose_os:spawn_shell to pose_shell:spawn
-@todo spawn_shell prototype
+@todo pose_shout:  address blocking
+@todo pose_shout:  document
+@todo pose_shell:  incorporate pose_shout
+@todo pose_shell:  fully test
+@todo realname:  use pose_shell
 @todo remove FILENAME macro
 @todo make good
-@todo resume work on 2do_go4

@@ -19,19 +19,20 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">watch file until writing finished
+* <font color="red">pose_shout:  address blocking
 </font>
-* <font color="red">tail file process
+* <font color="red">pose_shout:  document
 </font>
-* <font color="red">refactor pose_os:spawn_shell to pose_shell:spawn
+* <font color="red">pose_shell:  incorporate pose_shout
 </font>
-* <font color="red">spawn_shell prototype
+* <font color="red">pose_shell:  fully test
+</font>
+* <font color="red">realname:  use pose_shell
 </font>
 * <font color="red">remove FILENAME macro
 </font>
 * <font color="red">make good
 </font>
-* <font color="red">resume work on 2do_go4</font>
 
 
 This is the POSIX-like interface emulation for use with the
