@@ -21,19 +21,19 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-###<a name="type-date_time">date_time()</a>##
-
-
-
-	date_time() = <a href="calendar.md#type-date_time">calendar:date_time()</a>
-
-
-
 ###<a name="type-datestamp_return">datestamp_return()</a>##
 
 
 
-	datestamp_return() = {ok, <a href="#type-date_time">date_time()</a>} | {error, <a href="#type-file_info_error">file_info_error()</a>}
+	datestamp_return() = {ok, <a href="#type-datestamp_value">datestamp_value()</a>} | <a href="#type-file_info_error">file_info_error()</a>
+
+
+
+###<a name="type-datestamp_value">datestamp_value()</a>##
+
+
+
+	datestamp_value() = <a href="calendar.md#type-date_time">calendar:date_time()</a> | nofile
 
 
 
@@ -49,7 +49,15 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-	file_info_error() = {<a href="file.md#type-name_all">file:name_all()</a>, <a href="#type-info_error_atom">info_error_atom()</a>}
+	file_info_error() = {error, <a href="#type-file_info_reason">file_info_reason()</a>}
+
+
+
+###<a name="type-file_info_reason">file_info_reason()</a>##
+
+
+
+	file_info_reason() = {<a href="file.md#type-name_all">file:name_all()</a>, <a href="#type-info_error_atom">info_error_atom()</a>}
 
 
 
@@ -105,7 +113,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-	permissions_return() = boolean() | {error, <a href="#type-file_info_error">file_info_error()</a>}
+	permissions_return() = boolean() | <a href="#type-file_info_error">file_info_error()</a>
 
 
 
@@ -122,6 +130,22 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 	realname_result() = <a href="#type-path_string">path_string()</a> | <a href="#type-realname_error">realname_error()</a>
+
+
+
+###<a name="type-size_return">size_return()</a>##
+
+
+
+	size_return() = {ok, <a href="#type-size_value">size_value()</a>} | <a href="#type-file_info_error">file_info_error()</a>
+
+
+
+###<a name="type-size_value">size_value()</a>##
+
+
+
+	size_value() = integer() | nofile
 <a name="index"></a>
 
 ##Function Index##
@@ -129,7 +153,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 <table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute path of file relative to current working directory, to
 obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute path of a file relative to a given directory, to obtain
-its canonical system path.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr></table>
+its canonical system path.</td></tr><tr><td valign="top"><a href="#size-1">size/1</a></td><td>Get current size of file.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -192,7 +216,16 @@ obtain its canonical system path.<a name="realname-2"></a>
 
 
 Ascend absolute path of a file relative to a given directory, to obtain
-its canonical system path.<a name="trim-1"></a>
+its canonical system path.<a name="size-1"></a>
+
+###size/1##
+
+
+	size(Filename::<a href="file.md#type-name_all">file:name_all()</a>) -> <a href="#type-size_return">size_return()</a>
+<br></br>
+
+
+Get current size of file.<a name="trim-1"></a>
 
 ###trim/1##
 
