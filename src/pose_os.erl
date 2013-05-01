@@ -110,7 +110,7 @@ get_temp_dir([First | Rest]) ->
 shell_exec(Command) -> {OS, _} = os:type(), shell_exec(Command, OS). 
 
 % Configure for operation system specific shell.
-shell_exec(Command, win32) -> 
+shell_exec(Command, win32) ->
   cygwin_nodosfilewarning(),
   shell_exec(Command, pose_file:trim(os:cmd("echo %ComSpec%")), "/C");
 shell_exec(Command, unix) -> shell_exec(Command, "/bin/sh", "-c").
@@ -128,6 +128,7 @@ shell_exec(Command, Shell, COpt, Temp) ->
   Args = {args, [io_lib:format("~s \"~s\"", [COpt, RedirCmd])]},
   Options = [exit_status, Args, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
+  ?DEBUG("shell spawned ~p~n", [Port]),
   shell_loop(Port, Temp, []).
   
 %%
@@ -137,6 +138,9 @@ shell_exec(Command, Shell, COpt, Temp) ->
 % Loop through error output until shell finishes.    
 shell_loop(Port, Temp, Errors) ->
   receive
+    {'EXIT', ExitPid, normal}                           ->
+      ?DEBUG("saw ~s exit: ~s~n", [ExitPid]),
+      shell_loop(Port, Temp, Errors);
     {Port, {data, [First | Rest]}}                      ->
       Line = [string:to_lower(First) | Rest],
       CleanLine = string:strip(pose_file:trim(Line), right, $.),
@@ -164,6 +168,9 @@ shell_loop(Port, Temp, ReadPid, Output) ->
       shell_loop(Port, Temp, ReadPid, Output);
     {'EXIT', ReadPid, Result}           ->
       do_shell_exit(Temp, Result, Output);
+    {'EXIT', ExitPid, normal}           ->
+      ?DEBUG("saw ~s exit: ~s~n", [ExitPid]),
+      shell_loop(Port, Temp, ReadPid, Output);
     {stdout, ReadPid, eof}              ->
       shell_loop(Port, Temp, ReadPid, Output); % now wait for EXIT
     {stdout, ReadPid, Line}             -> 
