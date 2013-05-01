@@ -19,21 +19,21 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">errout 1-tuple
+</font>
+* <font color="red">better trace
+</font>
+* <font color="red">noise reduction
+</font>
 * <font color="red">pose_shell: incorporate pose_shout
+</font>
+* <font color="red">pose_shell: exit/1
 </font>
 * <font color="red">pose_shell: command.com errorlevel
 </font>
 * <font color="red">pose_shell: cmd.exe %errorlevel%
 </font>
-* <font color="red">pose_shell: /bin/sh $?
-</font>
-* <font color="red">pose_shell: command/1 for one-shot shell
-</font>
-* <font color="red">realname: use pose_shell
-</font>
-* <font color="red">realname: use cwd
-</font>
-* <font color="red">...plus 3 more (see TODO.edoc)
+* <font color="red">...plus 7 more (see TODO.edoc)
 </font>
 
 
