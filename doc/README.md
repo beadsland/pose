@@ -33,6 +33,8 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">make good
 </font>
+* <font color="red">...plus 1 more (see TODO.edoc)
+</font>
 
 
 This is the POSIX-like interface emulation for use with the
