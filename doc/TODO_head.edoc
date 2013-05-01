@@ -1,7 +1,7 @@
+@todo resolve noise from shell_exec
 @todo watch file until writing finished
 @todo tail file process
 @todo refactor pose_os:spawn_shell to pose_shell:spawn
 @todo spawn_shell prototype
 @todo remove FILENAME macro
 @todo make good
-@todo resume work on 2do_go4

@@ -19,6 +19,8 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">resolve noise from shell_exec
+</font>
 * <font color="red">watch file until writing finished
 </font>
 * <font color="red">tail file process
@@ -31,7 +33,6 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">make good
 </font>
-* <font color="red">resume work on 2do_go4</font>
 
 
 This is the POSIX-like interface emulation for use with the

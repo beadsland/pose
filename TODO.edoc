@@ -1,3 +1,4 @@
+@todo resolve noise from shell_exec
 @todo watch file until writing finished
 @todo tail file process
 @todo refactor pose_os:spawn_shell to pose_shell:spawn
