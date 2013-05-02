@@ -19,6 +19,8 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">defaults for initpose
+</font>
 * <font color="red">debug uninitialized
 </font>
 * <font color="red">better trace
@@ -31,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: command.com errorlevel
 </font>
-* <font color="red">pose_shell: cmd.exe %errorlevel%
-</font>
-* <font color="red">...plus 7 more (see TODO.edoc)
+* <font color="red">...plus 8 more (see TODO.edoc)
 </font>
 
 
