@@ -1,6 +1,5 @@
-@todo defaults for initpose
-@todo debug uninitialized
 @todo better trace
+@todo debug noise
 @todo noise reduction
 @todo pose_shell: incorporate pose_shout
 @todo pose_shell: exit/1

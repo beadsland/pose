@@ -1,8 +1,8 @@
-@todo defaults for initpose
-@todo debug uninitialized
 @todo better trace
+@todo debug noise
 @todo noise reduction
 @todo pose_shell: incorporate pose_shout
 @todo pose_shell: exit/1
 @todo pose_shell: command.com errorlevel
-@todo ...plus 8 more (see TODO.edoc)
+@todo pose_shell: cmd.exe %errorlevel%
+@todo ...plus 7 more (see TODO.edoc)
