@@ -19,9 +19,9 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_file:  winname/1
+* <font color="red">redundant error messages
 </font>
-* <font color="red">pose_shell:  del step needs win32 file delimiters
+* <font color="red">problems deleting ntfs files
 </font>
 * <font color="red">loop not exiting
 </font>
