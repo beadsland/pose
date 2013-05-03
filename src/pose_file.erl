@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.8
+%% @version 0.1.9
 -module(pose_file).
--version("0.1.8").
+-version("0.1.9").
 
 %%
 %% Include files
@@ -51,7 +51,7 @@
 -export([find_parallel_folder/3]).
 
 % Canonical paths
--export([realname/1, realname/2]).
+-export([winname/1, realname/1, realname/2]).
 
 % Utility functions
 -export([trim/1]).
@@ -158,6 +158,17 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
 % Canonical paths
 %%%
 
+-spec winname(File :: file:filename_all()) -> path_string().
+%% @doc Recast filename in form compatible as a `win32' command option.
+winname(File) when is_binary(File) -> winname(binary_to_list(File));
+winname([First | [Second | Rest]]) when is_list(First); is_list(Second) ->
+  winname(lists:flatten([First | [Second | Rest]]));
+winname([First | [Second | Rest]]) when First==$\\, Second==$\\;
+                                         First==$/, Second==$/ -> 
+  io_lib:format("\\\\~s", [winname(Rest)]);
+winname([First | Rest]) when First==$/ -> {error, {unixpath, [First | Rest]}};
+winname(File) -> string:join(string:tokens(File, "\\/"), "\\").
+  
 -spec realname(File :: file:filename_all()) -> path_string().
 %% @doc Ascend absolute path of file relative to current working directory, to 
 %% obtain its canonical system path.

@@ -143,11 +143,11 @@ lock(File) -> file:close(file:open(io_lib:format("~s.lock", [File]), [write])).
 % Remove a lock file, via a command sent to external shell.
 unlock(Port, File) -> {OS, _} = os:type(), unlock(Port, File, OS).
 
-unlock(Port, File, unix) -> unlock(Port, File, unix, "rm");
-unlock(Port, File, win32) -> unlock(Port, File, win32, "del").
-
-unlock(Port, File, _OS, Del) -> 
-  send_command(Port, io_lib:format("~s \"~s.lock\"", [Del, File])).
+unlock(Port, File, unix) ->
+  send_command(Port, io_lib:format("rm \"~s.lock\"", [File])); 
+unlock(Port, File, win32) ->
+  WinFile = pose_file:winname(File),
+  send_command(Port, io_lib:format("del \"~s.lock\"", [WinFile])).
 
 % Send a command to the external shell.
 send_command(Port, Cmd) -> {OS, _} = os:type(), send_command(Port, Cmd, OS).

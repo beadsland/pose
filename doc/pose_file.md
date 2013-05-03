@@ -11,7 +11,7 @@ File-related utility functions for use by [`pose_code`](pose_code.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.8
+__Version:__ 0.1.9
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -153,7 +153,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 <table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute path of file relative to current working directory, to
 obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute path of a file relative to a given directory, to obtain
-its canonical system path.</td></tr><tr><td valign="top"><a href="#size-1">size/1</a></td><td>Get current size of file.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr></table>
+its canonical system path.</td></tr><tr><td valign="top"><a href="#size-1">size/1</a></td><td>Get current size of file.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr><tr><td valign="top"><a href="#winname-1">winname/1</a></td><td>Recast filename in form compatible as a <code>win32</code> command option.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -239,3 +239,13 @@ Strip whitespace characters from both ends of string.
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">figure out better place for this to live</font>
+<a name="winname-1"></a>
+
+###winname/1##
+
+
+	winname(File::<a href="file.md#type-filename_all">file:filename_all()</a>) -> <a href="#type-path_string">path_string()</a>
+<br></br>
+
+
+Recast filename in form compatible as a `win32` command option.

@@ -1,5 +1,4 @@
-@todo pose_os: win32 doesn't like @ in filename
-@todo pose_shell:  del step needs win32 file delimiters
+@todo problems deleting ntfs files
 @todo loop not exiting
 @todo silence exit noise
 @todo pose_shell: lots of unnecessary errout lines
