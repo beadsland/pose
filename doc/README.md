@@ -19,9 +19,9 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">refactor do_noise to gen_command
-</font>
 * <font color="red">refactor do_exit to gen_command
+</font>
+* <font color="red">make sure purging
 </font>
 * <font color="red">silence noise
 </font>
