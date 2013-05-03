@@ -19,21 +19,21 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">debug noise
+* <font color="red">pose_os: win32 doesn't like @ in filename
 </font>
-* <font color="red">noise reduction
+* <font color="red">pose_shell:  del step needs win32 file delimiters
+</font>
+* <font color="red">loop not exiting
+</font>
+* <font color="red">silence exit noise
+</font>
+* <font color="red">pose_shell: lots of unnecessary errout lines
 </font>
 * <font color="red">pose_shell: incorporate pose_shout
 </font>
 * <font color="red">pose_shell: exit/1
 </font>
-* <font color="red">pose_shell: command.com errorlevel
-</font>
-* <font color="red">pose_shell: cmd.exe %errorlevel%
-</font>
-* <font color="red">pose_shell: /bin/sh $?
-</font>
-* <font color="red">...plus 7 more (see TODO.edoc)
+* <font color="red">...plus 9 more (see TODO.edoc)
 </font>
 
 
