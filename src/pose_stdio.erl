@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.2.3
+%% @version 0.2.4
 -module(pose_stdio).
--version("0.2.3").
+-version("0.2.4").
 
 %%
 %% Include files
@@ -112,53 +112,76 @@ send_debug(Format, What) ->
 
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
-format_erlerr(What) ->
-  case What of
-    {{Atom, Data}, Trace} when is_atom(Atom), is_list(Trace)    ->
-      String = format_erlerr_trace(Atom, Data, Trace);
-    {Atom, [Head | Tail]} when is_atom(Atom), is_tuple(Head)    ->
-      String = format_erlerr_trace(Atom, [], [Head | Tail]);
-    {Atom, Data} when is_atom(Atom)                             ->
-      List = format_erlerr_file(Atom),
-      String = io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
-    Atom when is_atom(Atom)										->
-      String = format_erlerr_file(Atom);
-    _Else                                                       ->
-      String = format_erlerr_else(What)
-  end,
-  lists:flatten(String).
+format_erlerr({{Atom, Data}, List}) when is_atom(Atom), is_list(List) ->
+  Reason = format_erlerr({Atom, Data}), Trace = format_erltrace(List),
+  io_lib:format("~s ~p~n~s", [Reason, self(), Trace]);
+format_erlerr({Atom, [Head | Tail]}) when is_atom(Atom), is_tuple(Head) ->
+  Reason = format_erlerr(Atom), Trace = format_erltrace([Head | Tail]),
+  io_lib:format("~s ~p~n~s", [Reason, self(), Trace]);
+format_erlerr({Atom, Data}) when is_atom(Atom) ->
+  String1 = format_erlerr(Atom), String2 = lists:flatten(format_erlerr(Data)),
+  [Line1 | _Rest] = string:tokens(String2, "\n"),
+  Length = string:len(String1) + string:len(Line1),
+  if Length > 75    -> io_lib:format("~s:~n     ~s", [String1, String2]);
+     true           -> io_lib:format("~s: ~s", [String1, String2])
+  end;
+format_erlerr({List, Data}) when is_list(List) ->
+  IsString = is_string(List),
+  if IsString   -> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
+     true       -> String = io_lib:format("      ~72p", [{List, Data}]),
+                   re:replace(String, "^\s*", "", [{return, list}])
+  end;                                 
+format_erlerr(Atom) when is_atom(Atom) ->
+  IsFileErr = lists:member(Atom, ?FILE_ERR),
+  if IsFileErr  -> file:format_error(Atom);
+     true       -> re:replace(atom_to_list(Atom), "_", " ")
+  end;
+format_erlerr(Else) ->
+  IsString = is_string(Else),
+  if IsString   -> io_lib:format("~s", [Else]);
+     true       -> String = io_lib:format("      ~72p", [Else]),
+                   re:replace(String, "^\s*", "", [{return, list}])
+  end.
 
 %%
 %% Local Functions
 %%
 
-format_erlerr_file(Atom) ->
-  IsFileErr = lists:member(Atom, ?FILE_ERR),
-  if IsFileErr  -> file:format_error(Atom);
-     true       -> format_erlerr_else(Atom)
-  end.
+% Smartly format erl stack traces.
+format_erltrace([]) -> [];
+format_erltrace([{Module, Func, Arity, Source} | Tail]) 
+                                                     when is_integer(Arity) ->
+  StackPop = format_erltrace(Module, Func, Arity, Source),
+  io_lib:format("~s~n~s", [StackPop, format_erltrace(Tail)]); 
+format_erltrace([{Module, Func, Param, Source} | Tail]) when is_list(Param) ->
+  Format = "~s~n~s~n~s",
+  StackPop = format_erltrace(Module, Func, length(Param), Source),
+  Return = [{return,list}],
+  TopFunc = re:replace(StackPop, "in call from", "in function", Return),
+  CalledAs = format_erltrace(Module, Func, Param),
+  io_lib:format(Format, [TopFunc, CalledAs, format_erltrace(Tail)]);
+format_erltrace([Noise | Tail]) -> 
+  io_lib:format("~p~s", [Noise, format_erltrace(Tail)]).
 
-format_erlerr_trace(Atom, [], Trace) ->
-  Format = "~s ~p~nTrace: ~p~n",
-  String = format_erlerr_file(Atom),      
-  io_lib:format(Format, [String, self(), Trace]);
-format_erlerr_trace(Atom, Reason, Trace) ->
-  Format = "~s ~p~nReason: ~p~nTrace: ~p~n",
-  String = format_erlerr_file(Atom),
-  io_lib:format(Format, [String, self(), Reason, Trace]).
+% Smartly format a function with parameters from the stack trace.
 
-format_erlerr_else({List, Data}) when is_list(List) ->
-  IsString = is_string(List),
-  if IsString	-> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
-     true		-> io_lib:format("~p", [{List, Data}])
-  end;
-format_erlerr_else(Atom) when is_atom(Atom) ->
-  String = atom_to_list(Atom), re:replace(String, "_", " ");
-format_erlerr_else(What) ->
-  IsString = is_string(What),
-  if IsString 	-> io_lib:format("~s", [What]);
-     true		-> io_lib:format("~p", [What])
-  end.
+format_erltrace(Module, Func, Params) ->
+  Format = "   called as   ~p:~p~p",
+  String = io_lib:format(Format, [Module, Func, Params]),
+  Return = [{return,list}],
+  re:replace(re:replace(String, "\\[", "(", Return), "\\]$", ")", Return).
+
+  
+% Smartly format a function popped from the stack strace.
+format_erltrace(Module, Func, Arity, Source) ->
+  Format = "   in call from ~p:~p/~p, ~s",
+  SrcStr = format_erlsrc(Source),
+  io_lib:format(Format, [Module, Func, Arity, SrcStr]).
+
+format_erlsrc([{file, _File}, {line, Line}]) -> 
+  io_lib:format("line ~p", [Line]);
+format_erlsrc(Else) -> io_lib:format("~p", [Else]).
+  
 
 % Send output as #std IO message.
 send(_IO, Output, OutPid, Stdout, Erlout) ->
