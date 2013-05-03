@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_os: win32 doesn't like @ in filename
+* <font color="red">pose_file:  winname/1
 </font>
 * <font color="red">pose_shell:  del step needs win32 file delimiters
 </font>

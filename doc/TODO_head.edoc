@@ -1,4 +1,4 @@
-@todo pose_os: win32 doesn't like @ in filename
+@todo pose_file:  winname/1
 @todo pose_shell:  del step needs win32 file delimiters
 @todo loop not exiting
 @todo silence exit noise
