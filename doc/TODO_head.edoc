@@ -1,8 +1,8 @@
-@todo redundant error messages
 @todo problems deleting ntfs files
 @todo loop not exiting
 @todo refactor do_exit / do_noise to gen_command
 @todo silence exit noise
 @todo pose_shell: lots of unnecessary errout lines
 @todo pose_shell: incorporate pose_shout
-@todo ...plus 10 more (see TODO.edoc)
+@todo pose_shell: exit/1
+@todo ...plus 9 more (see TODO.edoc)

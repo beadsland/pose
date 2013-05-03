@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">redundant error messages
-</font>
 * <font color="red">problems deleting ntfs files
 </font>
 * <font color="red">loop not exiting
@@ -33,7 +31,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: incorporate pose_shout
 </font>
-* <font color="red">...plus 10 more (see TODO.edoc)
+* <font color="red">pose_shell: exit/1
+</font>
+* <font color="red">...plus 9 more (see TODO.edoc)
 </font>
 
 
