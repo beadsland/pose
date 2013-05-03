@@ -5,3 +5,4 @@
 @todo pose_shell: command.com errorlevel
 @todo pose_shell: cmd.exe %errorlevel%
 @todo pose_shell: /bin/sh $?
+@todo ...plus 7 more (see TODO.edoc)
