@@ -70,7 +70,9 @@ command(ShellPid, Command) -> ShellPid ! {command, self(), Command}, ok.
 %%
 
 % @private Internal callback.
-run(Caller) -> {OS, _} = os:type(), run(Caller, OS).
+run(Caller) ->
+  IO = ?IO(Caller), ENV = ?ENV, ?INIT_POSE,
+  {OS, _} = os:type(), run(Caller, OS).
 
 % Configure operating-system specific shell.
 run(Caller, win32) -> 
@@ -79,42 +81,82 @@ run(Caller, win32) ->
 run(Caller, unix) -> run(Caller, unix, "/bin/sh"). 
 
 % Spawn a shell executable, and start loop listening to same.
-run(Caller, OS, Shell) ->
+run(Caller, _OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
-  case loop(Caller, OS, Port) of
+  case loop(Caller, Port, undef) of
     {error, Reason} -> exit({error, {shell, Reason}});
     ok              -> exit(ok)
   end.
 
 % @private exported for fully-qualified calls.
-loop(Caller, OS, Port) ->
+loop(Caller, Port, Monitor) ->
   receive
     {Port, {exit_status, N}}    -> do_port_exit(N);
-    {command, Caller, Command}  -> do_command(Caller, OS, Port, Command);
+    {Port, {data, Line}}        -> do_stderr(Caller, Port, Monitor, Line);
+    {'EXIT', Monitor, Reason}   -> {error, {cmd_stdout, Reason}};
+    {stdout, Monitor, Line}     -> do_stdout(Caller, Port, Monitor, Line);
+    {command, Caller, Command} when Monitor == undef  
+                                -> do_command(Caller, Port, Monitor, Command);
     Noise                       -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
-                                   ?MODULE:loop(Caller, OS, Port)
+                                   ?MODULE:loop(Caller, Port, Monitor)
   end.
 
+% Stderr messages via redirect to stdout -- forward to caller.
+do_stderr(Caller, Port, Monitor, Line) ->
+  Caller ! {stderr, self(), unix_eol(Line)},
+  loop(Caller, Port, Monitor).
+
+% Stdout messages via a redirect to a temp file -- forward to caller.
+do_stdout(Caller, Port, _Monitor, eof) -> loop(Caller, Port, undef);
+do_stdout(Caller, Port, Monitor, Line) ->
+  Caller ! {stdout, self(), unix_eol(Line)},
+  loop(Caller, Port, Monitor).
+
+% Convert DOS EOL to Unix EOL.
+unix_eol(Line) -> {OS, _} = os:type(), unix_eol(Line, OS).
+
+unix_eol(Line, unix) -> Line;
+unix_eol(Line, win32) ->
+  Strip = string:strip(string:strip(Line, right, $\n), right, $\n),
+  io_lib:format("~s~n", [Strip]).
+                  
 % Get a temp file to receive command's standard output channel.
-do_command(Caller, OS, Port, Command) ->
+do_command(Caller, Port, Monitor, Command) ->
   case pose_os:get_temp_file() of
     {error, Reason} -> {error, {temp_file, Reason}};
-    {ok, Temp}      -> do_command(Caller, OS, Port, Command, Temp)
+    {ok, Temp}      -> Strip = string:strip(Command, right, $\n),
+                       do_command(Caller, Port, Monitor, Strip, Temp)
   end.
 
-% Configure operating-system specific eol.
-do_command(Caller, unix, Port, Command, Temp) ->
-  do_command(Caller, unix, Port, Command, Temp, "\n");
-do_command(Caller, win32, Port, Command, Temp) ->
-  do_command(Caller, win32, Port, Command, Temp, "\r\n").
+% Send command to external shell process, wrapping it with a lock file.
+do_command(Caller, Port, undef, Command, Temp) ->
+  lock(Temp),
+  Monitor = pose_shout:monitor(Temp),
+  send_command(Port, io_lib:format("~s > ~s", [Command, Temp])),
+  unlock(Port, Temp),
+  loop(Caller, Port, Monitor).
 
-% Send command to external shell process.
-do_command(Caller, OS, Port, Command, Temp, Eol) ->
-  Strip = string:strip(Command, right, $\n),
-  RedirCmd = io_lib:format("~s > ~s~s", [Strip, Temp, Eol]),
-  Port ! {self(), {command, RedirCmd}},
-  loop(Caller, OS, Port).
+% Create a lock file.  This can be done within Erlang.
+lock(File) -> file:close(file:open(io_lib:format("~s.lock", [File]), [write])).
+
+% Remove a lock file, via a command sent to external shell.
+unlock(Port, File) -> {OS, _} = os:type(), unlock(Port, File, OS).
+
+unlock(Port, File, unix) -> unlock(Port, File, unix, "rm");
+unlock(Port, File, win32) -> unlock(Port, File, win32, "del").
+
+unlock(Port, File, _OS, Del) -> 
+  send_command(Port, io_lib:format("~s \"~s.lock\"", [Del, File])).
+
+% Send a command to the external shell.
+send_command(Port, Cmd) -> {OS, _} = os:type(), send_command(Port, Cmd, OS).
+
+send_command(Port, Cmd, unix) -> send_command(Port, Cmd, unix, "\n");
+send_command(Port, Cmd, win32) -> send_command(Port, Cmd, win32, "\r\n").
+
+send_command(Port, Cmd, _OS, Eol) ->
+  Port ! {self(), {command, io_lib:format("~s~s", [Cmd, Eol])}}.
 
 % Final return value upon external shell exit.
 do_port_exit(0) -> ok;

@@ -146,11 +146,11 @@ send_chars(IO, Chars, [Next | Data]) -> send_chars(IO, [Next | Chars], Data).
 
 % Send any buffered characters as a final line.
 flush_chars(_IO, []) -> [];
-flush_chars(IO, Chars) -> send_chars(IO, Chars, "\n"). 
+flush_chars(IO, Chars) -> send_chars(IO, Chars, "\n").
 
 % Test to see if associated lock file has been removed.
 do_test_lock(IO, File, Handle, Chars, Size) ->
   Locked = filelib:is_file(io_lib:format("~s.lock", [File])),
-  if not Locked -> flush_chars(IO, Chars), ok;
+  if not Locked -> flush_chars(IO, Chars), ?STDOUT(eof), ok;
      true       -> loop(IO, File, Handle, Chars, Size)
   end.

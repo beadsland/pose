@@ -1,5 +1,6 @@
-@todo debug noise
-@todo noise reduction
+@todo loop not exiting
+@todo silence exit noise
+@todo pose_shell: lots of unnecessary errout lines
 @todo pose_shell: incorporate pose_shout
 @todo pose_shell: exit/1
 @todo pose_shell: command.com errorlevel
