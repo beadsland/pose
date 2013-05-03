@@ -1,4 +1,3 @@
-@todo redundant error messages
 @todo problems deleting ntfs files
 @todo loop not exiting
 @todo refactor do_exit / do_noise to gen_command

@@ -94,14 +94,23 @@ loop(Caller, Port, Monitor) ->
   receive
     {Port, {exit_status, N}}    -> do_port_exit(N);
     {Port, {data, Line}}        -> do_stderr(Caller, Port, Monitor, Line);
-    {'EXIT', Monitor, Reason}   -> {error, {cmd_stdout, Reason}};
+    {'EXIT', ExitPid, Reason}   -> do_exit(Caller, Port, Monitor, ExitPid, Reason);
     {stdout, Monitor, Line}     -> do_stdout(Caller, Port, Monitor, Line);
     {command, Caller, Command} when Monitor == undef  
                                 -> do_command(Caller, Port, Monitor, Command);
     Noise                       -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
-                                   ?MODULE:loop(Caller, Port, Monitor)
+                                   ?MODULE:loop(Caller, Port, Monitor) 
   end.
 
+% Handle exit messages from processes.
+do_exit(_Caller, _Port, Monitor, ExitPid, {error, Reason}) ->
+  if ExitPid == Monitor -> {error, {cmd_stdout, Reason}};
+     true               -> {error, {io_lib:format("~p", [ExitPid]), Reason}}
+  end;
+do_exit(Caller, Port, Monitor, ExitPid, Status) -> 
+  ?DEBUG("saw ~p exit: ~p~n", [ExitPid, Status]),
+  loop(Caller, Port, Monitor).
+  
 % Stderr messages via redirect to stdout -- forward to caller.
 do_stderr(Caller, Port, Monitor, Line) ->
   Caller ! {stderr, self(), unix_eol(Line)},

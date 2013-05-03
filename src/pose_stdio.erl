@@ -134,7 +134,8 @@ format_erlerr({List, Data}) when is_list(List) ->
 format_erlerr(Atom) when is_atom(Atom) ->
   IsFileErr = lists:member(Atom, ?FILE_ERR),
   if IsFileErr  -> file:format_error(Atom);
-     true       -> re:replace(atom_to_list(Atom), "_", " ")
+     true       -> Options = [{return, list}, global],
+                   re:replace(atom_to_list(Atom), "_", " ", Options)
   end;
 format_erlerr(Else) ->
   IsString = is_string(Else),

@@ -114,24 +114,24 @@ loop(IO, File, Handle, Chars, Size) ->
 read_chars(File, Handle, Size) ->
   case pose_file:size(File) of
     {error, Reason} -> {error, {file_size, Reason}};
-    {ok, nofile}    -> {error, {truncated, File}};
+    {ok, nofile}    -> {error, truncated};
     {ok, NewSize}   -> read_chars(File, Handle, Size, NewSize)
   end.
 
 read_chars(_File, _Handle, Size, NewSize) when NewSize == Size -> ok;
 read_chars(File, _Handle, Size, NewSize) when NewSize < Size ->
-  {error, {truncated, File}};
+  {error, truncated};
 read_chars(File, Handle, Size, NewSize) ->
   case file:read(Handle, NewSize - Size) of
     {error, Reason} -> {error, {read, Reason}};
-    eof             -> {error, {truncated, File}};
+    eof             -> {error, truncated};
     {ok, Data}      -> read_chars(File, Handle, Size, NewSize, Data)
   end.
 
 read_chars(File, _Handle, Size, NewSize, Data) ->
   Length = string:len(Data),
   SizeDiff = NewSize - Size,
-  if Length /= SizeDiff -> {error, {truncated, File}};
+  if Length /= SizeDiff -> {error, truncated};
      true               -> {ok, Data, NewSize}
   end.
 
