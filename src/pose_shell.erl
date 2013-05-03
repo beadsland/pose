@@ -92,13 +92,15 @@ run(Caller, _OS, Shell) ->
 % @private exported for fully-qualified calls.
 loop(Caller, Port, Monitor) ->
   receive
-    {Port, {exit_status, N}}    -> do_port_exit(N);
+%    {Port, {exit_status, N}}    -> do_port_exit(N);
     {Port, {data, Line}}        -> do_stderr(Caller, Port, Monitor, Line);
+    {'EXIT', Port, epipe}       -> ok;
+    {'EXIT', Monitor, ok}       -> loop(Caller, Port, undef);
     {'EXIT', ExitPid, Reason}   -> do_exit(Caller, Port, Monitor, ExitPid, Reason);
     {stdout, Monitor, Line}     -> do_stdout(Caller, Port, Monitor, Line);
     {command, Caller, Command} when Monitor == undef  
                                 -> do_command(Caller, Port, Monitor, Command);
-    Noise                       -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
+    Noise when Monitor == undef -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
                                    ?MODULE:loop(Caller, Port, Monitor) 
   end.
 
@@ -108,7 +110,7 @@ do_exit(_Caller, _Port, Monitor, ExitPid, {error, Reason}) ->
      true               -> {error, {io_lib:format("~p", [ExitPid]), Reason}}
   end;
 do_exit(Caller, Port, Monitor, ExitPid, Status) -> 
-  ?DEBUG("saw ~p exit: ~p~n", [ExitPid, Status]),
+  ?DEBUG("~p saw ~p exit: ~p~n", [?MODULE, ExitPid, Status]),
   loop(Caller, Port, Monitor).
   
 % Stderr messages via redirect to stdout -- forward to caller.
@@ -140,14 +142,20 @@ do_command(Caller, Port, Monitor, Command) ->
 
 % Send command to external shell process, wrapping it with a lock file.
 do_command(Caller, Port, undef, Command, Temp) ->
-  lock(Temp),
+  lock(Port, Temp),
   Monitor = pose_shout:monitor(Temp),
-  send_command(Port, io_lib:format("~s > ~s", [Command, Temp])),
+  send_command(Port, io_lib:format("~s > \"~s\"", [Command, Temp])),
   unlock(Port, Temp),
   loop(Caller, Port, Monitor).
 
 % Create a lock file.  This can be done within Erlang.
-lock(File) -> file:close(file:open(io_lib:format("~s.lock", [File]), [write])).
+lock(Port, File) -> {OS, _} = os:type(), lock(Port, File, OS).
+
+lock(Port, File, unix) ->
+  send_command(Port, io_lib:format("touch \"~s.lock\"", [File])); 
+lock(Port, File, win32) ->
+  WinFile = pose_file:winname(File),
+  send_command(Port, io_lib:format("echo touch > \"~s.lock\"", [WinFile])).
 
 % Remove a lock file, via a command sent to external shell.
 unlock(Port, File) -> {OS, _} = os:type(), unlock(Port, File, OS).
