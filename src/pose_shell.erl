@@ -100,8 +100,7 @@ loop(Caller, Port, Monitor) ->
     {stdout, Monitor, Line}     -> do_stdout(Caller, Port, Monitor, Line);
     {command, Caller, Command} when Monitor == undef  
                                 -> do_command(Caller, Port, Monitor, Command);
-    Noise when Monitor == undef -> ?DEBUG("~s: noise: ~p~n", [?MODULE, Noise]),
-                                   ?MODULE:loop(Caller, Port, Monitor) 
+    Noise when Monitor == undef -> ?DONOISE, ?MODULE:loop(Caller, Port, Monitor) 
   end.
 
 % Handle exit messages from processes.

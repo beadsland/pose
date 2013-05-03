@@ -81,3 +81,6 @@
 -define(DEBUG(Format, What), debug, put(devnull, {Format, What})).
 -define(DEBUG(Output), debug, put(devnull, Output)).
 -endif.
+
+% DONOISE handles any received messages that haven't otherwise been deal with.
+-define(DONOISE, ?DEBUG("~s ~p: noise: ~p~n", [?MODULE, self(), Noise])).

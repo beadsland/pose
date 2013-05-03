@@ -156,8 +156,7 @@ shell_loop(Port, Temp, Errors) ->
     {Port, {exit_status, N}}                            ->
       {error, {exit_status, {N, tuple_nest(Errors)}}};
     Noise                                               ->
-      ?DEBUG("~s: shell_loop/3: noise: ~p~n", [?MODULE, Noise]),
-      ?MODULE:shell_loop(Port, Temp, Errors)
+      ?DONOISE, ?MODULE:shell_loop(Port, Temp, Errors)
   end.
 
 % Loop through standard output, clean up temporary file, and return result.
@@ -177,8 +176,7 @@ shell_loop(Port, Temp, ReadPid, Output) ->
       ?CAPTLN(ReadPid),
       shell_loop(Port, Temp, ReadPid, [Line | Output]);
     Noise                               ->
-      ?DEBUG("~s: shell_loop/4: noise: ~p~n", [?MODULE, Noise]),
-      ?MODULE:shell_loop(Port, Temp, ReadPid, Output)      
+      ?DONOISE, ?MODULE:shell_loop(Port, Temp, ReadPid, Output)      
   end.
 
 do_shell_exit(Temp, ok, Output) ->

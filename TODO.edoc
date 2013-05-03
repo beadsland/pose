@@ -1,5 +1,5 @@
-@todo refactor do_noise to gen_command
 @todo refactor do_exit to gen_command
+@todo make sure purging
 @todo silence noise
 @todo pose_shell: lots of unnecessary errout lines
 @todo pose_shell: incorporate pose_shout

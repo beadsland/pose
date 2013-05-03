@@ -115,7 +115,7 @@ loop(IO, Device, Access) ->
     {stdout, Stdin, Line} when W, Stdin == IO#std.in		->
       do_writeln(IO, Device, Access, Line);
     Noise													->
-      do_noise(IO, Device, Access, Noise)
+      ?DONOISE, ?MODULE:loop(IO, Device, Access)
   end.
 
 % Read a line of text from file (triggered by captln).
@@ -168,8 +168,3 @@ do_exit(IO, Device, Access, ExitPid, Reason) ->
                                            do_close(Device, Access);
     _ 									-> ?MODULE:loop(IO, Device, Access)
   end.
-
-% Handle noise in the message queue.
-do_noise(IO, Device, Access, Noise) ->
-  ?STDERR("~s: noise: ~p~n", [?MODULE, Noise]),
-  ?MODULE:loop(IO, Device, Access).

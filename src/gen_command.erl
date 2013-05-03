@@ -187,4 +187,4 @@ do_output(MsgTag, Output) ->
 
 % Handle message queue noise.
 do_noise(Noise) ->
-  io:format(standard_error, "noise: ~p ~p~n", [Noise, self()]).
+  io:format(standard_error, "~s ~p: noise: ~p~n", [?MODULE, self(), Noise]).
