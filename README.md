@@ -19,19 +19,19 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">problems deleting ntfs files
+* <font color="red">refactor do_noise to gen_command
 </font>
-* <font color="red">loop not exiting
+* <font color="red">refactor do_exit to gen_command
 </font>
-* <font color="red">refactor do_exit / do_noise to gen_command
-</font>
-* <font color="red">silence exit noise
+* <font color="red">silence noise
 </font>
 * <font color="red">pose_shell: lots of unnecessary errout lines
 </font>
 * <font color="red">pose_shell: incorporate pose_shout
 </font>
 * <font color="red">pose_shell: exit/1
+</font>
+* <font color="red">pose_shell: command.com errorlevel
 </font>
 * <font color="red">...plus 9 more (see TODO.edoc)
 </font>
