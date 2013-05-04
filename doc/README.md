@@ -21,6 +21,8 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">pose_shell: lots of unnecessary errout lines
 </font>
+* <font color="red">pose_shell: segment loop
+</font>
 * <font color="red">pose_shell: concise loop parameters
 </font>
 * <font color="red">pose_shell: exit/1
@@ -31,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: /bin/sh $?
 </font>
-* <font color="red">pose_shell: confirm it all works via command.com
-</font>
-* <font color="red">...plus 8 more (see TODO.edoc)
+* <font color="red">...plus 9 more (see TODO.edoc)
 </font>
 
 
