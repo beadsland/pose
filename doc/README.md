@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_shell: exit/1
-</font>
 * <font color="red">pose_shell: command.com errorlevel
 </font>
 * <font color="red">pose_shell: cmd.exe %errorlevel%
@@ -33,7 +31,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: command/1 for one-shot shell
 </font>
-* <font color="red">...plus 6 more (see TODO.edoc)
+* <font color="red">realname: use pose_shell
+</font>
+* <font color="red">...plus 5 more (see TODO.edoc)
 </font>
 
 
