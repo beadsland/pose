@@ -75,7 +75,7 @@ monitor(File) -> spawn_link(?MODULE, run, [?IO(self()), File]).
 run(IO, File) ->
   ENV = ?ENV, ?INIT_POSE,
   case loop(IO, File) of
-    {error, Reason} -> exit({error, {filename:basename(File), Reason}});
+    {error, Reason} -> exit({filename:basename(File), Reason});
     ok              -> exit(ok)
   end.
 
@@ -92,7 +92,7 @@ loop(IO, File) ->
 
 % File has been created, so start reading it.
 do_open(IO, File) ->
-  case file:open(File, [read]) of
+  case file:open(File, [read]) of 
     {error, Reason} -> {error, {open, Reason}};
     {ok, Handle}    -> loop(IO, File, Handle, [], 0)
   end.

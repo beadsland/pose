@@ -118,25 +118,27 @@ format_erlerr({{Atom, Data}, List}) when is_atom(Atom), is_list(List) ->
 format_erlerr({Atom, [Head | Tail]}) when is_atom(Atom), is_tuple(Head) ->
   Reason = format_erlerr(Atom), Trace = format_erltrace([Head | Tail]),
   io_lib:format("~s ~p~n~s", [Reason, self(), Trace]);
-format_erlerr({Atom, Data}) when is_atom(Atom) ->
-  String1 = format_erlerr(Atom), String2 = lists:flatten(format_erlerr(Data)),
-  [Line1 | _Rest] = string:tokens(String2, "\n"),
-  Length = string:len(String1) + string:len(Line1),
-  if Length > 75    -> io_lib:format("~s:~n     ~s", [String1, String2]);
-     true           -> io_lib:format("~s: ~s", [String1, String2])
-  end;
 format_erlerr({List, Data}) when is_list(List) ->
   IsString = is_string(List),
   if IsString   -> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
      true       -> String = io_lib:format("      ~72p", [{List, Data}]),
                    re:replace(String, "^\s*", "", [{return, list}])
   end;                                 
+format_erlerr({Term, Data}) ->
+  String1 = format_erlerr(Term), String2 = lists:flatten(format_erlerr(Data)),
+  [Line1 | _Rest] = string:tokens(String2, "\n"),
+  Length = string:len(String1) + string:len(Line1),
+  if Length > 75    -> io_lib:format("~s:~n     ~s", [String1, String2]);
+     true           -> io_lib:format("~s: ~s", [String1, String2])
+  end;
 format_erlerr(Atom) when is_atom(Atom) ->
   IsFileErr = lists:member(Atom, ?FILE_ERR),
   if IsFileErr  -> file:format_error(Atom);
      true       -> Options = [{return, list}, global],
                    re:replace(atom_to_list(Atom), "_", " ", Options)
   end;
+format_erlerr(Term) when is_pid(Term); is_port(Term) -> 
+  io_lib:format("~p", [Term]);
 format_erlerr(Else) ->
   IsString = is_string(Else),
   if IsString   -> io_lib:format("~s", [Else]);
