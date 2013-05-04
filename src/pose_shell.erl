@@ -92,25 +92,18 @@ run(Caller, _OS, Shell) ->
 % @private exported for fully-qualified calls.
 loop(Caller, Port, Monitor) ->
   receive
-%    {Port, {exit_status, N}}    -> do_port_exit(N);
-    {Port, {data, Line}}        -> do_stderr(Caller, Port, Monitor, Line);
+    {purging, _Pid, _Module}    -> ?MODULE:loop(Caller, Port, Monitor);
     {'EXIT', Port, epipe}       -> ok;
-    {'EXIT', Monitor, ok}       -> loop(Caller, Port, undef);
-    {'EXIT', ExitPid, Reason}   -> do_exit(Caller, Port, Monitor, ExitPid, Reason);
+    {'EXIT', Monitor, ok}       -> ?MODULE:loop(Caller, Port, undef);
+    {'EXIT', Monitor, ?ERROR}   -> {error, {cmd_stdout, Reason}};
+    {'EXIT', ExitPid, ?ERROR}   -> {error, {ExitPid, Reason}};
+    {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Caller, Port, Monitor);
     {stdout, Monitor, Line}     -> do_stdout(Caller, Port, Monitor, Line);
+    {Port, {data, Line}}        -> do_stderr(Caller, Port, Monitor, Line);
     {command, Caller, Command} when Monitor == undef  
                                 -> do_command(Caller, Port, Monitor, Command);
     Noise when Monitor == undef -> ?DONOISE, ?MODULE:loop(Caller, Port, Monitor) 
   end.
-
-% Handle exit messages from processes.
-do_exit(_Caller, _Port, Monitor, ExitPid, {error, Reason}) ->
-  if ExitPid == Monitor -> {error, {cmd_stdout, Reason}};
-     true               -> {error, {io_lib:format("~p", [ExitPid]), Reason}}
-  end;
-do_exit(Caller, Port, Monitor, ExitPid, Status) -> 
-  ?DEBUG("~p saw ~p exit: ~p~n", [?MODULE, ExitPid, Status]),
-  loop(Caller, Port, Monitor).
   
 % Stderr messages via redirect to stdout -- forward to caller.
 do_stderr(Caller, Port, Monitor, Line) ->

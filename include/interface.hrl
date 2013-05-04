@@ -82,5 +82,7 @@
 -define(DEBUG(Output), debug, put(devnull, Output)).
 -endif.
 
-% DONOISE handles any received messages that haven't otherwise been deal with.
+% Macros for concice receive loops.
+-define(ERROR, {error, Reason}).
+-define(DOEXIT, ?DEBUG("~s ~p: saw ~p exit~n", [?MODULE, self(), ExitPid])).
 -define(DONOISE, ?DEBUG("~s ~p: noise: ~p~n", [?MODULE, self(), Noise])).
