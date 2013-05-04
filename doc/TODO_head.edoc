@@ -1,8 +1,8 @@
 @todo pose_shell: lots of unnecessary errout lines
-@todo pose_shell: incorporate pose_shout
 @todo pose_shell: exit/1
 @todo pose_shell: command.com errorlevel
 @todo pose_shell: cmd.exe %errorlevel%
 @todo pose_shell: /bin/sh $?
 @todo pose_shell: confirm it all works via command.com
-@todo ...plus 8 more (see TODO.edoc)
+@todo pose_shell: confirm all works in /bin/sh
+@todo ...plus 7 more (see TODO.edoc)
