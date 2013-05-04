@@ -1,4 +1,5 @@
 @todo pose_shell: lots of unnecessary errout lines
+@todo pose_shell: segment loop
 @todo pose_shell: concise loop parameters
 @todo pose_shell: exit/1
 @todo pose_shell: command.com errorlevel
