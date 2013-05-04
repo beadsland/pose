@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.5
+%% @version 0.0.6
 -module(pose_shell).
--version("0.0.5").
+-version("0.0.6").
 
 %%
 %% Include files
@@ -47,7 +47,7 @@
 
 % Private exports
 
--export([run/1, loop/4]).
+-export([run/1, loop/3]).
 
 %%
 %% API Functions
@@ -56,7 +56,7 @@
 -type shell_pid() :: pid().
 -spec spawn() -> shell_pid().
 %% @doc Spawn an operating system shell interface as a new process.
-spawn() -> spawn_link(?MODULE, run, [self()]).
+spawn() -> spawn_link(?MODULE, run, [?IO(undef, self(), self())]). 
 
 -type command() :: string().
 -spec command(ShellPid :: shell_pid(), Command :: command()) -> ok.
@@ -70,72 +70,80 @@ command(ShellPid, Command) -> ShellPid ! {command, self(), Command}, ok.
 %%
 
 % @private Internal callback.
-run(Caller) ->
-  IO = ?IO(Caller), ENV = ?ENV, ?INIT_POSE,
-  {OS, _} = os:type(), run(Caller, OS).
+run(IO) ->
+  ENV = ?ENV, ?INIT_POSE,
+  {OS, _} = os:type(), run(IO, OS).
 
 % Configure operating-system specific shell.
-run(Caller, win32) ->
+run(IO, win32) ->
   cygwin_nodosfilewarning(),
-  run(Caller, win32, pose_file:trim(os:cmd("echo %ComSpec%")));
-run(Caller, unix) -> run(Caller, unix, "/bin/sh").
+  run(IO, win32, pose_file:trim(os:cmd("echo %ComSpec%")));
+run(IO, unix) -> run(IO, unix, "/bin/sh").
 
 % Spawn a shell executable, and start loop listening to same.
-run(Caller, OS, Shell) ->
+run(IO, OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
-  case run(Caller, OS, Shell, Port) of
+  case do_run(IO, OS, Port) of
     {error, Reason} -> exit({shell, Reason});
     ok              -> exit(ok)
   end.
 
-run(Caller, unix, _Shell, Port) -> loop(Caller, Port, undef, []);
-run(Caller, win32, _Shell, Port) ->
+do_run(IO, unix, Port) -> loop(IO, Port, []);
+do_run(IO, win32, Port) ->
   Port ! {self(), {command, "echo off\r\n"}},
-  loop(Caller, Port, echo_off, []).
+  loop(?IO(echo_off, IO#std.out, IO#std.err), Port, []).
 
 % @private exported for fully-qualified calls.
-loop(Caller, Port, Monitor, Ignore) ->
-  [IgLine | IgMore] = case Ignore of [] -> ["",[]]; _ -> Ignore end,
+loop(IO, Port, Ignore) ->
+  Caller = IO#std.out, Monitor = IO#std.in,
   receive
-    {purging, _Pid, _Module}    -> ?MODULE:loop(Caller, Port, Monitor, Ignore);
-    {'EXIT', Caller, Reason}    -> {error, {caller, Reason}};
-    {'EXIT', Port, Reason}      -> {error, {port, Reason}};
-    {'EXIT', Monitor, ok}       -> ?MODULE:loop(Caller, Port, undef, Ignore);
-    {'EXIT', Monitor, Reason}   -> {error, {monitor, Reason}};
-    {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Caller, Port, Monitor, Ignore);
-    {'EXIT', ExitPid, Reason}   -> {error, {ExitPid, Reason}};
-    {Port, {exit_status, 0}}    -> ok;
-    {Port, {exit_status, N}}    -> {error, {exit_status, N}};
-    {Port, {data, "echo off\r\n"}} when Monitor == echo_off ->
-                                   %?DEBUG("echo off\n"),
-                                   ?MODULE:loop(Caller, Port, undef, Ignore);
-    {Port, {data, _Line}} when Monitor == echo_off -> 
-                                   %?DEBUG("~p~n", [Line]),
-                                   ?MODULE:loop(Caller, Port, Monitor, Ignore);
-    {Port, {data, IgLine}}      -> ?MODULE:loop(Caller, Port, Monitor, IgMore);
-    {Port, {data, Line}}        -> do_stderr(Caller, Port, Monitor, Ignore, Line);
-    {stdout, Monitor, Line}     -> do_stdout(Caller, Port, Monitor, Ignore, Line);
+    {purging, _Pid, _Module}    -> ?MODULE:loop(IO, Port, Ignore);
+    {'EXIT', ExitPid, Reason}   -> do_exit(IO, Port, Ignore, ExitPid, Reason);
+    {Port, Message}             -> do_stderr(IO, Port, Ignore, Message);
+    {stdout, Monitor, Line}     -> do_stdout(IO, Port, Ignore, Line);
     {command, Caller, Command} when Monitor == undef
-                                -> do_command(Caller, Port, Monitor, Ignore, Command);
-    Noise when Monitor == undef -> ?DONOISE, ?MODULE:loop(Caller, Port, Monitor, Ignore)
+                                -> do_command(IO, Port, Ignore, Command);
+    Noise when Monitor == undef -> ?DONOISE, ?MODULE:loop(IO, Port, Ignore)
   after 10000 ->
     if Monitor == echo_off  -> {error, {timeout, echo_off}};
-       Monitor == undef     -> ?MODULE:loop(Caller, Port, Monitor, Ignore);
+       Monitor == undef     -> ?MODULE:loop(IO, Port, Ignore);
        true                 -> {error, {timeout, command}}
     end
   end.
 
-% Stderr messages via redirect to stdout -- forward to caller.
-do_stderr(Caller, Port, Monitor, Ignore, Line) ->
-  Caller ! {stderr, self(), unix_eol(Line)},
-  loop(Caller, Port, Monitor, Ignore).
+% Handle exit messages.
+do_exit(IO, _Port, _Ignore, ExitPid, Reason) when ExitPid == IO#std.out ->
+  {error, {caller, Reason}}; 
+do_exit(_IO, Port, _Ignore, ExitPid, Reason) when ExitPid == Port ->
+  {error, {port, Reason}};
+do_exit(IO, Port, Ignore, ExitPid, ok) when ExitPid == IO#std.in ->
+  ?MODULE:loop(?IO(undef, IO#std.out, IO#std.err), Port, Ignore);
+do_exit(IO, _Port, _Ignore, ExitPid, Reason) when ExitPid == IO#std.in ->
+  {error, {monitor, Reason}};
+do_exit(IO, Port, Ignore, ExitPid, normal) ->
+  ?DOEXIT, ?MODULE:loop(IO, Port, Ignore);
+do_exit(_IO, _Port, _Ignore, ExitPid, Reason) -> {error, {ExitPid, Reason}}.
 
-% Stdout messages via a redirect to a temp file -- forward to caller.
-do_stdout(Caller, Port, Monitor, Ignore, eof) -> loop(Caller, Port, Monitor, Ignore);
-do_stdout(Caller, Port, Monitor, Ignore, Line) ->
-  Caller ! {stdout, self(), Line},
-  loop(Caller, Port, Monitor, Ignore).
+% Handle stderr messages.
+do_stderr(_IO, _Port, _Ignore, {exit_status, 0}) -> ok;
+do_stderr(_IO, _Port, _Ignore, {exit_status, N}) -> {error, {exit_status, N}};
+do_stderr(IO, Port, Ignore, {data, "echo off\r\n"}) when IO#std.in==echo_off ->
+  NewIO = ?IO(undef, IO#std.out, IO#std.err),
+  ?MODULE:loop(NewIO, Port, Ignore);
+do_stderr(IO, Port, Ignore, {data, _Line}) when IO#std.in == echo_off ->
+  ?MODULE:loop(IO, Port, Ignore);
+do_stderr(IO, Port, Ignore, {data, Line}) ->
+  [IgLine | IgMore] = case Ignore of [] -> ["",[]]; _ -> Ignore end,
+  case Line of
+    IgLine  -> ?MODULE:loop(IO, Port, IgMore);
+    _       -> ?STDERR(unix_eol(Line)), ?MODULE:loop(IO, Port, Ignore)
+  end.
+
+% Handle stdout messages.
+do_stdout(IO, Port, Ignore, eof) -> ?MODULE:loop(IO, Port, Ignore);
+do_stdout(IO, Port, Ignore, Line) -> 
+  ?STDOUT(Line), ?MODULE:loop(IO, Port, Ignore).
 
 % Convert DOS EOL to Unix EOL.
 unix_eol(Line) -> {OS, _} = os:type(), unix_eol(Line, OS).
@@ -146,15 +154,15 @@ unix_eol([First | [Second | Rest]], win32) when First == $\r, Second == $\n ->
 unix_eol([First | Rest], win32) -> [First | unix_eol(Rest, win32)].
 
 % Get a temp file to receive command's standard output channel.
-do_command(Caller, Port, Monitor, Ignore, Command) ->
+do_command(IO, Port, Ignore, Command) ->
   case pose_os:get_temp_file() of
     {error, Reason} -> {error, {temp_file, Reason}};
     {ok, Temp}      -> Strip = string:strip(Command, right, $\n),
-                       do_command(Caller, Port, Monitor, Ignore, Strip, Temp)
+                       do_command(IO, Port, Ignore, Strip, Temp)
   end.
 
 % Send command to external shell process, wrapping it with a lock file.
-do_command(Caller, Port, undef, _Ignore, Command, Temp) ->
+do_command(IO, Port, _Ignore, Command, Temp) ->
   Monitor = pose_shout:monitor(Temp),
   I1 = lock(Port, Temp),
   I2 = send_command(Port, io_lib:format("~s > \"~s\"", [Command, Temp])),
@@ -163,7 +171,7 @@ do_command(Caller, Port, undef, _Ignore, Command, Temp) ->
     {unix, _}  -> Ignore = [];
     {win32, _} -> Ignore = [I1, I2, I3]
   end,
-  loop(Caller, Port, Monitor, Ignore).
+  loop(?IO(Monitor, IO#std.out, IO#std.err), Port, Ignore).
 
 % Create a lock file.  This can be done within Erlang.
 lock(Port, File) -> {OS, _} = os:type(), lock(Port, File, OS).
