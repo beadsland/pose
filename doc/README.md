@@ -19,12 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">refactor do_exit to gen_command
-</font>
-* <font color="red">make sure purging
-</font>
-* <font color="red">silence noise
-</font>
 * <font color="red">pose_shell: lots of unnecessary errout lines
 </font>
 * <font color="red">pose_shell: incorporate pose_shout
@@ -33,7 +27,13 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: command.com errorlevel
 </font>
-* <font color="red">...plus 9 more (see TODO.edoc)
+* <font color="red">pose_shell: cmd.exe %errorlevel%
+</font>
+* <font color="red">pose_shell: /bin/sh $?
+</font>
+* <font color="red">pose_shell: command/1 for one-shot shell
+</font>
+* <font color="red">...plus 6 more (see TODO.edoc)
 </font>
 
 
