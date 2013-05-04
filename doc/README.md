@@ -21,8 +21,6 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">pose_shell: lots of unnecessary errout lines
 </font>
-* <font color="red">pose_shell: incorporate pose_shout
-</font>
 * <font color="red">pose_shell: exit/1
 </font>
 * <font color="red">pose_shell: command.com errorlevel
@@ -31,9 +29,11 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: /bin/sh $?
 </font>
-* <font color="red">pose_shell: command/1 for one-shot shell
+* <font color="red">pose_shell: confirm it all works via command.com
 </font>
-* <font color="red">...plus 6 more (see TODO.edoc)
+* <font color="red">pose_shell: confirm all works in /bin/sh
+</font>
+* <font color="red">...plus 7 more (see TODO.edoc)
 </font>
 
 
