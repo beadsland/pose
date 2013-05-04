@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.6
+%% @version 0.0.7
 -module(pose_shell).
--version("0.0.6").
+-version("0.0.7").
 
 %%
 %% Include files
@@ -43,7 +43,7 @@
 
 % API entry points
 
--export([spawn/0, command/2]).
+-export([spawn/0, command/2, exit/1]).
 
 % Private exports
 
@@ -65,6 +65,10 @@ spawn() -> spawn_link(?MODULE, run, [?IO(undef, self(), self())]).
 %% @end
 command(ShellPid, Command) -> ShellPid ! {command, self(), Command}, ok.
 
+-spec exit(ShellPid :: shell_pid()) -> ok.
+%% @doc Exit an operating system shell process.
+exit(ShellPid) -> ShellPid ! {command, self(), exit}, ok.
+
 %%
 %% Local Functions
 %%
@@ -85,8 +89,8 @@ run(IO, OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   case do_run(IO, OS, Port) of
-    {error, Reason} -> exit({shell, Reason});
-    ok              -> exit(ok)
+    {error, Reason} -> erlang:exit({shell, Reason});
+    ok              -> erlang:exit(ok)
   end.
 
 do_run(IO, unix, Port) -> loop(IO, Port, []);
@@ -102,6 +106,9 @@ loop(IO, Port, Ignore) ->
     {'EXIT', ExitPid, Reason}   -> do_exit(IO, Port, Ignore, ExitPid, Reason);
     {Port, Message}             -> do_stderr(IO, Port, Ignore, Message);
     {stdout, Monitor, Line}     -> do_stdout(IO, Port, Ignore, Line);
+    {command, Caller, exit} when Monitor == undef
+                                -> Ig = send_command(Port, "exit"),
+                                   ?MODULE:loop(IO, Port, [Ig]);
     {command, Caller, Command} when Monitor == undef
                                 -> do_command(IO, Port, Ignore, Command);
     Noise when Monitor == undef -> ?DONOISE, ?MODULE:loop(IO, Port, Ignore)
@@ -149,6 +156,7 @@ do_stdout(IO, Port, Ignore, Line) ->
 unix_eol(Line) -> {OS, _} = os:type(), unix_eol(Line, OS).
 
 unix_eol(Line, unix) -> Line;
+unix_eol([], win32) -> [];
 unix_eol([First | [Second | Rest]], win32) when First == $\r, Second == $\n -> 
   [$\n | unix_eol(Rest, win32)];
 unix_eol([First | Rest], win32) -> [First | unix_eol(Rest, win32)].
