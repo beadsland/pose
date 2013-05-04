@@ -19,10 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_shell: concise loop parameters
-</font>
-* <font color="red">pose_shell: segment loop
-</font>
 * <font color="red">pose_shell: exit/1
 </font>
 * <font color="red">pose_shell: command.com errorlevel
@@ -33,7 +29,11 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: confirm it all works via command.com
 </font>
-* <font color="red">...plus 8 more (see TODO.edoc)
+* <font color="red">pose_shell: confirm all works in /bin/sh
+</font>
+* <font color="red">pose_shell: command/1 for one-shot shell
+</font>
+* <font color="red">...plus 6 more (see TODO.edoc)
 </font>
 
 
