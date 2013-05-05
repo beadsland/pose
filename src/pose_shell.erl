@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.7
+%% @version 0.0.8
 -module(pose_shell).
--version("0.0.7").
+-version("0.0.8").
 
 %%
 %% Include files
@@ -182,25 +182,33 @@ do_command(IO, Port, Ignore, Command) ->
 % Send command to external shell process, wrapping it with a lock file.
 do_command(IO, Port, _Ignore, Command, Temp) ->
   Monitor = pose_shout:monitor(Temp),
-  I1 = lock(Port, Temp),
-  I2 = send_command(Port, io_lib:format("~s > \"~s\"", [Command, Temp])),
-  [I3, I4] = check_exit_status(Port, Command),
-  I5 = unlock(Port, Temp),
+  Lock = lock(Port, Temp),
+  Cmd = send_command(Port, io_lib:format("~s > \"~s\"", [Command, Temp])),
+  Status = exit_status(Port, Command),
+  Unlock = unlock(Port, Temp),
   case os:type() of
     {unix, _}  -> Ignore = [];
-    {win32, _} -> Ignore = [I1, I2, I3, I4, I5]
+    {win32, _} -> Ignore = lists:append([[Lock, Cmd], Status, [Unlock]])
   end,
   loop(?IO(Monitor, IO#std.out, IO#std.err), Port, Ignore).
 
-check_exit_status(Port, Command) ->
+% Test the exit status of the last command, returning it if nonzero.
+exit_status(Port, Command) -> 
+  {OS, _} = os:type(), exit_status(Port, Command, OS).
+
+exit_status(Port, Command, unix) ->
+  Test = ["OUT=$?; test $OUT -ne 0 && echo \"", 
+          ?EXIT_STATUS, ":$OUT:", Command, "\""],
+  [send_command(Port, Test)];
+exit_status(Port, Command, win32) ->
   PseudoSet = "\"%errorlevel%\"==\"\"",
-  Test1 = ["if ", PseudoSet, " if errorlevel 1 echo ", 
-           ?EXIT_STATUS, ":1:", Command],
-  Test2 = ["if not ", PseudoSet, " if not %errorlevel%==0 echo ", 
-           ?EXIT_STATUS, ":%errorlevel%:", Command],
+  Test1 = ["if ", PseudoSet, " if errorlevel 1 echo \"", 
+           ?EXIT_STATUS, ":1:", Command, "\""],
+  Test2 = ["if not ", PseudoSet, " if not %errorlevel%==0 echo \"", 
+           ?EXIT_STATUS, ":%errorlevel%:", Command, "\""],
   [send_command(Port, Test1), send_command(Port, Test2)].
   
-% Create a lock file.  This can be done within Erlang.
+% Create a lock file.
 lock(Port, File) -> {OS, _} = os:type(), lock(Port, File, OS).
 
 lock(Port, File, unix) ->
