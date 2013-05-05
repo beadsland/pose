@@ -91,7 +91,7 @@ run(IO, OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   case do_run(IO, OS, Port) of
-    {error, Reason} -> send_command(Port, "exit"), {Port, close}, 
+    {error, Reason} -> send_command(Port, "exit"), Port ! {self(), close}, 
                        erlang:exit({shell, Reason});
     ok              -> erlang:exit(ok)
   end.
@@ -170,7 +170,7 @@ unix_eol([First | Rest], win32) -> [First | unix_eol(Rest, win32)].
 
 % Get a temp file to receive command's standard output channel.
 do_command(IO, Port, Ignore, exit) ->
-  Ig = send_command(Port, "exit"), {Port, close},
+  Ig = send_command(Port, "exit"), Port ! {self(), close},
   ?MODULE:loop(IO, Port, [Ig]);
 do_command(IO, Port, Ignore, Command) ->
   case pose_os:get_temp_file() of
