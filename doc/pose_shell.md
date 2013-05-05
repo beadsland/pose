@@ -11,7 +11,7 @@ Execute multiple commands under an operating system shell.
 
 Copyright (c) 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.0.6
+__Version:__ 0.0.7
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -39,7 +39,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#command-2">command/2</a></td><td>Send a command to an existing shell process.</td></tr><tr><td valign="top"><a href="#spawn-0">spawn/0</a></td><td>Spawn an operating system shell interface as a new process.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#command-2">command/2</a></td><td>Send a command to an existing shell process.</td></tr><tr><td valign="top"><a href="#exit-1">exit/1</a></td><td>Exit an operating system shell process.</td></tr><tr><td valign="top"><a href="#spawn-0">spawn/0</a></td><td>Spawn an operating system shell interface as a new process.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -56,7 +56,16 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 Send a command to an existing shell process.  Output and error output
-are returned as `stdout` and `stderr` messages.<a name="spawn-0"></a>
+are returned as `stdout` and `stderr` messages.<a name="exit-1"></a>
+
+###exit/1##
+
+
+	exit(ShellPid::<a href="#type-shell_pid">shell_pid()</a>) -> ok
+<br></br>
+
+
+Exit an operating system shell process.<a name="spawn-0"></a>
 
 ###spawn/0##
 

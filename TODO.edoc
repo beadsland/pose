@@ -1,5 +1,3 @@
-@todo pose_shell: command.com errorlevel
-@todo pose_shell: cmd.exe %errorlevel%
 @todo pose_shell: /bin/sh $?
 @todo pose_shell: confirm all works in /bin/sh
 @todo pose_shell: synchronous command/1 for one-shot shell

@@ -37,6 +37,8 @@
 -define(debug, true).
 -include_lib("pose/include/interface.hrl").
 
+-define(EXIT_STATUS, "__exit_status__").
+
 %%
 %% Exported Functions
 %%
@@ -144,8 +146,16 @@ do_stderr(IO, Port, Ignore, {data, Line}) ->
   [IgLine | IgMore] = case Ignore of [] -> ["",[]]; _ -> Ignore end,
   case Line of
     IgLine  -> ?MODULE:loop(IO, Port, IgMore);
-    _       -> ?STDERR(unix_eol(Line)), ?MODULE:loop(IO, Port, Ignore)
+    _       -> do_stderr(IO, Port, Ignore, Line, string:tokens(Line, ":"))
   end.
+
+% Handle non-zero exit status when returned by any command.
+do_stderr(_IO, _Port, _Ignore, _Line, [?EXIT_STATUS, Code, Cmd]) ->
+  Command = string:strip(string:strip(Cmd, right, $\n), right, $\r),
+  {error, {Command, {exit_status, list_to_integer(Code)}}};
+do_stderr(IO, Port, Ignore, Line, _Tokens) ->
+  ?STDERR(unix_eol(Line)), 
+  ?MODULE:loop(IO, Port, Ignore).
 
 % Handle stdout messages.
 do_stdout(IO, Port, Ignore, eof) -> ?MODULE:loop(IO, Port, Ignore);
@@ -174,13 +184,22 @@ do_command(IO, Port, _Ignore, Command, Temp) ->
   Monitor = pose_shout:monitor(Temp),
   I1 = lock(Port, Temp),
   I2 = send_command(Port, io_lib:format("~s > \"~s\"", [Command, Temp])),
-  I3 = unlock(Port, Temp),
+  [I3, I4] = check_exit_status(Port, Command),
+  I5 = unlock(Port, Temp),
   case os:type() of
     {unix, _}  -> Ignore = [];
-    {win32, _} -> Ignore = [I1, I2, I3]
+    {win32, _} -> Ignore = [I1, I2, I3, I4, I5]
   end,
   loop(?IO(Monitor, IO#std.out, IO#std.err), Port, Ignore).
 
+check_exit_status(Port, Command) ->
+  PseudoSet = "\"%errorlevel%\"==\"\"",
+  Test1 = ["if ", PseudoSet, " if errorlevel 1 echo ", 
+           ?EXIT_STATUS, ":1:", Command],
+  Test2 = ["if not ", PseudoSet, " if not %errorlevel%==0 echo ", 
+           ?EXIT_STATUS, ":%errorlevel%:", Command],
+  [send_command(Port, Test1), send_command(Port, Test2)].
+  
 % Create a lock file.  This can be done within Erlang.
 lock(Port, File) -> {OS, _} = os:type(), lock(Port, File, OS).
 
