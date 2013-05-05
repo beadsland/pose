@@ -19,10 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_shell: command.com errorlevel
-</font>
-* <font color="red">pose_shell: cmd.exe %errorlevel%
-</font>
 * <font color="red">pose_shell: /bin/sh $?
 </font>
 * <font color="red">pose_shell: confirm all works in /bin/sh
@@ -33,7 +29,11 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">realname: use cwd
 </font>
-* <font color="red">...plus 4 more (see TODO.edoc)
+* <font color="red">remove FILENAME macro
+</font>
+* <font color="red">make good
+</font>
+* <font color="red">...plus 2 more (see TODO.edoc)
 </font>
 
 
