@@ -1,4 +1,3 @@
-@todo monitor cleanup
 @todo shell cleanup
 @todo shell exit timeout
 @todo pose_shell: synchronous command/1 for one-shot shell
