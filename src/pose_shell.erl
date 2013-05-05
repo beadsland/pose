@@ -58,18 +58,25 @@
 
 -type shell_pid() :: pid().
 -spec spawn() -> shell_pid().
-%% @doc Spawn an operating system shell interface as a new process.
+%% @doc Spawn an operating system shell interface as a new process.  Process
+%% will exit with an error on the first command that returns a non-zero exit
+%% status, or else exit with an `ok' upon a successful call to 
+%% `pose_shell:exit/1'.
+%% @end
 spawn() -> spawn_link(?MODULE, run, [?IO(undef, self(), self())]). 
 
 -type command() :: string().
 -spec command(ShellPid :: shell_pid(), Command :: command()) -> ok.
 %% @doc Send a command to an existing shell process.  Output and error output
-%% are returned as `stdout' and `stderr' messages.
+%% are returned as `stdout' and `stderr' messages, respectively.  Any non-zero
+%% exit status will cause shell interface process to exit with an error.
 %% @end
 command(ShellPid, Command) -> ShellPid ! {command, self(), Command}, ok.
 
 -spec exit(ShellPid :: shell_pid()) -> ok.
-%% @doc Exit an operating system shell process.
+%% @doc Exit an operating system shell process, upon successful completion of
+%% all previously submitted commands.
+%% @end
 exit(ShellPid) -> ShellPid ! {command, self(), exit}, ok.
 
 %%
