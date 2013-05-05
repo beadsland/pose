@@ -91,7 +91,8 @@ run(IO, OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   case do_run(IO, OS, Port) of
-    {error, Reason} -> send_command(Port, "exit"), Port ! {self(), close}, 
+    {error, Reason} -> send_command(Port, "exit"), 
+                       Port ! {self(), close}, 
                        erlang:exit({shell, Reason});
     ok              -> erlang:exit(ok)
   end.
@@ -108,6 +109,8 @@ loop(IO, Port, Ignore) ->
     {purging, _Pid, _Module}    -> ?MODULE:loop(IO, Port, Ignore);
     {'EXIT', ExitPid, Reason}   -> do_exit(IO, Port, Ignore, ExitPid, Reason);
     {Port, Message}             -> do_stderr(IO, Port, Ignore, Message);
+    {erlout, Pid, eof}          -> Erlout = {eof, 'should not happen'},
+                                   {error, {Pid, {erlout, Erlout}}};
     {stdout, Monitor, Line}     -> do_stdout(IO, Port, Ignore, Line);
     {command, Caller, Command} when Monitor == undef
                                 -> do_command(IO, Port, Ignore, Command);
@@ -122,6 +125,7 @@ loop(IO, Port, Ignore) ->
 % Handle exit messages.
 do_exit(IO, _Port, _Ignore, ExitPid, Reason) when ExitPid == IO#std.out ->
   {error, {caller, Reason}}; 
+do_exit(_IO, Port, _Ignore, ExitPid, normal) when ExitPid == Port -> ok;
 do_exit(_IO, Port, _Ignore, ExitPid, Reason) when ExitPid == Port ->
   {error, {port, Reason}};
 do_exit(IO, Port, Ignore, ExitPid, ok) when ExitPid == IO#std.in ->
@@ -133,23 +137,24 @@ do_exit(IO, Port, Ignore, ExitPid, normal) ->
 do_exit(_IO, _Port, _Ignore, ExitPid, Reason) -> {error, {ExitPid, Reason}}.
 
 % Handle stderr messages.
-do_stderr(_IO, _Port, _Ignore, {exit_status, 0}) -> ok;
-do_stderr(_IO, _Port, _Ignore, {exit_status, N}) -> {error, {exit_status, N}};
 do_stderr(IO, Port, Ignore, {data, "echo off\r\n"}) when IO#std.in==echo_off ->
   NewIO = ?IO(undef, IO#std.out, IO#std.err),
   ?MODULE:loop(NewIO, Port, Ignore);
-do_stderr(IO, Port, Ignore, {data, _Line}) when IO#std.in == echo_off ->
+do_stderr(IO, Port, Ignore, {data, Line}) when IO#std.in == echo_off ->
+  ?DEBUG("~s", [Line]),
   ?MODULE:loop(IO, Port, Ignore);
 do_stderr(IO, Port, Ignore, {data, Line}) ->
   [IgLine | IgMore] = case Ignore of [] -> ["",[]]; _ -> Ignore end,
   case Line of
-    IgLine  -> ?MODULE:loop(IO, Port, IgMore);
-    _       -> do_stderr(IO, Port, Ignore, Line, string:tokens(Line, ":"))
+    IgLine      -> ?MODULE:loop(IO, Port, IgMore);
+    [$" | _]    -> Tokens = string:tokens(string:strip(Line, both, $"), ":"),
+                   do_stderr(IO, Port, Ignore, Line, Tokens);
+    _           -> do_stderr(IO, Port, Ignore, Line, [])
   end.
 
 % Handle non-zero exit status when returned by any command.
 do_stderr(_IO, _Port, _Ignore, _Line, [?EXIT_STATUS, Code, Cmd]) ->
-  Command = string:strip(string:strip(Cmd, right, $\n), right, $\r),
+  Command = string:strip(string:strip(unix_eol(Cmd), right, $\n), right, $"),
   {error, {Command, {exit_status, list_to_integer(Code)}}};
 do_stderr(IO, Port, Ignore, Line, _Tokens) ->
   ?STDERR(unix_eol(Line)), ?MODULE:loop(IO, Port, Ignore).
@@ -169,8 +174,9 @@ unix_eol([First | [Second | Rest]], win32) when First == $\r, Second == $\n ->
 unix_eol([First | Rest], win32) -> [First | unix_eol(Rest, win32)].
 
 % Get a temp file to receive command's standard output channel.
-do_command(IO, Port, Ignore, exit) ->
-  Ig = send_command(Port, "exit"), Port ! {self(), close},
+do_command(IO, Port, _Ignore, exit) ->
+  Ig = send_command(Port, "exit"), 
+  Port ! {self(), close},
   ?MODULE:loop(IO, Port, [Ig]);
 do_command(IO, Port, Ignore, Command) ->
   case pose_os:get_temp_file() of
@@ -196,9 +202,10 @@ do_command(IO, Port, _Ignore, Command, Temp) ->
 exit_status(Port, Command) -> 
   {OS, _} = os:type(), exit_status(Port, Command, OS).
 
+% Status echoed as "?EXIT_STATUS:n:Command" (double quotes preserved)
 exit_status(Port, Command, unix) ->
-  Test = ["OUT=$?; test $OUT -ne 0 && echo \"", 
-          ?EXIT_STATUS, ":$OUT:", Command, "\""],
+  Test = ["OUT=$?; test $OUT -ne 0 && echo \"\\\"", 
+          ?EXIT_STATUS, ":$OUT:", Command, "\\\"\""],
   [send_command(Port, Test)];
 exit_status(Port, Command, win32) ->
   PseudoSet = "\"%errorlevel%\"==\"\"",
