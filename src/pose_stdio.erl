@@ -177,15 +177,15 @@ format_erltrace(Module, Func, Params) ->
   
 % Smartly format a function popped from the stack strace.
 format_erltrace(Module, Func, Arity, Source) ->
-  Format = "   in call from ~p:~p/~p, ~s",
+  Format = "   in call from ~p:~p/~p~s",
   SrcStr = format_erlsrc(Source),
   io_lib:format(Format, [Module, Func, Arity, SrcStr]).
 
 format_erlsrc([{file, _File}, {line, Line}]) -> 
-  io_lib:format("line ~p", [Line]);
-format_erlsrc(Else) -> io_lib:format("~p", [Else]).
+  io_lib:format(", line ~p", [Line]);
+format_erlsrc([]) -> [];
+format_erlsrc(Else) -> io_lib:format(", ~p", [Else]).
   
-
 % Send output as #std IO message.
 send(_IO, Output, OutPid, Stdout, Erlout) ->
   IsString = is_string(Output),
