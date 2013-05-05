@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.8
+%% @version 0.0.9
 -module(pose_shell).
--version("0.0.8").
+-version("0.0.9").
 
 %%
 %% Include files
@@ -38,6 +38,7 @@
 -include_lib("pose/include/interface.hrl").
 
 -define(EXIT_STATUS, "__exit_status__").
+-define(TIMEOUT, timer:minutes(1)).
 
 %%
 %% Exported Functions
@@ -91,12 +92,19 @@ run(IO, OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   case do_run(IO, OS, Port) of
-    {error, Reason} -> send_command(Port, "exit"), 
-                       Port ! {self(), close}, 
+    {error, Reason} -> cleanup(IO, Port), 
                        erlang:exit({shell, Reason});
     ok              -> erlang:exit(ok)
   end.
 
+% Tell shell to exit, sending a delayed close message as last resort.
+cleanup(IO, Port) ->
+  send_command(Port, "exit"),
+  case timer:send_after(?TIMEOUT, Port, {self(), close}) of
+    {error, Reason} -> ?STDERR("close timer: ~s", ?FORMAT_ERLERR(Reason));
+    {ok, _TRef}     -> ok
+  end.
+  
 do_run(IO, unix, Port) -> loop(IO, Port, []);
 do_run(IO, win32, Port) ->
   Port ! {self(), {command, "echo off\r\n"}},
@@ -109,23 +117,24 @@ loop(IO, Port, Ignore) ->
     {purging, _Pid, _Module}    -> ?MODULE:loop(IO, Port, Ignore);
     {'EXIT', ExitPid, Reason}   -> do_exit(IO, Port, Ignore, ExitPid, Reason);
     {Port, Message}             -> do_stderr(IO, Port, Ignore, Message);
-    {erlout, Pid, eof}          -> Erlout = {eof, 'should not happen'},
+    {erlout, Pid, eof}          -> Erlout = {erlout_eof, 'should not happen'},
                                    {error, {Pid, {erlout, Erlout}}};
     {stdout, Monitor, Line}     -> do_stdout(IO, Port, Ignore, Line);
     {command, Caller, Command} when Monitor == undef
                                 -> do_command(IO, Port, Ignore, Command);
     Noise when Monitor == undef -> ?DONOISE, ?MODULE:loop(IO, Port, Ignore)
-  after 10000 ->
-    if Monitor == echo_off  -> {error, {timeout, echo_off}};
-       Monitor == undef     -> ?MODULE:loop(IO, Port, Ignore);
-       true                 -> {error, {timeout, command}}
+  after ?TIMEOUT ->
+    if Monitor == undef     -> ?MODULE:loop(IO, Port, Ignore);
+       Ignore /= []         -> [IgLine | _IgMore] = Ignore,
+                               Command = strip_eol(IgLine),
+                               {error, {timeout, Command}};
+       true                 -> {error, {timeout, Monitor}}
     end
   end.
 
 % Handle exit messages.
 do_exit(IO, _Port, _Ignore, ExitPid, Reason) when ExitPid == IO#std.out ->
   {error, {caller, Reason}}; 
-do_exit(_IO, Port, _Ignore, ExitPid, normal) when ExitPid == Port -> ok;
 do_exit(_IO, Port, _Ignore, ExitPid, Reason) when ExitPid == Port ->
   {error, {port, Reason}};
 do_exit(IO, Port, Ignore, ExitPid, ok) when ExitPid == IO#std.in ->
@@ -137,24 +146,26 @@ do_exit(IO, Port, Ignore, ExitPid, normal) ->
 do_exit(_IO, _Port, _Ignore, ExitPid, Reason) -> {error, {ExitPid, Reason}}.
 
 % Handle stderr messages.
+do_stderr(_IO, _Port, _Ignore, {exit_status, 0}) -> ok;
+do_stderr(_IO, _Port, _Ignore, {exit_status, N}) -> {error, {exit_status, N}};
 do_stderr(IO, Port, Ignore, {data, "echo off\r\n"}) when IO#std.in==echo_off ->
   NewIO = ?IO(undef, IO#std.out, IO#std.err),
   ?MODULE:loop(NewIO, Port, Ignore);
-do_stderr(IO, Port, Ignore, {data, Line}) when IO#std.in == echo_off ->
-  ?DEBUG("~s", [Line]),
+do_stderr(IO, Port, Ignore, {data, _Line}) when IO#std.in == echo_off ->
+  %?DEBUG("~s", [Line]),
   ?MODULE:loop(IO, Port, Ignore);
 do_stderr(IO, Port, Ignore, {data, Line}) ->
   [IgLine | IgMore] = case Ignore of [] -> ["",[]]; _ -> Ignore end,
   case Line of
     IgLine      -> ?MODULE:loop(IO, Port, IgMore);
-    [$" | _]    -> Tokens = string:tokens(string:strip(Line, both, $"), ":"),
+    [$" | _]    -> Unquote = string:strip(strip_eol(Line), both, $"),
+                   Tokens = string:tokens(Unquote, ":"),
                    do_stderr(IO, Port, Ignore, Line, Tokens);
     _           -> do_stderr(IO, Port, Ignore, Line, [])
   end.
 
 % Handle non-zero exit status when returned by any command.
-do_stderr(_IO, _Port, _Ignore, _Line, [?EXIT_STATUS, Code, Cmd]) ->
-  Command = string:strip(string:strip(unix_eol(Cmd), right, $\n), right, $"),
+do_stderr(_IO, _Port, _Ignore, _Line, [?EXIT_STATUS, Code, Command]) ->
   {error, {Command, {exit_status, list_to_integer(Code)}}};
 do_stderr(IO, Port, Ignore, Line, _Tokens) ->
   ?STDERR(unix_eol(Line)), ?MODULE:loop(IO, Port, Ignore).
@@ -164,7 +175,10 @@ do_stdout(IO, Port, Ignore, eof) -> ?MODULE:loop(IO, Port, Ignore);
 do_stdout(IO, Port, Ignore, Line) -> 
   ?STDOUT(Line), ?MODULE:loop(IO, Port, Ignore).
 
-% Convert DOS EOL to Unix EOL.
+% Strip trailing EOL, whether DOS or UNIX.
+strip_eol(Line) -> string:strip(string:strip(Line, right, $\n), right, $\r).
+
+% Convert any DOS EOLs to Unix EOLs.
 unix_eol(Line) -> {OS, _} = os:type(), unix_eol(Line, OS).
 
 unix_eol(Line, unix) -> Line;
@@ -175,9 +189,9 @@ unix_eol([First | Rest], win32) -> [First | unix_eol(Rest, win32)].
 
 % Get a temp file to receive command's standard output channel.
 do_command(IO, Port, _Ignore, exit) ->
-  Ig = send_command(Port, "exit"), 
-  Port ! {self(), close},
-  ?MODULE:loop(IO, Port, [Ig]);
+  Ig = send_command(Port, "exit"),
+  Ignore = case os:type() of {unix, _} -> []; {win32, _} -> [Ig] end,  
+  ?MODULE:loop(?IO(exit, IO#std.out, IO#std.err), Port, Ignore);
 do_command(IO, Port, Ignore, Command) ->
   case pose_os:get_temp_file() of
     {error, Reason} -> {error, {temp_file, Reason}};

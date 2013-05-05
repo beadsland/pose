@@ -32,9 +32,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.1
+%% @version 0.0.2
 -module(pose_shout).
--version("0.0.1").
+-version("0.0.2").
 
 %%
 %% Include files
@@ -75,7 +75,9 @@ monitor(File) -> spawn_link(?MODULE, run, [?IO(self()), File]).
 run(IO, File) ->
   ENV = ?ENV, ?INIT_POSE,
   case loop(IO, File) of
-    {error, Reason} -> exit({filename:basename(File), Reason});
+    {error, Reason} -> file:delete(lists:append(File, ".lock")),
+                       file:delete(File),
+                       exit({filename:basename(File), Reason});
     ok              -> exit(ok)
   end.
 
@@ -83,8 +85,8 @@ run(IO, File) ->
 loop(IO, File) -> 
   receive 
     {purging, _Pid, _Module}    -> ?MODULE:loop(IO, File);
-    {'EXIT', Stdout, _Reason} when Stdout == IO#std.in 
-                                -> ok;
+    {'EXIT', Stdout, Reason} when Stdout == IO#std.in 
+                                -> {error, {shell, Reason}};
     Noise                       -> ?DONOISE, ?MODULE:loop(IO, File)
   after 500 ->
     Exists = filelib:is_file(File),
@@ -104,8 +106,8 @@ do_open(IO, File) ->
 loop(IO, File, Handle, Chars, Size) ->
   receive
     {purging, _Pid, _Module}    -> ?MODULE:loop(IO, File, Handle, Chars, Size);
-    {'EXIT', Stdout, _Reason} when Stdout == IO#std.in 
-                                -> ok;
+    {'EXIT', Stdout, Reason} when Stdout == IO#std.in 
+                                -> {error, {shell, Reason}};
     Noise                       -> ?DONOISE,
                                    ?MODULE:loop(IO, File, Handle, Chars, Size)
   after 500 ->
