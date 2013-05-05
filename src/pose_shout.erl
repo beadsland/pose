@@ -82,7 +82,10 @@ run(IO, File) ->
 % @private exported for fully-qualified calls
 loop(IO, File) -> 
   receive 
-    {'EXIT', Stdout, _Reason} when Stdout == IO#std.in -> ok
+    {purging, _Pid, _Module}    -> ?MODULE:loop(IO, File);
+    {'EXIT', Stdout, _Reason} when Stdout == IO#std.in 
+                                -> ok;
+    Noise                       -> ?DONOISE, ?MODULE:loop(IO, File)
   after 500 ->
     Exists = filelib:is_file(File),
     if Exists   -> do_open(IO, File);
@@ -100,7 +103,11 @@ do_open(IO, File) ->
 % @private exported for fully-qualified calls
 loop(IO, File, Handle, Chars, Size) ->
   receive
-    {'EXIT', Stdout, _Reason} when Stdout == IO#std.in -> ok
+    {purging, _Pid, _Module}    -> ?MODULE:loop(IO, File, Handle, Chars, Size);
+    {'EXIT', Stdout, _Reason} when Stdout == IO#std.in 
+                                -> ok;
+    Noise                       -> ?DONOISE,
+                                   ?MODULE:loop(IO, File, Handle, Chars, Size)
   after 500 ->
     case read_chars(File, Handle, Size) of
       {error, Reason}       -> {error, {read, Reason}};
@@ -119,7 +126,7 @@ read_chars(File, Handle, Size) ->
   end.
 
 read_chars(_File, _Handle, Size, NewSize) when NewSize == Size -> ok;
-read_chars(File, _Handle, Size, NewSize) when NewSize < Size ->
+read_chars(_File, _Handle, Size, NewSize) when NewSize < Size ->
   {error, truncated};
 read_chars(File, Handle, Size, NewSize) ->
   case file:read(Handle, NewSize - Size) of
@@ -128,7 +135,7 @@ read_chars(File, Handle, Size, NewSize) ->
     {ok, Data}      -> read_chars(File, Handle, Size, NewSize, Data)
   end.
 
-read_chars(File, _Handle, Size, NewSize, Data) ->
+read_chars(_File, _Handle, Size, NewSize, Data) ->
   Length = string:len(Data),
   SizeDiff = NewSize - Size,
   if Length /= SizeDiff -> {error, truncated};
