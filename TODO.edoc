@@ -1,4 +1,3 @@
-@todo pose_shell: remove doublequotes from exit status
 @todo pose_shell: synchronous command/1 for one-shot shell
 @todo realname: use pose_shell
 @todo realname: use cwd
