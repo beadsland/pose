@@ -25,15 +25,15 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose_shell: /bin/sh $?
 </font>
-* <font color="red">pose_shell: confirm it all works via command.com
-</font>
 * <font color="red">pose_shell: confirm all works in /bin/sh
 </font>
-* <font color="red">pose_shell: command/1 for one-shot shell
+* <font color="red">pose_shell: synchronous command/1 for one-shot shell
 </font>
 * <font color="red">realname: use pose_shell
 </font>
-* <font color="red">...plus 5 more (see TODO.edoc)
+* <font color="red">realname: use cwd
+</font>
+* <font color="red">...plus 4 more (see TODO.edoc)
 </font>
 
 
