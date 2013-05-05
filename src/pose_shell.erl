@@ -91,7 +91,8 @@ run(IO, OS, Shell) ->
   Options = [exit_status, hide, stderr_to_stdout],
   Port = open_port({spawn_executable, Shell}, Options),
   case do_run(IO, OS, Port) of
-    {error, Reason} -> erlang:exit({shell, Reason});
+    {error, Reason} -> send_command(Port, "exit"), {Port, close}, 
+                       erlang:exit({shell, Reason});
     ok              -> erlang:exit(ok)
   end.
 
@@ -108,9 +109,6 @@ loop(IO, Port, Ignore) ->
     {'EXIT', ExitPid, Reason}   -> do_exit(IO, Port, Ignore, ExitPid, Reason);
     {Port, Message}             -> do_stderr(IO, Port, Ignore, Message);
     {stdout, Monitor, Line}     -> do_stdout(IO, Port, Ignore, Line);
-    {command, Caller, exit} when Monitor == undef
-                                -> Ig = send_command(Port, "exit"),
-                                   ?MODULE:loop(IO, Port, [Ig]);
     {command, Caller, Command} when Monitor == undef
                                 -> do_command(IO, Port, Ignore, Command);
     Noise when Monitor == undef -> ?DONOISE, ?MODULE:loop(IO, Port, Ignore)
@@ -154,8 +152,7 @@ do_stderr(_IO, _Port, _Ignore, _Line, [?EXIT_STATUS, Code, Cmd]) ->
   Command = string:strip(string:strip(Cmd, right, $\n), right, $\r),
   {error, {Command, {exit_status, list_to_integer(Code)}}};
 do_stderr(IO, Port, Ignore, Line, _Tokens) ->
-  ?STDERR(unix_eol(Line)), 
-  ?MODULE:loop(IO, Port, Ignore).
+  ?STDERR(unix_eol(Line)), ?MODULE:loop(IO, Port, Ignore).
 
 % Handle stdout messages.
 do_stdout(IO, Port, Ignore, eof) -> ?MODULE:loop(IO, Port, Ignore);
@@ -172,6 +169,9 @@ unix_eol([First | [Second | Rest]], win32) when First == $\r, Second == $\n ->
 unix_eol([First | Rest], win32) -> [First | unix_eol(Rest, win32)].
 
 % Get a temp file to receive command's standard output channel.
+do_command(IO, Port, Ignore, exit) ->
+  Ig = send_command(Port, "exit"), {Port, close},
+  ?MODULE:loop(IO, Port, [Ig]);
 do_command(IO, Port, Ignore, Command) ->
   case pose_os:get_temp_file() of
     {error, Reason} -> {error, {temp_file, Reason}};
