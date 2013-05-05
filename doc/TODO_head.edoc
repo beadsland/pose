@@ -1,7 +1,8 @@
+@todo monitor cleanup
+@todo shell cleanup
+@todo shell exit timeout
 @todo pose_shell: synchronous command/1 for one-shot shell
 @todo realname: use pose_shell
 @todo realname: use cwd
 @todo remove FILENAME macro
-@todo make good
-@todo support later versions of Erlang
-@todo refactor nested shebangs as makefile
+@todo ...plus 4 more (see TODO.edoc)
