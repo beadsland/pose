@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_shell: /bin/sh $?
+* <font color="red">pose_shell: exit shell on exit process
 </font>
 * <font color="red">pose_shell: confirm all works in /bin/sh
 </font>

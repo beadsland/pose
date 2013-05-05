@@ -1,4 +1,4 @@
-@todo pose_shell: /bin/sh $?
+@todo pose_shell: exit shell on exit process
 @todo pose_shell: confirm all works in /bin/sh
 @todo pose_shell: synchronous command/1 for one-shot shell
 @todo realname: use pose_shell
