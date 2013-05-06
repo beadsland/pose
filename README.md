@@ -19,11 +19,11 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">format erlerr not working with pid
+* <font color="red">erlerr: length not right with pids
 </font>
-* <font color="red">why is eof throwing as erlout?
+* <font color="red">reproduce: format erlerr not working with pid
 </font>
-* <font color="red">pose_shell: capture error status zero
+* <font color="red">reproduce: why is eof throwing as erlout?
 </font>
 * <font color="red">pose_short: pass command following each exit status
 </font>
