@@ -22,7 +22,9 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
-%% @doc Execute multiple commands under an operating system shell.
+%% @doc Asyncrhonously execute multiple commands under an operating 
+%% system shell.
+%% @end 
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 

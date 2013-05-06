@@ -7,7 +7,8 @@
 * [Function Details](#functions)
 
 
-Execute multiple commands under an operating system shell.
+Asyncrhonously execute multiple commands under an operating
+system shell.
 
 Copyright (c) 2013 Beads D. Land-Trujillo
 
@@ -39,7 +40,8 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#command-2">command/2</a></td><td>Send a command to an existing shell process.</td></tr><tr><td valign="top"><a href="#exit-1">exit/1</a></td><td>Exit an operating system shell process.</td></tr><tr><td valign="top"><a href="#spawn-0">spawn/0</a></td><td>Spawn an operating system shell interface as a new process.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#command-2">command/2</a></td><td>Send a command to an existing shell process.</td></tr><tr><td valign="top"><a href="#exit-1">exit/1</a></td><td>Exit an operating system shell process, upon successful completion of
+all previously submitted commands.</td></tr><tr><td valign="top"><a href="#spawn-0">spawn/0</a></td><td>Spawn an operating system shell interface as a new process.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -56,7 +58,8 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 Send a command to an existing shell process.  Output and error output
-are returned as `stdout` and `stderr` messages.<a name="exit-1"></a>
+are returned as `stdout` and `stderr` messages, respectively.  Any non-zero
+exit status will cause shell interface process to exit with an error.<a name="exit-1"></a>
 
 ###exit/1##
 
@@ -65,7 +68,8 @@ are returned as `stdout` and `stderr` messages.<a name="exit-1"></a>
 <br></br>
 
 
-Exit an operating system shell process.<a name="spawn-0"></a>
+Exit an operating system shell process, upon successful completion of
+all previously submitted commands.<a name="spawn-0"></a>
 
 ###spawn/0##
 
@@ -74,4 +78,7 @@ Exit an operating system shell process.<a name="spawn-0"></a>
 <br></br>
 
 
-Spawn an operating system shell interface as a new process.
+Spawn an operating system shell interface as a new process.  Process
+will exit with an error on the first command that returns a non-zero exit
+status, or else exit with an `ok` upon a successful call to
+`pose_shell:exit/1`.
