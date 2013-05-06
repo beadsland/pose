@@ -34,7 +34,7 @@
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 
 -include_lib("kernel/include/file.hrl").
@@ -113,16 +113,10 @@ send_debug(Format, What) ->
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
 format_erlerr({Term, [Head | Tail]}) when is_tuple(Head) ->
-  Reason = format_erlerr(Term), 
+  Reason = format_erlerr(Term),
   Trace = format_erltrace([Head | Tail]),
   StripTrace = string:strip(lists:flatten(Trace), right, $\n),
   io_lib:format("~s ~p~n~s", [Reason, self(), StripTrace]);
-format_erlerr({List, Data}) when is_list(List) ->
-  IsString = is_string(List),
-  if IsString   -> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
-     true       -> String = io_lib:format("      ~72p", [{List, Data}]),
-                   re:replace(String, "^\s*", "", [{return, list}])
-  end;                                 
 format_erlerr({Term, Data}) ->
   String1 = format_erlerr(Term), 
   String2 = lists:flatten(format_erlerr(Data)),
@@ -137,8 +131,6 @@ format_erlerr(Atom) when is_atom(Atom) ->
      true       -> Options = [{return, list}, global],
                    re:replace(atom_to_list(Atom), "_", " ", Options)
   end;
-format_erlerr(Term) when is_pid(Term); is_port(Term) -> 
-  io_lib:format("~p", [Term]);
 format_erlerr(Else) ->
   IsString = is_string(Else),
   if IsString   -> io_lib:format("~s", [Else]);
@@ -185,8 +177,11 @@ format_erlsrc([]) -> [];
 format_erlsrc(Else) -> io_lib:format(", ~p", [Else]).
   
 % Send output as #std IO message.
-send(_IO, eof, _OutPid, _Stdout, _Erlout) -> exit({eof, "confirm it's arriving"});
 send(_IO, Output, OutPid, Stdout, Erlout) ->
+  case Output of
+    eof -> ?DEBUG("saw eof\n");
+    _   -> false
+  end,
   IsString = is_string(Output),
   if IsString;
      Output == eof      -> OutPid ! {Stdout, self(), Output};
