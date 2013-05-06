@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_shone: synchronous command/1 for one-shot shell
+* <font color="red">pose_short: synchronous command/1 for one-shot shell
 </font>
 * <font color="red">confirm lock released on short circuit
 </font>
