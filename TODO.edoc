@@ -1,3 +1,5 @@
+@todo trace not working
+@todo why is eof throwing as erlout?
 @todo pose_shell: capture error status zero
 @todo pose_short: pass command following each exit status
 @todo pose_shell: update docs
