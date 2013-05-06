@@ -19,9 +19,13 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">confirm lock released on short circuit
-</font>
 * <font color="red">refactor short-circuit logic to pose_shone
+</font>
+* <font color="red">pose_shell: capture error status zero
+</font>
+* <font color="red">pose_short: pass command following each exit status
+</font>
+* <font color="red">pose_shell: update docs
 </font>
 * <font color="red">realname: use pose_shell
 </font>
@@ -29,11 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">remove FILENAME macro
 </font>
-* <font color="red">make good
-</font>
-* <font color="red">tanglelabs
-</font>
-* <font color="red">...plus 2 more (see TODO.edoc)
+* <font color="red">...plus 4 more (see TODO.edoc)
 </font>
 
 
