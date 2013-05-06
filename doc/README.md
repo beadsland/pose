@@ -19,6 +19,8 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">format erlerr not working with pid
+</font>
 * <font color="red">why is eof throwing as erlout?
 </font>
 * <font color="red">pose_shell: capture error status zero
@@ -31,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">realname: use pose_shell
 </font>
-* <font color="red">realname: use cwd
-</font>
-* <font color="red">...plus 5 more (see TODO.edoc)
+* <font color="red">...plus 6 more (see TODO.edoc)
 </font>
 
 

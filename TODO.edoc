@@ -1,3 +1,4 @@
+@todo format erlerr not working with pid
 @todo why is eof throwing as erlout?
 @todo pose_shell: capture error status zero
 @todo pose_short: pass command following each exit status
