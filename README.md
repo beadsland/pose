@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">trace not working
-</font>
 * <font color="red">why is eof throwing as erlout?
 </font>
 * <font color="red">pose_shell: capture error status zero
@@ -28,6 +26,8 @@ __<font color="red">To do</font>__
 * <font color="red">pose_short: pass command following each exit status
 </font>
 * <font color="red">pose_shell: update docs
+</font>
+* <font color="red">folderl on long strings
 </font>
 * <font color="red">realname: use pose_shell
 </font>
