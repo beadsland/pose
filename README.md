@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_short: synchronous command/1 for one-shot shell
-</font>
 * <font color="red">confirm lock released on short circuit
 </font>
 * <font color="red">refactor short-circuit logic to pose_shone
@@ -33,7 +31,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">make good
 </font>
-* <font color="red">...plus 3 more (see TODO.edoc)
+* <font color="red">tanglelabs
+</font>
+* <font color="red">...plus 2 more (see TODO.edoc)
 </font>
 
 
@@ -253,6 +253,7 @@ The `pose` interface provides a number of macros for use by
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_open.md" class="module">pose_open</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_os.md" class="module">pose_os</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_shell.md" class="module">pose_shell</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_short.md" class="module">pose_short</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_shout.md" class="module">pose_shout</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
 <tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/posure.md" class="module">posure</a></td></tr></table>
