@@ -1,4 +1,3 @@
-@todo refactor short-circuit logic to pose_shone
 @todo pose_shell: capture error status zero
 @todo pose_short: pass command following each exit status
 @todo pose_shell: update docs

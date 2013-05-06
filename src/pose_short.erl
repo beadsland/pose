@@ -56,7 +56,7 @@
 %%
 
 -type shell_output() :: {ok, [string()]}.
--type shell_error_item() :: atom() | pid() | port() | string().
+-type shell_error_item() :: atom() | pid() | port() | integer() | string().
 -type shell_error_term() :: shell_error_item() | shell_error_tuple().
 -type shell_error_tuple() :: {shell_error_item(), shell_error_term()}. 
 -type shell_error() :: {error, shell_error_item() | shell_error_tuple()}.
@@ -70,7 +70,7 @@ script(Sequence) -> script(pose_shell:spawn(), string:tokens(Sequence, "\n")).
 
 script(Shell, []) ->
   ?DEBUG("launched shell ~p~n", [Shell]),
-  pose_shell:exit(Shell), 
+  pose_shell:exit(Shell),
   ?MODULE:loop(Shell, [], []);
 script(Shell, [Cmd | Cmds]) -> 
   pose_shell:command(Shell, Cmd), 
@@ -85,16 +85,22 @@ loop(Port, Out, Err) ->
   receive
     {purging, _Pid, _Module}    -> ?MODULE:loop(Port, Out, Err);
     {'EXIT', Port, ok}          -> {ok, Out};
-    {'EXIT', Port, Reason}      -> Unnest = tuple_unnest(Reason),
-                                   Unline = err_unline(Err),
-                                   FullErr = lists:append(Unnest, Unline),
-                                   {error, tuple_nest(FullErr)};
+    {'EXIT', Port, Reason}      -> do_shell_error(Err, Reason);
     {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Port, Out, Err);
     {stdout, Port, Line}        -> ?MODULE:loop(Port, [Line | Out], Err);
     {stderr, Port, Line}        -> ?MODULE:loop(Port, Out, [Line | Err]);
+    {erlerr, Port, Status}      -> do_erlerr(Port, Out, Err, Status);
     {debug, Port, Line}         -> ?DEBUG(Line), ?MODULE:loop(Port, Out, Err);
     Noise                       -> ?DONOISE, ?MODULE:loop(Port, Out, Err)
   end.
+
+% Handle exit status passed back from command.
+do_erlerr(_Port, _Out, Err, {exit_status, {Command, Code}}) ->
+  do_shell_error(Err, {Command, {exit_status, Code}}).
+  
+% Handle error exit from shell.
+do_shell_error(Err, Reason) ->
+  {error, tuple_nest(lists:append(tuple_unnest(Reason), err_unline(Err)))}.
 
 % Convert errout lines to error strings.
 err_unline([]) -> [];

@@ -106,6 +106,12 @@ run(IO, OS, Shell) ->
     ok              -> erlang:exit(ok)
   end.
 
+% Turn off echoing of commands by win32 shells.
+do_run(IO, unix, Port) -> loop(IO, Port, []);
+do_run(IO, win32, Port) ->
+  Port ! {self(), {command, "echo off\r\n"}},
+  loop(?IO(echo_off, IO#std.out, IO#std.err), Port, []).
+
 % Tell shell to exit, sending a delayed close message as last resort.
 cleanup(IO, Port) ->
   send_command(Port, "exit"),
@@ -113,11 +119,6 @@ cleanup(IO, Port) ->
     {error, Reason} -> ?STDERR("close timer: ~s", ?FORMAT_ERLERR(Reason));
     {ok, _TRef}     -> ok
   end.
-  
-do_run(IO, unix, Port) -> loop(IO, Port, []);
-do_run(IO, win32, Port) ->
-  Port ! {self(), {command, "echo off\r\n"}},
-  loop(?IO(echo_off, IO#std.out, IO#std.err), Port, []).
 
 % @private exported for fully-qualified calls.
 loop(IO, Port, Ignore) ->
@@ -174,8 +175,9 @@ do_stderr(IO, Port, Ignore, {data, Line}) ->
   end.
 
 % Handle non-zero exit status when returned by any command.
-do_stderr(_IO, _Port, _Ignore, _Line, [?EXIT_STATUS, Code, Command]) ->
-  {error, {Command, {exit_status, list_to_integer(Code)}}};
+do_stderr(IO, Port, Ignore, _Line, [?EXIT_STATUS, Code, Command]) ->
+  ?STDERR({exit_status, {Command, list_to_integer(Code)}}),
+  ?MODULE:loop(IO, Port, Ignore);
 do_stderr(IO, Port, Ignore, Line, _Tokens) ->
   ?STDERR(unix_eol(Line)), ?MODULE:loop(IO, Port, Ignore).
 
