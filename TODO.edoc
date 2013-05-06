@@ -1,8 +1,8 @@
-@todo trace not working
 @todo why is eof throwing as erlout?
 @todo pose_shell: capture error status zero
 @todo pose_short: pass command following each exit status
 @todo pose_shell: update docs
+@todo folderl on long strings
 @todo realname: use pose_shell
 @todo realname: use cwd
 @todo remove FILENAME macro

@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.2.4
+%% @version 0.2.5
 -module(pose_stdio).
--version("0.2.4").
+-version("0.2.5").
 
 %%
 %% Include files
@@ -112,12 +112,11 @@ send_debug(Format, What) ->
 
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
-format_erlerr({{Atom, Data}, List}) when is_atom(Atom), is_list(List) ->
-  Reason = format_erlerr({Atom, Data}), Trace = format_erltrace(List),
-  io_lib:format("~s ~p~n~s", [Reason, self(), Trace]);
-format_erlerr({Atom, [Head | Tail]}) when is_atom(Atom), is_tuple(Head) ->
-  Reason = format_erlerr(Atom), Trace = format_erltrace([Head | Tail]),
-  io_lib:format("~s ~p~n~s", [Reason, self(), Trace]);
+format_erlerr({Term, [Head | Tail]}) when is_tuple(Head) ->
+  Reason = format_erlerr(Term), 
+  Trace = format_erltrace([Head | Tail]),
+  StripTrace = string:strip(lists:flatten(Trace), right, $\n),
+  io_lib:format("~s ~p~n~s", [Reason, self(), StripTrace]);
 format_erlerr({List, Data}) when is_list(List) ->
   IsString = is_string(List),
   if IsString   -> io_lib:format("~s: ~s", [List, format_erlerr(Data)]);
@@ -125,7 +124,8 @@ format_erlerr({List, Data}) when is_list(List) ->
                    re:replace(String, "^\s*", "", [{return, list}])
   end;                                 
 format_erlerr({Term, Data}) ->
-  String1 = format_erlerr(Term), String2 = lists:flatten(format_erlerr(Data)),
+  String1 = format_erlerr(Term), 
+  String2 = lists:flatten(format_erlerr(Data)),
   [Line1 | _Rest] = string:tokens(String2, "\n"),
   Length = string:len(String1) + string:len(Line1),
   if Length > 75    -> io_lib:format("~s:~n     ~s", [String1, String2]);
@@ -167,19 +167,17 @@ format_erltrace([Noise | Tail]) ->
   io_lib:format("~p~s", [Noise, format_erltrace(Tail)]).
 
 % Smartly format a function with parameters from the stack trace.
-
 format_erltrace(Module, Func, Params) ->
   Format = "   called as   ~p:~p~p",
   String = io_lib:format(Format, [Module, Func, Params]),
   Return = [{return,list}],
   re:replace(re:replace(String, "\\[", "(", Return), "\\]$", ")", Return).
 
-  
 % Smartly format a function popped from the stack strace.
 format_erltrace(Module, Func, Arity, Source) ->
-  Format = "   in call from ~p:~p/~p~s",
+  Format = "   in call from ~s:~p/~p~s",
   SrcStr = format_erlsrc(Source),
-  io_lib:format(Format, [Module, Func, Arity, SrcStr]).
+  io_lib:format(Format, [atom_to_list(Module), Func, Arity, SrcStr]).
 
 format_erlsrc([{file, _File}, {line, Line}]) -> 
   io_lib:format(", line ~p", [Line]);
@@ -187,6 +185,7 @@ format_erlsrc([]) -> [];
 format_erlsrc(Else) -> io_lib:format(", ~p", [Else]).
   
 % Send output as #std IO message.
+send(_IO, eof, _OutPid, _Stdout, _Erlout) -> exit({eof, "confirm it's arriving"});
 send(_IO, Output, OutPid, Stdout, Erlout) ->
   IsString = is_string(Output),
   if IsString;
