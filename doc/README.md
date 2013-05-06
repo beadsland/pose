@@ -19,7 +19,9 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_shell: synchronous command/1 for one-shot shell
+* <font color="red">pose_shone: synchronous command/1 for one-shot shell
+</font>
+* <font color="red">refactor short-circuit logic to pose_shone
 </font>
 * <font color="red">realname: use pose_shell
 </font>
@@ -31,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">tanglelabs
 </font>
-* <font color="red">support later versions of Erlang
-</font>
-* <font color="red">...plus 1 more (see TODO.edoc)
+* <font color="red">...plus 2 more (see TODO.edoc)
 </font>
 
 

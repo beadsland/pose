@@ -1,4 +1,6 @@
-@todo pose_shell: synchronous command/1 for one-shot shell
+@todo pose_shone: synchronous command/1 for one-shot shell
+@todo confirm lock released on short circuit
+@todo refactor short-circuit logic to pose_shone
 @todo realname: use pose_shell
 @todo realname: use cwd
 @todo remove FILENAME macro
