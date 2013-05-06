@@ -28,9 +28,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.1
+%% @version 0.0.2
 -module(pose_short).
--version("0.0.1").
+-version("0.0.2").
 
 %%
 %% Include files
@@ -95,6 +95,9 @@ loop(Port, Out, Err) ->
   end.
 
 % Handle exit status passed back from command.
+do_erlerr(Port, Out, Err, {exit_status, {Command, 0}}) ->
+  ?DEBUG(io_lib:format("~s~n", [?FORMAT_ERLERR({Command, {exit_status, 0}})])),
+  ?MODULE:loop(Port, Out, Err);
 do_erlerr(_Port, _Out, Err, {exit_status, {Command, Code}}) ->
   do_shell_error(Err, {Command, {exit_status, Code}}).
   

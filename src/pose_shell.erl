@@ -28,9 +28,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2013 Beads D. Land-Trujillo
 
-%% @version 0.0.9
+%% @version 0.0.10
 -module(pose_shell).
--version("0.0.9").
+-version("0.0.10").
 
 %%
 %% Include files
@@ -128,7 +128,7 @@ loop(IO, Port, Ignore) ->
     {'EXIT', ExitPid, Reason}   -> do_exit(IO, Port, Ignore, ExitPid, Reason);
     {Port, Message}             -> do_stderr(IO, Port, Ignore, Message);
     {erlout, Pid, eof}          -> Erlout = {erlout_eof, 'should not happen'},
-                                   {error, {Pid, {erlout, Erlout}}};
+                                   {error, {Pid, Erlout}};
     {stdout, Monitor, Line}     -> do_stdout(IO, Port, Ignore, Line);
     {command, Caller, Command} when Monitor == undef
                                 -> do_command(IO, Port, Ignore, Command);
@@ -174,7 +174,7 @@ do_stderr(IO, Port, Ignore, {data, Line}) ->
     _           -> do_stderr(IO, Port, Ignore, Line, [])
   end.
 
-% Handle non-zero exit status when returned by any command.
+% Handle exit statuses and other stderr lines.
 do_stderr(IO, Port, Ignore, _Line, [?EXIT_STATUS, Code, Command]) ->
   ?STDERR({exit_status, {Command, list_to_integer(Code)}}),
   ?MODULE:loop(IO, Port, Ignore);
@@ -229,16 +229,24 @@ exit_status(Port, Command) ->
 
 % Status echoed as "?EXIT_STATUS:n:Command" (double quotes preserved)
 exit_status(Port, Command, unix) ->
-  Test = ["OUT=$?; test $OUT -ne 0 && echo \"\\\"", 
-          ?EXIT_STATUS, ":$OUT:", Command, "\\\"\""],
+%  Test = ["OUT=$?; test $OUT -ne 0 && echo \"\\\"", 
+%          ?EXIT_STATUS, ":$OUT:", Command, "\\\"\""],
+  Test = ["echo \"\\\"", ?EXIT_STATUS, ":$?:", Command, "\\\"\""],
   [send_command(Port, Test)];
 exit_status(Port, Command, win32) ->
-  PseudoSet = "\"%errorlevel%\"==\"\"",
-  Test1 = ["if ", PseudoSet, " if errorlevel 1 echo \"", 
+  PseudoNot = "\"%errorlevel%\"==\"\"",
+%  Test1 = ["if ", PseudoNot, " if errorlevel 1 echo \"", 
+%           ?EXIT_STATUS, ":1:", Command, "\""],
+%  Test2 = ["if not ", PseudoNot, " if not %errorlevel%==0 echo \"", 
+%           ?EXIT_STATUS, ":%errorlevel%:", Command, "\""],
+  Test1 = ["if ", PseudoNot, " if errorlevel 1 echo \"",
            ?EXIT_STATUS, ":1:", Command, "\""],
-  Test2 = ["if not ", PseudoSet, " if not %errorlevel%==0 echo \"", 
+  Test2 = ["if ", PseudoNot, " if errorlevel 0 echo \"",
+           ?EXIT_STATUS, ":0:", Command, "\""],
+  Test3 = ["if not ", PseudoNot, " echo \"",
            ?EXIT_STATUS, ":%errorlevel%:", Command, "\""],
-  [send_command(Port, Test1), send_command(Port, Test2)].
+  [send_command(Port, Test1), send_command(Port, Test2), 
+                              send_command(Port, Test3)].
   
 % Create a lock file.
 lock(Port, File) -> {OS, _} = os:type(), lock(Port, File, OS).
