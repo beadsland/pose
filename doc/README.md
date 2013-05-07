@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">better semantics for tempfile functions
-</font>
 * <font color="red">realname: avoid unnecessary quotes
 </font>
 * <font color="red">realname: use cwd
@@ -33,7 +31,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">support later versions of Erlang
 </font>
-* <font color="red">...plus 1 more (see TODO.edoc)
+* <font color="red">refactor nested shebangs as makefile
 </font>
 
 
