@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.10
+%% @version 0.1.11
 -module(pose_file).
--version("0.1.10").
+-version("0.1.11").
 
 %%
 %% Include files
@@ -189,8 +189,48 @@ realname([First | [Second | Rest]], _Dir, win32) when First==$\\, Second==$\\;
 realname(File, [First | [Second | Rest]], win32) when First==$\\, Second==$\\;
                                                       First==$/, Second==$/ ->
   do_realname(unc, filename:absname(File, [First | [Second | Rest]]));
-realname(File, Dir, OS) -> do_realname(OS, filename:absname(File, Dir)).
+realname(File, Dir, OS) ->
+  AbsName = filename:absname(File, Dir),
+  case realname_by_cwd(AbsName) of
+    {error, _}  -> do_realname(OS, AbsName);
+    {ok, Real}  -> {ok, Real}
+  end.
 
+% Try to get realname using cwd trick.
+realname_by_cwd(Filename) ->
+  case file:get_cwd() of
+    {error, Reason} -> {error, {get_cwd, Reason}};
+    {ok, Cwd}       -> realname_by_cwd(Filename, Cwd)
+  end.
+
+% Set the current working directory to the directory of filename.
+realname_by_cwd(Filename, Cwd) ->
+  case file:set_cwd(filename:dirname(Filename)) of
+    {error, Reason} -> restore_cwd(Cwd), {error, {set_cwd, Reason}};
+    ok              -> realname_by_cwd(Filename, Cwd, set)
+  end.
+
+% Get the new cwd value, returning it if successfully canonical path obtained.
+realname_by_cwd(Filename, Cwd, set) -> 
+  realname_by_cwd(Filename, Cwd, file:get_cwd());
+realname_by_cwd(_Filename, Cwd, {error, Reason}) ->
+  restore_cwd(Cwd), {error, {get_realname, Reason}};
+realname_by_cwd(Filename, Cwd, {ok, Realdir}) -> 
+  restore_cwd(Cwd),
+  case re:run(Realdir, "[\\\\/]\\.\\.[\\\\/]") of
+    {match, _}  -> ?DEBUG("cwd retained doubledot\n"), {error, doubledot};
+    nomatch     -> {ok, filename:join(Realdir, filename:basename(Filename))}
+  end.
+
+% Forcibly restore current working directory, throwing an error if in our
+% mischief we've been unable to put our toys back where we found them.
+% (This is a fatal condition that really should never, ever happen.)
+restore_cwd(Cwd) ->
+  case file:set_cwd(Cwd) of
+    {error, Reason} -> erlang:error({restore_cwd, Reason}, [Cwd]);
+    ok              -> ok
+  end.
+  
 % Tokenize the rest of our path in preparation for walking directories in shell.
 do_realname(OS, File) ->
   [_Last | RevPath] = lists:reverse(string:tokens(File, "\\/")),
