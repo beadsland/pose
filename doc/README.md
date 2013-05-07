@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">make good
-</font>
 * <font color="red">refactor nested shebangs as makefile
 </font>
 * <font color="red">tanglelabs
