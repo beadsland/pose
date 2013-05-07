@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.2.5
+%% @version 0.2.6
 -module(pose_stdio).
--version("0.2.5").
+-version("0.2.6").
 
 %%
 %% Include files
@@ -112,39 +112,51 @@ send_debug(Format, What) ->
 
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
-format_erlerr({Term, [Head | Tail]}) when is_tuple(Head) ->
-  Reason = format_erlerr(Term),
-  Trace = format_erltrace([Head | Tail]),
+format_erlerr({Term, [Head | Tail]}) when is_tuple(Head) -> 
+  format_erldump(Term, [Head | Tail]);
+format_erlerr({Term, Data}) -> format_erltwotup(Term, Data);
+format_erlerr(Atom) when is_atom(Atom) -> format_erlatom(Atom);
+format_erlerr(Else) -> format_erlelse(Else).
+
+%%
+%% Local Functions
+%%
+
+% Smartly format 2-tuples consisting of an error term followed by a stack trace.
+format_erldump(Term, Stack) ->
+  Reason = format_erlerr(Term), 
+  Trace = format_erltrace(Stack),
   StripTrace = string:strip(lists:flatten(Trace), right, $\n),
-  io_lib:format("~s ~p~n~s", [Reason, self(), StripTrace]);
-format_erlerr({Term, Data}) ->
+  io_lib:format("~s ~p~n~s", [Reason, self(), StripTrace]).
+
+% Smartly format 2-tuples of arbitrary terms, which is how we expect all deep
+% errors to be formed.
+format_erltwotup(Term, Data) ->
   String1 = lists:flatten(format_erlerr(Term)), 
   String2 = lists:flatten(format_erlerr(Data)),
   [Line1 | _Rest] = string:tokens(String2, "\n"),
-%  io:format("= ~p : ~s~n", [string:len(String1), String1]),
-%  io:format("+ ~p : ~s~n~n", [string:len(Line1), Line1]),
   Length = string:len(String1) + string:len(Line1),
   if Length > 72    -> io_lib:format("~s:~n     ~s", [String1, String2]);
      true           -> io_lib:format("~s: ~s", [String1, String2])
-  end;
-format_erlerr(Atom) when is_atom(Atom) ->
+  end.
+
+% Smartly format atoms, whether posix errors or otherwise.
+format_erlatom(Atom) ->
   IsFileErr = lists:member(Atom, ?FILE_ERR),
   if IsFileErr  -> file:format_error(Atom);
      true       -> Options = [{return, list}, global],
                    re:replace(atom_to_list(Atom), "_", " ", Options)
-  end;
-format_erlerr(Else) ->
+  end.
+  
+% Smartly format strings, nested deep lists, complex tuples, and whatever else.
+format_erlelse(Else) ->
   IsString = is_string(Else),
   if IsString   -> io_lib:format("~s", [Else]);
      true       -> String = io_lib:format("      ~72p", [Else]),
                    re:replace(String, "^\s*", "", [{return, list}])
   end.
 
-%%
-%% Local Functions
-%%
-
-% Smartly format erl stack traces.
+% Smartly format Erlang stack traces.
 format_erltrace([]) -> [];
 format_erltrace([{Module, Func, Arity, Source} | Tail]) 
                                                      when is_integer(Arity) ->
