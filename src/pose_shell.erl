@@ -172,7 +172,8 @@ do_stderr(IO, Port, Ignore, {data, Line}) ->
   end.
 
 % Handle exit statuses and other stderr lines.
-do_stderr(IO, Port, Ignore, _Line, [?EXIT_STATUS, Code, Command]) ->
+do_stderr(IO, Port, Ignore, _Line, [?EXIT_STATUS | [Code | ComParts]]) ->
+  Command = string:join(ComParts, ":"),
   ?STDERR({exit_status, {Command, list_to_integer(Code)}}),
   ?MODULE:loop(IO, Port, Ignore);
 do_stderr(IO, Port, Ignore, Line, _Tokens) ->
