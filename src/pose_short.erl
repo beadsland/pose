@@ -108,7 +108,7 @@ do_next_command(Port, [Cmd | Cmds], Out, Err) ->
 
 % Handle error exit from shell.
 do_shell_error(Err, Reason) ->
-  {error, tuple_nest(lists:append(tuple_unnest({Reason}), err_unline(Err)))}.
+  {error, tuple_nest(lists:append(tuple_unnest(Reason), err_unline(Err)))}.
 
 % Convert errout lines to error strings.
 err_unline([]) -> [];
