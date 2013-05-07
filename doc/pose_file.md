@@ -11,7 +11,7 @@ File-related utility functions for use by [`pose_code`](pose_code.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.9
+__Version:__ 0.1.10
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -159,10 +159,10 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#get_temp_dir-0">get_temp_dir/0</a></td><td>Get system temporary directory.</td></tr><tr><td valign="top"><a href="#get_temp_file-0">get_temp_file/0</a></td><td>Get a unique name for a temporary file in the system temporary
-directory.</td></tr><tr><td valign="top"><a href="#get_temp_file-1">get_temp_file/1</a></td><td>Get a unique name for a temporary file in the specified directory.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute path of file relative to current working directory, to
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute path of file relative to current working directory, to
 obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute path of a file relative to a given directory, to obtain
-its canonical system path.</td></tr><tr><td valign="top"><a href="#size-1">size/1</a></td><td>Get current size of file.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr><tr><td valign="top"><a href="#winname-1">winname/1</a></td><td>Recast filename in form compatible as a <code>win32</code> command option.</td></tr></table>
+its canonical system path.</td></tr><tr><td valign="top"><a href="#size-1">size/1</a></td><td>Get current size of file.</td></tr><tr><td valign="top"><a href="#tempdir-0">tempdir/0</a></td><td>Get system temporary directory.</td></tr><tr><td valign="top"><a href="#tempname-0">tempname/0</a></td><td>Get a unique name for a temporary file in the system temporary
+directory.</td></tr><tr><td valign="top"><a href="#tempname-1">tempname/1</a></td><td>Get a unique name for a temporary file in the specified directory.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -196,35 +196,7 @@ Test if file or directory is writeable.<a name="find_parallel_folder-3"></a>
 <br></br>
 
 
-Walk absolute directory path, finding where parallel would occur.<a name="get_temp_dir-0"></a>
-
-###get_temp_dir/0##
-
-
-	get_temp_dir() -> {ok, <a href="file.md#type-filename">file:filename()</a>} | {error, <a href="file.md#type-posix">file:posix()</a>}
-<br></br>
-
-
-Get system temporary directory.<a name="get_temp_file-0"></a>
-
-###get_temp_file/0##
-
-
-	get_temp_file() -> {ok, <a href="file.md#type-filename">file:filename()</a>} | <a href="#type-temp_file_error">temp_file_error()</a>
-<br></br>
-
-
-Get a unique name for a temporary file in the system temporary
-directory.<a name="get_temp_file-1"></a>
-
-###get_temp_file/1##
-
-
-	get_temp_file(Dir::<a href="file.md#type-filename">file:filename()</a>) -> {ok, <a href="file.md#type-filename_all">file:filename_all()</a>}
-<br></br>
-
-
-Get a unique name for a temporary file in the specified directory.<a name="last_modified-1"></a>
+Walk absolute directory path, finding where parallel would occur.<a name="last_modified-1"></a>
 
 ###last_modified/1##
 
@@ -262,7 +234,35 @@ its canonical system path.<a name="size-1"></a>
 <br></br>
 
 
-Get current size of file.<a name="trim-1"></a>
+Get current size of file.<a name="tempdir-0"></a>
+
+###tempdir/0##
+
+
+	tempdir() -> {ok, <a href="file.md#type-filename">file:filename()</a>} | {error, <a href="file.md#type-posix">file:posix()</a>}
+<br></br>
+
+
+Get system temporary directory.<a name="tempname-0"></a>
+
+###tempname/0##
+
+
+	tempname() -> {ok, <a href="file.md#type-filename">file:filename()</a>} | <a href="#type-temp_file_error">temp_file_error()</a>
+<br></br>
+
+
+Get a unique name for a temporary file in the system temporary
+directory.<a name="tempname-1"></a>
+
+###tempname/1##
+
+
+	tempname(Dir::<a href="file.md#type-filename">file:filename()</a>) -> {ok, <a href="file.md#type-filename_all">file:filename_all()</a>}
+<br></br>
+
+
+Get a unique name for a temporary file in the specified directory.<a name="trim-1"></a>
 
 ###trim/1##
 
@@ -276,13 +276,3 @@ Strip whitespace characters from both ends of string.
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">figure out better place for this to live</font>
-<a name="winname-1"></a>
-
-###winname/1##
-
-
-	winname(File::<a href="file.md#type-filename_all">file:filename_all()</a>) -> <a href="#type-path_string">path_string()</a>
-<br></br>
-
-
-Recast filename in form compatible as a `win32` command option.

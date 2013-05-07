@@ -212,7 +212,10 @@ do_realname(unix, File, Path) -> do_realname(unix, File, Path, ["cd /"]).
 do_realname(win32, File, [], Cmds) -> short_realname(File, ["chdir\s" | Cmds]);
 do_realname(unix, File, [], Cmds) -> short_realname(File, ["pwd" | Cmds]);
 do_realname(OS, File, [Folder | Path], Cmds) ->
-  Cmd = io_lib:format("cd \"~s\"", [Folder]),
+  case re:run(Folder, "[^a-zA-Z0-9_]") of
+    {match, _}  -> Cmd = io_lib:format("cd \"~s\"", [Folder]);
+    nomatch     -> Cmd = io_lib:format("cd ~s", [Folder])
+  end,
   do_realname(OS, File, Path, [Cmd | Cmds]).
 
 % Pass commands to a short-circuiting operating system script.
