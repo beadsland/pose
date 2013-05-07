@@ -36,7 +36,7 @@
 %% Include files
 %%
 
--define(debug, true).
+%-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 
 %%
@@ -84,7 +84,8 @@ loop(Port, Cmds, Out, Err) ->
     {'EXIT', Port, Reason}      -> do_shell_error(Err, Reason);
     {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Port, Cmds, Out, Err);
     {stdout, Port, Line}        -> ?MODULE:loop(Port, Cmds, [Line | Out], Err);
-    {stderr, Port, Line}        -> ?MODULE:loop(Port, Cmds, Out, [Line | Err]);
+    {stderr, Port, Line}        -> ?DEBUG("stderr: ~s~n", Line),
+                                   ?MODULE:loop(Port, Cmds, Out, [Line | Err]);
     {erlerr, Port, Status}      -> do_erlerr(Port, Cmds, Out, Err, Status);
     {debug, Port, Line}         -> ?DEBUG(Line), 
                                    ?MODULE:loop(Port, Cmds, Out, Err);
