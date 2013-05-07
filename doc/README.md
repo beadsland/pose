@@ -19,9 +19,11 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">short: lost quote on error
+* <font color="red">realname: elim pose_os:shell_exec
 </font>
-* <font color="red">realname: use pose_short
+* <font color="red">realname: elim extra arity
+</font>
+* <font color="red">pose_os: refactor straggler functions
 </font>
 * <font color="red">realname: avoid unnecessary quotes
 </font>
@@ -31,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">make good
 </font>
-* <font color="red">tanglelabs
-</font>
-* <font color="red">...plus 2 more (see TODO.edoc)
+* <font color="red">...plus 3 more (see TODO.edoc)
 </font>
 
 

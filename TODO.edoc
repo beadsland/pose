@@ -1,4 +1,6 @@
-@todo realname: use pose_short
+@todo realname: elim pose_os:shell_exec
+@todo realname: elim extra arity
+@todo pose_os: refactor straggler functions
 @todo realname: avoid unnecessary quotes
 @todo realname: use cwd
 @todo remove FILENAME macro
