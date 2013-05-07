@@ -118,11 +118,13 @@ format_erlerr({Term, [Head | Tail]}) when is_tuple(Head) ->
   StripTrace = string:strip(lists:flatten(Trace), right, $\n),
   io_lib:format("~s ~p~n~s", [Reason, self(), StripTrace]);
 format_erlerr({Term, Data}) ->
-  String1 = format_erlerr(Term), 
+  String1 = lists:flatten(format_erlerr(Term)), 
   String2 = lists:flatten(format_erlerr(Data)),
   [Line1 | _Rest] = string:tokens(String2, "\n"),
+%  io:format("= ~p : ~s~n", [string:len(String1), String1]),
+%  io:format("+ ~p : ~s~n~n", [string:len(Line1), Line1]),
   Length = string:len(String1) + string:len(Line1),
-  if Length > 75    -> io_lib:format("~s:~n     ~s", [String1, String2]);
+  if Length > 72    -> io_lib:format("~s:~n     ~s", [String1, String2]);
      true           -> io_lib:format("~s: ~s", [String1, String2])
   end;
 format_erlerr(Atom) when is_atom(Atom) ->
