@@ -180,10 +180,6 @@ format_erlsrc(Else) -> io_lib:format(", ~p", [Else]).
   
 % Send output as #std IO message.
 send(_IO, Output, OutPid, Stdout, Erlout) ->
-  case Output of
-    eof -> ?DEBUG("saw eof\n");
-    _   -> false
-  end,
   IsString = is_string(Output),
   if IsString;
      Output == eof      -> OutPid ! {Stdout, self(), Output};

@@ -49,7 +49,7 @@
 
 % Private exports
 
--export([loop/3]).
+-export([loop/4]).
 
 %%
 %% API Functions
@@ -68,42 +68,47 @@
 %% @end
 script(Sequence) -> script(pose_shell:spawn(), string:tokens(Sequence, "\n")).
 
-script(Shell, []) ->
-  ?DEBUG("launched shell ~p~n", [Shell]),
-  pose_shell:exit(Shell),
-  ?MODULE:loop(Shell, [], []);
-script(Shell, [Cmd | Cmds]) -> 
-  pose_shell:command(Shell, Cmd), 
-  script(Shell, Cmds).
+script(Shell, [Cmd | Cmds]) ->
+  pose_shell:command(Shell, Cmd),
+  ?MODULE:loop(Shell, Cmds, [], []).
 
 %%
 %% Local Functions
 %%
 
 % @private exported for fully-qualified calls.
-loop(Port, Out, Err) ->
+loop(Port, Cmds, Out, Err) ->
   receive
-    {purging, _Pid, _Module}    -> ?MODULE:loop(Port, Out, Err);
+    {purging, _Pid, _Module}    -> ?MODULE:loop(Port, Cmds, Out, Err);
     {'EXIT', Port, ok}          -> {ok, Out};
     {'EXIT', Port, Reason}      -> do_shell_error(Err, Reason);
-    {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Port, Out, Err);
-    {stdout, Port, Line}        -> ?MODULE:loop(Port, [Line | Out], Err);
-    {stderr, Port, Line}        -> ?MODULE:loop(Port, Out, [Line | Err]);
-    {erlerr, Port, Status}      -> do_erlerr(Port, Out, Err, Status);
-    {debug, Port, Line}         -> ?DEBUG(Line), ?MODULE:loop(Port, Out, Err);
-    Noise                       -> ?DONOISE, ?MODULE:loop(Port, Out, Err)
+    {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Port, Cmds, Out, Err);
+    {stdout, Port, Line}        -> ?MODULE:loop(Port, Cmds, [Line | Out], Err);
+    {stderr, Port, Line}        -> ?MODULE:loop(Port, Cmds, Out, [Line | Err]);
+    {erlerr, Port, Status}      -> do_erlerr(Port, Cmds, Out, Err, Status);
+    {debug, Port, Line}         -> ?DEBUG(Line), 
+                                   ?MODULE:loop(Port, Cmds, Out, Err);
+    Noise                       -> ?DONOISE, ?MODULE:loop(Port, Cmds, Out, Err)
   end.
 
 % Handle exit status passed back from command.
-do_erlerr(Port, Out, Err, {exit_status, {Command, 0}}) ->
+do_erlerr(Port, Cmds, Out, Err, {exit_status, {Command, 0}}) ->
   ?DEBUG(io_lib:format("~s~n", [?FORMAT_ERLERR({Command, {exit_status, 0}})])),
-  ?MODULE:loop(Port, Out, Err);
-do_erlerr(_Port, _Out, Err, {exit_status, {Command, Code}}) ->
+  do_next_command(Port, Cmds, Out, Err);
+do_erlerr(_Port, _Cmds, _Out, Err, {exit_status, {Command, Code}}) ->
   do_shell_error(Err, {Command, {exit_status, Code}}).
   
+% Handle next command or else exit shell.
+do_next_command(Port, [], Out, Err) -> 
+  pose_shell:exit(Port),
+  ?MODULE:loop(Port, [], Out, Err);
+do_next_command(Port, [Cmd | Cmds], Out, Err) ->
+  pose_shell:command(Port, Cmd),
+  ?MODULE:loop(Port, Cmds, Out, Err).
+
 % Handle error exit from shell.
 do_shell_error(Err, Reason) ->
-  {error, tuple_nest(lists:append(tuple_unnest(Reason), err_unline(Err)))}.
+  {error, tuple_nest(lists:append(tuple_unnest({Reason}), err_unline(Err)))}.
 
 % Convert errout lines to error strings.
 err_unline([]) -> [];
