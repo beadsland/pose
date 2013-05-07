@@ -19,6 +19,10 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">better stdio badarg trace
+</font>
+* <font color="red">pose_short debugging
+</font>
 * <font color="red">realname: use cwd
 </font>
 * <font color="red">remove FILENAME macro
@@ -29,9 +33,8 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">support later versions of Erlang
 </font>
-* <font color="red">refactor nested shebangs as makefile
+* <font color="red">...plus 1 more (see TODO.edoc)
 </font>
-* <font color="red">resume work on 2do_go4</font>
 
 
 This is the POSIX-like interface emulation for use with the

@@ -1,3 +1,5 @@
+@todo better stdio badarg trace
+@todo pose_short debugging
 @todo realname: use cwd
 @todo remove FILENAME macro
 @todo make good
