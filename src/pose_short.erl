@@ -80,7 +80,7 @@ script(Shell, [Cmd | Cmds]) ->
 loop(Port, Cmds, Out, Err) ->
   receive
     {purging, _Pid, _Module}    -> ?MODULE:loop(Port, Cmds, Out, Err);
-    {'EXIT', Port, ok}          -> {ok, Out};
+    {'EXIT', Port, ok}          -> {ok, lists:reverse(Out)};
     {'EXIT', Port, Reason}      -> do_shell_error(Err, Reason);
     {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Port, Cmds, Out, Err);
     {stdout, Port, Line}        -> ?MODULE:loop(Port, Cmds, [Line | Out], Err);
