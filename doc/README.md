@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">realname: use pose_shell
+* <font color="red">realname: use pose_short
 </font>
 * <font color="red">realname: use cwd
 </font>
