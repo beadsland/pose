@@ -246,13 +246,14 @@ exit_status(Port, Command, win32) ->
                               send_command(Port, Test3)].
   
 % Create a lock file.
-lock(Port, File) -> {OS, _} = os:type(), lock(Port, File, OS).
+lock(Port, File) -> 
+  {OS, _} = os:type(), 
+  lock(Port, filename:nativename(File), OS).
 
 lock(Port, File, unix) ->
   send_command(Port, io_lib:format("touch \"~s.lock\"", [File]));
 lock(Port, File, win32) ->
-  WinFile = pose_file:winname(File),
-  send_command(Port, io_lib:format("echo touch > \"~s.lock\"", [WinFile])).
+  send_command(Port, io_lib:format("echo touch > \"~s.lock\"", [File])).
 
 % Remove a lock file, via a command sent to external shell.
 unlock(Port, File) -> {OS, _} = os:type(), unlock(Port, File, OS).
