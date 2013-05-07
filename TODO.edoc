@@ -1,5 +1,3 @@
-@todo reproduce: format erlerr not working with pid
-@todo reproduce: why is eof throwing as erlout?
 @todo pose_short: pass command following each exit status
 @todo pose_shell: update docs
 @todo folderl on long strings

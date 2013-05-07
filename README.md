@@ -19,10 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">erlerr: length not right with pids
-</font>
-* <font color="red">reproduce: format erlerr not working with pid
-</font>
 * <font color="red">reproduce: why is eof throwing as erlout?
 </font>
 * <font color="red">pose_short: pass command following each exit status
@@ -33,7 +29,11 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">realname: use pose_shell
 </font>
-* <font color="red">...plus 6 more (see TODO.edoc)
+* <font color="red">realname: use cwd
+</font>
+* <font color="red">remove FILENAME macro
+</font>
+* <font color="red">...plus 4 more (see TODO.edoc)
 </font>
 
 
