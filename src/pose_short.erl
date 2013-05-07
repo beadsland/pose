@@ -84,7 +84,7 @@ loop(Port, Cmds, Out, Err) ->
     {'EXIT', Port, Reason}      -> do_shell_error(Err, Reason);
     {'EXIT', ExitPid, normal}   -> ?DOEXIT, ?MODULE:loop(Port, Cmds, Out, Err);
     {stdout, Port, Line}        -> ?MODULE:loop(Port, Cmds, [Line | Out], Err);
-    {stderr, Port, Line}        -> ?DEBUG("stderr: ~s~n", Line),
+    {stderr, Port, Line}        -> ?DEBUG("stderr: ~s", [Line]),
                                    ?MODULE:loop(Port, Cmds, Out, [Line | Err]);
     {erlerr, Port, Status}      -> do_erlerr(Port, Cmds, Out, Err, Status);
     {debug, Port, Line}         -> ?DEBUG(Line), 
@@ -101,9 +101,11 @@ do_erlerr(_Port, _Cmds, _Out, Err, {exit_status, {Command, Code}}) ->
   
 % Handle next command or else exit shell.
 do_next_command(Port, [], Out, Err) -> 
+  ?DEBUG("exit\n"),
   pose_shell:exit(Port),
   ?MODULE:loop(Port, [], Out, Err);
 do_next_command(Port, [Cmd | Cmds], Out, Err) ->
+  ?DEBUG("~s~n", [Cmd]),
   pose_shell:command(Port, Cmd),
   ?MODULE:loop(Port, Cmds, Out, Err).
 
