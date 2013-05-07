@@ -162,7 +162,7 @@ format_erltrace([Noise | Tail]) ->
 
 % Smartly format a function with parameters from the stack trace.
 format_erltrace(Module, Func, Params) ->
-  Format = "   called as   ~p:~p~p",
+  Format = "   called as   ~s:~p~p",
   String = io_lib:format(Format, [atom_to_list(Module), Func, Params]),
   Return = [{return,list}],
   re:replace(re:replace(String, "\\[", "(", Return), "\\]$", ")", Return).
