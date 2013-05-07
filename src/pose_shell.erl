@@ -164,7 +164,8 @@ do_stderr(IO, Port, Ignore, {data, Line}) ->
   [IgLine | IgMore] = case Ignore of [] -> ["",[]]; _ -> Ignore end,
   case Line of
     IgLine      -> ?MODULE:loop(IO, Port, IgMore);
-    [$" | _]    -> Unquote = string:strip(strip_eol(Line), both, $"),
+    [$" | Rest] -> Strip = strip_eol(Rest),
+                   Unquote = string:left(Strip, string:len(Strip)-1),
                    Tokens = string:tokens(Unquote, ":"),
                    do_stderr(IO, Port, Ignore, Line, Tokens);
     _           -> do_stderr(IO, Port, Ignore, Line, [])

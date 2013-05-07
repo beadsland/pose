@@ -227,10 +227,10 @@ do_realname(OS, File, [Folder | Path], Cmds) ->
   do_realname(OS, File, Path, [Cmd | Cmds]).
 
 % Assemble and execute commands.
-do_realname(_OS, File, _Path, Cmds, Sep) ->
-  case pose_os:shell_exec(string:join(lists:reverse(Cmds), Sep)) of
-    {error, Reason} -> {error, Reason};
-    {ok, [Result]}  -> AbsDir = string:strip(Result, right, $\n),
+do_realname(_OS, File, _Path, Cmds, _Sep) ->
+  case pose_short:script(string:join(lists:reverse(Cmds), "\n")) of
+    {error, Reason} -> {error, {short, Reason}};
+    {ok, [Result]}  -> AbsDir = string:strip(lists:flatten(Result), right, $\n),
                        {ok, filename:join(AbsDir, filename:basename(File))};
     {ok, Results}   -> {error, {excessive_results, {Results}}}
   end.
