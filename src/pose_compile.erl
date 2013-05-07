@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.7
+%% @version 0.1.8
 -module(pose_compile).
--version("0.1.7").
+-version("0.1.8").
 
 %%
 %% Include files
@@ -71,7 +71,8 @@ ensure_compiled(Command, Dir) -> ensure_compiled(Command, Dir, false).
 %% If `Force' is true, binary will be recompiled if it can be.
 %% @end
 ensure_compiled(Cmd, Dir, Force) ->
-  case pose_file:can_write(?FILENAME(Dir, Cmd, ".beam")) of
+  Filename = filename:join(Dir, string:concat(Cmd, ".beam")),
+  case pose_file:can_write(Filename) of
     {error, What}   -> {error, {file, What}};
     false           -> ensure_binary(Cmd, Dir, readonly);
     true            -> ensure_compiled(Cmd, Dir, Force, writable)
@@ -92,21 +93,23 @@ ensure_compiled(Cmd, BinDir, Force, writable) ->
     {ok, SrcDir}    -> ensure_compiled(Cmd, BinDir, Force, SrcDir)
   end;
 ensure_compiled(Cmd, BinDir, Force, SrcDir) ->
-  case pose_file:last_modified(?FILENAME(SrcDir, Cmd, ".erl")) of
+  Filename = filename:join(SrcDir, string:concat(Cmd, ".erl")),
+  case pose_file:last_modified(Filename) of
     {error, What}   -> {error, {file, What}};
     SrcMod          -> ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod)
   end.
 
 % If we can't compile from source file, confirm we can use binary we have.
 ensure_binary(Cmd, Dir, Why) ->
-    HaveBinary = pose_file:can_read(?FILENAME(Dir, Cmd, ".beam")),
-    if HaveBinary     -> {info, Why};
-       true           -> {info, nobin}  % i.e., search next dir in path
-    end.
+  Filename = filename:join(Dir, string:concat(Cmd, ".beam")),
+  HaveBinary = pose_file:can_read(Filename),
+  if HaveBinary -> {info, Why};
+     true       -> {info, nobin}  % i.e., search next dir in path
+  end.
 
 % Get modification date of binary file.
 ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod) ->
-  BinFile = ?FILENAME(BinDir, Cmd, ".beam"),
+  BinFile = filename:join(BinDir, string:concat(Cmd, ".beam")),
   case pose_file:last_modified(BinFile) of
     {error, What}   ->
       {error, {file, What}};
@@ -116,8 +119,10 @@ ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod) ->
 
 % Compare modification dates and compile if source is newer.
 ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinMod) ->
-  if SrcMod > BinMod; Force -> do_compile(SrcDir, Cmd, BinDir);
-     true                   -> {ok, ?FILENAME(BinDir, Cmd, ".beam")}
+  if SrcMod > BinMod; Force -> 
+       do_compile(SrcDir, Cmd, BinDir);
+     true                   -> 
+       {ok, filename:join(BinDir, string:concat(Cmd, ".beam"))}
   end.
 
 %%%
@@ -148,7 +153,7 @@ do_compile(SrcDir, Cmd, BinDir, InclList) ->
 do_compile(SrcDir, Cmd, BinDir, InclList, Package) ->
   Options = [verbose, warnings_as_errors, return_errors, binary,
             {d, package, Package}, {outdir, BinDir}] ++ InclList,
-  Filename = ?FILENAME(SrcDir, Cmd, ".erl"),
+  Filename = filename:join(SrcDir, string:concat(Cmd, ".erl")),
 
   ?DEBUG("options: ~p~n", [Options]),
 
@@ -168,7 +173,7 @@ do_compile(SrcDir, Cmd, BinDir, InclList, Package) ->
 
 % Write our binary out to file.
 do_compile(_SrcDir, Cmd, BinDir, ModuleName, _Package, Binary) ->
-  Outfile = ?FILENAME(BinDir, Cmd, ".beam"),
+  Outfile = filename:join(BinDir, string:concat(Cmd, ".beam")),
   case file:write_file(Outfile, Binary) of
     {error, What}   -> {error, {file, {What, Outfile}}};
     ok              -> {ok, ModuleName, Binary}
@@ -242,7 +247,7 @@ parallel_src(BinDir, Cmd) ->
 
 % Confirm it's readable and return result.
 parallel_src(_BinDir, Command, SrcDir) ->
-  Filename = ?FILENAME(SrcDir, Command, ".erl"),
+  Filename = filename:join(SrcDir, string:concat(Command, ".erl")),
   case pose_file:can_read(Filename) of
     true    -> {ok, SrcDir};
     false   -> nosrc

@@ -174,9 +174,9 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.6
+%% @version 0.1.7
 -module(pose_code).
--version("0.1.6").
+-version("0.1.7"). 
 
 %%
 %% Include files
@@ -265,7 +265,7 @@ load_module(Command, [Head | Tail]) ->
 
 % Having found command, slurp binary from file.
 load_module(Command, Dir, slurp) ->
-  Filename = ?FILENAME(Dir, Command, ".beam"),
+  Filename = filename:join(Dir, string:concat(Command, ".beam")),
   case pose_beam:slurp_binary(Filename) of
     {ok, Module, Binary}	-> load_module(Command, Dir, Module, Binary);
     {error, What}			-> {error, {slurp, What}}
@@ -307,7 +307,7 @@ do_load(Cmd, Dir, Module, Binary, Version, Package) ->
 
 % Make sure the binary is what is current in memory.
 do_load(Cmd, Dir, Module, Binary, Version, Package, pack_true) ->
-  Filename = ?FILENAME(Dir, Cmd, ".beam"),
+  Filename = filename:join(Dir, string:concat(Cmd, ".beam")),
   ensure_loaded(Module, Filename, Binary, Version, Package).
 
 %%%
