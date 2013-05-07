@@ -19,9 +19,9 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">format erlerr for erl_lint
-</font>
 * <font color="red">folderl on long strings
+</font>
+* <font color="red">folderl for even longer strings
 </font>
 * <font color="red">realname: use pose_shell
 </font>
