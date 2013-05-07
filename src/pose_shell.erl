@@ -256,13 +256,14 @@ lock(Port, File, win32) ->
   send_command(Port, io_lib:format("echo touch > \"~s.lock\"", [File])).
 
 % Remove a lock file, via a command sent to external shell.
-unlock(Port, File) -> {OS, _} = os:type(), unlock(Port, File, OS).
+unlock(Port, File) -> 
+  {OS, _} = os:type(), 
+  unlock(Port, filename:nativename(File), OS).
 
 unlock(Port, File, unix) ->
   send_command(Port, io_lib:format("rm \"~s.lock\"", [File]));
 unlock(Port, File, win32) ->
-  WinFile = pose_file:winname(File),
-  send_command(Port, io_lib:format("del \"~s.lock\"", [WinFile])).
+  send_command(Port, io_lib:format("del \"~s.lock\"", [File])).
 
 % Send a command to the external shell.
 send_command(Port, Cmd) -> {OS, _} = os:type(), send_command(Port, Cmd, OS).
