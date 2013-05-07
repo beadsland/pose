@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_os: refactor straggler functions
+* <font color="red">better semantics for tempfile functions
 </font>
 * <font color="red">realname: avoid unnecessary quotes
 </font>
@@ -251,7 +251,6 @@ The `pose` interface provides a number of macros for use by
 <tr><td><a href="pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="pose_file.md" class="module">pose_file</a></td></tr>
 <tr><td><a href="pose_open.md" class="module">pose_open</a></td></tr>
-<tr><td><a href="pose_os.md" class="module">pose_os</a></td></tr>
 <tr><td><a href="pose_shell.md" class="module">pose_shell</a></td></tr>
 <tr><td><a href="pose_short.md" class="module">pose_short</a></td></tr>
 <tr><td><a href="pose_shout.md" class="module">pose_shout</a></td></tr>

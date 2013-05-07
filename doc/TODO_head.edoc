@@ -1,4 +1,4 @@
-@todo pose_os: refactor straggler functions
+@todo better semantics for tempfile functions
 @todo realname: avoid unnecessary quotes
 @todo realname: use cwd
 @todo remove FILENAME macro
