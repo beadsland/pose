@@ -1,8 +1,6 @@
-@todo better stdio badarg trace
-@todo pose_short debugging
-@todo realname: use cwd
 @todo remove FILENAME macro
 @todo make good
 @todo tanglelabs
 @todo support later versions of Erlang
-@todo ...plus 1 more (see TODO.edoc)
+@todo refactor nested shebangs as makefile
+@todo resume work on 2do_go4
