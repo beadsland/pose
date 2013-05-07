@@ -217,24 +217,21 @@ do_realname(win32, File, [Drive | Path]) ->
 do_realname(unix, File, Path) -> do_realname(unix, File, Path, ["cd /"]).
 
 % Generate change directory sequence, and specify shell specifics.
-do_realname(win32, File, [], Cmds) ->
-  % Trailing space required by windows shell in order to get a `pwd' result.
-  do_realname(win32, File, [], ["chdir\s" | Cmds], " & ");
-do_realname(unix, File, [], Cmds) -> 
-  do_realname(unix, File, [], ["pwd" | Cmds], " ; ");
+do_realname(win32, File, [], Cmds) -> short_realname(File, ["chdir\s" | Cmds]);
+do_realname(unix, File, [], Cmds) -> short_realname(File, ["pwd" | Cmds]);
 do_realname(OS, File, [Folder | Path], Cmds) ->
   Cmd = io_lib:format("cd \"~s\"", [Folder]),
   do_realname(OS, File, Path, [Cmd | Cmds]).
 
-% Assemble and execute commands.
-do_realname(_OS, File, _Path, Cmds, _Sep) ->
+% Pass commands to a short-circuiting operating system script.
+short_realname(File, Cmds) ->
   case pose_short:script(string:join(lists:reverse(Cmds), "\n")) of
     {error, Reason} -> {error, {short, Reason}};
     {ok, [Result]}  -> AbsDir = string:strip(lists:flatten(Result), right, $\n),
                        {ok, filename:join(AbsDir, filename:basename(File))};
     {ok, Results}   -> {error, {excessive_results, {Results}}}
   end.
- 
+  
 %%%
 % Exported utility functions
 %%%
