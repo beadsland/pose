@@ -19,10 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">folderl on long strings
-</font>
-* <font color="red">folderl for even longer strings
-</font>
 * <font color="red">realname: use pose_shell
 </font>
 * <font color="red">realname: use cwd
@@ -33,7 +29,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">tanglelabs
 </font>
-* <font color="red">...plus 2 more (see TODO.edoc)
+* <font color="red">support later versions of Erlang
+</font>
+* <font color="red">refactor nested shebangs as makefile
 </font>
 
 

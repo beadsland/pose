@@ -1,8 +1,7 @@
-@todo folderl on long strings
-@todo folderl for even longer strings
 @todo realname: use pose_shell
 @todo realname: use cwd
 @todo remove FILENAME macro
 @todo make good
 @todo tanglelabs
-@todo ...plus 2 more (see TODO.edoc)
+@todo support later versions of Erlang
+@todo refactor nested shebangs as makefile
