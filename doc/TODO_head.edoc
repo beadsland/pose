@@ -1,8 +1,8 @@
+@todo format erlerr for erl_lint
 @todo folderl on long strings
 @todo realname: use pose_shell
 @todo realname: use cwd
 @todo remove FILENAME macro
 @todo make good
 @todo tanglelabs
-@todo support later versions of Erlang
-@todo ...plus 1 more (see TODO.edoc)
+@todo ...plus 2 more (see TODO.edoc)

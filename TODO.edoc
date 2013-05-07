@@ -1,3 +1,4 @@
+@todo format erlerr for erl_lint
 @todo folderl on long strings
 @todo realname: use pose_shell
 @todo realname: use cwd
