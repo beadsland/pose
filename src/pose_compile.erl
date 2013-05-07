@@ -157,7 +157,7 @@ do_compile(SrcDir, Cmd, BinDir, InclList, Package) ->
       {error, {compile, unspecified_error}};
     {error, Errors, Warnings}   ->
       [First | _Rest] = lists:append(Errors, Warnings),
-      {Filename, [ErrorInfo]} = First,
+      {Filename, [ErrorInfo | _MoreErrorInfo]} = First,
       {Line, Module, ErrorDescriptor} = ErrorInfo,
       Where = io_lib:format("~s, line ~p", [filename:basename(Filename), Line]),
       What = Module:format_error(ErrorDescriptor),
