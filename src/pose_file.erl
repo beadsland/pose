@@ -53,6 +53,9 @@
 % Canonical paths
 -export([winname/1, realname/1, realname/2]).
 
+% Temporary folder and files
+-export([get_temp_file/0, get_temp_file/1, get_temp_dir/0]). 
+
 % Utility functions
 -export([trim/1]).
 
@@ -231,7 +234,49 @@ short_realname(File, Cmds) ->
                        {ok, filename:join(AbsDir, filename:basename(File))};
     {ok, Results}   -> {error, {excessive_results, {Results}}}
   end.
+ 
+%%%
+% Temporary folder and files
+%%%
+
+-type temp_file_error() :: {error, {temp_dir, file:posix()}}. 
+-spec get_temp_file() -> {ok, file:filename()} | temp_file_error().
+%% @doc Get a unique name for a temporary file in the system temporary 
+%% directory.
+%% @end
+get_temp_file() -> 
+  case get_temp_dir() of
+    {error, Reason} -> {error, {temp_dir, Reason}};
+    {ok, Dir}       -> get_temp_file(Dir)
+  end.
+
+-spec get_temp_file(Dir :: file:filename()) -> {ok, file:filename_all()}.
+%% @doc Get a unique name for a temporary file in the specified directory.
+get_temp_file(Dir) -> 
+  {A,B,C}=now(), N=node(),
+  File = lists:flatten(io_lib:format("~p-~p.~p.~p",[N,A,B,C])),
+  {ok, filename:join(Dir, File)}.
   
+-spec get_temp_dir() -> {ok, file:filename()} | {error, file:posix()}.
+%% @doc Get system temporary directory.
+get_temp_dir() ->
+  case os:type() of
+    {unix, _}   -> "/tmp";
+    {win32, _}  -> get_temp_dir(["TEMP", "TMP"])
+  end.
+
+get_temp_dir([]) ->
+  Temp = "c:\\Temp",
+  case filelib:ensure_dir(Temp) of
+    {error, Reason} -> {error, {Temp, Reason}};
+    Temp            -> {ok, Temp}
+  end;
+get_temp_dir([First | Rest]) ->
+  case os:getenv(First) of
+    false       -> get_temp_dir(Rest);
+    Temp        -> {ok, Temp}
+  end.
+
 %%%
 % Exported utility functions
 %%%

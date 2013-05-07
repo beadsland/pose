@@ -201,7 +201,7 @@ do_command(IO, Port, _Ignore, exit) ->
   Ignore = case os:type() of {unix, _} -> []; {win32, _} -> [Ig] end,  
   ?MODULE:loop(?IO(exit, IO#std.out, IO#std.err), Port, Ignore);
 do_command(IO, Port, Ignore, Command) ->
-  case pose_os:get_temp_file() of
+  case pose_file:get_temp_file() of 
     {error, Reason} -> {error, {temp_file, Reason}};
     {ok, Temp}      -> Strip = string:strip(Command, right, $\n),
                        do_command(IO, Port, Ignore, Strip, Temp)
