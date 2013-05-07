@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.9
+%% @version 0.1.10
 -module(pose_file).
--version("0.1.9").
+-version("0.1.10").
 
 %%
 %% Include files
@@ -54,7 +54,7 @@
 -export([winname/1, realname/1, realname/2]).
 
 % Temporary folder and files
--export([get_temp_file/0, get_temp_file/1, get_temp_dir/0]). 
+-export([tempname/0, tempname/1, tempdir/0]). 
 
 % Utility functions
 -export([trim/1]).
@@ -240,40 +240,40 @@ short_realname(File, Cmds) ->
 %%%
 
 -type temp_file_error() :: {error, {temp_dir, file:posix()}}. 
--spec get_temp_file() -> {ok, file:filename()} | temp_file_error().
+-spec tempname() -> {ok, file:filename()} | temp_file_error().
 %% @doc Get a unique name for a temporary file in the system temporary 
 %% directory.
 %% @end
-get_temp_file() -> 
-  case get_temp_dir() of
+tempname() -> 
+  case tempdir() of
     {error, Reason} -> {error, {temp_dir, Reason}};
-    {ok, Dir}       -> get_temp_file(Dir)
+    {ok, Dir}       -> tempname(Dir)
   end.
 
--spec get_temp_file(Dir :: file:filename()) -> {ok, file:filename_all()}.
+-spec tempname(Dir :: file:filename()) -> {ok, file:filename_all()}.
 %% @doc Get a unique name for a temporary file in the specified directory.
-get_temp_file(Dir) -> 
+tempname(Dir) -> 
   {A,B,C}=now(), N=node(),
   File = lists:flatten(io_lib:format("~p-~p.~p.~p",[N,A,B,C])),
   {ok, filename:join(Dir, File)}.
   
--spec get_temp_dir() -> {ok, file:filename()} | {error, file:posix()}.
+-spec tempdir() -> {ok, file:filename()} | {error, file:posix()}.
 %% @doc Get system temporary directory.
-get_temp_dir() ->
+tempdir() ->
   case os:type() of
     {unix, _}   -> "/tmp";
-    {win32, _}  -> get_temp_dir(["TEMP", "TMP"])
+    {win32, _}  -> tempdir(["TEMP", "TMP"])
   end.
 
-get_temp_dir([]) ->
+tempdir([]) ->
   Temp = "c:\\Temp",
   case filelib:ensure_dir(Temp) of
     {error, Reason} -> {error, {Temp, Reason}};
     Temp            -> {ok, Temp}
   end;
-get_temp_dir([First | Rest]) ->
+tempdir([First | Rest]) ->
   case os:getenv(First) of
-    false       -> get_temp_dir(Rest);
+    false       -> tempdir(Rest);
     Temp        -> {ok, Temp}
   end.
 

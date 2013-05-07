@@ -146,12 +146,21 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 	size_value() = integer() | nofile
+
+
+
+###<a name="type-temp_file_error">temp_file_error()</a>##
+
+
+
+	temp_file_error() = {error, {temp_dir, <a href="file.md#type-posix">file:posix()</a>}}
 <a name="index"></a>
 
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute path of file relative to current working directory, to
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#can_read-1">can_read/1</a></td><td>Test if file or directory is readable.</td></tr><tr><td valign="top"><a href="#can_write-1">can_write/1</a></td><td>Test if file or directory is writeable.</td></tr><tr><td valign="top"><a href="#find_parallel_folder-3">find_parallel_folder/3</a></td><td>Walk absolute directory path, finding where parallel would occur.</td></tr><tr><td valign="top"><a href="#get_temp_dir-0">get_temp_dir/0</a></td><td>Get system temporary directory.</td></tr><tr><td valign="top"><a href="#get_temp_file-0">get_temp_file/0</a></td><td>Get a unique name for a temporary file in the system temporary
+directory.</td></tr><tr><td valign="top"><a href="#get_temp_file-1">get_temp_file/1</a></td><td>Get a unique name for a temporary file in the specified directory.</td></tr><tr><td valign="top"><a href="#last_modified-1">last_modified/1</a></td><td>Get last date and time file last modified.</td></tr><tr><td valign="top"><a href="#realname-1">realname/1</a></td><td>Ascend absolute path of file relative to current working directory, to
 obtain its canonical system path.</td></tr><tr><td valign="top"><a href="#realname-2">realname/2</a></td><td>Ascend absolute path of a file relative to a given directory, to obtain
 its canonical system path.</td></tr><tr><td valign="top"><a href="#size-1">size/1</a></td><td>Get current size of file.</td></tr><tr><td valign="top"><a href="#trim-1">trim/1</a></td><td>Strip whitespace characters from both ends of string.</td></tr><tr><td valign="top"><a href="#winname-1">winname/1</a></td><td>Recast filename in form compatible as a <code>win32</code> command option.</td></tr></table>
 
@@ -187,7 +196,35 @@ Test if file or directory is writeable.<a name="find_parallel_folder-3"></a>
 <br></br>
 
 
-Walk absolute directory path, finding where parallel would occur.<a name="last_modified-1"></a>
+Walk absolute directory path, finding where parallel would occur.<a name="get_temp_dir-0"></a>
+
+###get_temp_dir/0##
+
+
+	get_temp_dir() -> {ok, <a href="file.md#type-filename">file:filename()</a>} | {error, <a href="file.md#type-posix">file:posix()</a>}
+<br></br>
+
+
+Get system temporary directory.<a name="get_temp_file-0"></a>
+
+###get_temp_file/0##
+
+
+	get_temp_file() -> {ok, <a href="file.md#type-filename">file:filename()</a>} | <a href="#type-temp_file_error">temp_file_error()</a>
+<br></br>
+
+
+Get a unique name for a temporary file in the system temporary
+directory.<a name="get_temp_file-1"></a>
+
+###get_temp_file/1##
+
+
+	get_temp_file(Dir::<a href="file.md#type-filename">file:filename()</a>) -> {ok, <a href="file.md#type-filename_all">file:filename_all()</a>}
+<br></br>
+
+
+Get a unique name for a temporary file in the specified directory.<a name="last_modified-1"></a>
 
 ###last_modified/1##
 

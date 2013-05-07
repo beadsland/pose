@@ -1,4 +1,4 @@
-@todo better semantics for tempfile functions
+@todo replace winname with nativename
 @todo realname: avoid unnecessary quotes
 @todo realname: use cwd
 @todo remove FILENAME macro
