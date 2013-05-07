@@ -204,8 +204,8 @@ safe_format(Format, What) ->
   try io_lib:format(Format, What)
   catch
     error:badarg ->
-      io_lib:format("format: badarg: ~s, ~p~nTrace: ~p~n",
-                    [Format, What, erlang:get_stacktrace()])
+      io_lib:format("format: badarg: ~s, ~p~n~s",
+                    [Format, What, format_erltrace(erlang:get_stacktrace())])
   end.
 
 %% Erlang's printable_list functions don't acknowledge escape and control
