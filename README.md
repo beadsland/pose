@@ -31,7 +31,10 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">r16: no flat packages warning
 </font>
-* <font color="red">resume work on 2do_go4</font>
+* <font color="red">nosh: update docs re r15
+</font>
+* <font color="red">...plus 1 more (see TODO.edoc)
+</font>
 
 
 This is the POSIX-like interface emulation for use with the
