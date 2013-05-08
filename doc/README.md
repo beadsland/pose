@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">support later versions of Erlang
+* <font color="red">support later versions of Erlang (do we need to yet?)
 </font>
 * <font color="red">resume work on 2do_go4</font>
 
