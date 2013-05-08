@@ -19,7 +19,17 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">support later versions of Erlang (do we need to yet?)
+* <font color="red">install latest Erlang
+</font>
+* <font color="red">r16 command
+</font>
+* <font color="red">r16: posure check for import/1 conditionals
+</font>
+* <font color="red">r16: import/1 conditionals
+</font>
+* <font color="red">r16: no package option
+</font>
+* <font color="red">r16: no flat packages warning
 </font>
 * <font color="red">resume work on 2do_go4</font>
 
