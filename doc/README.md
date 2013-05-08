@@ -19,7 +19,11 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">r16 command
+* <font color="red">Common.mk: portable head
+</font>
+* <font color="red">r16: portable tail
+</font>
+* <font color="red">r16: command to swap in newer erl
 </font>
 * <font color="red">r16: posure check for import/1 conditionals
 </font>
@@ -29,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">r16: no flat packages warning
 </font>
-* <font color="red">nosh: update docs re r15
-</font>
-* <font color="red">pose: update docs re r15
+* <font color="red">...plus 2 more (see TODO.edoc)
 </font>
 
 
