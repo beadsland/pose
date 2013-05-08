@@ -19,8 +19,6 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">install latest Erlang
-</font>
 * <font color="red">r16 command
 </font>
 * <font color="red">r16: posure check for import/1 conditionals
@@ -33,7 +31,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">nosh: update docs re r15
 </font>
-* <font color="red">...plus 1 more (see TODO.edoc)
+* <font color="red">pose: update docs re r15
 </font>
 
 
