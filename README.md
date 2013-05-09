@@ -33,7 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">r16: no flat packages warning
 </font>
-* <font color="red">...plus 2 more (see TODO.edoc)
+* <font color="red">...plus 3 more (see TODO.edoc)
 </font>
 
 
