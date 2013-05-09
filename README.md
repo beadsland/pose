@@ -19,6 +19,8 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">format_erlerr:better wrapping in traces 
+</font>
 * <font color="red">format_erlerr: incorporate lib:format_exception/6
 </font>
 * <font color="red">bootstrap: better errors
@@ -31,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">r16: no flat packages warning
 </font>
-* <font color="red">nosh: update docs re r15
-</font>
-* <font color="red">...plus 1 more (see TODO.edoc)
+* <font color="red">...plus 2 more (see TODO.edoc)
 </font>
 
 
