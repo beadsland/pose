@@ -19,9 +19,9 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">r16: command to swap in newer erl
-</font>
 * <font color="red">format_erlerr: incorporate lib:format_exception/6
+</font>
+* <font color="red">bootstrap: better errors
 </font>
 * <font color="red">r16: posure check for import/1 conditionals
 </font>

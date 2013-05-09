@@ -1,5 +1,5 @@
-@todo r16: command to swap in newer erl
 @todo format_erlerr: incorporate lib:format_exception/6
+@todo bootstrap: better errors
 @todo r16: posure check for import/1 conditionals
 @todo r16: import/1 conditionals
 @todo r16: no package option
