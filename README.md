@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">quiet error report in make good</font>
+* <font color="red">badmatch error is runtime</font>
 * <font color="red">r16: posure check for import/1 conditionals</font>
 * <font color="red">r16: import/1 conditionals</font>
 * <font color="red">r16: no flat packages warning</font>
