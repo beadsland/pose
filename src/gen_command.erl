@@ -145,7 +145,7 @@ loop(IO, RunPid) ->
     {purging, _Pid, _Mod}           -> ?MODULE:loop(IO, RunPid);
     {'EXIT', RunPid, ok}            -> ok;
     {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What), {ok, What};
-    {'EXIT', RunPid, Reason}        -> do_output(erlerr, Reason), Reason;
+    {'EXIT', RunPid, Reason}        -> do_erlexit(RunPid, Reason);
     {'EXIT', OtherPid, normal}      -> do_other_exit(OtherPid),
                                        ?MODULE:loop(IO, RunPid);
     {debug, SelfPid, Output}        -> do_output(debug, Output),
@@ -157,6 +157,19 @@ loop(IO, RunPid) ->
     Noise                           -> do_noise(Noise),
                                        ?MODULE:loop(IO, RunPid)
   end.
+
+% Insinuate RunPid into formatted erlerr output string.
+do_erlexit(RunPid, Reason) ->
+  Erlerr = lists:flatten(?FORMAT_ERLERR(Reason)),
+  case string:str(Erlerr, ": ") of
+    0       -> Output = io_lib:format("~s ~p", [Erlerr, RunPid]);
+    Start   -> PreString1 = string:left(Erlerr, Start-1),
+               String1 = io_lib:format("~s ~p", [PreString1, RunPid]),
+               String2 = string:substr(Erlerr, Start+2),
+               Output = {String1, String2}
+  end,
+  do_output(erlerr, Output),
+  Reason.
 
 % Handle captured line from standard input
 do_input(RunPid) ->

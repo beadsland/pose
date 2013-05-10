@@ -137,9 +137,9 @@ format_erlerr(Else) -> format_erlelse(Else).
 % Smartly format 2-tuples consisting of an error term followed by a stack trace.
 format_erldump(Term, Stack) ->
   Reason = format_erlrun(Term, Stack), 
-  Trace = format_erltrace(Stack),
+  Trace = format_erltrace(Stack),  
   StripTrace = string:strip(lists:flatten(Trace), right, $\n),
-  io_lib:format("~s ~p~n~s", [Reason, self(), StripTrace]).
+  io_lib:format("~s~n~s", [Reason, StripTrace]).
 
 % Format as Erlang expection if runtime error, otherwise handle locally.
 format_erlrun(Atom, [Head | _Tail]) when is_atom(Atom) -> 
@@ -172,7 +172,13 @@ format_erlrun(Reason, Stack, Class) ->
 
 % If successfully obtained runtime error string, strip extraneous text.
 format_erlrun(_Reason, _Stack, _Class, String) when is_list(String) ->
-  [Except | _] = string:tokens(String, "\n"), Except;
+  [Except | _] = string:tokens(lists:flatten(String), "\n"),
+  case string:str(Except, ": ") of
+    0       -> Except;
+    Start   -> String1 = string:left(Except, Start-1),
+               String2 = string:substr(Except, Start+2),
+               format_erltwotup(String1, String2)
+  end;
 format_erlrun(Reason, _Stack, _Class, _) -> format_erlerr(Reason).
   
 % Smartly format 2-tuples of arbitrary terms, which is how we expect all deep
@@ -182,7 +188,7 @@ format_erltwotup(Term, Data) ->
   String2 = lists:flatten(format_erlerr(Data)),
   [Line1 | _Rest] = string:tokens(String2, "\n"),
   Length = string:len(String1) + string:len(Line1),
-  if Length > 72    -> io_lib:format("~s:~n     ~s", [String1, String2]);
+  if Length > 72    -> io_lib:format("~s:~n      ~s", [String1, String2]);
      true           -> io_lib:format("~s: ~s", [String1, String2])
   end.
 
