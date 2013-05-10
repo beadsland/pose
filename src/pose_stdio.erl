@@ -140,13 +140,18 @@ format_erltwotup(Term, Data) ->
      true           -> io_lib:format("~s: ~s", [String1, String2])
   end.
 
-% Smartly format atoms, whether posix errors or otherwise.
+% Smartly format error atoms, including POSIX and runtime errors.
 format_erlatom(Atom) ->
   IsFileErr = lists:member(Atom, ?FILE_ERR),
   if IsFileErr  -> file:format_error(Atom);
-     true       -> Options = [{return, list}, global],
-                   re:replace(atom_to_list(Atom), "_", " ", Options)
+     true       -> PF = fun(_, _) -> [] end, SF = fun(_, _, _) -> [] end,
+                   [_, Err] = lib:format_exception(1, error, Atom, [], SF, PF),
+                   format_erlatom(Atom, Err)
   end.
+
+format_erlatom(Atom, []) ->
+  re:replace(atom_to_list(Atom), "_", " ", [{return, list}, global]);
+format_erlatom(_Atom, Err) -> Err.
   
 % Smartly format strings, nested deep lists, complex tuples, and whatever else.
 format_erlelse(Else) ->
