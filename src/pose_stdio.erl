@@ -46,6 +46,18 @@
                 espipe, esrch, estale, exdev]).
 -define(FILE_ERR, ?POSIX ++ [badarg, terminated, system_limit]).
 
+-define(RUNTIME1, [badarg, badarith, function_clause, if_clause, noproc, 
+                   notalive, system_limit, timeout_value, undef]).
+
+-define(RUNTIME2, [badarg, badarity, badfun, badmatch, case_clause, try_clause, 
+                   argument_limit, bad_filter, bad_generator, unbound]).
+
+-define(RUNTIME4, [shell_undef]).
+
+-define(RUNSHELL1, [restricted_shell_started, restricted_shell_stopped]).
+
+-define(RUNSHELL2, [restricted_shell_bad_return, restricted_shell_disallowed]).
+
 %%
 %% Exported Functions
 %%
@@ -124,11 +136,43 @@ format_erlerr(Else) -> format_erlelse(Else).
 
 % Smartly format 2-tuples consisting of an error term followed by a stack trace.
 format_erldump(Term, Stack) ->
-  Reason = format_erlerr(Term), 
+  Reason = format_erlrun(Term, Stack), 
   Trace = format_erltrace(Stack),
   StripTrace = string:strip(lists:flatten(Trace), right, $\n),
   io_lib:format("~s ~p~n~s", [Reason, self(), StripTrace]).
 
+% Format as Erlang expection if runtime error, otherwise handle locally.
+format_erlrun(Atom, [Head | _Tail]) when is_atom(Atom) -> 
+  IsRuntime = lists:member(Atom, ?RUNTIME1),
+  IsRunshell = lists:member(Atom, ?RUNSHELL1),
+  if IsRuntime  -> format_erlrun(Atom, [Head], error);
+     IsRunshell -> format_erlrun(Atom, [Head], exit);
+     true       -> format_erlerr(Atom)
+  end;
+format_erlrun({Atom, Term}, [Head | _Tail]) when is_atom(Atom) ->
+  IsRuntime = lists:member(Atom, ?RUNTIME2),
+  IsRunshell = lists:member(Atom, ?RUNSHELL2),
+  if IsRuntime  -> format_erlrun({Atom, Term}, [Head], error);
+     IsRunshell -> format_erlrun({Atom, Term}, [Head], exit);
+     true       -> format_erlerr({Atom, Term})
+  end;
+format_erlrun({Atom, T1, T2, T3}, [Head | _Tail]) when is_atom(Atom) ->
+  IsRuntime = lists:member(Atom, ?RUNTIME2),
+  if IsRuntime  -> format_erlrun({Atom, T1, T2, T3}, [Head], error);
+     true       -> format_erlerr({Atom, T1, T2, T3})
+  end.
+
+% Try to obtain Erlang/OTP error string.
+format_erlrun(Reason, Stack, Class) ->
+  PF = fun(Term, _I1) -> Term end, SF = fun(_M, _F, _A) -> false end,
+  Try = (catch lib:format_exception(1, Class, Reason, Stack, SF, PF)),
+  format_erlrun(Reason, Stack, Class, Try).
+
+% If successfully obtained runtime error string, strip extraneous text.
+format_erlrun(_Reason, _Stack, _Class, String) when is_list(String) ->
+  [Except | _] = string:tokens(String, "\n"), Except;
+format_erlrun(Reason, _Stack, _Class, _) -> format_erlerr(Reason).
+  
 % Smartly format 2-tuples of arbitrary terms, which is how we expect all deep
 % errors to be formed.
 format_erltwotup(Term, Data) ->
@@ -144,15 +188,17 @@ format_erltwotup(Term, Data) ->
 format_erlatom(Atom) ->
   IsFileErr = lists:member(Atom, ?FILE_ERR),
   if IsFileErr  -> file:format_error(Atom);
-     true       -> PF = fun(_, _) -> [] end, SF = fun(_, _, _) -> [] end,
-                   [_, Err] = lib:format_exception(1, error, Atom, [], SF, PF),
-                   format_erlatom(Atom, Err)
+     true       -> Options = [{return, list}, global],
+                   re:replace(atom_to_list(Atom), "_", " ", Options)
   end.
 
-format_erlatom(Atom, []) ->
-  re:replace(atom_to_list(Atom), "_", " ", [{return, list}, global]);
-format_erlatom(_Atom, Err) -> Err.
-  
+%PF = fun(_, _) -> [] end, SF = fun(_, _, _) -> [] end,
+%                   [_, Err] = lib:format_exception(1, error, Atom, [], SF, PF),
+%                   format_erlatom(Atom, Err)
+%format_erlatom(Atom, []) ->
+%format_erlatom(_Atom, Err) -> Err.
+ 
+
 % Smartly format strings, nested deep lists, complex tuples, and whatever else.
 format_erlelse(Else) ->
   IsString = is_string(Else),
