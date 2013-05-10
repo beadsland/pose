@@ -19,13 +19,9 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">bootstrap: better errors
-</font>
 * <font color="red">r16: posure check for import/1 conditionals
 </font>
 * <font color="red">r16: import/1 conditionals
-</font>
-* <font color="red">r16: no package option
 </font>
 * <font color="red">r16: no flat packages warning
 </font>
@@ -33,8 +29,9 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">pose: update docs re r15
 </font>
-* <font color="red">...plus 1 more (see TODO.edoc)
+* <font color="red">edoc status
 </font>
+* <font color="red">resume work on 2do_go4</font>
 
 
 This is the POSIX-like interface emulation for use with the
