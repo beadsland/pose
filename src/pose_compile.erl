@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.8
+%% @version 0.1.9
 -module(pose_compile).
--version("0.1.8").
+-version("0.1.9").
 
 %%
 %% Include files
