@@ -22,7 +22,10 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
+-ifdef(package).
 -import(code).
+-endif.
+
 -define(INIT_POSE, init_pose,
                    process_flag(trap_exit, true),
                    code:add_patha("deps/pose/ebin"),
@@ -46,7 +49,10 @@
 % ARG is second parameter to pose entry points.
 -record(arg, {cmd = '' :: atom(), v = [] :: list()}).
 
+-ifdef(package).
 -import(pose).
+-endif.
+
 -define(ARG(C), ?ARG(C, [])).
 -define(ARG(C, V), #arg{cmd = C, v = V}).
 -define(ARGV(X), pose:argv(ARG, X)).
@@ -58,7 +64,9 @@
 -define(ENV, #env{}).
 
 % STDERR and STDOUT work only in functions that receive IO parameter
+-ifdef(package).
 -import(pose_stdio).  % May be used by packaged modules.
+-endif.
 
 -define(CAPTLN, ?CAPTLN(IO#std.in)).
 -define(CAPTLN(IOPid), IOPid ! {stdin, self(), captln}).
