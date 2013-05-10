@@ -149,6 +149,8 @@ format_erlrun(Atom, [Head | _Tail]) when is_atom(Atom) ->
      IsRunshell -> format_erlrun(Atom, [Head], exit);
      true       -> format_erlerr(Atom)
   end;
+format_erlrun({badmatch, Tuple}, Stack) when is_tuple(Tuple) ->
+  format_erlrun({badmatch, io_lib:format("~p", [Tuple])}, Stack);
 format_erlrun({Atom, Term}, [Head | _Tail]) when is_atom(Atom) ->
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   IsRunshell = lists:member(Atom, ?RUNSHELL2),
@@ -191,13 +193,6 @@ format_erlatom(Atom) ->
      true       -> Options = [{return, list}, global],
                    re:replace(atom_to_list(Atom), "_", " ", Options)
   end.
-
-%PF = fun(_, _) -> [] end, SF = fun(_, _, _) -> [] end,
-%                   [_, Err] = lib:format_exception(1, error, Atom, [], SF, PF),
-%                   format_erlatom(Atom, Err)
-%format_erlatom(Atom, []) ->
-%format_erlatom(_Atom, Err) -> Err.
- 
 
 % Smartly format strings, nested deep lists, complex tuples, and whatever else.
 format_erlelse(Else) ->
