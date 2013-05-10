@@ -144,41 +144,54 @@ do_compile(SrcDir, Cmd, BinDir, true_dir) ->
     {ok, InclList}  -> do_compile(SrcDir, Cmd, BinDir, InclList)
   end;
 do_compile(SrcDir, Cmd, BinDir, InclList) ->
+  Options = [verbose, warnings_as_errors, return_errors, binary,
+            {outdir, BinDir}] ++ InclList,
+  Release = erlang:system_info(otp_release),
+  if Release > "R16" -> 
+       do_compile(SrcDir, Cmd, BinDir, InclList, Options);
+     true            -> 
+       do_compile(SrcDir, Cmd, BinDir, InclList, {package, Options})
+  end.
+
+% Include package option for Erlang/OTP releases that support packages.
+do_compile(SrcDir, Cmd, BinDir, InclList, {package, Options}) ->
   case get_otp_package(BinDir) of
     {error, What}   -> {error, {package, What}};
-    {ok, Package}   -> do_compile(SrcDir, Cmd, BinDir, InclList, Package)
-  end.
-
-% Compile to a binary in memory.
-do_compile(SrcDir, Cmd, BinDir, InclList, Package) ->
-  Options = [verbose, warnings_as_errors, return_errors, binary,
-            {d, package, Package}, {outdir, BinDir}] ++ InclList,
+    {ok, Package}   -> NewOptions = [{d, package, Package} | Options],
+                       do_compile(SrcDir, Cmd, BinDir, InclList, NewOptions)
+  end;
+do_compile(SrcDir, Cmd, BinDir, _InclList, Options) ->
   Filename = filename:join(SrcDir, string:concat(Cmd, ".erl")),
+  Outfile = filename:join(BinDir, string:concat(Cmd, ".beam")),
+  now_compile(Filename, Options, Outfile).
 
-  ?DEBUG("options: ~p~n", [Options]),
-
+% Actually attempt to compile file.
+now_compile(Filename, Options, Outfile) ->
   case compile:file(Filename, Options) of
-    error                       ->
+    error                     -> 
       {error, {compile, unspecified_error}};
-    {error, Errors, Warnings}   ->
-      [First | _Rest] = lists:append(Errors, Warnings),
-      {Filename, [ErrorInfo | _MoreErrorInfo]} = First,
-      {Line, Module, ErrorDescriptor} = ErrorInfo,
-      Where = io_lib:format("~s, line ~p", [filename:basename(Filename), Line]),
-      What = Module:format_error(ErrorDescriptor),
-      {error, {compile, {Where, What}}};
-    {ok, ModuleName, Binary}    ->
-      do_compile(SrcDir, Cmd, BinDir, ModuleName, Package, Binary)
+    {error, Errors, Warnings} -> 
+      now_compile_error(Filename, Errors, Warnings);
+    {ok, ModuleName, Binary}  ->
+      now_compile(Filename, Options, Outfile, ModuleName, Binary)
   end.
 
-% Write our binary out to file.
-do_compile(_SrcDir, Cmd, BinDir, ModuleName, _Package, Binary) ->
-  Outfile = filename:join(BinDir, string:concat(Cmd, ".beam")),
+% Write successfully compiled binary out to file system.
+now_compile(_Filename, _Options, Outfile, ModuleName, Binary) ->
   case file:write_file(Outfile, Binary) of
     {error, What}   -> {error, {file, {What, Outfile}}};
     ok              -> {ok, ModuleName, Binary}
   end.
 
+% Streamline error result to our nested tuple form.
+now_compile_error(Filename, Errors, Warnings) -> 
+  [First | _Rest] = lists:append(Errors, Warnings),
+  {Filename, [ErrorInfo | _MoreErrorInfo]} = First,
+  {Line, Module, ErrorDescriptor} = ErrorInfo,
+  Where = io_lib:format("~s, line ~p", [filename:basename(Filename), Line]),
+  What = Module:format_error(ErrorDescriptor),
+  {error, {compile, {Where, What}}}.
+  
 %%%
 % Get OTP compliant package
 %%%

@@ -1,7 +1,5 @@
-@todo bootstrap: better errors
 @todo r16: posure check for import/1 conditionals
 @todo r16: import/1 conditionals
-@todo r16: no package option
 @todo r16: no flat packages warning
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
