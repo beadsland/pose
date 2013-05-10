@@ -21,6 +21,8 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">format_erlerr:better wrapping in traces 
 </font>
+* <font color="red">pose: better exception exits
+</font>
 * <font color="red">format_erlerr: incorporate lib:format_exception/6
 </font>
 * <font color="red">bootstrap: better errors
@@ -31,9 +33,7 @@ __<font color="red">To do</font>__
 </font>
 * <font color="red">r16: no package option
 </font>
-* <font color="red">r16: no flat packages warning
-</font>
-* <font color="red">...plus 3 more (see TODO.edoc)
+* <font color="red">...plus 4 more (see TODO.edoc)
 </font>
 
 
