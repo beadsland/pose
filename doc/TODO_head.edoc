@@ -1,8 +1,8 @@
-@todo better exception errors
-@todo format_erlerr: incorporate lib:format_exception/6
+@todo format_erlerr: incorporate lib:format_exception/6 for tuples
 @todo bootstrap: better errors
 @todo r16: posure check for import/1 conditionals
 @todo r16: import/1 conditionals
 @todo r16: no package option
 @todo r16: no flat packages warning
-@todo ...plus 3 more (see TODO.edoc)
+@todo nosh: update docs re r15
+@todo ...plus 2 more (see TODO.edoc)
