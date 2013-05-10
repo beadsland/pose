@@ -167,17 +167,10 @@ format_erltrace([{Module, Func, Param, Source} | Tail]) when is_list(Param) ->
   StackPop = format_erltrace(Module, Func, length(Param), Source),
   Return = [{return,list}],
   TopFunc = re:replace(StackPop, "in call from", "in function", Return),
-  CalledAs = format_erltrace(Module, Func, Param),
+  CalledAs = format_erlfunc(Module, Func, Param),
   io_lib:format(Format, [TopFunc, CalledAs, format_erltrace(Tail)]);
 format_erltrace([Noise | Tail]) -> 
   io_lib:format("~p~s", [Noise, format_erltrace(Tail)]).
-
-% Smartly format a function with parameters from the stack trace.
-format_erltrace(Module, Func, Params) ->
-  Format = "   called as   ~s:~p~p",
-  String = io_lib:format(Format, [atom_to_list(Module), Func, Params]),
-  Return = [{return,list}],
-  re:replace(re:replace(String, "\\[", "(", Return), "\\]$", ")", Return).
 
 % Smartly format a function popped from the stack strace.
 format_erltrace(Module, Func, Arity, Source) ->
@@ -185,11 +178,46 @@ format_erltrace(Module, Func, Arity, Source) ->
   SrcStr = format_erlsrc(Source),
   io_lib:format(Format, [atom_to_list(Module), Func, Arity, SrcStr]).
 
+% Smartly format the source file and line of a function call.
 format_erlsrc([{file, _File}, {line, Line}]) -> 
   io_lib:format(", line ~p", [Line]);
 format_erlsrc([]) -> [];
 format_erlsrc(Else) -> io_lib:format(", ~p", [Else]).
-  
+
+% Smartly format a function with parameters from the stack trace.
+format_erlfunc(Module, Func, Params) ->
+  Format = "   called as   ~s:~p~p",
+  Str = io_lib:format(Format, [atom_to_list(Module), Func, Params]),
+  Return = [{return,list}],
+  Paren = re:replace(re:replace(Str, "\\[", "(", Return), "\\]$", ")", Return),
+  Tokens = string:tokens(lists:flatten(Paren), "\n"),
+  format_erlfunc(Module, Func, Params, Tokens).
+
+% If first line is too long, move its parameters to second line.
+format_erlfunc(_Module, Func, Params, [Head | Tail]) ->
+  HeadLen = string:len(Head),
+  if HeadLen > 80 -> [Func | Params] = strings:tokens(Head, "("),
+                     Line1 = Func, 
+                     Indent = string:copies("\s", string:len(Line1)),
+                     Line2 = string:concat(Indent, strings:join(Params, $()),
+                     Lines = [Line1 | [Line2 | Tail]];
+     true         -> Lines = [Head | Tail]
+  end,
+  undent_erlfunc(Lines).
+
+% Reduce hanging indents in event of overlong lines.
+undent_erlfunc([First | Rest]) -> undent_erlfunc(First, Rest).
+
+undent_erlfunc(First, Rest) ->
+  Over = lists:max([string:len(X) || X <- Rest]) - 80,
+  Limit = lists:min([Over, string:len(First)]),
+  undent_erlfunc(First, Rest, Limit).
+
+undent_erlfunc(First, Rest, Over) when Over =< 0 -> 
+  string:join([First | Rest], "\n");
+undent_erlfunc(First, Rest, Over) ->
+  undent_erlfunc(First, [lists:delete($\s, X) || X <- Rest], Over - 1).
+
 % Send output as #std IO message.
 send(_IO, Output, OutPid, Stdout, Erlout) ->
   IsString = is_string(Output),

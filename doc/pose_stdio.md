@@ -11,7 +11,7 @@ Standard I/O functions underlying `interface.hrl` macros.
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.2.5
+__Version:__ 0.2.6
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>

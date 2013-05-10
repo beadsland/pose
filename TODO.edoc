@@ -1,4 +1,3 @@
-@todo format_erlerr:better wrapping in traces 
 @todo pose: better exception exits
 @todo format_erlerr: incorporate lib:format_exception/6
 @todo bootstrap: better errors
