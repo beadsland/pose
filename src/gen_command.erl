@@ -122,7 +122,7 @@ load_command(IO, Command) ->
 -spec get_version(Module :: module()) -> string().
 %% @doc Smart VERSION/1 macro function.
 get_version(Module) ->
-  Suffix = case .init:get_argument(deps) of
+  Suffix = case init:get_argument(deps) of
     {ok, [["deps"]]} 	-> "";
     {ok, [[""]]} 		-> ""; 
     {ok, [[Value]]} 	-> "-" ++ Value;
