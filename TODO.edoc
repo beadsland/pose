@@ -1,7 +1,7 @@
 @todo r16: posure check for import/1 conditionals
-@todo make clean: look for docs not matched by erls
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
+@todo make clean: look for docs not matched by erls
 @todo nosh: make make
 @todo upgrade all projects to work under r16
 @todo remove makefile test for erlang version
