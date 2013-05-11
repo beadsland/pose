@@ -143,7 +143,7 @@ format_erldump(Term, Stack) ->
   Reason = format_erlrun(Term, Stack), 
   Trace = format_erltrace(Stack),  
   StripTrace = string:strip(lists:flatten(Trace), right, $\n),
-  io_lib:format("~s~n~s", [Reason, StripTrace]).
+  io_lib:format("~s~s", [Reason, StripTrace]).
 
 % Format as Erlang expection if runtime error, otherwise handle locally.
 format_erlrun(Atom, Stack) when is_atom(Atom) -> format_erlrun1(Atom, Stack);
@@ -242,16 +242,15 @@ format_erltrace([]) -> [];
 format_erltrace([{Module, Func, Arity, Source} | Tail]) 
                                                      when is_integer(Arity) ->
   StackPop = format_erltrace(Module, Func, Arity, Source),
-  io_lib:format("~s~n~s", [StackPop, format_erltrace(Tail)]); 
+  io_lib:format("~n~s~s", [StackPop, format_erltrace(Tail)]); 
 format_erltrace([{Module, Func, Param, Source} | Tail]) when is_list(Param) ->
-  Format = "~s~n~s~n~s",
+  Format = "~n~s~n~s~s",
   StackPop = format_erltrace(Module, Func, length(Param), Source),
   Return = [{return,list}],
   TopFunc = re:replace(StackPop, "in call from", "in function", Return),
   CalledAs = format_erlfunc(Module, Func, Param),
   io_lib:format(Format, [TopFunc, CalledAs, format_erltrace(Tail)]);
-format_erltrace([Noise | Tail]) -> 
-  io_lib:format("~p~s", [Noise, format_erltrace(Tail)]).
+format_erltrace([_Noise | _Tail]=List) -> io_lib:format(", ~p", [List]).
 
 % Smartly format a function popped from the stack strace.
 format_erltrace(Module, Func, Arity, Source) ->
@@ -299,6 +298,10 @@ undent_erlfunc(First, Rest, Over) when Over =< 0 ->
   string:join([First | Rest], "\n");
 undent_erlfunc(First, Rest, Over) ->
   undent_erlfunc(First, [lists:delete($\s, X) || X <- Rest], Over - 1).
+
+%%%
+% Plumbing functions
+%%%
 
 % Send output as #std IO message.
 send(_IO, Output, OutPid, Stdout, Erlout) ->
