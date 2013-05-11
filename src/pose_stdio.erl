@@ -143,9 +143,9 @@ format_erldump(Term, Stack) ->
 
 % Format as Erlang expection if runtime error, otherwise handle locally.
 format_erlrun(Atom, Stack) when is_atom(Atom) -> format_erlrun1(Atom, Stack);
-format_erlrun({Atom, Term}=Tuple, Stack) when is_atom(Atom) ->
+format_erlrun({Atom, _Term}=Tuple, Stack) when is_atom(Atom) ->
   format_erlrun2(Tuple, Stack);
-format_erlrun({Atom, T1, T2, T3}=Tuple, Stack) when is_atom(Atom) ->
+format_erlrun({Atom, _T1, _T2, _T3}=Tuple, Stack) when is_atom(Atom) ->
   format_erlrun4(Tuple, Stack).
 
 % Try to obtain runtime error string for atoms.
@@ -172,6 +172,9 @@ format_erlrun2({badmatch, Tuple}, [Head | _Tail]) when is_tuple(Tuple) ->
       format_erlrun(BadMatch, [Head])
   end;
 format_erlrun2({Atom, Term}, [Head | _Tail]) ->
+
+  ?DEBUG("erlrun2: ~p, ~s", [Atom, Term]),
+  
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   IsRunshell = lists:member(Atom, ?RUNSHELL2),
   if IsRuntime  -> format_erlrun({Atom, Term}, [Head], error);
@@ -282,6 +285,7 @@ format_erlfunc(_Module, Func, Params, [Head | Tail]) ->
 % Reduce hanging indents in event of overlong lines.
 undent_erlfunc([First | Rest]) -> undent_erlfunc(First, Rest).
 
+undent_erlfunc(First, []) -> First;
 undent_erlfunc(First, Rest) ->
   Over = lists:max([string:len(X) || X <- Rest]) - 80,
   Limit = lists:min([Over, string:len(First)]),
