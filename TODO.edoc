@@ -1,4 +1,3 @@
-@todo gen_command: wrapping with pids
 @todo gen_command: remove stray dot
 @todo stdio: better re:compile errors
 @todo r16: posure check for import/1 conditionals
