@@ -34,7 +34,7 @@
 %% Include files
 %%
 
--define(debug, true).
+%-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 
 -include_lib("kernel/include/file.hrl").
@@ -206,7 +206,7 @@ format_erlrun(_Reason, _Stack, _Class, String) when is_list(String) ->
                format_erltwotup(String1, String2)
   end;
 format_erlrun(Reason, _Stack, _Class, Error) ->
-  ?DEBUG("format exception: ~p~n", [Error]),
+  ?DEBUG("format exception: ~P~n", [Error, 7]),
   format_erlerr(Reason).
   
 % Smartly format 2-tuples of arbitrary terms, which is how we expect all deep
@@ -265,8 +265,8 @@ format_erlsrc(Else) -> io_lib:format(", ~p", [Else]).
 
 % Smartly format a function with parameters from the stack trace.
 format_erlfunc(Module, Func, Params) ->
-  Format = "   called as   ~s:~p~p",
-  Str = io_lib:format(Format, [atom_to_list(Module), Func, Params]),
+  Format = "   called as   ~s:~p~P",
+  Str = io_lib:format(Format, [atom_to_list(Module), Func, Params, 7]),
   Return = [{return,list}],
   Paren = re:replace(re:replace(Str, "\\[", "(", Return), "\\]$", ")", Return),
   Tokens = string:tokens(lists:flatten(Paren), "\n"),

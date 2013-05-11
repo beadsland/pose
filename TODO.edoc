@@ -1,5 +1,5 @@
-@todo conditional debug
 @todo r16: posure check for import/1 conditionals
+@todo make clean: look for docs not matched by erls
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo nosh: make make
