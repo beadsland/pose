@@ -1,4 +1,4 @@
-@todo stdio: handle badarg when stack throws error
+@todo conditional debug
 @todo r16: posure check for import/1 conditionals
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
