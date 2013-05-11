@@ -109,18 +109,14 @@ send_stderr(IO, Output) -> send(IO, Output, IO#std.err, stderr, erlerr).
 %% @doc Smart DEBUG/1 macro function.
 send_debug(Output) -> send_debug(Output, get_debug(), is_string(Output)).
 
-send_debug(Output, undef, true) -> io:format("~~~~ ~s", [Output]), ok;
-send_debug(Output, undef, false) -> io:format("~~~~ ~p~n", [Output]), ok;
-send_debug(Output, Debug, true) -> Debug ! {debug, self(), Output}, ok;
-send_debug(Output, _Debug, false) -> send_debug("~p~n", [Output]).
-
 -spec send_debug(Format :: format(), What :: list()) -> ok | no_return().
 %% @doc Smart DEBUG/2 macro function.
-send_debug(Format, What) ->
-  case get_debug() of
-    undef   -> send_debug(safe_format(Format, What));
-    Debug   -> Debug ! {debug, self(), safe_format(Format, What)}, ok
-  end.
+send_debug(Format, What) -> send_debug(safe_format(Format, What)).
+
+% Convert non-string output to string and send as message to recipient process.
+send_debug(Output, _, false) -> send_debug("~p~n", [Output]);
+send_debug(Output, undef, true) -> io:format("~~~~ ~s~n", [Output]), ok;
+send_debug(Output, Debug, true) -> Debug ! {debug, self(), Output}, ok.
 
 %%%
 % Format erlerr
