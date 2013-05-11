@@ -142,23 +142,45 @@ format_erldump(Term, Stack) ->
   io_lib:format("~s~n~s", [Reason, StripTrace]).
 
 % Format as Erlang expection if runtime error, otherwise handle locally.
-format_erlrun(Atom, [Head | _Tail]) when is_atom(Atom) -> 
+format_erlrun(Atom, Stack) when is_atom(Atom) -> format_erlrun1(Atom, Stack);
+format_erlrun({Atom, Term}=Tuple, Stack) when is_atom(Atom) ->
+  format_erlrun2(Tuple, Stack);
+format_erlrun({Atom, T1, T2, T3}=Tuple, Stack) when is_atom(Atom) ->
+  format_erlrun4(Tuple, Stack).
+
+% Try to obtain runtime error string for atoms.
+format_erlrun1(Atom, [Head | _Tail]) when is_atom(Atom) -> 
   IsRuntime = lists:member(Atom, ?RUNTIME1),
   IsRunshell = lists:member(Atom, ?RUNSHELL1),
   if IsRuntime  -> format_erlrun(Atom, [Head], error);
      IsRunshell -> format_erlrun(Atom, [Head], exit);
      true       -> format_erlerr(Atom)
+  end.
+
+% Try to obtain runtime error string for 2-tuple errors.
+% (Assume things like "missing )" are re:compile errors.)
+format_erlrun2({badmatch, Tuple}, [Head | _Tail]) when is_tuple(Tuple) ->
+  case Tuple of
+    {error, {ErrString, Position}} when is_list(ErrString), 
+                                        is_integer(Position) ->
+      ReCompileErr = io_lib:format("~s, at char ~p", [ErrString, Position]),
+      BadMatchErr = format_erlrun({badmatch, ""}, [Head]),
+      StripBadMatchErr = string:strip(lists:flatten(BadMatchErr), right),
+      format_erlerr({StripBadMatchErr, {re_compile, ReCompileErr}}); 
+    _Else                                                    ->
+      BadMatch = {badmatch, io_lib:format("~p", [Tuple])},
+      format_erlrun(BadMatch, [Head])
   end;
-format_erlrun({badmatch, Tuple}, Stack) when is_tuple(Tuple) ->
-  format_erlrun({badmatch, io_lib:format("~p", [Tuple])}, Stack);
-format_erlrun({Atom, Term}, [Head | _Tail]) when is_atom(Atom) ->
+format_erlrun2({Atom, Term}, [Head | _Tail]) ->
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   IsRunshell = lists:member(Atom, ?RUNSHELL2),
   if IsRuntime  -> format_erlrun({Atom, Term}, [Head], error);
      IsRunshell -> format_erlrun({Atom, Term}, [Head], exit);
      true       -> format_erlerr({Atom, Term})
-  end;
-format_erlrun({Atom, T1, T2, T3}, [Head | _Tail]) when is_atom(Atom) ->
+  end.
+
+% Try to obtain runtime error string for 4-tuple errors.
+format_erlrun4({Atom, T1, T2, T3}, [Head | _Tail]) ->
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   if IsRuntime  -> format_erlrun({Atom, T1, T2, T3}, [Head], error);
      true       -> format_erlerr({Atom, T1, T2, T3})
