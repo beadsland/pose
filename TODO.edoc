@@ -1,4 +1,4 @@
-@todo stdio: handle badarg, V
+@todo stdio: handle badarg, [{}] being treated as stack
 @todo r16: posure check for import/1 conditionals
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
