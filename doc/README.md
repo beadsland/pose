@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">format_erlerr2: case clause parameters </font>
+* <font color="red">format_erlerr2: anticipate V terms</font>
 * <font color="red">r16: posure check for import/1 conditionals</font>
 * <font color="red">all projects: import/1 conditionals</font>
 * <font color="red">r16: no flat packages warning</font>
