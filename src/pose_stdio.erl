@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.2.6
+%% @version 0.2.7
 -module(pose_stdio).
--version("0.2.6").
+-version("0.2.7").
 
 %%
 %% Include files
@@ -162,30 +162,31 @@ format_erlrun1(Atom, [Head | _Tail]) when is_atom(Atom) ->
   end.
 
 % Try to obtain runtime error string for 2-tuple errors.
-% (Assume things like "missing )" are re:compile errors.)
-format_erlrun2({badmatch, Term}, [Head | _Tail]) ->
-  case Term of
-    {error, {ErrString, Position}} when is_list(ErrString), 
-                                        is_integer(Position) ->
-      ReCompileErr = io_lib:format("~s, at char ~p", [ErrString, Position]),
-      BadMatchErr = format_erlrun({badmatch, ""}, [Head]),
-      StripBadMatchErr = string:strip(lists:flatten(BadMatchErr), right),
-      format_erlerr({StripBadMatchErr, {re_compile, ReCompileErr}}); 
-    _Else                                                    ->
-      BadMatch = {badmatch, io_lib:format("~p", [Term])},
-      format_erlrun(BadMatch, [Head], error)
-  end;
-format_erlrun2({case_clause, Term}, [Head | _Tail]) ->
-  String = io_lib:format("~p", [Term]),
-  format_erlrun({case_clause, String}, [Head], error);
+format_erlrun2({badmatch, {error, {ErrString, Position}}}, [Head | _Tail]) 
+                                when is_list(ErrString), is_integer(Position) ->
+  format_badcompile(ErrString, Position, Head);
+format_erlrun2({Atom, Term}, [Head | _Tail]) when Atom == badarity ->
+  format_erlrun({Atom, Term}, [Head], error);
+format_erlrun2({Atom, Term}, [Head | _Tail]) 
+                                     when Atom == restricted_shell_disallowed ->
+  format_erlrun({Atom, Term}, [Head], exit);
 format_erlrun2({Atom, Term}, [Head | _Tail]) ->
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   IsRunshell = lists:member(Atom, ?RUNSHELL2),
-  if IsRuntime  -> format_erlrun({Atom, Term}, [Head], error);
-     IsRunshell -> format_erlrun({Atom, Term}, [Head], exit);
+  if IsRuntime  -> String = io_lib:format("~p", [Term]),
+                   format_erlrun({Atom, String}, [Head], error);
+     IsRunshell -> String = io_lib:format("~p", [Term]),
+                   format_erlrun({Atom, String}, [Head], exit);
      true       -> format_erlerr({Atom, Term})
   end.
 
+% Proactively guess badmatches on things like "missing )" are re:compile errors.
+format_badcompile(ErrString, Position, Head) ->
+  ReCompileErr = io_lib:format("~s, at char ~p", [ErrString, Position]),
+  BadMatchErr = format_erlrun({badmatch, ""}, [Head]),
+  StripBadMatchErr = string:strip(lists:flatten(BadMatchErr), right),
+  format_erlerr({StripBadMatchErr, {re_compile, ReCompileErr}}). 
+  
 % Try to obtain runtime error string for 4-tuple errors.
 format_erlrun4({Atom, T1, T2, T3}, [Head | _Tail]) ->
   IsRuntime = lists:member(Atom, ?RUNTIME2),
