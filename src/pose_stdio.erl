@@ -107,16 +107,20 @@ send_stderr(IO, Output) -> send(IO, Output, IO#std.err, stderr, erlerr).
 
 -spec send_debug(Output :: any()) -> ok | no_return().
 %% @doc Smart DEBUG/1 macro function.
-send_debug(Output) ->
-  IsString = is_string(Output),
-  if IsString   -> get_debug() ! {debug, self(), Output};
-     true       -> send_debug("~p", [Output])
-  end, ok.
+send_debug(Output) -> send_debug(Output, get_debug(), is_string(Output)).
+
+send_debug(Output, undef, true) -> io:format("~~~~ ~s", [Output]), ok;
+send_debug(Output, undef, false) -> io:format("~~~~ ~p~n", [Output]), ok;
+send_debug(Output, Debug, true) -> Debug ! {debug, self(), Output}, ok;
+send_debug(Output, _Debug, false) -> send_debug("~p~n", [Output]).
 
 -spec send_debug(Format :: format(), What :: list()) -> ok | no_return().
 %% @doc Smart DEBUG/2 macro function.
 send_debug(Format, What) ->
-  get_debug() ! {debug, self(), safe_format(Format, What)}, ok.
+  case get_debug() of
+    undef   -> send_debug(safe_format(Format, What));
+    Debug   -> Debug ! {debug, self(), safe_format(Format, What)}, ok
+  end.
 
 %%%
 % Format erlerr
@@ -173,7 +177,7 @@ format_erlrun2({badmatch, Tuple}, [Head | _Tail]) when is_tuple(Tuple) ->
   end;
 format_erlrun2({Atom, Term}, [Head | _Tail]) ->
 
-  ?DEBUG("erlrun2: ~p, ~s", [Atom, Term]),
+  ?DEBUG("erlrun2: ~p, ~p~n", [Atom, Term]),
   
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   IsRunshell = lists:member(Atom, ?RUNSHELL2),
@@ -314,7 +318,7 @@ send(IO, Format, What, OutPid, Stdout, Erlout) ->
 get_debug() ->
   case get(debug) of
     Pid when is_pid(Pid)    -> Pid;
-    _Else                   -> throw({debug_uninitialized, self()})
+    _Else                   -> undef
   end.
 
 % Don't let bad arguments supress error reporting.
