@@ -163,8 +163,8 @@ format_erlrun1(Atom, [Head | _Tail]) when is_atom(Atom) ->
 
 % Try to obtain runtime error string for 2-tuple errors.
 % (Assume things like "missing )" are re:compile errors.)
-format_erlrun2({badmatch, Tuple}, [Head | _Tail]) when is_tuple(Tuple) ->
-  case Tuple of
+format_erlrun2({badmatch, Term}, [Head | _Tail]) ->
+  case Term of
     {error, {ErrString, Position}} when is_list(ErrString), 
                                         is_integer(Position) ->
       ReCompileErr = io_lib:format("~s, at char ~p", [ErrString, Position]),
@@ -172,13 +172,13 @@ format_erlrun2({badmatch, Tuple}, [Head | _Tail]) when is_tuple(Tuple) ->
       StripBadMatchErr = string:strip(lists:flatten(BadMatchErr), right),
       format_erlerr({StripBadMatchErr, {re_compile, ReCompileErr}}); 
     _Else                                                    ->
-      BadMatch = {badmatch, io_lib:format("~p", [Tuple])},
-      format_erlrun(BadMatch, [Head])
+      BadMatch = {badmatch, io_lib:format("~p", [Term])},
+      format_erlrun(BadMatch, [Head], error)
   end;
+format_erlrun2({case_clause, Term}, [Head | _Tail]) ->
+  String = io_lib:format("~p", [Term]),
+  format_erlrun({case_clause, String}, [Head], error);
 format_erlrun2({Atom, Term}, [Head | _Tail]) ->
-
-  ?DEBUG("erlrun2: ~p, ~p~n", [Atom, Term]),
-  
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   IsRunshell = lists:member(Atom, ?RUNSHELL2),
   if IsRuntime  -> format_erlrun({Atom, Term}, [Head], error);
@@ -208,7 +208,9 @@ format_erlrun(_Reason, _Stack, _Class, String) when is_list(String) ->
                String2 = string:substr(Except, Start+2),
                format_erltwotup(String1, String2)
   end;
-format_erlrun(Reason, _Stack, _Class, _) -> format_erlerr(Reason).
+format_erlrun(Reason, _Stack, _Class, Error) ->
+  ?DEBUG("format exception: ~p~n", [Error]),
+  format_erlerr(Reason).
   
 % Smartly format 2-tuples of arbitrary terms, which is how we expect all deep
 % errors to be formed.
