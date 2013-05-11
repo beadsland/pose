@@ -1,3 +1,4 @@
+@todo DEBUG alias when not initialized
 @todo format_erltrace: identify misread stack
 @todo format_erlerr2: case clause parameters 
 @todo r16: posure check for import/1 conditionals
