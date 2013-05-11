@@ -1,8 +1,8 @@
-@todo gen_command: wrapping with pids
-@todo gen_command: remove stray dot
 @todo stdio: better re:compile errors
 @todo r16: posure check for import/1 conditionals
 @todo r16: import/1 conditionals
 @todo r16: no flat packages warning
 @todo nosh: make make
-@todo ...plus 4 more (see TODO.edoc)
+@todo upgrade all projects to work under r16
+@todo nosh: update docs re r15
+@todo ...plus 2 more (see TODO.edoc)
