@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">unison .gitignore</font>
+* <font color="red">use github's .gitignore template</font>
 * <font color="red">make clean: look for docs not matched by erls</font>
 * <font color="red">Common.mk: dependency on .hrl files</font>
 * <font color="red">nosh: make make</font>
