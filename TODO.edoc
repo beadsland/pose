@@ -1,5 +1,4 @@
-@todo make clean: look for docs not matched by erls
-@todo Common.mk: dependency on .hrl files
+@todo make docup: look for docs not matched by erls
 @todo use github's .gitignore template
 @todo nosh: make make
 @todo git checkins across projects
