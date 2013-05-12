@@ -71,7 +71,7 @@ TODO.edoc:	;
 
 docs:	neat README.md $(patsubst src/%.erl, doc/%.md, $(wildcard src/*.erl))
 
-neat:			$(wildcard doc/*.md)
+neat:	$(wildcard doc/*.md)
 	@rm -f *.dump *.stackdump
 
 doc/README.md:	;
@@ -80,7 +80,7 @@ doc/%.md:		src/%.erl
 	@$(CROWBAR:_cmds_=doc)
 
 src/%.erl:		force
-	@if [ ! -f src/$*.erl ]; then (rm -f doc/$*.*); fi
+	@if [ ! -f src/$*.erl ]; then (git rm -f doc/$*.*); fi
 	
 force:		;
 
@@ -112,14 +112,16 @@ push:	make docup
 make:	$(patsubst include/%.mk, \
 			include/$(B_PREFIX)%.mk$(B_SUFFIX), \
 			$(wildcard include/*.mk))
+	@cp .gitignore include/gitignore.temp
 	@if [ "$(shell basename $(CURDIR))" != nosh ]; \
 		then ($(UNISON) -merge "$(MERGE)"); fi
+	@cp include/gitignore.temp .gitignore
 
 include/$(B_PREFIX)%.mk$(B_SUFFIX):		include/%.mk
 	@if [ ! -f $@ ]; \
 		then ($(UNISON) && (test -f $@ || cp $< $@)); fi
-		
+	
 docup:	docs
 	@git add -f doc/*.md
 	@if ! git diff-index --cached --quiet HEAD; \
-		then (git commit doc/*.md -m "updated docs"); fi		
+		then (git commit $(DOC_FILES) -m "updated docs"); fi		
