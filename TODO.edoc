@@ -1,7 +1,6 @@
-@todo fix acronis
-@todo use github's .gitignore template
 @todo make clean: look for docs not matched by erls
 @todo Common.mk: dependency on .hrl files
+@todo use github's .gitignore template
 @todo nosh: make make
 @todo git checkins across projects
 @todo all projects: import/1 conditionals
