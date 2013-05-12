@@ -1,8 +1,8 @@
 @todo unison .gitignore
-@todo git checkins across projects
 @todo make clean: look for docs not matched by erls
 @todo Common.mk: dependency on .hrl files
 @todo nosh: make make
+@todo git checkins across projects
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo upgrade all projects to work under r16
