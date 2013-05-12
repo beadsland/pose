@@ -1,4 +1,5 @@
 @todo make clean: look for docs not matched by erls
+@todo make: sync .gitignore
 @todo Common.mk: dependency on .hrl files
 @todo nosh: make make
 @todo all projects: import/1 conditionals
