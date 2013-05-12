@@ -1,8 +1,8 @@
-@todo use github's .gitignore template
-@todo nosh: make make
 @todo git checkins across projects
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo upgrade all projects to work under r16
 @todo remove makefile test for erlang version
-@todo ...plus 3 more (see TODO.edoc)
+@todo nosh: update docs re r15
+@todo pose: update docs re r15
+@todo ...plus 1 more (see TODO.edoc)
