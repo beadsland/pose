@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">git checkins across projects</font>
+* <font color="red">posure: test under r16</font>
 * <font color="red">all projects: import/1 conditionals</font>
 * <font color="red">r16: no flat packages warning</font>
 * <font color="red">upgrade all projects to work under r16</font>
