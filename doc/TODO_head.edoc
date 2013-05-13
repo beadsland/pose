@@ -1,8 +1,8 @@
+@todo r16: pose: not forcing recompile
 @todo 81 char lines only under r16?
 @todo posure: test under r16
 @todo superl: make good
 @todo r16 pose echo hello world
 @todo get version of compile module
 @todo compile: confirm compiler version
-@todo bootstrap: recompile if diff release
-@todo ...plus 6 more (see TODO.edoc)
+@todo ...plus 7 more (see TODO.edoc)
