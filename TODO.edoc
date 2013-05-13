@@ -1,5 +1,3 @@
-@todo makefile: ?= notation
-@todo remove makefile test for erlang version
 @todo posure: test under r16
 @todo r16 pose echo hello world
 @todo get version of compile module
