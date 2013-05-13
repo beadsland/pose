@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">81 char lines only under r16?</font>
 * <font color="red">posure: test under r16</font>
+* <font color="red">superl: make good</font>
 * <font color="red">r16 pose echo hello world</font>
 * <font color="red">get version of compile module</font>
 * <font color="red">compile: confirm compiler version</font>
 * <font color="red">bootstrap: recompile if diff release</font>
-* <font color="red">all projects: import/1 conditionals</font>
-* <font color="red">...plus 5 more (see TODO.edoc)
+* <font color="red">...plus 6 more (see TODO.edoc)
 </font>
 
 
