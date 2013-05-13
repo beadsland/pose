@@ -17,6 +17,19 @@ The `nosh` architecture depends on the experimental `package` feature,
 which was removed in Erlang/OTP R16.
 
 
+__<font color="red">To do</font>__
+<br></br>
+* <font color="red">makefile: consistently update .gitignore</font>
+* <font color="red">fix version function</font>
+* <font color="red">makefile: ?= notation</font>
+* <font color="red">compile: confirm compiler version</font>
+* <font color="red">bootstrap: recompile if diff release</font>
+* <font color="red">remove makefile test for erlang version</font>
+* <font color="red">posure: test under r16</font>
+* <font color="red">...plus 7 more (see TODO.edoc)
+</font>
+
+
 This is the POSIX-like interface emulation for use with the
 [`nosh`](http://github.com/beadsland/nosh) Bourne shell
   emulator and `nosh`-compatible projects.

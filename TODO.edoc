@@ -1,0 +1,15 @@
+@todo makefile: consistently update .gitignore
+@todo fix version function
+@todo makefile: ?= notation
+@todo compile: confirm compiler version
+@todo bootstrap: recompile if diff release
+@todo remove makefile test for erlang version
+@todo posure: test under r16
+@todo r16 pose echo hello world
+@todo all projects: import/1 conditionals
+@todo r16: no flat packages warning
+@todo upgrade all projects to work under r16
+@todo nosh: update docs re r15
+@todo pose: update docs re r15
+@todo edoc status
+@todo resume work on 2do_go4

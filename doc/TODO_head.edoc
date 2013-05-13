@@ -1,0 +1,8 @@
+@todo makefile: consistently update .gitignore
+@todo fix version function
+@todo makefile: ?= notation
+@todo compile: confirm compiler version
+@todo bootstrap: recompile if diff release
+@todo remove makefile test for erlang version
+@todo posure: test under r16
+@todo ...plus 7 more (see TODO.edoc)
