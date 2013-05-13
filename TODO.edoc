@@ -1,5 +1,4 @@
-@todo 81 char lines only under r16?
-@todo posure: test under r16
+@todo make: tests to stderr
 @todo superl: make good
 @todo r16 pose echo hello world
 @todo get version of compile module
@@ -10,5 +9,6 @@
 @todo upgrade all projects to work under r16
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
+@todo nosh: indicate release in prompt
 @todo edoc status
 @todo resume work on 2do_go4
