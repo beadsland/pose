@@ -1,8 +1,8 @@
 @todo makefile: ?= notation
-@todo get version of compile module
-@todo compile: confirm compiler version
-@todo bootstrap: recompile if diff release
 @todo remove makefile test for erlang version
 @todo posure: test under r16
 @todo r16 pose echo hello world
+@todo get version of compile module
+@todo compile: confirm compiler version
+@todo bootstrap: recompile if diff release
 @todo ...plus 6 more (see TODO.edoc)
