@@ -1,5 +1,5 @@
-@todo fix version function
 @todo makefile: ?= notation
+@todo get version of compile module
 @todo compile: confirm compiler version
 @todo bootstrap: recompile if diff release
 @todo remove makefile test for erlang version
