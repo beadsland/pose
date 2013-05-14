@@ -182,7 +182,7 @@
 %% Include files
 %%
 
--define(debug, true).
+%-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -325,39 +325,22 @@ ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false) ->
   ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false, not_loaded);
 ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile) ->
   SameFile = string:equal(BinFile, MemFile),
-  OurCompilerVsn = get_compiler_vsn(),
-  MemCompilerVsn = proplists:get_value(version, Module:module_info(compile)),
-  SameCompiler = string:equal(OurCompilerVsn, MemCompilerVsn),
   MemVsn = ?ATTRIB(Module, vsn),
   ?DEBUG({SameFile, BinFile, MemFile}),
-  ?DEBUG({Module, OurCompilerVsn, MemCompilerVsn}),
   if not SameFile       ->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_path);
-     not SameCompiler   ->
-       ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_compile);
      BinVsn /= MemVsn   ->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_vsn);
      true               ->
        if Pkg == '' -> {ok, Module, flat_pkg}; true -> {ok, Module} end
   end.
 
-% Get version of our compiler.
-get_compiler_vsn() ->
-  Info = beam_asm:module_info(compile),
-  Options = proplists:get_value(options, Info),
-  get_compiler_vsn(Options).
-
-get_compiler_vsn([]) -> undef;
-get_compiler_vsn([{d, 'COMPILER_VSN', Version} | _Tail]) -> Version;
-get_compiler_vsn([_Head | Tail]) -> get_compiler_vsn(Tail).
-
 % Load the new module version.
 ensure_loaded(Module, BinFile, Bin, _BinVsn, Pkg, _MemFile, Why) ->
   ?DEBUG(Why),
   if Why /= not_loaded -> do_purge_delete(Module); true -> false end,
   case code:load_binary(Module, BinFile, Bin) of
-    {error, What}		->
-      {error, {load, What}};
+    {error, What}		-> {error, {load, What}};
     {module, Module}	->
       case Why of
         diff_path   -> {ok, Module, diff_path};
