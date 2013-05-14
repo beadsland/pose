@@ -1,8 +1,8 @@
-@todo compile: refactor beam_lib code to pose_beam
 @todo ensure_compiled: redesign for fewer parameters
 @todo make good
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo upgrade all projects to work under r16
 @todo nosh: update docs re r15
-@todo ...plus 3 more (see TODO.edoc)
+@todo pose: update docs re r15
+@todo ...plus 2 more (see TODO.edoc)
