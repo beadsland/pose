@@ -28,7 +28,7 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.6
+%% @version 0.1.7
 
 -define(module, posure).
 
@@ -42,7 +42,7 @@
 -endif.
 % END POSE PACKAGE PATTERN
 
--version("0.1.6").
+-version("0.1.7").
 
 %%
 %% Include files
@@ -250,11 +250,11 @@ get_imported_modules(IO, Command, Data) ->
 
 % Extract module from matched import/1 directive.
 get_imported_modules(_IO, _Command, [], _Cond) -> {ok, [], []};
-get_imported_modules(IO, Command, [Head | Tail], Cond) ->  
+get_imported_modules(IO, Cmd, [Head | Tail]=Lines, Cond) ->  
   {ok, MP} = re:compile("^-import\\(([^),]*)\\)\\."),  
   case re:run(Head, MP, [{capture, [1], list}]) of
-    nomatch           -> get_imported_modules(IO, Command, [Head | Tail], Cond, not_import);
-    {match, [Import]} -> get_imported_modules(IO, Command, Tail, Cond, Import)
+    nomatch           -> get_imported_modules(IO, Cmd, Lines, Cond, not_import);
+    {match, [Import]} -> get_imported_modules(IO, Cmd, Tail, Cond, Import)
   end.
 
 % Confirm each import found is within an ifdef(package) conditional.
