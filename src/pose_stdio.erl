@@ -173,9 +173,9 @@ format_erlrun2({Atom, Term}, [Head | _Tail])
 format_erlrun2({Atom, Term}, [Head | _Tail]) ->
   IsRuntime = lists:member(Atom, ?RUNTIME2),
   IsRunshell = lists:member(Atom, ?RUNSHELL2),
-  if IsRuntime  -> String = io_lib:format("~p", [Term]),
+  if IsRuntime  -> String = io_lib:format("~W", [Term, 5]),
                    format_erlrun({Atom, String}, [Head], error);
-     IsRunshell -> String = io_lib:format("~p", [Term]),
+     IsRunshell -> String = io_lib:format("~W", [Term, 5]),
                    format_erlrun({Atom, String}, [Head], exit);
      true       -> format_erlerr({Atom, Term})
   end.
