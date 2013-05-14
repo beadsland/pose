@@ -42,11 +42,6 @@
 -define(debug, true).
 -include_lib("pose/include/interface.hrl").
 
--import(gen_command).
--import(file).
--import(lists).
--import(io).
-
 %%
 %% Exported Functions
 %%
