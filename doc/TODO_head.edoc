@@ -1,8 +1,8 @@
-@todo superl: make good
-@todo posure: make good
-@todo r16 pose echo hello world
 @todo get version of compile module
 @todo compile: confirm compiler version
 @todo bootstrap: recompile if diff release
 @todo all projects: import/1 conditionals
-@todo ...plus 6 more (see TODO.edoc)
+@todo r16: no flat packages warning
+@todo upgrade all projects to work under r16
+@todo nosh: update docs re r15
+@todo ...plus 3 more (see TODO.edoc)
