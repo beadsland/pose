@@ -38,12 +38,48 @@
 %%
 %% Exported Functions
 %%
--export([get_binary_detail/2, slurp_binary/1]).
+-export([get_chunk/2, get_attribute/2, get_compiler_vsn/1, 
+         get_binary_detail/2, slurp_binary/1]).
 
 %%
 %% API Functions
 %%
 
+-type beam() :: beam_lib:beam().
+-type chunkref() :: beam_lib:chunkref().
+-type chunk_error() :: {error, {beam_lib, beam_lib:chnk_rsn()}}.
+-type chunk_result() ::  {ok, any()} | chunk_error().
+-spec get_chunk(Beam :: beam(), ChunkRef :: chunkref()) -> chunk_result().
+% @doc Get data for a chunk of a beam. 
+get_chunk(Beam, ChunkRef) ->
+  case beam_lib:chunks(Beam, [ChunkRef], [allow_missing_chunks]) of
+    {error, beam_lib, Reason}                    -> {error, {beam_lib, Reason}};
+    {ok, {_Module, [{ChunkRef, missing_chunk}]}} -> {info, missing_chunk};
+    {ok, {_Module, [{ChunkRef, Data}]}}          -> {ok, Data}
+  end.
+
+-type attribute_values() :: [term()] | undefined.
+-type attribute_result() :: {ok, attribute_values()} | chunk_error().
+-spec get_attribute(Beam :: beam(), Attribute :: atom()) -> attribute_result().
+%% @doc Get attribute entry of a beam.
+get_attribute(Beam, Attribute) ->
+  case get_chunk(Beam, attributes) of
+    {error, Reason}         -> {error, Reason};
+    {info, missing_chunk}   -> {ok, undefined};
+    {ok, Data}              -> {ok, proplists:get_value(Attribute, Data)}
+  end.
+
+-type compiler_vsn() :: string() | undefined.
+-type compiler_result() :: {ok, compiler_vsn()} | chunk_error().
+-spec get_compiler_vsn(Beam :: beam()) -> compiler_result().
+% @doc Get version of compiler used to create beam.
+get_compiler_vsn(Beam) ->
+  case get_chunk(Beam, compile_info) of
+    {error, Reason}       -> {error, Reason};
+    {info, missing_chunk} -> {ok, undefined};
+    {ok, Data}            -> {ok, proplists:get_value(version, Data)}
+  end.
+    
 -type attribute() :: atom().
 -type beam_lib_error() :: {beam_lib, term()}.
 -type binary_detail_error() :: beam_lib_error() | {missing_chunk, attribute()}.
@@ -52,6 +88,7 @@
 -spec get_binary_detail(Module :: module(), Binary ::  binary()) ->
           {ok, version(), package()} | {error, binary_detail_error()}.
 %% @doc Get version and package of binary
+% @deprecated
 get_binary_detail(Module, Binary) ->
     case beam_lib:version(Binary) of
         {error, beam_lib, What} -> {error, {beam_lib, What}};
@@ -66,6 +103,7 @@ get_binary_detail(Module, Binary) ->
 -spec slurp_binary(Filename :: filename()) -> {ok, module(), binary()}
                                                 | {error, slurp_error()}.
 %% @doc Read binary file into memory.
+% @deprecated
 slurp_binary(Filename) ->
     case file:read_file(Filename) of
         {ok, Binary}    -> slurp_binary(Filename, Binary);
@@ -82,9 +120,9 @@ slurp_binary(Filename) ->
 
 % Get package attribute of binary
 get_binary_detail(Module, Binary, Version) ->
-    case read_beam_attribute(Binary, package) of
+    case get_attribute(Binary, package) of
         {error, What}   -> {error, {read_beam, What}};
-        {ok, Package}   -> {ok, Version, Package};
+        {ok, [Package]} -> {ok, Version, Package};
         noattr          -> get_binary_detail(Module, Binary, Version, noattr)
     end.
 
@@ -117,28 +155,3 @@ slurp_binary(_NewFile, Binary, Info) ->
         {module, Module}    -> {ok, Module, Binary};
         false               -> {error, nomodule}
     end.
-
-%%%
-% Read beam attribute.
-%%%
-
-%% @doc Retrieve attributes chunk.
-read_beam_attribute(Binary, Attribute) ->
-    case beam_lib:chunks(Binary, [attributes], [allow_missing_chunks]) of
-        {error, beam_lib, Reason}                   ->
-            {error, {beam_lib, Reason}};
-        {ok, {_Module, [{attributes, AttrList}]}}   ->
-            read_beam_attribute(Binary, Attribute, AttrList)
-    end.
-
-% Extract desired attribute value.
-read_beam_attribute(_Binary, Attribute, AttrList) ->
-    case lists:keyfind(Attribute, 1, AttrList) of
-        {Attribute, missing_chunk}  -> {error, {missing_chunk, Attribute}};
-        {Attribute, [Value]}        -> {ok, Value};
-        {Attribute, Value}          -> ?DEBUG("misformed attribute: ~p~n",
-                                              [{Attribute, Value}]),
-                                       {ok, Value};
-        false                       -> noattr
-    end.
-
