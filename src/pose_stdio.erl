@@ -277,12 +277,12 @@ format_erlfunc(Module, Func, Params) ->
   format_erlfunc(Module, Func, Params, Tokens).
 
 % If first line is too long, move its parameters to second line.
-format_erlfunc(_Module, Func, Params, [Head | Tail]) ->
+format_erlfunc(_Module, _Func, _Params, [Head | Tail]) ->
   HeadLen = string:len(Head),
-  if HeadLen > 80 -> [Func | Params] = string:tokens(Head, "("),
-                     Line1 = Func, 
+  if HeadLen > 80 -> [FuncStr | ParamStr] = string:tokens(Head, "("),
+                     Line1 = string:concat(FuncStr, "("),
                      Indent = string:copies("\s", string:len(Line1)),
-                     Line2 = string:concat(Indent, strings:join(Params, $()),
+                     Line2 = string:concat(Indent, string:join(ParamStr, $()),
                      Lines = [Line1 | [Line2 | Tail]];
      true         -> Lines = [Head | Tail]
   end,
