@@ -105,16 +105,20 @@ send_stderr(IO, Output) -> send(IO, Output, IO#std.err, stderr, erlerr).
 % Debug
 %%%
 
--spec send_debug(Output :: any()) -> ok | no_return().
+-spec send_debug(Output :: any()) -> ok.
 %% @doc Smart DEBUG/1 macro function.
-send_debug(Output) -> send_debug(Output, get_debug(), is_string(Output)).
+send_debug(Output) -> 
+  io_lib:format("send_debug ~p~n", [{Output, get_debug(), is_string(Output)}]),
+  send_debug(Output, get_debug(), is_string(Output)).
 
--spec send_debug(Format :: format(), What :: list()) -> ok | no_return().
+-spec send_debug(Format :: format(), What :: list()) -> ok.
 %% @doc Smart DEBUG/2 macro function.
-send_debug(Format, What) -> send_debug(safe_format(Format, What)).
+send_debug(Format, What) -> 
+  io_lib:format("send debug ~p~n", [{Format, What}]),
+  send_debug(safe_format(Format, What)).
 
 % Convert non-string output to string and send as message to recipient process.
-send_debug(Output, _, false) -> send_debug("~p~n", [Output]);
+send_debug(Output, _, false) -> send_debug("data: ~p~n", [Output]);
 send_debug(Output, undef, true) -> io:format("~~~~ ~s~n", [Output]), ok;
 send_debug(Output, Debug, true) -> Debug ! {debug, self(), Output}, ok.
 
@@ -328,7 +332,7 @@ safe_format(Format, What) ->
   try io_lib:format(Format, What)
   catch
     error:badarg ->
-      io_lib:format("format: badarg: ~s, ~p~n~s",
+      io_lib:format("format: badarg: ~s, ~p~s~n",
                     [Format, What, format_erltrace(erlang:get_stacktrace())])
   end.
 
