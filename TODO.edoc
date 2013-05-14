@@ -1,4 +1,5 @@
-@todo pose_code: force load if diff path
+@todo bootstrap: why recompile pose twice
+@todo bootstrap: nosh/../nosh on path
 @todo stdio: send_debug carriage return
 @todo stdio: confirm colon wrap
 @todo compile: confirm compiler version of module
