@@ -149,11 +149,9 @@ send_warnings(IO, Commands, File, Data, Tail, {Cond, Uncond}) ->
   Unimported = test_unimported(IO, ThisCommand, Imports, Called, Commands),
   BadDirect = test_baddirect(IO, ThisCommand, Called, Commands),
   UnqualLoops = test_unqualloops(IO, ThisCommand, Data),
-  Noncalled = test_noncalled(IO, ThisCommand, Imports, Called), % warn only
+  _Noncalled = test_noncalled(IO, ThisCommand, Imports, Called), % warn only
 
-  UncondCalled = lists:subtract(Uncond, Noncalled),
-  
-  case length(UncondCalled ++ Unimported ++ BadDirect ++ UnqualLoops) of
+  case length(Uncond ++ Unimported ++ BadDirect ++ UnqualLoops) of
     0       -> send_warnings(IO, Commands, Tail);
     _Else   -> notsure
   end.
