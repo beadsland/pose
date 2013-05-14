@@ -22,7 +22,9 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
+-ifdef(package).
 -import(proplists).
+-endif.
 -define(ATTRIB(Module, Attribute),
     proplists:get_value(Attribute, Module:module_info(attributes))).
 -define(VERSION(Module), gen_command:get_version(Module)).
