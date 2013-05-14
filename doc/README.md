@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">make: tests to stderr</font>
+* <font color="red">posure: don't stop short out on import/1</font>
 * <font color="red">superl: make good</font>
 * <font color="red">r16 pose echo hello world</font>
 * <font color="red">get version of compile module</font>

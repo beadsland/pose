@@ -1,4 +1,4 @@
-@todo make: tests to stderr
+@todo posure: don't stop short out on import/1
 @todo superl: make good
 @todo r16 pose echo hello world
 @todo get version of compile module
