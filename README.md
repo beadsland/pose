@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">stdio: no match dropping multi-line tuples</font>
+* <font color="red">gen_command: better compile failed errors</font>
 * <font color="red">compile: confirm compiler version of module before loading</font>
 * <font color="red">compile: refactor beam_lib code to pose_beam</font>
 * <font color="red">ensure_compiled: redesign for fewer parameters</font>

@@ -1,4 +1,4 @@
-@todo stdio: no match dropping multi-line tuples
+@todo gen_command: better compile failed errors
 @todo compile: confirm compiler version of module before loading
 @todo compile: refactor beam_lib code to pose_beam
 @todo ensure_compiled: redesign for fewer parameters
