@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">gen_command: better compile failed errors</font>
-* <font color="red">compile: confirm compiler version of module before loading</font>
 * <font color="red">compile: refactor beam_lib code to pose_beam</font>
 * <font color="red">ensure_compiled: redesign for fewer parameters</font>
 * <font color="red">make good</font>
 * <font color="red">all projects: import/1 conditionals</font>
 * <font color="red">r16: no flat packages warning</font>
-* <font color="red">...plus 5 more (see TODO.edoc)
+* <font color="red">upgrade all projects to work under r16</font>
+* <font color="red">nosh: update docs re r15</font>
+* <font color="red">...plus 3 more (see TODO.edoc)
 </font>
 
 
