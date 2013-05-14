@@ -48,7 +48,7 @@
 %% Include files
 %%
 
--define(debug, true).
+%-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -135,18 +135,13 @@ send_warnings(IO, Slurps) ->
 send_warnings(_IO, _Commands, []) -> sure;
 send_warnings(IO, Commands, [{File, Data} | Tail]) ->
   Command = get_command_name(File),
-  case get_imported_modules(Data) of
-    {error, {unconditional_import, Import}} -> 
-      Warning = "import/1 without package conditional",
-      ?STDOUT("~s: ~s: '~s'~n", [Command, Warning, Import]), 
-      notsure;
-    {ok, Imports}   ->
-      send_warnings(IO, Commands, File, Data, Tail, Imports)
-  end.
-      
+  {ok, Cond, Uncond} = get_imported_modules(IO, Command, Data),
+  send_warnings(IO, Commands, File, Data, Tail, {Cond, Uncond}).
+
 % For each file, identify where imports and calls don't match up.
-send_warnings(IO, Commands, File, Data, Tail, Imports) -> 
+send_warnings(IO, Commands, File, Data, Tail, {Cond, Uncond}) -> 
   ThisCommand = get_command_name(File),
+  Imports = lists:append(Cond, Uncond),
   ?DEBUG("imports: ~p~n", [Imports]),
   Called = get_called_modules(Data),
   ?DEBUG("called: ~p~n", [Called]),
@@ -154,9 +149,11 @@ send_warnings(IO, Commands, File, Data, Tail, Imports) ->
   Unimported = test_unimported(IO, ThisCommand, Imports, Called, Commands),
   BadDirect = test_baddirect(IO, ThisCommand, Called, Commands),
   UnqualLoops = test_unqualloops(IO, ThisCommand, Data),
-  _Noncalled = test_noncalled(IO, ThisCommand, Imports, Called),
+  Noncalled = test_noncalled(IO, ThisCommand, Imports, Called), % warn only
 
-  case length(Unimported ++ BadDirect ++ UnqualLoops) of
+  UncondCalled = lists:subtract(Uncond, Noncalled),
+  
+  case length(UncondCalled ++ Unimported ++ BadDirect ++ UnqualLoops) of
     0       -> send_warnings(IO, Commands, Tail);
     _Else   -> notsure
   end.
@@ -246,37 +243,39 @@ get_command_name(File) ->
   end.
 
 % Scan a file for package conditional import/1 directives.
-get_imported_modules(Data) when is_binary(Data) ->
-  get_imported_modules(binary_to_list(Data)); 
-get_imported_modules(Data) -> 
-  get_imported_modules(string:tokens(Data, "\n"), endif).
+get_imported_modules(IO, Command, Data) when is_binary(Data) ->
+  get_imported_modules(IO, Command, binary_to_list(Data)); 
+get_imported_modules(IO, Command, Data) -> 
+  get_imported_modules(IO, Command, string:tokens(Data, "\n"), endif).
 
-get_imported_modules([], _Cond) -> {ok, []};
-get_imported_modules([Head | Tail], Cond) ->  
+% Extract module from matched import/1 directive.
+get_imported_modules(_IO, _Command, [], _Cond) -> {ok, [], []};
+get_imported_modules(IO, Command, [Head | Tail], Cond) ->  
   {ok, MP} = re:compile("^-import\\(([^),]*)\\)\\."),  
   case re:run(Head, MP, [{capture, [1], list}]) of
-    nomatch           -> get_imported_modules([Head | Tail], Cond, not_import);
-    {match, [Import]} -> get_imported_modules(Tail, Cond, Import)
+    nomatch           -> get_imported_modules(IO, Command, [Head | Tail], Cond, not_import);
+    {match, [Import]} -> get_imported_modules(IO, Command, Tail, Cond, Import)
   end.
 
-% Confirm each import found is withing an ifdef(package) conditional.
-get_imported_modules([Head | Tail], endif, not_import) ->
+% Confirm each import found is within an ifdef(package) conditional.
+get_imported_modules(IO, Command, [Head | Tail], endif, not_import) ->
   case re:run(Head, "^-ifdef\\(package\\)\\.", [{capture, none}]) of
-    nomatch -> get_imported_modules(Tail, endif);
-    match   -> get_imported_modules(Tail, ifdef)
+    nomatch -> get_imported_modules(IO, Command, Tail, endif);
+    match   -> get_imported_modules(IO, Command, Tail, ifdef)
   end;
-get_imported_modules([Head | Tail], ifdef, not_import) ->
+get_imported_modules(IO, Command, [Head | Tail], ifdef, not_import) ->
   case re:run(Head, "^-endif\\.", [{capture, none}]) of
-    nomatch -> get_imported_modules(Tail, ifdef);
-    match   -> get_imported_modules(Tail, endif)
+    nomatch -> get_imported_modules(IO, Command, Tail, ifdef);
+    match   -> get_imported_modules(IO, Command, Tail, endif)
   end;
-get_imported_modules(_Tail, endif, Import) when is_list(Import) ->
-  {error, {unconditional_import, Import}};
-get_imported_modules(Tail, ifdef, Import) when is_list(Import) ->
-  case get_imported_modules(Tail, ifdef) of
-    {error, Reason} -> {error, Reason};
-    {ok, Result}    -> {ok, [Import | Result]}
-  end.
+get_imported_modules(IO, Command, Tail, endif, Import) when is_list(Import) ->
+  Warning = "import/1 without package conditional",
+  ?STDOUT("~s: ~s: '~s'~n", [Command, Warning, Import]),
+  {ok, Cond, Uncond} = get_imported_modules(IO, Command, Tail, endif),
+  {ok, Cond, [Import | Uncond]};
+get_imported_modules(IO, Command, Tail, ifdef, Import) when is_list(Import) ->
+  {ok, Cond, Uncond} = get_imported_modules(IO, Command, Tail, ifdef),
+  {ok, [Import | Cond], Uncond}.
 
 % Scan a file for all fully qualified module calls.
 get_called_modules(Data) ->
