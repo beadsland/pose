@@ -119,15 +119,14 @@ ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod) ->
 
 % Get version of compiler used to create binary file.
 ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod) ->
-  {ok, {_Module, [{compile_info, Info}]}} = beam_lib:chunks(BinFile, [compile_info]),
-  CompVsn = proplists:get_value(version, Info),
+  CompVsn = pose_beam:get_compiler_vsn(BinFile),
   ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod, CompVsn).
 
 
 % Compare modification dates and compiler versions.  Compile if source is newer,
 % compiler differs or we've been otherwise been forced to do so.
 ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod, CompVsn) ->
-  OurCompilerVsn = get_compiler_vsn(),
+  OurCompilerVsn = pose_beam:get_compiler_vsn(),
   ModCompilerVsn = CompVsn,
   ?DEBUG({Cmd, OurCompilerVsn, ModCompilerVsn}),
   SameCompiler = string:equal(OurCompilerVsn, ModCompilerVsn),   
@@ -136,16 +135,6 @@ ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod, CompVsn) ->
      Force              -> do_compile(SrcDir, Cmd, BinDir);
      true               -> {ok, filename:join(BinDir, BinFile)}
   end.
-
-% Get version of our compiler.
-get_compiler_vsn() ->
-  Info = beam_asm:module_info(compile),
-  Options = proplists:get_value(options, Info),
-  get_compiler_vsn(Options).
-
-get_compiler_vsn([]) -> undef;
-get_compiler_vsn([{d, 'COMPILER_VSN', Version} | _Tail]) -> Version;
-get_compiler_vsn([_Head | Tail]) -> get_compiler_vsn(Tail).
 
 %%%
 % Do compile

@@ -1,4 +1,3 @@
-@todo compile: refactor beam_lib code to pose_beam
 @todo ensure_compiled: redesign for fewer parameters
 @todo make good
 @todo all projects: import/1 conditionals

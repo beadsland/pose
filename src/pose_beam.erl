@@ -38,7 +38,7 @@
 %%
 %% Exported Functions
 %%
--export([get_chunk/2, get_attribute/2, get_compiler_vsn/1, 
+-export([get_chunk/2, get_attribute/2, get_compiler_vsn/0, get_compiler_vsn/1, 
          get_binary_detail/2, slurp_binary/1]).
 
 %%
@@ -50,7 +50,7 @@
 -type chunk_error() :: {error, {beam_lib, beam_lib:chnk_rsn()}}.
 -type chunk_result() ::  {ok, any()} | chunk_error().
 -spec get_chunk(Beam :: beam(), ChunkRef :: chunkref()) -> chunk_result().
-% @doc Get data for a chunk of a beam. 
+%% @doc Get data for a chunk of a beam. 
 get_chunk(Beam, ChunkRef) ->
   case beam_lib:chunks(Beam, [ChunkRef], [allow_missing_chunks]) of
     {error, beam_lib, Reason}                    -> {error, {beam_lib, Reason}};
@@ -70,9 +70,20 @@ get_attribute(Beam, Attribute) ->
   end.
 
 -type compiler_vsn() :: string() | undefined.
+-spec get_compiler_vsn() -> {ok, compiler_vsn()}.
+%% @doc Get version of compiler currently loaded.
+get_compiler_vsn() ->
+  Info = beam_asm:module_info(compile),
+  Options = proplists:get_value(options, Info),
+  {ok, live_compiler_vsn(Options)}.
+
+live_compiler_vsn([]) -> undefined;
+live_compiler_vsn([{d, 'COMPILER_VSN', Version} | _Tail]) -> Version;
+live_compiler_vsn([_Head | Tail]) -> live_compiler_vsn(Tail).
+
 -type compiler_result() :: {ok, compiler_vsn()} | chunk_error().
 -spec get_compiler_vsn(Beam :: beam()) -> compiler_result().
-% @doc Get version of compiler used to create beam.
+%% @doc Get version of compiler used to create beam.
 get_compiler_vsn(Beam) ->
   case get_chunk(Beam, compile_info) of
     {error, Reason}       -> {error, Reason};
@@ -88,7 +99,7 @@ get_compiler_vsn(Beam) ->
 -spec get_binary_detail(Module :: module(), Binary ::  binary()) ->
           {ok, version(), package()} | {error, binary_detail_error()}.
 %% @doc Get version and package of binary
-% @deprecated
+%% @deprecated
 get_binary_detail(Module, Binary) ->
     case beam_lib:version(Binary) of
         {error, beam_lib, What} -> {error, {beam_lib, What}};
@@ -103,7 +114,7 @@ get_binary_detail(Module, Binary) ->
 -spec slurp_binary(Filename :: filename()) -> {ok, module(), binary()}
                                                 | {error, slurp_error()}.
 %% @doc Read binary file into memory.
-% @deprecated
+%% @deprecated
 slurp_binary(Filename) ->
     case file:read_file(Filename) of
         {ok, Binary}    -> slurp_binary(Filename, Binary);
