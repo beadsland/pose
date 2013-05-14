@@ -225,12 +225,9 @@ load_module(Command) ->
 
   DepsPath = filelib:wildcard(lists:append(filename:absname(Deps), "/*/ebin")),
 
-  BasePath = [filename:absname("ebin"),
-              filename:absname_join(filename:absname(""), "../nosh/ebin")],
+  ?DEBUG("path: ~p~n", [[filename:absname("ebin") | DepsPath]]),
 
-  ?DEBUG("path: ~p~n", [lists:append(BasePath, DepsPath)]),
-
-  load_module(Command, lists:append(BasePath, DepsPath)).
+  load_module(Command, [filename:absname("ebin") | DepsPath]).
 
 -type directory() :: file:filename().
 -type search_path() :: [directory()].
@@ -242,7 +239,7 @@ load_module(Command) ->
 load_module(_Command, []) -> {error, notfound};
 load_module(Command, Path) when is_atom(Command) ->
   load_module(atom_to_list(Command), Path);
-load_module(Command, [Head | Tail]) ->
+load_module(Command, [Head | Tail]) ->  
   ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
   case pose_compile:ensure_compiled(Command, Head) of
     {info, nobin}           -> load_module(Command, Tail);
@@ -327,13 +324,16 @@ ensure_loaded(Module, BinFile, Bin, Vsn, Pkg) ->
 ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false) ->
   ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false, not_loaded);
 ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile) ->
+  SameFile = string:equal(BinFile, MemFile),
   OurCompilerVsn = get_compiler_vsn(),
-  ModCompilerVsn = proplists:get_value(version, Module:module_info(compile)),
-  ?DEBUG({Module, OurCompilerVsn, ModCompilerVsn}),
+  MemCompilerVsn = proplists:get_value(version, Module:module_info(compile)),
+  SameCompiler = string:equal(OurCompilerVsn, MemCompilerVsn),
   MemVsn = ?ATTRIB(Module, vsn),
-  if BinFile /= MemFile ->
+  ?DEBUG({SameFile, BinFile, MemFile}),
+  ?DEBUG({Module, OurCompilerVsn, MemCompilerVsn}),
+  if not SameFile       ->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_path);
-     OurCompilerVsn /= ModCompilerVsn ->
+     not SameCompiler   ->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_compile);
      BinVsn /= MemVsn   ->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_vsn);
@@ -353,6 +353,7 @@ get_compiler_vsn([_Head | Tail]) -> get_compiler_vsn(Tail).
 
 % Load the new module version.
 ensure_loaded(Module, BinFile, Bin, _BinVsn, Pkg, _MemFile, Why) ->
+  ?DEBUG(Why),
   if Why /= not_loaded -> do_purge_delete(Module); true -> false end,
   case code:load_binary(Module, BinFile, Bin) of
     {error, What}		->
