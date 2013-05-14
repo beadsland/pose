@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">bootstrap: why recompile pose twice</font>
+* <font color="red">safe format error</font>
 * <font color="red">bootstrap: nosh/../nosh on path</font>
 * <font color="red">stdio: send_debug carriage return</font>
 * <font color="red">stdio: confirm colon wrap</font>

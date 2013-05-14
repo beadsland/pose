@@ -1,4 +1,4 @@
-@todo bootstrap: why recompile pose twice
+@todo safe format error
 @todo bootstrap: nosh/../nosh on path
 @todo stdio: send_debug carriage return
 @todo stdio: confirm colon wrap
