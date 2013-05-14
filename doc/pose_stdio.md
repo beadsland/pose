@@ -60,7 +60,7 @@ Smartly format erlerr messages.<a name="send_debug-1"></a>
 ###send_debug/1##
 
 
-	send_debug(Output::any()) -&gt; ok | no_return()
+	send_debug(Output::any()) -&gt; ok
 <br></br>
 
 
@@ -69,7 +69,7 @@ Smart DEBUG/1 macro function.<a name="send_debug-2"></a>
 ###send_debug/2##
 
 
-	send_debug(Format::<a href="#type-format">format()</a>, What::list()) -> ok | no_return()
+	send_debug(Format::<a href="#type-format">format()</a>, What::list()) -> ok
 <br></br>
 
 
