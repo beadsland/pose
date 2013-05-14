@@ -20,13 +20,13 @@ which was removed in Erlang/OTP R16.
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">stdio: send_debug carriage return</font>
+* <font color="red">stdio: confirm colon wrap</font>
 * <font color="red">compile: confirm compiler version of module</font>
 * <font color="red">bootstrap: recompile if diff release</font>
 * <font color="red">all projects: import/1 conditionals</font>
 * <font color="red">r16: no flat packages warning</font>
 * <font color="red">upgrade all projects to work under r16</font>
-* <font color="red">nosh: update docs re r15</font>
-* <font color="red">...plus 3 more (see TODO.edoc)
+* <font color="red">...plus 4 more (see TODO.edoc)
 </font>
 
 
