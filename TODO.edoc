@@ -1,5 +1,4 @@
-@todo get version of compile module
-@todo compile: confirm compiler version
+@todo compile: confirm compiler version of module
 @todo bootstrap: recompile if diff release
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
