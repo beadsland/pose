@@ -1,6 +1,4 @@
-@todo stdio: send_debug carriage return
-@todo stdio: confirm colon wrap
-@todo compile: confirm compiler version of module
+@todo compile: confirm compiler version of module before loading
 @todo bootstrap: recompile if diff release
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
