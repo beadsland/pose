@@ -182,7 +182,7 @@
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -327,14 +327,29 @@ ensure_loaded(Module, BinFile, Bin, Vsn, Pkg) ->
 ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false) ->
   ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false, not_loaded);
 ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile) ->
+  OurCompilerVsn = get_compiler_vsn(),
+  ModCompilerVsn = proplists:get_value(version, Module:module_info(compile)),
+  ?DEBUG({Module, OurCompilerVsn, ModCompilerVsn}),
   MemVsn = ?ATTRIB(Module, vsn),
-  if BinFile == MemFile, BinVsn == MemVsn	->
-       if Pkg == '' -> {ok, Module, flat_pkg}; true -> {ok, Module} end;
-     BinFile /= MemFile					  	->
+  if BinFile /= MemFile ->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_path);
-     BinVsn /= MemVsn						->
-       ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_vsn)
+     OurCompilerVsn /= ModCompilerVsn ->
+       ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_compile);
+     BinVsn /= MemVsn   ->
+       ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_vsn);
+     true               ->
+       if Pkg == '' -> {ok, Module, flat_pkg}; true -> {ok, Module} end
   end.
+
+% Get version of our compiler.
+get_compiler_vsn() ->
+  Info = beam_asm:module_info(compile),
+  Options = proplists:get_value(options, Info),
+  get_compiler_vsn(Options).
+
+get_compiler_vsn([]) -> undef;
+get_compiler_vsn([{d, 'COMPILER_VSN', Version} | _Tail]) -> Version;
+get_compiler_vsn([_Head | Tail]) -> get_compiler_vsn(Tail).
 
 % Load the new module version.
 ensure_loaded(Module, BinFile, Bin, _BinVsn, Pkg, _MemFile, Why) ->
@@ -344,11 +359,9 @@ ensure_loaded(Module, BinFile, Bin, _BinVsn, Pkg, _MemFile, Why) ->
       {error, {load, What}};
     {module, Module}	->
       case Why of
-        not_loaded	-> if Pkg == '' -> {ok, Module, flat_pkg};
-                          true		-> {ok, Module} end;
-        diff_vsn	-> if Pkg == '' -> {ok, Module, flat_pkg};
-                          true		-> {ok, Module} end;
-        diff_path	-> {ok, Module, diff_path}
+        diff_path   -> {ok, Module, diff_path};
+        _Else	    -> if Pkg == '' -> {ok, Module, flat_pkg};
+                          true		-> {ok, Module} end
       end
   end.
 
