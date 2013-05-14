@@ -1,5 +1,5 @@
-@todo get full (three-part) version of loaded compile module
-@todo code: break of module info into three functions
+@todo stdio: send_debug carriage return
+@todo stdio: confirm colon wrap
 @todo compile: confirm compiler version of module
 @todo bootstrap: recompile if diff release
 @todo all projects: import/1 conditionals
