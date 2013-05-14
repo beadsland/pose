@@ -1,5 +1,3 @@
-@todo boostrap: add_path, compile pose
-@todo pose_code: pose load from dev
 @todo pose_code: force load if diff path
 @todo stdio: send_debug carriage return
 @todo stdio: confirm colon wrap
