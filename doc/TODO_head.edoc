@@ -1,7 +1,8 @@
+@todo stdio: garbage bad record error
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
-@todo upgrade all projects to work under r16
+@todo test all projects working under r16
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
 @todo nosh: indicate release in prompt
-@todo edoc status
+@todo ...plus 1 more (see TODO.edoc)
