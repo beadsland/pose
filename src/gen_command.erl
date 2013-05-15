@@ -18,7 +18,7 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved.
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
@@ -50,7 +50,7 @@
 %% value.  Note that the implicit default exit status, `normal' is treated
 %% as a non-zero status by `pose'.  Use an explicit `exit(ok)', instead.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
-%% @copyright 2012 Beads D. Land-Trujillo
+%% @copyright 2012, 2013 Beads D. Land-Trujillo
 
 -module(gen_command).
 
