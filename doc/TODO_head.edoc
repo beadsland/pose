@@ -1,8 +1,8 @@
-@todo function macro
-@todo pose: how is deps/pose/ebin being added to path?
-@todo pose: compile correct pose modules on start
-@todo pose: stray string in list among compile options
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo test all projects working under r16
-@todo ...plus 5 more (see TODO.edoc)
+@todo nosh: update docs re r15
+@todo pose: update docs re r15
+@todo nosh: indicate release in prompt
+@todo refactor init_pose macro
+@todo ...plus 2 more (see TODO.edoc)

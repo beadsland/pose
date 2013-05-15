@@ -1,11 +1,10 @@
-@todo pose: compile correct pose modules on start
-@todo pose: stray string in list among compile options
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo test all projects working under r16
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
 @todo nosh: indicate release in prompt
-@todo confirm pwd trick concurrency-safe
+@todo refactor init_pose macro
+@todo realname: confirm pwd trick concurrency-safe
 @todo edoc status
 @todo resume work on 2do_go4
