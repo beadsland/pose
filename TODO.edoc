@@ -1,3 +1,4 @@
+@todo erlerr: pid at end of error, not trace
 @todo r16: extra error tuple
 @todo r16: no flat packages warning
 @todo test all projects working under r16
