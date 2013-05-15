@@ -1,8 +1,8 @@
+@todo pose: failing to use dev stdio
 @todo stdio: garbage bad record error
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo test all projects working under r16
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
-@todo nosh: indicate release in prompt
-@todo ...plus 1 more (see TODO.edoc)
+@todo ...plus 2 more (see TODO.edoc)
