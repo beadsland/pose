@@ -28,3 +28,12 @@
 -define(ATTRIB(Module, Attribute),
     proplists:get_value(Attribute, Module:module_info(attributes))).
 -define(VERSION(Module), gen_command:get_version(Module)).
+
+-define(FUNCTION, 
+        case process_info(self(), current_function) of {_, {_,F,_}} -> F end).
+-define(ARITY,
+        case process_info(self(), current_function) of {_, {_,_,A}} -> A end).
+
+-define(WHEREAMI, 
+       lists:flatten(io_lib:format("~p:~p/~p, line ~p", 
+                                   [?MODULE, ?FUNCTION, ?ARITY, ?LINE]))).
