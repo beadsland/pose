@@ -28,7 +28,6 @@
 
 -define(INIT_POSE, init_pose,
                    process_flag(trap_exit, true),
-                   code:add_patha("deps/pose/ebin"),
                    put(debug, IO#std.err),
                    put(env, ENV)
        ).

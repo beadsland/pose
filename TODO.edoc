@@ -1,5 +1,3 @@
-@todo function macro
-@todo pose: how is deps/pose/ebin being added to path?
 @todo pose: compile correct pose modules on start
 @todo pose: stray string in list among compile options
 @todo all projects: import/1 conditionals
