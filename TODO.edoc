@@ -1,5 +1,6 @@
 @todo pose: how is deps/pose/ebin being added to path?
 @todo pose: compile correct pose modules on start
+@todo pose: stray string in list among compile options
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
 @todo test all projects working under r16
