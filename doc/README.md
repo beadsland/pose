@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose: failing to use dev stdio</font>
+* <font color="red">makefile: good running as deps, not dev</font>
 * <font color="red">stdio: garbage bad record error</font>
 * <font color="red">all projects: import/1 conditionals</font>
 * <font color="red">r16: no flat packages warning</font>

@@ -1,4 +1,4 @@
-@todo pose: failing to use dev stdio
+@todo makefile: good running as deps, not dev
 @todo stdio: garbage bad record error
 @todo all projects: import/1 conditionals
 @todo r16: no flat packages warning
