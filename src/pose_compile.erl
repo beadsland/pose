@@ -66,38 +66,23 @@ ensure_compiled(Command, Dir) -> ensure_compiled(Command, Dir, false).
 
 -spec ensure_compiled(Command :: command(), Dir :: directory(),
                       Force :: boolean()) -> ensure_rtn().
-%% @doc Confirm the most recently compiled binary for a command is
-%% available in the current directory, compiling same if necessary.
-%% If `Force' is true, binary will be recompiled if it can be.
+%% @doc Confirm the most recently compiled binary for a command is available in 
+%% the specified directory, and that it was compiled under the same compiler
+%% loaded in current runtime.  If the source file is newer, the binary is from
+%% a different compiler, or `Force' is true, binary will be recompiled 
+%% if it can be.
 %% @end
 ensure_compiled(Cmd, Dir, Force) ->
-  Filename = filename:join(Dir, string:concat(Cmd, ".beam")),
-  case pose_file:can_write(Filename) of
+  Beam = filename:join(Dir, string:concat(Cmd, ".beam")),
+  case pose_file:can_write(Beam) of
     {error, What}   -> {error, {file, What}};
     false           -> ensure_binary(Cmd, Dir, readonly);
-    true            -> ensure_compiled(Cmd, Dir, Force, writable)
+    true            -> ensure_compiled(Cmd, Dir, Force, Beam)
   end.
 
 %%
 %% Local Functions
 %%
-
-%%%
-% Ensure compiled
-%%%
-
-% Find if any source file, and get modification date of same.
-ensure_compiled(Cmd, BinDir, Force, writable) ->
-  case parallel_src(BinDir, Cmd) of
-    nosrc           -> ensure_binary(Cmd, BinDir, nosrc);
-    {ok, SrcDir}    -> ensure_compiled(Cmd, BinDir, Force, SrcDir)
-  end;
-ensure_compiled(Cmd, BinDir, Force, SrcDir) ->
-  Filename = filename:join(SrcDir, string:concat(Cmd, ".erl")),
-  case pose_file:last_modified(Filename) of
-    {error, What}   -> {error, {file, What}};
-    SrcMod          -> ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod)
-  end.
 
 % If we can't compile from source file, confirm we can use binary we have.
 ensure_binary(Cmd, Dir, Why) ->
@@ -107,35 +92,57 @@ ensure_binary(Cmd, Dir, Why) ->
      true       -> {info, nobin}  % i.e., search next dir in path
   end.
 
-% Get modification date of binary file.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod) ->
-  BinFile = filename:join(BinDir, string:concat(Cmd, ".beam")),
-  case pose_file:last_modified(BinFile) of
-    {error, What}   ->
-      {error, {file, What}};
-    BinMod          ->
-      ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod)
+%%%
+% Ensure compiled
+%%%
+
+% Confirm we have a source directory to compile from.
+ensure_compiled(Cmd, BinDir, Force, Beam) ->
+  case parallel_src(BinDir, Cmd) of
+    nosrc           -> ensure_binary(Cmd, BinDir, no_source_dir);
+    {ok, SrcDir}    -> ensure_compiled(Cmd, BinDir, Force, Beam, SrcDir)
   end.
 
-% Get version of compiler used to create binary file.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod) ->
-  CompVsn = pose_beam:get_compiler_vsn(BinFile),
-  ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod, CompVsn).
-
-
-% Compare modification dates and compiler versions.  Compile if source is newer,
-% compiler differs or we've been otherwise been forced to do so.
-ensure_compiled(Cmd, BinDir, Force, SrcDir, SrcMod, BinFile, BinMod, CompVsn) ->
-  OurCompilerVsn = pose_beam:get_compiler_vsn(),
-  ModCompilerVsn = CompVsn,
-  ?DEBUG({Cmd, OurCompilerVsn, ModCompilerVsn}),
-  SameCompiler = string:equal(OurCompilerVsn, ModCompilerVsn),   
-  if SrcMod > BinMod;
-     not SameCompiler;
-     Force              -> do_compile(SrcDir, Cmd, BinDir);
-     true               -> {ok, filename:join(BinDir, BinFile)}
+% Confirm we have a source file to compile from.
+ensure_compiled(Cmd, BinDir, Force, Beam, SrcDir) ->
+  Source = filename:join(SrcDir, string:concat(Cmd, ".erl")),
+  Exists = filelib:is_regular(Source),
+  if Exists -> ensure_compiled(Cmd, BinDir, Force, Beam, SrcDir, Source);
+     true   -> ensure_binary(Cmd, BinDir, no_source_file)
   end.
 
+% Compile if forced, or modification date different, or compiler different.
+ensure_compiled(Cmd, BinDir, Force, Beam, SrcDir, Source) ->  
+  Latest = not Force andalso same_modification(Beam, Source) 
+                     andalso same_compiler(Beam),
+  if Latest -> {ok, Beam};
+     true   -> do_compile(SrcDir, Cmd, BinDir)
+  end.
+
+% Compare modification dates of two files.
+same_modification(File1, File2) ->
+  Time1 = case pose_file:last_modified(File1) of
+    {error, _What1}  -> undefined;
+    {ok, DateTime1}  -> DateTime1
+  end,
+  Time2 = case pose_file:last_modified(File2) of
+    {error, _What2}  -> undefined;
+    {ok, DateTime2}  -> DateTime2
+  end,
+  Time1 == Time2 andalso Time1 /= undefined.
+
+% Compare compiler that created a beam with current runtime compiler.
+same_compiler(Beam) ->
+  Vsn1 = case pose_beam:get_compiler_vsn(Beam) of
+    {error, _What1}  -> undefined;
+    {ok, VsnStr1}    -> VsnStr1
+  end,
+  Vsn2 = case pose_beam:get_compiler_vsn() of
+    {error, _What2}  -> undefined;
+    {ok, VsnStr2}    -> VsnStr2
+  end,
+  Vsn1 /= undefined andalso Vsn2 /= undefined andalso string:equal(Vsn1, Vsn2).
+  
 %%%
 % Do compile
 %%%
