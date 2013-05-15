@@ -1,3 +1,4 @@
+@todo function macro
 @todo pose: how is deps/pose/ebin being added to path?
 @todo pose: compile correct pose modules on start
 @todo pose: stray string in list among compile options
@@ -7,5 +8,6 @@
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
 @todo nosh: indicate release in prompt
+@todo confirm pwd trick concurrency-safe
 @todo edoc status
 @todo resume work on 2do_go4
