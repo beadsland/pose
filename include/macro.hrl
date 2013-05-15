@@ -19,6 +19,7 @@
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
 %% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved.
+%% ?FUNCTION/0 Copyright 2007 G. Bulmer.
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
@@ -29,11 +30,12 @@
     proplists:get_value(Attribute, Module:module_info(attributes))).
 -define(VERSION(Module), gen_command:get_version(Module)).
 
--define(FUNCTION, 
+% Src: http://erlang.2086793.n4.nabble.com/Why-no-FUNCTION-macro-td2099004.html
+-define(FUNCTION,
         case process_info(self(), current_function) of {_, {_,F,_}} -> F end).
 -define(ARITY,
         case process_info(self(), current_function) of {_, {_,_,A}} -> A end).
 
--define(WHEREAMI, 
-       lists:flatten(io_lib:format("~p:~p/~p, line ~p", 
+-define(WHEREAMI,
+       lists:flatten(io_lib:format("~p:~p/~p, line ~p",
                                    [?MODULE, ?FUNCTION, ?ARITY, ?LINE]))).
