@@ -27,6 +27,30 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
+###<a name="type-attribute_result">attribute_result()</a>##
+
+
+
+	attribute_result() = {ok, <a href="#type-attribute_values">attribute_values()</a>} | <a href="#type-chunk_error">chunk_error()</a>
+
+
+
+###<a name="type-attribute_values">attribute_values()</a>##
+
+
+
+	attribute_values() = [term()] | undefined
+
+
+
+###<a name="type-beam">beam()</a>##
+
+
+
+	beam() = <a href="beam_lib.md#type-beam">beam_lib:beam()</a>
+
+
+
 ###<a name="type-beam_lib_error">beam_lib_error()</a>##
 
 
@@ -40,6 +64,46 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 	binary_detail_error() = <a href="#type-beam_lib_error">beam_lib_error()</a> | {missing_chunk, <a href="#type-attribute">attribute()</a>}
+
+
+
+###<a name="type-chunk_error">chunk_error()</a>##
+
+
+
+	chunk_error() = {error, {beam_lib, <a href="beam_lib.md#type-chnk_rsn">beam_lib:chnk_rsn()</a>}}
+
+
+
+###<a name="type-chunk_result">chunk_result()</a>##
+
+
+
+	chunk_result() = {ok, any()} | <a href="#type-chunk_error">chunk_error()</a>
+
+
+
+###<a name="type-chunkref">chunkref()</a>##
+
+
+
+	chunkref() = <a href="beam_lib.md#type-chunkref">beam_lib:chunkref()</a>
+
+
+
+###<a name="type-compiler_result">compiler_result()</a>##
+
+
+
+	compiler_result() = {ok, <a href="#type-compiler_vsn">compiler_vsn()</a>} | <a href="#type-chunk_error">chunk_error()</a>
+
+
+
+###<a name="type-compiler_vsn">compiler_vsn()</a>##
+
+
+
+	compiler_vsn() = string() | undefined
 
 
 
@@ -93,14 +157,23 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_binary_detail-2">get_binary_detail/2</a></td><td>Get version and package of binary.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_attribute-2">get_attribute/2</a></td><td>Get attribute entry of a beam.</td></tr><tr><td valign="top"><a href="#get_binary_detail-2">get_binary_detail/2</a></td><td>Get version and package of binary.</td></tr><tr><td valign="top"><a href="#get_chunk-2">get_chunk/2</a></td><td>Get data for a chunk of a beam.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-0">get_compiler_vsn/0</a></td><td>Get version of compiler currently loaded.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-1">get_compiler_vsn/1</a></td><td>Get version of compiler used to create beam.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
 
 
 <a name="functions"></a>
 
 ##Function Details##
 
-<a name="get_binary_detail-2"></a>
+<a name="get_attribute-2"></a>
+
+###get_attribute/2##
+
+
+	get_attribute(Beam::<a href="#type-beam">beam()</a>, Attribute::atom()) -> <a href="#type-attribute_result">attribute_result()</a>
+<br></br>
+
+
+Get attribute entry of a beam.<a name="get_binary_detail-2"></a>
 
 ###get_binary_detail/2##
 
@@ -109,7 +182,34 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 <br></br>
 
 
-Get version and package of binary<a name="slurp_binary-1"></a>
+Get version and package of binary<a name="get_chunk-2"></a>
+
+###get_chunk/2##
+
+
+	get_chunk(Beam::<a href="#type-beam">beam()</a>, ChunkRef::<a href="#type-chunkref">chunkref()</a>) -> <a href="#type-chunk_result">chunk_result()</a>
+<br></br>
+
+
+Get data for a chunk of a beam.<a name="get_compiler_vsn-0"></a>
+
+###get_compiler_vsn/0##
+
+
+	get_compiler_vsn() -> {ok, <a href="#type-compiler_vsn">compiler_vsn()</a>}
+<br></br>
+
+
+Get version of compiler currently loaded.<a name="get_compiler_vsn-1"></a>
+
+###get_compiler_vsn/1##
+
+
+	get_compiler_vsn(Beam::<a href="#type-beam">beam()</a>) -> <a href="#type-compiler_result">compiler_result()</a>
+<br></br>
+
+
+Get version of compiler used to create beam.<a name="slurp_binary-1"></a>
 
 ###slurp_binary/1##
 

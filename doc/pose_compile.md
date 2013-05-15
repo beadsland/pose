@@ -95,8 +95,9 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#ensure_compiled-2">ensure_compiled/2</a></td><td>Equivalent to <a href="#ensure_compiled-3"><tt>ensure_compiled(Command, Dir, false)</tt></a>.</td></tr><tr><td valign="top"><a href="#ensure_compiled-3">ensure_compiled/3</a></td><td>Confirm the most recently compiled binary for a command is
-available in the current directory, compiling same if necessary.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#ensure_compiled-2">ensure_compiled/2</a></td><td>Equivalent to <a href="#ensure_compiled-3"><tt>ensure_compiled(Command, Dir, false)</tt></a>.</td></tr><tr><td valign="top"><a href="#ensure_compiled-3">ensure_compiled/3</a></td><td>Confirm the most recently compiled binary for a command is available in
+the specified directory, and that it was compiled under the same compiler
+loaded in current runtime.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -121,6 +122,8 @@ Equivalent to [`ensure_compiled(Command, Dir, false)`](#ensure_compiled-3).<a na
 <br></br>
 
 
-Confirm the most recently compiled binary for a command is
-available in the current directory, compiling same if necessary.
-If `Force` is true, binary will be recompiled if it can be.
+Confirm the most recently compiled binary for a command is available in
+the specified directory, and that it was compiled under the same compiler
+loaded in current runtime.  If the source file is newer, the binary is from
+a different compiler, or `Force` is true, binary will be recompiled
+if it can be.
