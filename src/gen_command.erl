@@ -160,17 +160,18 @@ loop(IO, RunPid) ->
 
 % Insinuate RunPid into formatted erlerr output string.
 do_erlexit(RunPid, Reason) ->
-  Erlerr = lists:flatten(?FORMAT_ERLERR(Reason)),
-  Reperr = re:replace(Erlerr, ":\\n\\s*", ":\s", [{return, list}]),
+  [First | Rest] = string:tokens(lists:flatten(?FORMAT_ERLERR(Reason)), "\n"),
+  Reperr = re:replace(First, ":$", ":\s", [{return, list}]),
   case string:str(Reperr, ": ") of
-    0       -> Output = io_lib:format("~s ~p", [Reperr, RunPid]);
+    0       -> NewFirst = io_lib:format("~s ~p", [Reperr, RunPid]);
     Start   -> PreString = string:left(Reperr, Start-1),
                String1 = io_lib:format("~s ~p", [PreString, RunPid]),
                String2 = string:substr(Reperr, Start+2),
-               Output = {String1, String2}
+               NewFirst = ?FORMAT_ERLERR({String1, String2})
   end,
-  do_output(erlerr, Output),
-  Reason.
+  NewReason = string:join([NewFirst | Rest], "\n"),
+  do_output(erlerr, NewReason),
+  NewReason.
 
 % Handle captured line from standard input
 do_input(RunPid) ->

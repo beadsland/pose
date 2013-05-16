@@ -9,7 +9,7 @@
 
 Generic `pose` command behaviour.
 
-Copyright (c) 2012 Beads D. Land-Trujillo
+Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
 __This module defines the `gen_command` behaviour.__
 <br></br>
