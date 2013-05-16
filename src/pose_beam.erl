@@ -134,7 +134,7 @@ get_binary_detail(Module, Binary, Version) ->
     case get_attribute(Binary, package) of
         {error, What}   -> {error, {read_beam, What}};
         {ok, [Package]} -> {ok, Version, Package};
-        noattr          -> get_binary_detail(Module, Binary, Version, noattr)
+        {ok, undefined} -> get_binary_detail(Module, Binary, Version, noattr)
     end.
 
 % Figure out explicit package if no attribute found
