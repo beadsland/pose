@@ -1,3 +1,6 @@
+@todo eclipse: build path specifies execution environment
+@todo eclipse: class is a raw type
+@todo eclipse: invalid location of tag (li)
 @todo eclipse: clear up warnings
 @todo nosh: stdout deferred until command
 @todo nosh: hot throws namespace collisions
@@ -14,5 +17,6 @@
 @todo nosh: indicate release in prompt
 @todo refactor init_pose macro
 @todo realname: confirm pwd trick concurrency-safe
-@todo edoc status
+@todo edoc: document bug fixes
+@todo edoc: see if new canversion resolves issues
 @todo resume work on 2do_go4
