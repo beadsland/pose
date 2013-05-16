@@ -39,3 +39,5 @@
 -define(WHEREAMI,
        lists:flatten(io_lib:format("~p:~p/~p, line ~p",
                                    [?MODULE, ?FUNCTION, ?ARITY, ?LINE]))).
+
+-define(BAIL(X), exit({?WHEREAMI, X})).
