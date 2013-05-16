@@ -37,6 +37,7 @@
         case process_info(self(), current_function) of {_, {_,_,A}} -> A end).
 
 -ifdef(package).
+-import(lists).
 -import(io_lib).
 -endif.
 -define(WHEREAMI,
