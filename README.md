@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">eclipse: class is a raw type</font>
 * <font color="red">eclipse: invalid location of tag (li)</font>
 * <font color="red">eclipse: clear up warnings</font>
 * <font color="red">nosh: stdout deferred until command</font>
 * <font color="red">nosh: hot throws namespace collisions</font>
 * <font color="red">noterm: pose package</font>
 * <font color="red">stdio: truncate stack</font>
-* <font color="red">...plus 13 more (see TODO.edoc)
+* <font color="red">macro: elim attrib macro</font>
+* <font color="red">...plus 14 more (see TODO.edoc)
 </font>
 
 

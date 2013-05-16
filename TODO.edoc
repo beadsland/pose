@@ -1,4 +1,3 @@
-@todo eclipse: class is a raw type
 @todo eclipse: invalid location of tag (li)
 @todo eclipse: clear up warnings
 @todo nosh: stdout deferred until command
@@ -16,6 +15,8 @@
 @todo nosh: indicate release in prompt
 @todo refactor init_pose macro
 @todo realname: confirm pwd trick concurrency-safe
+@todo eclipse: restore invalid location of tag (li) warnings
+@todo edown: fix sample html to clear (li) warnings
 @todo edoc: document bug fixes
 @todo edoc: see if new canversion resolves issues
 @todo resume work on 2do_go4
