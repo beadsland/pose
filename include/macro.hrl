@@ -36,6 +36,9 @@
 -define(ARITY,
         case process_info(self(), current_function) of {_, {_,_,A}} -> A end).
 
+-ifdef(package).
+-import(io_lib).
+-endif.
 -define(WHEREAMI,
        lists:flatten(io_lib:format("~p:~p/~p, line ~p",
                                    [?MODULE, ?FUNCTION, ?ARITY, ?LINE]))).
