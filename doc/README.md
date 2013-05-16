@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">stdio: truncate stack</font>
 * <font color="red">macro: elim attrib macro</font>
 * <font color="red">pose_code: stop using get_binary_detail</font>
-* <font color="red">pose_beam: elim deprecated</font>
-* <font color="red">r16: no flat packages warning</font>
-* <font color="red">...plus 7 more (see TODO.edoc)
+* <font color="red">pose_beam: elim get_binary_detail</font>
+* <font color="red">pose_beam: review/refactor slurp</font>
+* <font color="red">...plus 8 more (see TODO.edoc)
 </font>
 
 

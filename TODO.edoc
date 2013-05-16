@@ -3,7 +3,8 @@
 @todo stdio: truncate stack
 @todo macro: elim attrib macro
 @todo pose_code: stop using get_binary_detail
-@todo pose_beam: elim deprecated
+@todo pose_beam: elim get_binary_detail
+@todo pose_beam: review/refactor slurp
 @todo r16: no flat packages warning
 @todo test all projects working under r16
 @todo nosh: update docs re r15
