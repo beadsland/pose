@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">noterm: stopping terminal should wrap</font>
 * <font color="red">pose_beam: no nosh_parse:module_info</font>
+* <font color="red">eclipse: clear up warnings</font>
 * <font color="red">stdio: truncate stack</font>
+* <font color="red">macro: elim attrib macro</font>
 * <font color="red">pose_code: stop using get_binary_detail</font>
 * <font color="red">pose_beam: elim deprecated</font>
 * <font color="red">r16: no flat packages warning</font>
-* <font color="red">test all projects working under r16</font>
-* <font color="red">...plus 6 more (see TODO.edoc)
+* <font color="red">...plus 7 more (see TODO.edoc)
 </font>
 
 

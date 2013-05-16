@@ -1,6 +1,7 @@
-@todo noterm: stopping terminal should wrap
 @todo pose_beam: no nosh_parse:module_info
+@todo eclipse: clear up warnings
 @todo stdio: truncate stack
+@todo macro: elim attrib macro
 @todo pose_code: stop using get_binary_detail
 @todo pose_beam: elim deprecated
 @todo r16: no flat packages warning
