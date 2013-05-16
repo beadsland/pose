@@ -1,5 +1,5 @@
-@todo eclipse: invalid location of tag (li)
-@todo eclipse: clear up warnings
+@todo edogo: JRE container on classpath
+@todo edogo: no jre.compilation.profile build entry
 @todo nosh: stdout deferred until command
 @todo nosh: hot throws namespace collisions
 @todo noterm: pose package
@@ -17,6 +17,9 @@
 @todo realname: confirm pwd trick concurrency-safe
 @todo eclipse: restore invalid location of tag (li) warnings
 @todo edown: fix sample html to clear (li) warnings
+@todo eclipse: restore no start tag (&lt;p&gt;) warnings
 @todo edoc: document bug fixes
 @todo edoc: see if new canversion resolves issues
+@todo edown: fix sample html to clear &lt;p&gt; warnings
+@todo edoc: fix generator to clear &lt;p&gt; warnings
 @todo resume work on 2do_go4

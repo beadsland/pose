@@ -1,8 +1,8 @@
-@todo eclipse: invalid location of tag (li)
-@todo eclipse: clear up warnings
+@todo edogo: JRE container on classpath
+@todo edogo: no jre.compilation.profile build entry
 @todo nosh: stdout deferred until command
 @todo nosh: hot throws namespace collisions
 @todo noterm: pose package
 @todo stdio: truncate stack
 @todo macro: elim attrib macro
-@todo ...plus 14 more (see TODO.edoc)
+@todo ...plus 17 more (see TODO.edoc)
