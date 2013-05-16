@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">erlerr: pid at end of error, not trace</font>
-* <font color="red">r16: extra error tuple</font>
+* <font color="red">noterm: stopping terminal should wrap</font>
+* <font color="red">pose_beam: no nosh_parse:module_info</font>
+* <font color="red">stdio: truncate stack</font>
+* <font color="red">pose_code: stop using get_binary_detail</font>
+* <font color="red">pose_beam: elim deprecated</font>
 * <font color="red">r16: no flat packages warning</font>
 * <font color="red">test all projects working under r16</font>
-* <font color="red">nosh: update docs re r15</font>
-* <font color="red">pose: update docs re r15</font>
-* <font color="red">nosh: indicate release in prompt</font>
-* <font color="red">...plus 4 more (see TODO.edoc)
+* <font color="red">...plus 6 more (see TODO.edoc)
 </font>
 
 
