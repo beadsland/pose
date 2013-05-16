@@ -5,7 +5,7 @@
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
 @todo nosh: indicate release in prompt
-@todo elim deprecated
+@todo pose_beam: elim deprecated
 @todo refactor init_pose macro
 @todo realname: confirm pwd trick concurrency-safe
 @todo edoc status
