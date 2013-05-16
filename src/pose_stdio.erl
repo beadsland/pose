@@ -128,8 +128,8 @@ send_debug(Output, Debug, true) -> Debug ! {debug, self(), Output}, ok.
 
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
-format_erlerr({Term, [Head | Tail]}) when is_tuple(Head) -> 
-  format_erldump(Term, [Head | Tail]);
+format_erlerr({Term, [{_M, _F, _A, _S} | _Tail]=Stack}) -> 
+  format_erldump(Term, Stack);
 format_erlerr({Term, Data}) -> format_erltwotup(Term, Data);
 format_erlerr(Atom) when is_atom(Atom) -> format_erlatom(Atom);
 format_erlerr(Else) -> format_erlelse(Else).
