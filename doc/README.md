@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">edogo: JRE container on classpath</font>
-* <font color="red">edogo: no jre.compilation.profile build entry</font>
 * <font color="red">nosh: stdout deferred until command</font>
 * <font color="red">nosh: hot throws namespace collisions</font>
 * <font color="red">noterm: pose package</font>
 * <font color="red">stdio: truncate stack</font>
 * <font color="red">macro: elim attrib macro</font>
-* <font color="red">...plus 17 more (see TODO.edoc)
+* <font color="red">pose_code: stop using get_binary_detail</font>
+* <font color="red">pose_beam: elim get_binary_detail</font>
+* <font color="red">...plus 15 more (see TODO.edoc)
 </font>
 
 
