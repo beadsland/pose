@@ -1,8 +1,8 @@
-@todo pose_code: rewrite ensure_compiled
+@todo pose_code: test for undefined
+@todo hot: throws namespace collisions
+@todo pose_code: rewrite do_load
 @todo pose_beam: review/refactor slurp
 @todo stdio: beam_lib:format_error (and beam_lib, file_error)
-@todo hot: throws namespace collisions
 @todo test all projects working under r16
 @todo nosh: update docs re r15
-@todo pose: update docs re r15
-@todo ...plus 16 more (see TODO.edoc)
+@todo ...plus 17 more (see TODO.edoc)

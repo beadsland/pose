@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_code: rewrite ensure_compiled</font>
+* <font color="red">pose_code: test for undefined</font>
+* <font color="red">hot: throws namespace collisions</font>
+* <font color="red">pose_code: rewrite do_load</font>
 * <font color="red">pose_beam: review/refactor slurp</font>
 * <font color="red">stdio: beam_lib:format_error (and beam_lib, file_error)</font>
-* <font color="red">hot: throws namespace collisions</font>
 * <font color="red">test all projects working under r16</font>
 * <font color="red">nosh: update docs re r15</font>
-* <font color="red">pose: update docs re r15</font>
-* <font color="red">...plus 16 more (see TODO.edoc)
+* <font color="red">...plus 17 more (see TODO.edoc)
 </font>
 
 
