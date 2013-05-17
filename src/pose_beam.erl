@@ -18,15 +18,17 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved.
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
 %% @doc Beam binary utility functions used by {@link pose_code}.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
-%% @copyright 2012 Beads D. Land-Trujillo
+%% @copyright 2012, 2013 Beads D. Land-Trujillo
 
+%% @version 0.1.2
 -module(pose_beam).
+-version("0.1.2"). 
 
 %%
 %% Include files
@@ -38,16 +40,25 @@
 %%
 %% Exported Functions
 %%
--export([get_chunk/2, get_attribute/2, get_compiler_vsn/0, get_compiler_vsn/1, 
-         get_binary_detail/2, slurp_binary/1]).
+-export([get_module/1, get_chunk/2, get_attribute/2, get_package/1,
+         get_compiler_vsn/0, get_compiler_vsn/1, get_module_vsn/1,
+         slurp_binary/1]).
 
 %%
 %% API Functions
 %%
 
 -type beam() :: beam_lib:beam().
--type chunkref() :: beam_lib:chunkref().
 -type chunk_error() :: {error, {beam_lib, beam_lib:chnk_rsn()}}.
+%% @doc Get module name of a beam.
+-spec get_module(Beam :: beam()) -> {ok, module()} | chunk_error().
+get_module(Beam) ->
+  case beam_lib:info(Beam) of
+    {error, beam_lib, Reason}   -> {error, {beam_lib, Reason}};
+    InfoPairs                   -> {ok, proplists:get_value(module, InfoPairs)}
+  end.
+  
+-type chunkref() :: beam_lib:chunkref().
 -type chunk_result() ::  {ok, any()} | chunk_error().
 -spec get_chunk(Beam :: beam(), ChunkRef :: chunkref()) -> chunk_result().
 %% @doc Get data for a chunk of a beam. 
@@ -69,13 +80,23 @@ get_attribute(Beam, Attribute) ->
     {ok, Data}              -> {ok, proplists:get_value(Attribute, Data)}
   end.
 
--type compiler_vsn() :: string() | undefined.
+-type module_version() :: term() | [term()].
+-spec get_module_vsn(Beam :: beam()) -> {ok, module_version()} | chunk_error().
+%% @doc Get version of a beam.
+get_module_vsn(Beam) ->
+  case beam_lib:version(Beam) of
+    {error, beam_lib, Reason}   -> {error, {beam_lib, Reason}};
+    {ok, {_Module, [Version]}}  -> {ok, Version};
+    {ok, {_Module, Version}}    -> {ok, Version}
+  end.
+
+-type compiler_vsn() :: atom() | undefined.
 -spec get_compiler_vsn() -> {ok, compiler_vsn()}.
 %% @doc Get version of compiler currently loaded.
 get_compiler_vsn() ->
   Info = beam_asm:module_info(compile),
   Options = proplists:get_value(options, Info),
-  {ok, live_compiler_vsn(Options)}.
+  {ok, list_to_atom(live_compiler_vsn(Options))}.
 
 live_compiler_vsn([]) -> undefined;
 live_compiler_vsn([{d, 'COMPILER_VSN', Version} | _Tail]) -> Version;
@@ -88,28 +109,31 @@ get_compiler_vsn(Beam) ->
   case get_chunk(Beam, compile_info) of
     {error, Reason}       -> {error, Reason};
     {info, missing_chunk} -> {ok, undefined};
-    {ok, Data}            -> {ok, proplists:get_value(version, Data)}
+    {ok, Data}            -> VsnString = proplists:get_value(version, Data),
+                             {ok, list_to_atom(VsnString)}
   end.
-    
--type attribute() :: atom().
--type beam_lib_error() :: {beam_lib, term()}.
--type binary_detail_error() :: beam_lib_error() | {missing_chunk, attribute()}.
--type version() :: term().
--type package() :: term().
--spec get_binary_detail(Module :: module(), Binary ::  binary()) ->
-          {ok, version(), package()} | {error, binary_detail_error()}.
-%% @doc Get version and package of binary
-%% @deprecated
-get_binary_detail(Module, Binary) ->
-    case beam_lib:version(Binary) of
-        {error, beam_lib, What} -> {error, {beam_lib, What}};
-        {ok, {Module, Version}} -> get_binary_detail(Module, Binary, Version)
-    end.
 
+-type package() :: atom() | ''.
+-spec get_package(Beam :: beam()) -> {ok, package()} | chunk_error().
+%% @doc Get package of a beam.
+get_package(Beam) ->
+  case get_attribute(Beam, package) of
+    {error, Reason} -> {error, Reason};
+    {ok, undefined} -> get_package(Beam, get_module(Beam));
+    {ok, [Package]} -> {ok, Package}
+  end.
+
+get_package(_Beam, {error, Reason}) -> {error, {get_module, Reason}};
+get_package(_Beam, {ok, Module}) ->
+  ModStr = atom_to_list(Module),
+  case string:rstr(ModStr, ".") of
+    0       -> {ok, ''};
+    Last    -> {ok, list_to_atom(string:substr(ModStr, 0, Last-1))}
+  end.
+  
 -type posix() :: atom().
 -type file_error_reason() :: posix() | badarg | terminated | system_limit.
--type slurp_error() :: {read, file_error_reason()} | beam_lib_error()
-                        | no_module.
+-type slurp_error() :: {read, file_error_reason()} | no_module.
 -type filename() :: file:filename().
 -spec slurp_binary(Filename :: filename()) -> {ok, module(), binary()}
                                                 | {error, slurp_error()}.
@@ -124,32 +148,6 @@ slurp_binary(Filename) ->
 %%
 %% Local Functions
 %%
-
-%%%
-% Get binary detail
-%%%
-
-% Get package attribute of binary
-get_binary_detail(Module, Binary, Version) ->
-    case get_attribute(Binary, package) of
-        {error, What}   -> {error, {read_beam, What}};
-        {ok, [Package]} -> {ok, Version, Package};
-        {ok, undefined} -> get_binary_detail(Module, Binary, Version, noattr)
-    end.
-
-% Figure out explicit package if no attribute found
-get_binary_detail(Module, _Binary, Version, noattr) ->
-    ModStr = atom_to_list(Module),
-    case string:rstr(ModStr, ".") of
-        0       -> {ok, Version, ''};
-        Last    -> PackStr = string:substr(ModStr, 0, Last-1),
-                   Package = list_to_atom(PackStr),
-                   {ok, Version, Package}
-    end.
-
-%%%
-% Slurp binary
-%%%
 
 % Extract meta information about binary.
 slurp_binary(NewFile, Binary) ->

@@ -9,21 +9,15 @@
 
 Beam binary utility functions used by [`pose_code`](pose_code.md).
 
-Copyright (c) 2012 Beads D. Land-Trujillo
+Copyright (c) 2012, 2013 Beads D. Land-Trujillo
+
+__Version:__ 0.1.2
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
 
 ##Data Types##
 
-
-
-
-###<a name="type-attribute">attribute()</a>##
-
-
-
-	attribute() = atom()
 
 
 
@@ -48,22 +42,6 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 	beam() = <a href="beam_lib.md#type-beam">beam_lib:beam()</a>
-
-
-
-###<a name="type-beam_lib_error">beam_lib_error()</a>##
-
-
-
-	beam_lib_error() = {beam_lib, term()}
-
-
-
-###<a name="type-binary_detail_error">binary_detail_error()</a>##
-
-
-
-	binary_detail_error() = <a href="#type-beam_lib_error">beam_lib_error()</a> | {missing_chunk, <a href="#type-attribute">attribute()</a>}
 
 
 
@@ -103,7 +81,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-	compiler_vsn() = string() | undefined
+	compiler_vsn() = atom() | undefined
 
 
 
@@ -123,14 +101,6 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-###<a name="type-package">package()</a>##
-
-
-
-	package() = term()
-
-
-
 ###<a name="type-posix">posix()</a>##
 
 
@@ -143,21 +113,13 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-	slurp_error() = {read, <a href="#type-file_error_reason">file_error_reason()</a>} | <a href="#type-beam_lib_error">beam_lib_error()</a> | no_module
-
-
-
-###<a name="type-version">version()</a>##
-
-
-
-	version() = term()
+	slurp_error() = {read, <a href="#type-file_error_reason">file_error_reason()</a>} | no_module
 <a name="index"></a>
 
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_attribute-2">get_attribute/2</a></td><td>Get attribute entry of a beam.</td></tr><tr><td valign="top"><a href="#get_binary_detail-2">get_binary_detail/2</a></td><td>Get version and package of binary.</td></tr><tr><td valign="top"><a href="#get_chunk-2">get_chunk/2</a></td><td>Get data for a chunk of a beam.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-0">get_compiler_vsn/0</a></td><td>Get version of compiler currently loaded.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-1">get_compiler_vsn/1</a></td><td>Get version of compiler used to create beam.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_attribute-2">get_attribute/2</a></td><td>Get attribute entry of a beam.</td></tr><tr><td valign="top"><a href="#get_chunk-2">get_chunk/2</a></td><td>Get data for a chunk of a beam.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-0">get_compiler_vsn/0</a></td><td>Get version of compiler currently loaded.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-1">get_compiler_vsn/1</a></td><td>Get version of compiler used to create beam.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -173,16 +135,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 <br></br>
 
 
-Get attribute entry of a beam.<a name="get_binary_detail-2"></a>
-
-###get_binary_detail/2##
-
-
-	get_binary_detail(Module::module(), Binary::binary()) -> {ok, <a href="#type-version">version()</a>, <a href="#type-package">package()</a>} | {error, <a href="#type-binary_detail_error">binary_detail_error()</a>}
-<br></br>
-
-
-Get version and package of binary<a name="get_chunk-2"></a>
+Get attribute entry of a beam.<a name="get_chunk-2"></a>
 
 ###get_chunk/2##
 

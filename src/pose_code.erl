@@ -174,15 +174,15 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.7
+%% @version 0.1.8
 -module(pose_code).
--version("0.1.7"). 
+-version("0.1.8"). 
 
 %%
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -284,12 +284,9 @@ load_module(Command, Dir, OrigModule, Binary) ->
 
 % Get version and package details from binary.
 do_load(Cmd, Dir, Module, Binary) ->
-  case pose_beam:get_binary_detail(Module, Binary) of
-    {error, What}			->
-      {error, {get_detail, What}};
-    {ok, Version, Package}	->
-      do_load(Cmd, Dir, Module, Binary, Version, Package)
-  end.
+  {ok, Version} = pose_beam:get_module_vsn(Binary),
+  {ok, Package} = pose_beam:get_package(Binary),
+  do_load(Cmd, Dir, Module, Binary, Version, Package).
 
 % Make sure binary was compiled using any explicit package attribute.
 do_load(Cmd, Dir, Module, Binary, Version, Package) ->
@@ -326,8 +323,8 @@ ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false) ->
 ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile) ->
   SameFile = string:equal(BinFile, MemFile),
   MemVsn = ?ATTRIB(Module, vsn),
-  ?DEBUG({SameFile, BinFile, MemFile}),
   if not SameFile       ->
+       ?DEBUG("old file: ~s~nnew file: ~s~n", [BinFile, MemFile]),
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_path);
      BinVsn /= MemVsn   ->
        ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_vsn);

@@ -1,5 +1,3 @@
-@todo pose_code: stop using get_binary_detail
-@todo pose_beam: elim get_binary_detail
 @todo pose_code: rewrite ensure_compiled
 @todo pose_beam: review/refactor slurp
 @todo hot: throws namespace collisions
