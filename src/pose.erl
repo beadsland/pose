@@ -127,6 +127,9 @@ send_load_warnings(IO, Command, Warnings) ->
   if length(Flat) > 2 and R15   ->
        ?STDERR("~s: flat packages unsafe (~p total)~n", [Command, TotalFlat]),
        send_load_warnings(IO, Command, Warnings, true, R15);
+     length(Flat) > 2           ->
+       ?DEBUG("~s: flat packages ignored (~p total)~n", [Command, TotalFlat]),
+       send_load_warnings(IO, Command, Warnings, true, R15);
      true                       ->
        send_load_warnings(IO, Command, Warnings, false, R15)
   end.
@@ -152,19 +155,19 @@ argv(ARG, N) ->
 
 % Send warning messages for namespace collisions and some flat packages
 send_load_warnings(_IO, _Command, [], _ManyFlat, _R15) -> ok;
-send_load_warnings(IO, Command, [Head | Tail], ManyFlat, R15) ->
-  case Head of
-    diff_path                                   ->
-      ?STDERR("~s: namespace collision~n", [Command]);
-    flat_pkg                                    ->
-      if R15 and not ManyFlat  -> ?STDERR("~s: flat package unsafe~n", [Command]);
-         true               -> false
-      end;
-    {Module, diff_path}                         ->
-      ?STDERR("~p: namespace collision~n", [Module]);
-    {Module, flat_pkg}                          ->
-      if R15 and not ManyFlat  -> ?STDERR("~s: flat package unsafe~n", [Module]);
-         true               -> false
-      end
-  end,
+send_load_warnings(IO, Command, [Head | Tail], ManyFlat, R15) 
+                                                        when is_atom(Head) ->
+  send_load_warnings(IO, Command, [{Command, Head} | Tail], ManyFlat, R15);
+send_load_warnings(IO, Command, [{Module, Warn} | Tail], ManyFlat, R15) 
+                                                        when is_atom(Module) ->
+  String = atom_to_list(Module),
+  send_load_warnings(IO, Command, [{String, Warn} | Tail], ManyFlat, R15);
+send_load_warnings(IO, Command, [{Module, diff_path} | Tail], ManyFlat, R15) ->
+  ?STDERR("~s: namespace collision~n", [Module]),
+  send_load_warnings(IO, Command, Tail, ManyFlat, R15);
+send_load_warnings(IO, Command, [{Module, flat_pkg} | Tail], false, true) -> 
+  ?STDERR("~s: flat package unsafe~n", [Module]),
+  send_load_warnings(IO, Command, Tail, false, true);
+send_load_warnings(IO, Command, [{Module, flat_pkg} | Tail], ManyFlat, R15) ->
+  ?DEBUG("~s: flat package ignored~n", [Module]),
   send_load_warnings(IO, Command, Tail, ManyFlat, R15).
