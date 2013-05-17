@@ -1,8 +1,8 @@
-@todo send_load_warnings: refactor clauses
+@todo hot: throws namespace collisions
 @todo test all projects working under r16
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
 @todo nosh: indicate release in prompt
-@todo hot: throws namespace collisions
 @todo noterm: pose package
-@todo ...plus 16 more (see TODO.edoc)
+@todo noterm: integrate folderl
+@todo ...plus 15 more (see TODO.edoc)
