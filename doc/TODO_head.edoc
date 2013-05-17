@@ -1,8 +1,8 @@
-@todo pose_code: stop using get_binary_detail
-@todo pose_beam: elim get_binary_detail
 @todo pose_code: rewrite ensure_compiled
 @todo pose_beam: review/refactor slurp
 @todo hot: throws namespace collisions
 @todo test all projects working under r16
 @todo nosh: update docs re r15
-@todo ...plus 17 more (see TODO.edoc)
+@todo pose: update docs re r15
+@todo pose_code: update docs re r15
+@todo ...plus 15 more (see TODO.edoc)
