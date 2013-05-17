@@ -174,9 +174,9 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.8
+%% @version 0.1.9
 -module(pose_code).
--version("0.1.8"). 
+-version("0.1.9"). 
 
 %%
 %% Include files
@@ -300,49 +300,41 @@ do_load(Cmd, Dir, Module, Binary, Version, Package) ->
   end.
 
 % Make sure the binary is what is current in memory.
-do_load(Cmd, Dir, Module, Binary, Version, Package, pack_true) ->
-  Filename = filename:join(Dir, string:concat(Cmd, ".beam")),
-  ensure_loaded(Module, Filename, Binary, Version, Package).
-
-%%%
-% Ensure loaded
-%%%
-
-% Check if module is currently loaded.
-ensure_loaded(Module, BinFile, Bin, Vsn, Pkg) ->
+do_load(Cmd, Dir, Module, Binary, _Version, Package, pack_true) ->
+  BinFile = filename:join(Dir, string:concat(Cmd, ".beam")),
+  case is_current(Module, Binary) of
+    {false, Reason} -> ?DEBUG({Module, Reason}),
+                       commence_load(Module, BinFile, Binary, Package, Reason);
+    true            -> {ok, Module}
+  end.
+                       
+% Test if module has even been loaded.                       
+is_current(Module, Beam) ->
   case code:is_loaded(Module) of
-    {file, MemFile}	->
-      ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, MemFile);
-    false			->
-      ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false)
+    false           -> {false, not_loaded};
+    {file, Loaded}  -> is_unchanged(Module, Beam, Loaded)
   end.
 
-% Figure out if new version of file needs to be loaded.
-ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false) ->
-  ensure_loaded(Module, BinFile, Bin, Vsn, Pkg, false, not_loaded);
-ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile) ->
-  SameFile = string:equal(BinFile, MemFile),
-  MemVsn = ?ATTRIB(Module, vsn),
-  if not SameFile       ->
-       ?DEBUG("old file: ~s~nnew file: ~s~n", [BinFile, MemFile]),
-       ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_path);
-     BinVsn /= MemVsn   ->
-       ensure_loaded(Module, BinFile, Bin, BinVsn, Pkg, MemFile, diff_vsn);
-     true               ->
-       if Pkg == '' -> {ok, Module, flat_pkg}; true -> {ok, Module} end
+% Test if module has different source path or vsn.
+is_unchanged(Module, Beam, Loaded) ->
+  SameSource = string:equal(Loaded, pose_beam:get_source(Beam)),
+  LoadedVsn = proplists:get_value(vsn, Module:module_info(attributes)),
+  SameModVsn = (LoadedVsn == pose_beam:get_module_vsn(Beam)),
+  if not SameSource -> ?DEBUG({diff_path, Loaded, pose_beam:get_source(Beam)}),
+                       {false, diff_path};
+     not SameModVsn -> {false, diff_vsn};
+     true           -> true
   end.
 
-% Load the new module version.
-ensure_loaded(Module, BinFile, Bin, _BinVsn, Pkg, _MemFile, Why) ->
-  ?DEBUG(Why),
+commence_load(Module, BinFile, Binary, Pkg, Why) ->  
   if Why /= not_loaded -> do_purge_delete(Module); true -> false end,
-  case code:load_binary(Module, BinFile, Bin) of
-    {error, What}		-> {error, {load, What}};
-    {module, Module}	->
+  case code:load_binary(Module, BinFile, Binary) of
+    {error, What}       -> {error, {load, What}};
+    {module, Module}    ->
       case Why of
         diff_path   -> {ok, Module, diff_path};
-        _Else	    -> if Pkg == '' -> {ok, Module, flat_pkg};
-                          true		-> {ok, Module} end
+        _Else       -> if Pkg == '' -> {ok, Module, flat_pkg};
+                          true      -> {ok, Module} end
       end
   end.
 

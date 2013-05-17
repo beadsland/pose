@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.2
+%% @version 0.1.3
 -module(pose_beam).
--version("0.1.2"). 
+-version("0.1.3"). 
 
 %%
 %% Include files
@@ -42,7 +42,7 @@
 %%
 -export([get_module/1, get_chunk/2, get_attribute/2, get_package/1,
          get_compiler_vsn/0, get_compiler_vsn/1, get_module_vsn/1,
-         slurp_binary/1]).
+         get_source/1, slurp_binary/1]).
 
 %%
 %% API Functions
@@ -57,7 +57,7 @@ get_module(Beam) ->
     {error, beam_lib, Reason}   -> {error, {beam_lib, Reason}};
     InfoPairs                   -> {ok, proplists:get_value(module, InfoPairs)}
   end.
-  
+
 -type chunkref() :: beam_lib:chunkref().
 -type chunk_result() ::  {ok, any()} | chunk_error().
 -spec get_chunk(Beam :: beam(), ChunkRef :: chunkref()) -> chunk_result().
@@ -80,6 +80,16 @@ get_attribute(Beam, Attribute) ->
     {ok, Data}              -> {ok, proplists:get_value(Attribute, Data)}
   end.
 
+-type source() :: string() | undefined.
+-spec get_source(Beam :: beam()) -> {ok, source()} | chunk_error().
+%% @doc Get .erl file source of a beam.
+get_source(Beam) ->
+  case get_chunk(Beam, compile_info) of
+    {error, Reason}       -> {error, Reason};
+    {info, missing_chunk} -> {ok, undefined};
+    {ok, Data}            -> {ok, proplists:get_value(source, Data)}
+  end.
+  
 -type module_version() :: term() | [term()].
 -spec get_module_vsn(Beam :: beam()) -> {ok, module_version()} | chunk_error().
 %% @doc Get version of a beam.
@@ -130,7 +140,9 @@ get_package(_Beam, {ok, Module}) ->
     0       -> {ok, ''};
     Last    -> {ok, list_to_atom(string:substr(ModStr, 0, Last-1))}
   end.
-  
+
+
+
 -type posix() :: atom().
 -type file_error_reason() :: posix() | badarg | terminated | system_limit.
 -type slurp_error() :: {read, file_error_reason()} | no_module.

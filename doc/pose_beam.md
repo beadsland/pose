@@ -101,6 +101,22 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
+###<a name="type-module_version">module_version()</a>##
+
+
+
+	module_version() = term() | [term()]
+
+
+
+###<a name="type-package">package()</a>##
+
+
+
+	package() = atom() | ''
+
+
+
 ###<a name="type-posix">posix()</a>##
 
 
@@ -119,7 +135,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_attribute-2">get_attribute/2</a></td><td>Get attribute entry of a beam.</td></tr><tr><td valign="top"><a href="#get_chunk-2">get_chunk/2</a></td><td>Get data for a chunk of a beam.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-0">get_compiler_vsn/0</a></td><td>Get version of compiler currently loaded.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-1">get_compiler_vsn/1</a></td><td>Get version of compiler used to create beam.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_attribute-2">get_attribute/2</a></td><td>Get attribute entry of a beam.</td></tr><tr><td valign="top"><a href="#get_chunk-2">get_chunk/2</a></td><td>Get data for a chunk of a beam.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-0">get_compiler_vsn/0</a></td><td>Get version of compiler currently loaded.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-1">get_compiler_vsn/1</a></td><td>Get version of compiler used to create beam.</td></tr><tr><td valign="top"><a href="#get_module-1">get_module/1</a></td><td>Get module name of a beam.</td></tr><tr><td valign="top"><a href="#get_module_vsn-1">get_module_vsn/1</a></td><td>Get version of a beam.</td></tr><tr><td valign="top"><a href="#get_package-1">get_package/1</a></td><td>Get package of a beam.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -162,7 +178,34 @@ Get version of compiler currently loaded.<a name="get_compiler_vsn-1"></a>
 <br></br>
 
 
-Get version of compiler used to create beam.<a name="slurp_binary-1"></a>
+Get version of compiler used to create beam.<a name="get_module-1"></a>
+
+###get_module/1##
+
+
+	get_module(Beam::<a href="#type-beam">beam()</a>) -> {ok, module()} | <a href="#type-chunk_error">chunk_error()</a>
+<br></br>
+
+
+Get module name of a beam.<a name="get_module_vsn-1"></a>
+
+###get_module_vsn/1##
+
+
+	get_module_vsn(Beam::<a href="#type-beam">beam()</a>) -> {ok, <a href="#type-module_version">module_version()</a>} | <a href="#type-chunk_error">chunk_error()</a>
+<br></br>
+
+
+Get version of a beam.<a name="get_package-1"></a>
+
+###get_package/1##
+
+
+	get_package(Beam::<a href="#type-beam">beam()</a>) -> {ok, <a href="#type-package">package()</a>} | <a href="#type-chunk_error">chunk_error()</a>
+<br></br>
+
+
+Get package of a beam.<a name="slurp_binary-1"></a>
 
 ###slurp_binary/1##
 
