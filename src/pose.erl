@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012 Beads D. Land-Trujillo
 
-%% @version 0.1.7
+%% @version 0.1.8
 -module(pose).
--version("0.1.7").
+-version("0.1.8").
 
 %%
 %% Include files
@@ -36,6 +36,7 @@
 
 %-define(debug, true).
 -include_lib("pose/include/interface.hrl").
+-include_lib("pose/include/macro.hrl").
 
 %%
 %% Exported Functions
@@ -108,22 +109,26 @@ exec(IO, ARG) ->
 -type warning() :: pose_command:load_mod_warn().
 -spec send_load_warnings(IO :: #std{}, Command :: command(),
                          Warnings :: [warning()]) -> ok.
-%% @doc Send messages to `stderr' process detailing any warnings received
-%% from `pose_command:load/1'.
+%% @doc Send messages to `stderr' process detailing any warnings received from 
+%% `pose_command:load/1'.  Flat package errors are consolidated if more than 
+%% one, or dropped, if Erlang/OTP release does not support packages.
+%% @end
 send_load_warnings(_IO, _Command, []) -> ok;
 send_load_warnings(IO, Command, Warnings) when is_atom(Command) ->
   send_load_warnings(IO, atom_to_list(Command), Warnings);
 send_load_warnings(IO, Command, Warnings) ->
-  Pred = fun(X) -> case X of flat_pkg               -> true;
-                             {_Module, flat_pkg}    -> true;
-                             _Else                  -> false end end,
+  Release = erlang:system_info(otp_release),
+  R15 = if Release < "R16" -> true; true -> false end,
+  Pred = fun(X) -> case X of flat_pkg              -> true;
+                             {_Module, flat_pkg}   -> true;
+                             _Else                 -> false end end,
   {Flat, _NotFlat} = lists:partition(Pred, Warnings),
   TotalFlat = length(Flat),
-  if length(Flat) > 2   ->
+  if length(Flat) > 2 and R15   ->
        ?STDERR("~s: flat packages unsafe (~p total)~n", [Command, TotalFlat]),
-       send_load_warnings(IO, Command, Warnings, true);
-     true               ->
-       send_load_warnings(IO, Command, Warnings, false)
+       send_load_warnings(IO, Command, Warnings, true, R15);
+     true                       ->
+       send_load_warnings(IO, Command, Warnings, false, R15)
   end.
 
 %%
@@ -146,20 +151,20 @@ argv(ARG, N) ->
 %%%
 
 % Send warning messages for namespace collisions and some flat packages
-send_load_warnings(_IO, _Command, [], _ManyFlat) -> ok;
-send_load_warnings(IO, Command, [Head | Tail], ManyFlat) ->
+send_load_warnings(_IO, _Command, [], _ManyFlat, _R15) -> ok;
+send_load_warnings(IO, Command, [Head | Tail], ManyFlat, R15) ->
   case Head of
     diff_path                                   ->
       ?STDERR("~s: namespace collision~n", [Command]);
     flat_pkg                                    ->
-      if ManyFlat == false  -> ?STDERR("~s: flat package unsafe~n", [Command]);
+      if R15 and not ManyFlat  -> ?STDERR("~s: flat package unsafe~n", [Command]);
          true               -> false
       end;
     {Module, diff_path}                         ->
       ?STDERR("~p: namespace collision~n", [Module]);
     {Module, flat_pkg}                          ->
-      if ManyFlat == false  -> ?STDERR("~s: flat package unsafe~n", [Module]);
+      if R15 and not ManyFlat  -> ?STDERR("~s: flat package unsafe~n", [Module]);
          true               -> false
       end
   end,
-  send_load_warnings(IO, Command, Tail, ManyFlat).
+  send_load_warnings(IO, Command, Tail, ManyFlat, R15).
