@@ -1,3 +1,4 @@
+@todo pose_code: comparing beam to erl, not erl to erl
 @todo hot: not picking up changes
 @todo hot: crashing on multiple changes
 @todo pose_code: rewrite do_load
