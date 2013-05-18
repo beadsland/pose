@@ -96,7 +96,6 @@ get_source(Beam) ->
 get_module_vsn(Beam) ->
   case beam_lib:version(Beam) of
     {error, beam_lib, Reason}   -> {error, {beam_lib, Reason}};
-    {ok, {_Module, [Version]}}  -> {ok, Version};
     {ok, {_Module, Version}}    -> {ok, Version}
   end.
 

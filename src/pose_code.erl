@@ -225,7 +225,7 @@ load_module(Command) ->
 
   DepsPath = filelib:wildcard(lists:append(filename:absname(Deps), "/*/ebin")),
 
-  ?DEBUG("path: ~p~n", [[filename:absname("ebin") | DepsPath]]),
+  %?DEBUG("path: ~p~n", [[filename:absname("ebin") | DepsPath]]),
 
   load_module(Command, [filename:absname("ebin") | DepsPath]).
 
@@ -240,7 +240,7 @@ load_module(_Command, []) -> {error, notfound};
 load_module(Command, Path) when is_atom(Command) ->
   load_module(atom_to_list(Command), Path);
 load_module(Command, [Head | Tail]) ->  
-  ?DEBUG("looking for ~s in ~s~n", [Command, Head]),
+  %?DEBUG("looking for ~s in ~s~n", [Command, Head]),
   case pose_compile:ensure_compiled(Command, Head) of
     {info, nobin}           -> load_module(Command, Tail);
     {info, Info}            -> ?DEBUG("l: ~p~n", [Info]),
@@ -303,7 +303,7 @@ do_load(Cmd, Dir, Module, Binary, Version, Package) ->
 do_load(Cmd, Dir, Module, Binary, _Version, Package, pack_true) ->
   BinFile = filename:join(Dir, string:concat(Cmd, ".beam")),
   case is_current(Module, Binary) of
-    {false, Reason} -> ?DEBUG({Module, Reason}),
+    {false, Reason} -> ?DEBUG({reload, {Module, Reason}}),
                        commence_load(Module, BinFile, Binary, Package, Reason);
     true            -> {ok, Module}
   end.
@@ -319,7 +319,6 @@ is_current(Module, Beam) ->
 is_current(Module, Beam, Loaded) ->
   SameSource = same_source(Loaded, Beam),
   SameModVsn = same_vsn(Module, Beam),
-  ?DEBUG({SameSource, Loaded, pose_beam:get_source(Beam)}),
   if SameSource == true, 
      SameModVsn == true         -> true;
      SameSource == true         -> SameModVsn;
@@ -332,7 +331,8 @@ same_source(Loaded, Beam) ->
     {error, Reason}     -> {false, {diff_src, Reason}};
     {ok, undefined}     -> {false, {diff_src, undefined}};
     {ok, Loaded}        -> true;
-    {ok, _BeamSrc}      -> {false, diff_src}
+    {ok, BeamSrc}       -> ?DEBUG({diff_src, Loaded, BeamSrc}),
+                           {false, diff_src}
   end.
 
 % Compare loaded module vsn with vsn of beam.
@@ -342,7 +342,8 @@ same_vsn(Module, Beam) ->
     {error, Reason}     -> {false, {diff_vsn, Reason}};
     {ok, undefined}     -> {false, {diff_vsn, undefined}};
     {ok, LoadedVsn}     -> true;
-    {ok, _BeamVsn}      -> {false, diff_vsn}
+    {ok, BeamVsn}       -> ?DEBUG({diff_vsn, LoadedVsn, BeamVsn}),
+                           {false, diff_vsn}
   end.
 
 commence_load(Module, BinFile, Binary, Pkg, Why) ->  
