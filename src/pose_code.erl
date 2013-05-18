@@ -312,18 +312,37 @@ do_load(Cmd, Dir, Module, Binary, _Version, Package, pack_true) ->
 is_current(Module, Beam) ->
   case code:is_loaded(Module) of
     false           -> {false, not_loaded};
-    {file, Loaded}  -> is_unchanged(Module, Beam, Loaded)
+    {file, Loaded}  -> is_current(Module, Beam, Loaded)
   end.
 
 % Test if module has different source path or vsn.
-is_unchanged(Module, Beam, Loaded) ->
-  SameSource = string:equal(Loaded, pose_beam:get_source(Beam)),
+is_current(Module, Beam, Loaded) ->
+  SameSource = same_source(Loaded, Beam),
+  SameModVsn = same_vsn(Module, Beam),
+  ?DEBUG({SameSource, Loaded, pose_beam:get_source(Beam)}),
+  if SameSource == true, 
+     SameModVsn == true         -> true;
+     SameSource == true         -> SameModVsn;
+     true                       -> SameSource
+  end.
+
+% Compare loaded source file with source file of beam.
+same_source(Loaded, Beam) ->
+  case pose_beam:get_source(Beam) of 
+    {error, Reason}     -> {false, {diff_src, Reason}};
+    {ok, undefined}     -> {false, {diff_src, undefined}};
+    {ok, Loaded}        -> true;
+    {ok, _BeamSrc}      -> {false, diff_src}
+  end.
+
+% Compare loaded module vsn with vsn of beam.
+same_vsn(Module, Beam) ->
   LoadedVsn = proplists:get_value(vsn, Module:module_info(attributes)),
-  SameModVsn = (LoadedVsn == pose_beam:get_module_vsn(Beam)),
-  if not SameSource -> ?DEBUG({diff_path, Loaded, pose_beam:get_source(Beam)}),
-                       {false, diff_path};
-     not SameModVsn -> {false, diff_vsn};
-     true           -> true
+  case pose_beam:get_module_vsn(Beam) of
+    {error, Reason}     -> {false, {diff_vsn, Reason}};
+    {ok, undefined}     -> {false, {diff_vsn, undefined}};
+    {ok, LoadedVsn}     -> true;
+    {ok, _BeamVsn}      -> {false, diff_vsn}
   end.
 
 commence_load(Module, BinFile, Binary, Pkg, Why) ->  

@@ -11,7 +11,7 @@ Beam binary utility functions used by [`pose_code`](pose_code.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.2
+__Version:__ 0.1.3
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -130,12 +130,20 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 	slurp_error() = {read, <a href="#type-file_error_reason">file_error_reason()</a>} | no_module
+
+
+
+###<a name="type-source">source()</a>##
+
+
+
+	source() = string() | undefined
 <a name="index"></a>
 
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_attribute-2">get_attribute/2</a></td><td>Get attribute entry of a beam.</td></tr><tr><td valign="top"><a href="#get_chunk-2">get_chunk/2</a></td><td>Get data for a chunk of a beam.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-0">get_compiler_vsn/0</a></td><td>Get version of compiler currently loaded.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-1">get_compiler_vsn/1</a></td><td>Get version of compiler used to create beam.</td></tr><tr><td valign="top"><a href="#get_module-1">get_module/1</a></td><td>Get module name of a beam.</td></tr><tr><td valign="top"><a href="#get_module_vsn-1">get_module_vsn/1</a></td><td>Get version of a beam.</td></tr><tr><td valign="top"><a href="#get_package-1">get_package/1</a></td><td>Get package of a beam.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#get_attribute-2">get_attribute/2</a></td><td>Get attribute entry of a beam.</td></tr><tr><td valign="top"><a href="#get_chunk-2">get_chunk/2</a></td><td>Get data for a chunk of a beam.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-0">get_compiler_vsn/0</a></td><td>Get version of compiler currently loaded.</td></tr><tr><td valign="top"><a href="#get_compiler_vsn-1">get_compiler_vsn/1</a></td><td>Get version of compiler used to create beam.</td></tr><tr><td valign="top"><a href="#get_module-1">get_module/1</a></td><td>Get module name of a beam.</td></tr><tr><td valign="top"><a href="#get_module_vsn-1">get_module_vsn/1</a></td><td>Get version of a beam.</td></tr><tr><td valign="top"><a href="#get_package-1">get_package/1</a></td><td>Get package of a beam.</td></tr><tr><td valign="top"><a href="#get_source-1">get_source/1</a></td><td>Get .erl file source of a beam.</td></tr><tr><td valign="top"><a href="#slurp_binary-1">slurp_binary/1</a></td><td>Read binary file into memory.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -205,7 +213,16 @@ Get version of a beam.<a name="get_package-1"></a>
 <br></br>
 
 
-Get package of a beam.<a name="slurp_binary-1"></a>
+Get package of a beam.<a name="get_source-1"></a>
+
+###get_source/1##
+
+
+	get_source(Beam::<a href="#type-beam">beam()</a>) -> {ok, <a href="#type-source">source()</a>} | <a href="#type-chunk_error">chunk_error()</a>
+<br></br>
+
+
+Get .erl file source of a beam.<a name="slurp_binary-1"></a>
 
 ###slurp_binary/1##
 

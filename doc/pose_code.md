@@ -11,7 +11,7 @@ Intuitive module loader, used by [`pose_command`](pose_command.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.8
+__Version:__ 0.1.9
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
