@@ -1,3 +1,4 @@
+@todo pose_compile: get_otp_package losing windows drive
 @todo pose: init environment (allow multiple starts)
 @todo nosh: init environment
 @todo boostrap: init environment
