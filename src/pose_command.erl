@@ -34,11 +34,9 @@
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
-
--compile({no_auto_import, [load_module/2]}).
 
 %%
 %% Exported Functions
@@ -82,8 +80,12 @@ load_command(Command) ->
 %%%
 
 % Determine if we can refer to a parallel source folder.
+%% @todo get PATH from environment
+%% @todo add to PATH from erl commandline
 load_command(Command, Module, Warnings) ->
+  %?BAIL(Module:module_info()),
   BinPath = filename:dirname(code:which(Module)),
+  ?DEBUG({binpath, BinPath}),
   case pose_file:find_parallel_folder("ebin", "src", BinPath) of
     {true, SrcPath}     ->
       SubModList = get_submodule_list(Command, BinPath, {srcpath, SrcPath});
@@ -104,6 +106,7 @@ get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
   end;
 get_submodule_list(Command, Path, Extension) ->
   Pattern = lists:append([Path, "/", Command, "_*", Extension]),
+  ?DEBUG({submodule_pattern, Pattern}),
   WildList = filelib:wildcard(Pattern),
   [get_submodule_subpattern(X) || X <- WildList].
 
