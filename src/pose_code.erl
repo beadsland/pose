@@ -226,7 +226,7 @@ load_module(Command) ->
   DepsPath = filelib:wildcard(lists:append(filename:absname(Deps), "/*/ebin")),
 
   %?DEBUG("path: ~p~n", [[filename:absname("ebin") | DepsPath]]),
-
+  
   load_module(Command, [filename:absname("ebin") | DepsPath]).
 
 -type directory() :: file:filename().
@@ -312,12 +312,13 @@ do_load(Cmd, Dir, Module, Binary, _Version, Package, pack_true) ->
 is_current(Module, Beam) ->
   case code:is_loaded(Module) of
     false           -> {false, not_loaded};
-    {file, Loaded}  -> is_current(Module, Beam, Loaded)
+    {file, _Loaded} -> is_current(Module, Beam, Module:module_info(compile))
   end.
 
 % Test if module has different source path or vsn.
-is_current(Module, Beam, Loaded) ->
-  SameSource = same_source(Loaded, Beam),
+is_current(Module, Beam, CompileInfo) ->
+  Erl = proplists:get_value(source, CompileInfo),
+  SameSource = same_source(Erl, Beam),
   SameModVsn = same_vsn(Module, Beam),
   if SameSource == true, 
      SameModVsn == true         -> true;
