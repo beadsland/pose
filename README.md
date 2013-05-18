@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">interface: refactor PATH from pose_code</font>
+* <font color="red">pose: refactor absname assumption of pwd</font>
 * <font color="red">pose: refactor get_deps</font>
 * <font color="red">pose_code: refactor path search to pose_command</font>
 * <font color="red">pose_code: elim load/1</font>
