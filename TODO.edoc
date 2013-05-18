@@ -1,4 +1,3 @@
-@todo pose: refactor init_pose macro
 @todo pose: refactor absname assumption of pwd
 @todo pose: refactor get_deps
 @todo pose_code: refactor path search to pose_command
