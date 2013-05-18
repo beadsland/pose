@@ -209,25 +209,15 @@
                         | {error, load_err()}.
 -spec load(Command :: command()) -> load_mod_rtn().
 %% @equiv load_module(Command)
+%% @deprecated
 load(Command) -> load_module(Command).
 
 -spec load_module(Command :: command()) -> load_mod_rtn().
 %% @doc Locate command on search path supplied by `PATH' environment
 %% variable, compiling and loading updated module as necessary.
 %% @end
-%% @todo get PATH from environment
-%% @todo add to PATH from erl commandline
-load_module(Command) ->
-  case init:get_argument(deps) of
-    {ok, [[Value]]} -> Deps = Value;
-    _               -> Deps = "deps"
-  end,
-
-  DepsPath = filelib:wildcard(lists:append(filename:absname(Deps), "/*/ebin")),
-
-  %?DEBUG("path: ~p~n", [[filename:absname("ebin") | DepsPath]]),
-  
-  load_module(Command, [filename:absname("ebin") | DepsPath]).
+%% @deprecated Initial PATH search should be done by pose_command.
+load_module(Command) -> load_module(Command, pose:get_path()).
 
 -type directory() :: file:filename().
 -type search_path() :: [directory()].
@@ -243,11 +233,11 @@ load_module(Command, [Head | Tail]) ->
   %?DEBUG("looking for ~s in ~s~n", [Command, Head]),
   case pose_compile:ensure_compiled(Command, Head) of
     {info, nobin}           -> load_module(Command, Tail);
-    {info, Info}            -> ?DEBUG("l: ~p~n", [Info]),
+    {info, _Info}           -> %?DEBUG("l: ~p~n", [Info]),
                                load_module(Command, Head, slurp);
-    {ok, Filename}          -> ?DEBUG("l: ~s~n", [Filename]),
+    {ok, _Filename}         -> %?DEBUG("l: ~s~n", [Filename]),
                                load_module(Command, Head, slurp);
-    {ok, Module, Binary}    -> ?DEBUG("l: ~p~n", [Module]),
+    {ok, Module, Binary}    -> %?DEBUG("l: ~p~n", [Module]),
                                load_module(Command, Head, Module, Binary);
     {error, What}           -> {error, {load, What}}
   end.

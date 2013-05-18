@@ -49,8 +49,8 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#exec-2">exec/2</a></td><td>Execute a command within the current process.</td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received from
-<code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#exec-2">exec/2</a></td><td>Execute a command within the current process.</td></tr><tr><td valign="top"><a href="#get_env-1">get_env/1</a></td><td>Look up a value among the <code>pose</code> process environment variables.</td></tr><tr><td valign="top"><a href="#get_path-0">get_path/0</a></td><td>Return the current search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#init_path-0">init_path/0</a></td><td>Initialize the search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received from
+<code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#set_env-2">set_env/2</a></td><td>Assign a value to a <code>pose</code> process environment variable.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -66,7 +66,34 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 <br></br>
 
 
-Execute a command within the current process.<a name="run-3"></a>
+Execute a command within the current process.<a name="get_env-1"></a>
+
+###get_env/1##
+
+
+	get_env(Key::atom()) -&gt; term()
+<br></br>
+
+
+Look up a value among the `pose` process environment variables.<a name="get_path-0"></a>
+
+###get_path/0##
+
+
+	get_path() -&gt; list()
+<br></br>
+
+
+Return the current search path for `pose` command modules.<a name="init_path-0"></a>
+
+###init_path/0##
+
+
+	init_path() -&gt; list()
+<br></br>
+
+
+Initialize the search path for `pose` command modules.<a name="run-3"></a>
 
 ###run/3##
 
@@ -86,7 +113,16 @@ Execute a command within the current process.<a name="run-3"></a>
 
 Send messages to `stderr` process detailing any warnings received from
 `pose_command:load/1`.  Flat package errors are consolidated if more than
-one, or dropped, if Erlang/OTP release does not support packages.<a name="start-0"></a>
+one, or dropped, if Erlang/OTP release does not support packages.<a name="set_env-2"></a>
+
+###set_env/2##
+
+
+	set_env(Key::atom(), Value::term()) -&gt; term()
+<br></br>
+
+
+Assign a value to a `pose` process environment variable.<a name="start-0"></a>
 
 ###start/0##
 

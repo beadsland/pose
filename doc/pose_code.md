@@ -287,7 +287,7 @@ modules will run in their own unique namespace when loaded in a
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>Locate command on search path supplied by <code>PATH</code> environment
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>(<em>Deprecated</em>.) Locate command on search path supplied by <code>PATH</code> environment
 variable, compiling and loading updated module as necessary.</td></tr><tr><td valign="top"><a href="#load_module-2">load_module/2</a></td><td>Locate command on search path supplied by <code>Path</code> parameter,
 compiling and loading updated module as necessary.</td></tr></table>
 
@@ -314,14 +314,10 @@ Equivalent to [`load_module(Command)`](#load_module-1).<a name="load_module-1"><
 <br></br>
 
 
-Locate command on search path supplied by `PATH` environment
-variable, compiling and loading updated module as necessary.
+__This function is deprecated:__ Initial PATH search should be done by pose_command.
 
-__<font color="red">To do</font>__
-<br></br>
-* <font color="red">get PATH from environment</font>
-* <font color="red">add to PATH from erl commandline</font>
-<a name="load_module-2"></a>
+Locate command on search path supplied by `PATH` environment
+variable, compiling and loading updated module as necessary.<a name="load_module-2"></a>
 
 ###load_module/2##
 

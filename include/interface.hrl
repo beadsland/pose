@@ -29,7 +29,8 @@
 -define(INIT_POSE, init_pose,
                    process_flag(trap_exit, true),
                    put(debug, IO#std.err),
-                   put(env, ENV)
+                   put(env, ENV#env.plist),
+                   pose:init_path()
        ).
 
 % IO is first parameter to pose entry points.
