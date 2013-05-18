@@ -19,8 +19,8 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">hot: throws namespace collisions</font>
-* <font color="red">hot: crashing</font>
+* <font color="red">hot: not picking up changes</font>
+* <font color="red">hot: crashing on multiple changes</font>
 * <font color="red">pose_code: rewrite do_load</font>
 * <font color="red">pose_beam: review/refactor slurp</font>
 * <font color="red">stdio: beam_lib:format_error (and beam_lib, file_error)</font>

@@ -1,4 +1,5 @@
-@todo hot: crashing
+@todo hot: not picking up changes
+@todo hot: crashing on multiple changes
 @todo pose_code: rewrite do_load
 @todo pose_beam: review/refactor slurp
 @todo stdio: beam_lib:format_error (and beam_lib, file_error)
