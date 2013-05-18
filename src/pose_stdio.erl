@@ -118,7 +118,7 @@ send_debug(Format, What) ->
   send_debug(safe_format(Format, What)).
 
 % Convert non-string output to string and send as message to recipient process.
-send_debug(Output, _, false) -> send_debug("data: ~p~n", [Output]);
+send_debug(Output, _, false) -> send_debug("~s~n", [?FORMAT_ERLERR(Output)]);
 send_debug(Output, undef, true) -> io:format("~~~~ ~s~n", [Output]), ok;
 send_debug(Output, Debug, true) -> Debug ! {debug, self(), Output}, ok.
 
