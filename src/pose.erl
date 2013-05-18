@@ -54,7 +54,7 @@
 -export([exec/2]).
 
 % Process variable functions
--export([set_env/2, env/1, deps/0, init_path/0, path/0]).
+-export([setenv/2, env/1, deps/0, init_path/0, path/0]).
 
 % pose_command helper function
 -export([send_load_warnings/3]).
@@ -112,9 +112,11 @@ exec(IO, ARG) ->
 %% @doc Return a value among the `pose' process environment variables.
 env(Key) -> proplists:get_value(Key, get(env)).
 
--spec set_env(Key :: atom(), Value :: term()) -> term().
-%% @doc Assign a value to a `pose' process environment variable.
-set_env(Key, Value) -> 
+-spec setenv(Key :: atom(), Value :: term()) -> term().
+%% @doc Assign a value to a `pose' process environment variable, such that
+%% it will be shared with `pose' subprocesses that inherit the environment.
+%% @end
+setenv(Key, Value) -> 
   put(env, [{Key, Value} | proplists:delete(Key, get(env))]), Value.
 
 -spec deps() -> string().
@@ -126,7 +128,7 @@ deps() ->
 %% @doc Initialize the search path for `pose' command modules.
 init_path() ->
   DepsPath = filelib:wildcard(lists:append(filename:absname(pose:deps()), "/*/ebin")),
-  set_env('PATH', [filename:absname("ebin") | DepsPath]).
+  setenv('PATH', [filename:absname("ebin") | DepsPath]).
 
 -spec path() -> list().
 %% @doc Return the current search path for `pose' command modules.
