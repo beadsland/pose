@@ -5,4 +5,4 @@
 @todo pose_command: code:which/1 not reliably providing ebin dir
 @todo hot: only swapping "pose", not submodules
 @todo hot: crashing on multiple changes
-@todo ...plus 23 more (see TODO.edoc)
+@todo ...plus 24 more (see TODO.edoc)

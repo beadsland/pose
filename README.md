@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">pose_command: code:which/1 not reliably providing ebin dir</font>
 * <font color="red">hot: only swapping "pose", not submodules</font>
 * <font color="red">hot: crashing on multiple changes</font>
-* <font color="red">...plus 23 more (see TODO.edoc)
+* <font color="red">...plus 24 more (see TODO.edoc)
 </font>
 
 

@@ -19,7 +19,8 @@
 @todo nosh: refactor bin/nosh
 @todo stdio: truncate stack
 @todo macro: elim attrib macro
-@todo refactor init_pose macro
+@todo pose: refactor init_pose macro
+@todo pose: why use exec?
 @todo realname: confirm pwd trick concurrency-safe
 @todo eclipse: restore invalid location of tag (li) warnings
 @todo edown: fix sample html to clear (li) warnings
