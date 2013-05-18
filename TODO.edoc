@@ -1,3 +1,4 @@
+@todo pose_command: code:which/1 not reliably providing ebin dir
 @todo hot: only swapping "pose", not submodules
 @todo hot: crashing on multiple changes
 @todo pose_code: rewrite do_load
