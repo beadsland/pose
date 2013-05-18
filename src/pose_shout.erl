@@ -73,7 +73,7 @@ monitor(File) -> spawn_link(?MODULE, run, [?IO(self()), File]).
 
 % @private callback function
 run(IO, File) ->
-  ENV = ?ENV, ?INIT_POSE,
+  pose:init(IO, ?ENV),
   case loop(IO, File) of
     {error, Reason} -> file:delete(lists:append(File, ".lock")),
                        file:delete(File),

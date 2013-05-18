@@ -102,7 +102,7 @@ start(Param, Module) ->
           Module :: module()) -> no_return().
 % Run as a `pose' command, spawned as a linked process.
 run(IO, ARG, ENV, Module) ->
-  ?INIT_POSE,
+  pose:init(IO, ENV),
   put(command, Module),
   Module:do_run(IO, ARG).
 

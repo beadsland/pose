@@ -53,8 +53,11 @@
 % Internal entry functions
 -export([exec/2]).
 
+% Behind the curtain initialization
+-export([init/2]).
+
 % Process variable functions
--export([setenv/2, env/1, deps/0, init_path/0, path/0]).
+-export([setenv/2, env/1, deps/0, path/0]).
 
 % pose_command helper function
 -export([send_load_warnings/3]).
@@ -99,14 +102,24 @@ do_run(IO, PoseARG) ->
 -spec exec(IO :: #std{}, ARG :: #arg{}) -> no_return().
 %% @doc Execute a command within the current process.
 exec(IO, ARG) ->
-  ENV = ?ENV, 
-  ?INIT_POSE,
+  init(IO, ?ENV),
   Command = ?ARGV(0),
   ?DEBUG("Executing ~p ~p~n", [Command, self()]),
   case gen_command:load_command(IO, Command) of
     {module, Module}  -> Module:do_run(IO, ARG);
     {error, What}     -> exit(What)
   end.
+
+-spec init(IO :: #std{}, ENV :: #env{}) -> ok.
+%% @doc Initialize the search path for `pose' command modules.
+init(IO, ENV) ->
+  process_flag(trap_exit, true),
+  put(debug, IO#std.err),
+  put(env, ENV#env.plist),
+  pose:env('IWD', filename:absname("")),
+  DepsPath = filelib:wildcard(lists:append(filename:absname(pose:deps()), "/*/ebin")),
+  setenv('PATH', [filename:absname("ebin") | DepsPath]),
+  ok.
 
 -spec env(Key :: atom()) -> term().
 %% @doc Return a value among the `pose' process environment variables.
@@ -123,12 +136,6 @@ setenv(Key, Value) ->
 %% @doc Return project subdirectory in which project dependencies are found.
 deps() ->
   case init:get_argument(deps) of {ok, [[Value]]} -> Value; true -> "deps" end.
-
--spec init_path() -> list().
-%% @doc Initialize the search path for `pose' command modules.
-init_path() ->
-  DepsPath = filelib:wildcard(lists:append(filename:absname(pose:deps()), "/*/ebin")),
-  setenv('PATH', [filename:absname("ebin") | DepsPath]).
 
 -spec path() -> list().
 %% @doc Return the current search path for `pose' command modules.

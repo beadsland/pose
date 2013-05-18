@@ -83,7 +83,7 @@ exit(ShellPid) -> ShellPid ! {command, self(), exit}, ok.
 
 % @private Internal callback.
 run(IO) ->
-  ENV = ?ENV, ?INIT_POSE,
+  pose:init(IO, ?ENV),
   {OS, _} = os:type(), run(IO, OS).
 
 % Configure operating-system specific shell.
