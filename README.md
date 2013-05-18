@@ -19,13 +19,13 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">pose: refactor init_pose macro</font>
 * <font color="red">pose: refactor absname assumption of pwd</font>
 * <font color="red">pose: refactor get_deps</font>
 * <font color="red">pose_code: refactor path search to pose_command</font>
 * <font color="red">pose_code: elim load/1</font>
 * <font color="red">pose_code: elim load_module/1</font>
 * <font color="red">pose_command: code:which/1 not reliably providing ebin dir</font>
-* <font color="red">hot: only swapping "pose", not submodules</font>
 * <font color="red">...plus 25 more (see TODO.edoc)
 </font>
 

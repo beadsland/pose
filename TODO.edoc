@@ -1,3 +1,4 @@
+@todo pose: refactor init_pose macro
 @todo pose: refactor absname assumption of pwd
 @todo pose: refactor get_deps
 @todo pose_code: refactor path search to pose_command
@@ -20,7 +21,6 @@
 @todo nosh: refactor bin/nosh
 @todo stdio: truncate stack
 @todo macro: elim attrib macro
-@todo pose: refactor init_pose macro
 @todo pose: why use exec?
 @todo realname: confirm pwd trick concurrency-safe
 @todo eclipse: restore invalid location of tag (li) warnings
