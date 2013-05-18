@@ -381,8 +381,14 @@ ensure_packaged(Command, Dir, default) ->
 ensure_packaged(_Command, _Dir, _Package) -> ok.
 
 % Return binary with details
-ensure_packaged(_Command, _Dir, Module, Binary) ->
-  case pose_beam:get_binary_detail(Module, Binary) of
-    {error, What}			-> {error, {get_detail, What}};
-    {ok, Version, Package}	-> {ok, Module, Binary, Version, Package}
+ensure_packaged(Command, Dir, Module, Binary) ->
+  case pose_beam:get_module_vsn(Binary) of
+    {error, Reason}         -> {error, {get_vsn, Reason}};
+    {ok, Version}           -> ensure_packaged(Command, Dir, Module, Binary, Version)
+  end.
+
+ensure_packaged(_Command, _Dir, Module, Binary, Version) ->
+  case pose_beam:get_package(Binary) of
+    {error, Reason}         -> {error, {get_pkg, Reason}};
+    {ok, Package}           -> {ok, Module, Binary, Version, Package}
   end.
