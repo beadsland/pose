@@ -5,4 +5,4 @@
 @todo pose_beam: review/refactor slurp
 @todo stdio: beam_lib:format_error (and beam_lib, file_error)
 @todo test all projects working under r16
-@todo ...plus 18 more (see TODO.edoc)
+@todo ...plus 19 more (see TODO.edoc)

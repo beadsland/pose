@@ -9,6 +9,7 @@
 @todo pose: update docs re r15
 @todo pose_code: update docs re r15
 @todo nosh: indicate release in prompt
+@todo superl: arity check
 @todo noterm: pose package
 @todo noterm: integrate folderl
 @todo nosh: refactor bin/nosh
