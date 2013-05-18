@@ -116,10 +116,15 @@ init(IO, ENV) ->
   process_flag(trap_exit, true),
   put(debug, IO#std.err),
   put(env, ENV#env.plist),
-  pose:env('IWD', filename:absname("")),
-  DepsPath = filelib:wildcard(lists:append(filename:absname(pose:deps()), "/*/ebin")),
-  setenv('PATH', [filename:absname("ebin") | DepsPath]),
+  setenv('IWD', filename:absname("")),  % no good, IWD needs to be inherited
+  DepsPath = filelib:wildcard(filename:join([iwd(), deps(), "*/ebin"])),                               
+  setenv('PATH', [filename:join(iwd(), "ebin") | DepsPath]),
   ok.
+
+-spec deps() -> string().
+%% @doc Return project subdirectory in which project dependencies are found.
+deps() ->
+  case init:get_argument(deps) of {ok, [[Value]]} -> Value; true -> "deps" end.
 
 -spec env(Key :: atom()) -> term().
 %% @doc Return a value among the `pose' process environment variables.
@@ -132,10 +137,9 @@ env(Key) -> proplists:get_value(Key, get(env)).
 setenv(Key, Value) -> 
   put(env, [{Key, Value} | proplists:delete(Key, get(env))]), Value.
 
--spec deps() -> string().
-%% @doc Return project subdirectory in which project dependencies are found.
-deps() ->
-  case init:get_argument(deps) of {ok, [[Value]]} -> Value; true -> "deps" end.
+-spec iwd() -> string().
+%% @doc Return the initial working directory of the Erlang runtime.
+iwd() -> env('IWD').
 
 -spec path() -> list().
 %% @doc Return the current search path for `pose' command modules.

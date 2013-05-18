@@ -49,7 +49,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#deps-0">deps/0</a></td><td>Return project subdirectory in which project dependencies are found.</td></tr><tr><td valign="top"><a href="#env-1">env/1</a></td><td>Return a value among the <code>pose</code> process environment variables.</td></tr><tr><td valign="top"><a href="#exec-2">exec/2</a></td><td>Execute a command within the current process.</td></tr><tr><td valign="top"><a href="#init_path-0">init_path/0</a></td><td>Initialize the search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#path-0">path/0</a></td><td>Return the current search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received from
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#deps-0">deps/0</a></td><td>Return project subdirectory in which project dependencies are found.</td></tr><tr><td valign="top"><a href="#env-1">env/1</a></td><td>Return a value among the <code>pose</code> process environment variables.</td></tr><tr><td valign="top"><a href="#exec-2">exec/2</a></td><td>Execute a command within the current process.</td></tr><tr><td valign="top"><a href="#init-2">init/2</a></td><td>Initialize the search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#path-0">path/0</a></td><td>Return the current search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received from
 <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#setenv-2">setenv/2</a></td><td>Assign a value to a <code>pose</code> process environment variable, such that
 it will be shared with <code>pose</code> subprocesses that inherit the environment.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr></table>
 
@@ -85,12 +85,12 @@ Return a value among the `pose` process environment variables.<a name="exec-2"><
 <br></br>
 
 
-Execute a command within the current process.<a name="init_path-0"></a>
+Execute a command within the current process.<a name="init-2"></a>
 
-###init_path/0##
+###init/2##
 
 
-	init_path() -&gt; list()
+	init(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, ENV::#env{plist = [<a href="#type-env_prop">env_prop()</a>]}) -> ok
 <br></br>
 
 
