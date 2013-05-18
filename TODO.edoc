@@ -1,3 +1,4 @@
+@todo interface: refactor PATH from pose_code
 @todo pose_code: refactor path search to pose_command
 @todo pose_code: elim load/1
 @todo pose_code: elim load_module/1
