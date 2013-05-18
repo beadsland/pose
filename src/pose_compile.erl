@@ -26,15 +26,15 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.9
+%% @version 0.1.10
 -module(pose_compile).
--version("0.1.9").
+-version("0.1.10").
 
 %%
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -113,23 +113,26 @@ ensure_compiled(Cmd, BinDir, Force, Beam, SrcDir) ->
 
 % Compile if forced, or modification date different, or compiler different.
 ensure_compiled(Cmd, BinDir, Force, Beam, SrcDir, Source) ->  
-  Latest = not Force andalso same_modification(Beam, Source) 
+  Latest = not Force andalso newer_modification(Beam, Source) 
                      andalso same_compiler(Beam),
   if Latest -> {ok, Beam};
      true   -> do_compile(SrcDir, Cmd, BinDir)
   end.
 
 % Compare modification dates of two files.
-same_modification(File1, File2) ->
-  Time1 = case pose_file:last_modified(File1) of
+newer_modification(Beam, Src) ->
+  BeamTime = case pose_file:last_modified(Beam) of
     {error, _What1}  -> undefined;
     {ok, DateTime1}  -> DateTime1
   end,
-  Time2 = case pose_file:last_modified(File2) of
+  SrcTime = case pose_file:last_modified(Src) of
     {error, _What2}  -> undefined;
     {ok, DateTime2}  -> DateTime2
   end,
-  Time1 == Time2 andalso Time1 /= undefined.
+  %?DEBUG({modtime, {BeamTime, Beam}, {SrcTime, Src}}),
+  if BeamTime == undefined  -> false;
+     true                   -> BeamTime > SrcTime
+  end.
 
 % Compare compiler that created a beam with current runtime compiler.
 same_compiler(Beam) ->
@@ -270,7 +273,7 @@ get_otp_includes(TempDir, [Head | Tail]) ->
 
 % Find candidate src directory parallel to ebin.
 parallel_src(BinDir, Cmd) ->
-  ?DEBUG("Seeking parallel src: ~s~n", [BinDir]),
+  %?DEBUG("Seeking parallel src: ~s~n", [BinDir]),
   case pose_file:find_parallel_folder("ebin", "src", BinDir) of
     {true, SrcPath} -> parallel_src(BinDir, Cmd, SrcPath);
     _Else           -> ?DEBUG("Didn't find parallel src\n"), nosrc
