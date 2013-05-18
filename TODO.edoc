@@ -1,4 +1,4 @@
-@todo pose_code: test for undefined
+@todo pose_code: fix comparisons
 @todo hot: throws namespace collisions
 @todo pose_code: rewrite do_load
 @todo pose_beam: review/refactor slurp
