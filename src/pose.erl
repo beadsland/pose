@@ -54,7 +54,7 @@
 -export([exec/2]).
 
 % Process variable functions
--export([set_env/2, get_env/1, init_path/0, get_path/0]).
+-export([set_env/2, env/1, deps/0, init_path/0, path/0]).
 
 % pose_command helper function
 -export([send_load_warnings/3]).
@@ -108,25 +108,29 @@ exec(IO, ARG) ->
     {error, What}     -> exit(What)
   end.
 
--spec get_env(Key :: atom()) -> term().
-%% @doc Look up a value among the `pose' process environment variables.
-get_env(Key) -> proplists:get_value(Key, get(env)).
+-spec env(Key :: atom()) -> term().
+%% @doc Return a value among the `pose' process environment variables.
+env(Key) -> proplists:get_value(Key, get(env)).
 
 -spec set_env(Key :: atom(), Value :: term()) -> term().
 %% @doc Assign a value to a `pose' process environment variable.
 set_env(Key, Value) -> 
   put(env, [{Key, Value} | proplists:delete(Key, get(env))]), Value.
 
+-spec deps() -> string().
+%% @doc Return project subdirectory in which project dependencies are found.
+deps() ->
+  case init:get_argument(deps) of {ok, [[Value]]} -> Value; true -> "deps" end.
+
 -spec init_path() -> list().
 %% @doc Initialize the search path for `pose' command modules.
 init_path() ->
-  Deps = case init:get_argument(deps) of {ok, [[Value]]} -> Value; true -> "deps" end,
-  DepsPath = filelib:wildcard(lists:append(filename:absname(Deps), "/*/ebin")),
+  DepsPath = filelib:wildcard(lists:append(filename:absname(pose:deps()), "/*/ebin")),
   set_env('PATH', [filename:absname("ebin") | DepsPath]).
 
--spec get_path() -> list().
+-spec path() -> list().
 %% @doc Return the current search path for `pose' command modules.
-get_path() -> get_env('PATH').
+path() -> env('PATH').
 
 -type command() :: atom() | string().
 -type warning() :: pose_command:load_mod_warn().

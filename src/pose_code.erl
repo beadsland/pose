@@ -217,7 +217,7 @@ load(Command) -> load_module(Command).
 %% variable, compiling and loading updated module as necessary.
 %% @end
 %% @deprecated Initial PATH search should be done by pose_command.
-load_module(Command) -> load_module(Command, pose:get_path()).
+load_module(Command) -> load_module(Command, pose:path()).
 
 -type directory() :: file:filename().
 -type search_path() :: [directory()].
