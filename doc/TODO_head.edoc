@@ -1,8 +1,8 @@
-@todo pose: pass env with each spawn
-@todo pose: set path and iwd one time only
+@todo pose: pass env with each spawn (pose:init/1)
+@todo pose: set path and iwd one time only (pose:init/2)
+@todo macro: refactor doexit and donoise
 @todo posure: report absname calls
 @todo pose: refactor absname assumption of pwd
 @todo pose_code: refactor path search to pose_command
 @todo pose_code: elim load/1
-@todo pose_code: elim load_module/1
-@todo ...plus 26 more (see TODO.edoc)
+@todo ...plus 27 more (see TODO.edoc)

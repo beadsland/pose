@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose: pass env with each spawn</font>
-* <font color="red">pose: set path and iwd one time only</font>
+* <font color="red">pose: pass env with each spawn (pose:init/1)</font>
+* <font color="red">pose: set path and iwd one time only (pose:init/2)</font>
+* <font color="red">macro: refactor doexit and donoise</font>
 * <font color="red">posure: report absname calls</font>
 * <font color="red">pose: refactor absname assumption of pwd</font>
 * <font color="red">pose_code: refactor path search to pose_command</font>
 * <font color="red">pose_code: elim load/1</font>
-* <font color="red">pose_code: elim load_module/1</font>
-* <font color="red">...plus 26 more (see TODO.edoc)
+* <font color="red">...plus 27 more (see TODO.edoc)
 </font>
 
 
