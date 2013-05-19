@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">pose_code: refactor path search to pose_command</font>
 * <font color="red">pose_code: elim load/1</font>
 * <font color="red">pose_code: elim load_module/1</font>
-* <font color="red">...plus 27 more (see TODO.edoc)
+* <font color="red">...plus 28 more (see TODO.edoc)
 </font>
 
 
