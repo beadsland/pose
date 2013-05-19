@@ -142,7 +142,8 @@ format_erldump(Term, Stack) ->
   io_lib:format("~s~s", [Reason, StripTrace]).
 
 % Format as Erlang expection if runtime error, otherwise handle locally.
-format_erlrun(Atom, Stack) when is_atom(Atom) -> format_erlrun1(Atom, Stack);
+format_erlrun(Atom, Stack) when is_atom(Atom); is_list(Atom) -> 
+  format_erlrun1(Atom, Stack);
 format_erlrun({Atom, _Term}=Tuple, Stack) when is_atom(Atom) ->
   format_erlrun2(Tuple, Stack);
 format_erlrun({Atom, _T1, _T2, _T3}=Tuple, Stack) when is_atom(Atom) ->
