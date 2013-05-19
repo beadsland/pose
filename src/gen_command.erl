@@ -94,6 +94,7 @@ behaviour_info(_) -> undefined.
 % Start as a `pose' command as a blocking function.
 start(Param, Module) ->
   IO = ?IO(self(), true), % assume erlang io with no ctrl-d available for eof
+  pose:init(IO),
   ARG = ?ARG(Module, Param),
   RunPid = spawn_link(?MODULE, run, [IO, ARG, ?ENV, Module]),
   ?MODULE:loop(IO, RunPid).
@@ -121,6 +122,7 @@ load_command(IO, Command) ->
 
 -spec get_version(Module :: module()) -> string().
 %% @doc Smart VERSION/1 macro function.
+%% @deprecated
 get_version(Module) ->
   Suffix = case init:get_argument(deps) of
     {ok, [["deps"]]} 	-> "";
@@ -146,16 +148,14 @@ loop(IO, RunPid) ->
     {'EXIT', RunPid, ok}            -> ok;
     {'EXIT', RunPid, {ok, What}}    -> do_output(erlout, What), {ok, What};
     {'EXIT', RunPid, Reason}        -> do_erlexit(RunPid, Reason);
-    {'EXIT', OtherPid, normal}      -> do_other_exit(OtherPid),
-                                       ?MODULE:loop(IO, RunPid);
+    {'EXIT', ExitPid, normal}       -> ?DOEXIT, ?MODULE:loop(IO, RunPid);
     {debug, SelfPid, Output}        -> do_output(debug, Output),
                                        ?MODULE:loop(IO, RunPid);
     {stdin, RunPid, captln}			-> do_input(RunPid),
                                        ?MODULE:loop(IO, RunPid);
     {MsgTag, RunPid, Output}        -> do_output(MsgTag, Output),
                                        ?MODULE:loop(IO, RunPid);
-    Noise                           -> do_noise(Noise),
-                                       ?MODULE:loop(IO, RunPid)
+    Noise                           -> ?DONOISE, ?MODULE:loop(IO, RunPid)
   end.
 
 % Insinuate RunPid into formatted erlerr output string.
@@ -181,14 +181,6 @@ do_input(RunPid) ->
     Line			-> RunPid ! {stdout, self(), Line}
   end.
 
-% Handle extraneous exit messages
-do_other_exit(OtherPid) ->
-  case get(debug) of
-    undefined   -> false;
-    _Else       -> Msg = io_lib:format("Saw ~p exit~n", [OtherPid]),
-                   do_output(debug, Msg)
-  end.
-
 % Handle stderr and stdout messages.
 do_output(MsgTag, Output) ->
   case MsgTag of
@@ -199,7 +191,3 @@ do_output(MsgTag, Output) ->
     stderr  -> io:format(standard_error, "** ~s", [Output]);
     debug   -> io:format(standard_error, "-- ~s", [Output])
   end.
-
-% Handle message queue noise.
-do_noise(Noise) ->
-  io:format(standard_error, "~s ~p: noise: ~p~n", [?MODULE, self(), Noise]).
