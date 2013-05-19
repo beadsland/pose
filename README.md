@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">pose: path: os-based path separator</font>
 * <font color="red">pose_compile: get_otp_package not getting windows drive</font>
 * <font color="red">pose: init environment (allow multiple starts)</font>
 * <font color="red">nosh: init environment</font>
 * <font color="red">boostrap: init environment</font>
 * <font color="red">pose: set path and iwd one time only (pose:init/2)</font>
 * <font color="red">macro: refactor doexit and donoise</font>
-* <font color="red">posure: report absname calls</font>
-* <font color="red">...plus 30 more (see TODO.edoc)
+* <font color="red">...plus 31 more (see TODO.edoc)
 </font>
 
 
