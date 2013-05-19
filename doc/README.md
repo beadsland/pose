@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">stdio: long list being converted to eol loop</font>
+* <font color="red">folderl: long list being converted to eol loop</font>
 * <font color="red">noterm: pass env to nosh</font>
 * <font color="red">nosh: pose:exec: support init/env</font>
 * <font color="red">boostrap: init environment</font>
