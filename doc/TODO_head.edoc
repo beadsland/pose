@@ -1,8 +1,8 @@
-@todo noterm: pass env to nosh
-@todo nosh: pose:exec: support init/env
-@todo boostrap: init environment
 @todo pose: do we need a separate pose:init/1
 @todo pose_command: "Pose loading command" excess eol
 @todo macro: refactor doexit and donoise
 @todo interface: doexit: swap command for pid
-@todo ...plus 31 more (see TODO.edoc)
+@todo posure: report absname calls
+@todo pose: refactor absname assumption of pwd
+@todo pose_code: refactor path search to pose_command
+@todo ...plus 28 more (see TODO.edoc)
