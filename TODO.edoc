@@ -1,4 +1,4 @@
-@todo newline infinite loop
+@todo stdio: long list being converted to eol loop
 @todo noterm: pass env to nosh
 @todo nosh: pose:exec: support init/env
 @todo boostrap: init environment
