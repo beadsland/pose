@@ -1,6 +1,3 @@
-@todo pose: path: os-based path separator
-@todo pose_compile: get_otp_package not getting windows drive
-@todo pose: init environment (allow multiple starts)
 @todo nosh: init environment
 @todo boostrap: init environment
 @todo pose: set path and iwd one time only (pose:init/2)

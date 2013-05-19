@@ -1,8 +1,8 @@
-@todo pose: path: os-based path separator
-@todo pose_compile: get_otp_package not getting windows drive
 @todo pose: init environment (allow multiple starts)
 @todo nosh: init environment
 @todo boostrap: init environment
 @todo pose: set path and iwd one time only (pose:init/2)
 @todo macro: refactor doexit and donoise
-@todo ...plus 31 more (see TODO.edoc)
+@todo posure: report absname calls
+@todo pose: refactor absname assumption of pwd
+@todo ...plus 28 more (see TODO.edoc)
