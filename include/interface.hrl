@@ -48,9 +48,9 @@
 
 % ENV is third parameter to pose entry points.
 -type env_prop() :: atom() | {atom(), string()}.
--record(env, {plist = [] :: [env_prop()]}).
+-record(env, {all = [] :: [env_prop()]}).
 
--define(ENV, #env{}).
+-define(ENV, #env{all = pose:env()}).
 
 % STDERR and STDOUT work only in functions that receive IO parameter
 -ifdef(package).
@@ -79,6 +79,6 @@
 -define(DEBUG(Output), debug, put(devnull, Output)).
 -endif.
 
-% Macros for concice receive loops.
+% Macros for concise receive loops.
 -define(DOEXIT, ?DEBUG("~s ~p: saw ~p exit~n", [?MODULE, self(), ExitPid])).
 -define(DONOISE, ?DEBUG("~s ~p: noise: ~p~n", [?MODULE, self(), Noise])).

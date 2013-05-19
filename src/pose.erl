@@ -34,7 +34,7 @@
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -50,23 +50,20 @@
 % Private callbacks
 -export([do_run/2]).
 
-% Internal entry functions
--export([exec/2]).
+% Nosh entry point
+-export([exec/3]).
 
-% Behind the curtain initialization
--export([init/2]).
+% Pose initialization
+-export([init/1, init/2]).
 
 % Process variable functions
--export([setenv/2, env/1, deps/0, path/0]).
+-export([setenv/2, env/0, env/1, deps/0, iwd/0, setpath/1, path/0]).
 
-% pose_command helper function
--export([send_load_warnings/3]).
-
-% private functions
--export([argv/2]).
+% Interface helper functions
+-export([send_load_warnings/3, argv/2]).
 
 %%
-%% gen_command API functions
+%% API Functions
 %%
 
 -spec start() -> no_return().
@@ -82,7 +79,7 @@ start(Param) -> gen_command:start(Param, ?MODULE).
 run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 
 %%
-%% gen_command callback functions
+%% Callback Functions
 %%
 
 %% @private Callback entry point for gen_command behaviour.
@@ -96,13 +93,14 @@ do_run(IO, PoseARG) ->
   end.
 
 %%
-%% other API functions
-%%
+%% Nosh Entry Point
+%% 
 
--spec exec(IO :: #std{}, ARG :: #arg{}) -> no_return().
-%% @doc Execute a command within the current process.
-exec(IO, ARG) ->
-  init(IO, ?ENV),
+-spec exec(IO :: #std{}, ARG :: #arg{}, ENV :: #env{}) -> no_return().
+%% @private Execute a command within the current process.
+%% @todo Review nosh and confirm it actually needs a separate entry point.
+exec(IO, ARG, ENV) ->
+  init(IO, ENV),
   Command = ?ARGV(0),
   ?DEBUG("Executing ~p ~p~n", [Command, self()]),
   case gen_command:load_command(IO, Command) of
@@ -110,40 +108,86 @@ exec(IO, ARG) ->
     {error, What}     -> exit(What)
   end.
 
+%%
+%% Pose Initialization Functions
+%%
+
 -spec init(IO :: #std{}, ENV :: #env{}) -> ok.
-%% @doc Initialize the search path for `pose' command modules.
+%% @doc Initialize `pose' process.
 init(IO, ENV) ->
   process_flag(trap_exit, true),
   put(debug, IO#std.err),
-  put(env, ENV#env.plist),
-  setenv('IWD', filename:absname("")),  % no good, IWD needs to be inherited
-  DepsPath = filelib:wildcard(filename:join([iwd(), deps(), "*/ebin"])),                               
-  setenv('PATH', [filename:join(iwd(), "ebin") | DepsPath]),
+  put(env, ENV#env.all),
   ok.
+  
+-spec init(IO :: #std{}) -> ok.
+%% @hidden Initialize system-initial environment variables.
+init(IO) ->
+  case get(env) of
+    undefined   -> put(env, []);
+    _Plist      -> true
+  end,
+  setenv('IWD', filename:absname("")),
+  DepsPath = filelib:wildcard(filename:join([iwd(), deps(), "*/ebin"])),                               
+  setpath([filename:join(iwd(), "ebin") | DepsPath]),
+  init(IO, ?ENV).
+
+%%
+%% System Properties
+%%
 
 -spec deps() -> string().
 %% @doc Return project subdirectory in which project dependencies are found.
 deps() ->
   case init:get_argument(deps) of {ok, [[Value]]} -> Value; true -> "deps" end.
 
+-spec iwd() -> string().
+%% @doc Return the initial working directory of the Erlang runtime.
+iwd() -> env('IWD').
+
+%%%
+% Process Environment Variables
+%%%
+
+-spec env() -> #env{}.
+%% @doc Return a record of all `pose' process environment variables.
+env() -> 
+  case get(env) of 
+    undefined -> erlang:error(environment_uninitialized);
+    _Plist    -> get(env)
+  end.
+
 -spec env(Key :: atom()) -> term().
 %% @doc Return a value among the `pose' process environment variables.
-env(Key) -> proplists:get_value(Key, get(env)).
+env(Key) -> proplists:get_value(Key, env()).
 
 -spec setenv(Key :: atom(), Value :: term()) -> term().
 %% @doc Assign a value to a `pose' process environment variable, such that
 %% it will be shared with `pose' subprocesses that inherit the environment.
 %% @end
-setenv(Key, Value) -> 
-  put(env, [{Key, Value} | proplists:delete(Key, get(env))]), Value.
+setenv(Key, Value) ->
+  put(env, [{Key, Value} | proplists:delete(Key, env())]), Value.
 
--spec iwd() -> string().
-%% @doc Return the initial working directory of the Erlang runtime.
-iwd() -> env('IWD').
+%%%
+% Command search PATH
+%%%
 
--spec path() -> list().
+-type directory() :: string().
+-type path_list() :: [directory()].
+-spec setpath(Path :: path_list()) -> path_list().
+%% @doc Set the search path for `pose' command modules.
+setpath(Path) -> setenv('PATH', string:join(Path, pathsep())).
+
+-spec path() -> path_list().
 %% @doc Return the current search path for `pose' command modules.
-path() -> env('PATH').
+path() -> string:tokens(env('PATH'), pathsep()).
+
+% Return OS specific path separator.
+pathsep() -> case os:type() of {unix, _} -> ":"; {win32, _} -> ";" end.
+
+%%
+%% Interface Functions
+%%
 
 -type command() :: atom() | string().
 -type warning() :: pose_command:load_mod_warn().
@@ -173,10 +217,6 @@ send_load_warnings(IO, Command, Warnings) ->
      true                       ->
        send_load_warnings(IO, Command, Warnings, false, R15)
   end.
-
-%%
-%% Private API functions
-%%
 
 % @private Smart argument lookup function for ?ARGV(X) macro.
 argv(ARG, N) ->
