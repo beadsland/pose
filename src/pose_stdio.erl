@@ -150,7 +150,7 @@ format_erlrun({Atom, _T1, _T2, _T3}=Tuple, Stack) when is_atom(Atom) ->
   format_erlrun4(Tuple, Stack).
 
 % Try to obtain runtime error string for atoms.
-format_erlrun1(Atom, [Head | _Tail]) when is_atom(Atom) -> 
+format_erlrun1(Atom, [Head | _Tail]) -> 
   IsRuntime = lists:member(Atom, ?RUNTIME1),
   IsRunshell = lists:member(Atom, ?RUNSHELL1),
   if IsRuntime  -> format_erlrun(Atom, [Head], error);
