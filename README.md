@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose:exec: support init/2</font>
+* <font color="red">nosh: pose:exec: support init</font>
 * <font color="red">boostrap: init environment</font>
 * <font color="red">pose: do we need a separate pose:init/1</font>
+* <font color="red">pose_command: "Pose loading command" excess eol</font>
 * <font color="red">macro: refactor doexit and donoise</font>
 * <font color="red">posure: report absname calls</font>
 * <font color="red">pose: refactor absname assumption of pwd</font>
-* <font color="red">pose_code: refactor path search to pose_command</font>
-* <font color="red">...plus 28 more (see TODO.edoc)
+* <font color="red">...plus 29 more (see TODO.edoc)
 </font>
 
 

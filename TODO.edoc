@@ -1,6 +1,7 @@
-@todo pose:exec: support init/2
+@todo nosh: pose:exec: support init/env
 @todo boostrap: init environment
 @todo pose: do we need a separate pose:init/1
+@todo pose_command: "Pose loading command" excess eol
 @todo macro: refactor doexit and donoise
 @todo posure: report absname calls
 @todo pose: refactor absname assumption of pwd
