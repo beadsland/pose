@@ -19,7 +19,7 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_compile: get_otp_package losing windows drive</font>
+* <font color="red">pose_compile: get_otp_package not getting windows drive</font>
 * <font color="red">pose: init environment (allow multiple starts)</font>
 * <font color="red">nosh: init environment</font>
 * <font color="red">boostrap: init environment</font>
