@@ -121,7 +121,7 @@ Smart VERSION/1 macro function.<a name="load_command-2"></a>
 ###run/4##
 
 
-	run(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, ARG::#arg{cmd = atom(), v = list()}, ENV::#env{plist = [<a href="#type-env_prop">env_prop()</a>]}, Module::module()) -> no_return()
+	run(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, ARG::#arg{cmd = atom(), v = list()}, ENV::#env{all = [<a href="#type-env_prop">env_prop()</a>]}, Module::module()) -> no_return()
 <br></br>
 
 

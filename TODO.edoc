@@ -1,6 +1,3 @@
-@todo noterm: pass env to nosh
-@todo nosh: pose:exec: support init/env
-@todo boostrap: init environment
 @todo pose: do we need a separate pose:init/1
 @todo pose_command: "Pose loading command" excess eol
 @todo macro: refactor doexit and donoise
