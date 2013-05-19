@@ -4,6 +4,7 @@
 @todo pose: do we need a separate pose:init/1
 @todo pose_command: "Pose loading command" excess eol
 @todo macro: refactor doexit and donoise
+@todo interface: doexit: swap command for pid
 @todo posure: report absname calls
 @todo pose: refactor absname assumption of pwd
 @todo pose_code: refactor path search to pose_command
