@@ -18,17 +18,17 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved.
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
 %% @doc Entry points for running `pose'-compatible commands.
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
-%% @copyright 2012 Beads D. Land-Trujillo
+%% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.8
+%% @version 0.1.9
 -module(pose).
--version("0.1.8").
+-version("0.1.9").
 
 %%
 %% Include files
@@ -54,10 +54,10 @@
 -export([exec/3]).
 
 % Pose initialization
--export([init/1, init/2]).
+-export([init/2]).
 
 % Process variable functions
--export([setenv/2, env/0, env/1, deps/0, iwd/0, setpath/1, path/0]).
+-export([startenv/0, setenv/2, env/0, env/1, deps/0, iwd/0, setpath/1, path/0]).
 
 % Interface helper functions
 -export([send_load_warnings/3, argv/2]).
@@ -120,18 +120,6 @@ init(IO, ENV) ->
   put(env, ENV#env.all),
   ok.
   
--spec init(IO :: #std{}) -> ok.
-%% @hidden Initialize system-initial environment variables.
-init(IO) ->
-  case get(env) of
-    undefined   -> put(env, []);
-    _Plist      -> true
-  end,
-  setenv('IWD', filename:absname("")),
-  DepsPath = filelib:wildcard(filename:join([iwd(), deps(), "*/ebin"])),                               
-  setpath([filename:join(iwd(), "ebin") | DepsPath]),
-  init(IO, ?ENV).
-
 %%
 %% System Properties
 %%
@@ -149,6 +137,18 @@ iwd() -> env('IWD').
 % Process Environment Variables
 %%%
 
+-spec startenv() -> #env{}.
+%% @doc Initialize system-initial environment variables.
+startenv() -> startenv(get(env)).
+
+startenv(undefined) -> 
+  put(env, []),
+  setenv('IWD', filename:absname("")),
+  DepsPath = filelib:wildcard(filename:join([iwd(), deps(), "*/ebin"])),                               
+  setpath([filename:join(iwd(), "ebin") | DepsPath]),
+  ?ENV;
+startenv(_) -> ?ENV.
+  
 -spec env() -> #env{}.
 %% @doc Return a record of all `pose' process environment variables.
 env() -> 

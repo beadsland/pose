@@ -1,4 +1,3 @@
-@todo pose: do we need a separate pose:init/1
 @todo pose_command: "Pose loading command" excess eol
 @todo macro: refactor doexit and donoise
 @todo interface: doexit: swap command for pid
@@ -13,6 +12,7 @@
 @todo pose_code: rewrite do_load
 @todo pose_beam: review/refactor slurp
 @todo stdio: beam_lib:format_error (and beam_lib, file_error)
+@todo pose: make good
 @todo test all projects working under r16
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
