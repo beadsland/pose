@@ -1,8 +1,8 @@
 @todo pose_command: "Pose loading command" excess eol
+@todo gen_command: sees same pids close twice
 @todo macro: refactor doexit and donoise
 @todo interface: doexit: swap command for pid
 @todo posure: report absname calls
 @todo pose: refactor absname assumption of pwd
 @todo pose_code: refactor path search to pose_command
-@todo pose_code: elim load/1
-@todo ...plus 28 more (see TODO.edoc)
+@todo ...plus 29 more (see TODO.edoc)

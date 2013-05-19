@@ -20,13 +20,13 @@ which was removed in Erlang/OTP R16.
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">pose_command: "Pose loading command" excess eol</font>
+* <font color="red">gen_command: sees same pids close twice</font>
 * <font color="red">macro: refactor doexit and donoise</font>
 * <font color="red">interface: doexit: swap command for pid</font>
 * <font color="red">posure: report absname calls</font>
 * <font color="red">pose: refactor absname assumption of pwd</font>
 * <font color="red">pose_code: refactor path search to pose_command</font>
-* <font color="red">pose_code: elim load/1</font>
-* <font color="red">...plus 28 more (see TODO.edoc)
+* <font color="red">...plus 29 more (see TODO.edoc)
 </font>
 
 
