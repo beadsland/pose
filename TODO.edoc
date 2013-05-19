@@ -1,5 +1,4 @@
-@todo pose_command: "Pose loading command" excess eol
-@todo gen_command: sees same pids close twice
+@todo nosh: duplicate stdout/stderr
 @todo macro: refactor doexit and donoise
 @todo interface: doexit: swap command for pid
 @todo posure: report absname calls
