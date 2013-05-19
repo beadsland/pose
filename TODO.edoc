@@ -1,6 +1,5 @@
-@todo nosh: duplicate stdout/stderr
+@todo folderl: duplicate stdout/stderr
 @todo macro: refactor doexit and donoise
-@todo interface: doexit: swap command for pid
 @todo posure: report absname calls
 @todo pose: refactor absname assumption of pwd
 @todo pose_code: refactor path search to pose_command
