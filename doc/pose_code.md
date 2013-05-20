@@ -11,7 +11,7 @@ Intuitive module loader, used by [`pose_command`](pose_command.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.9
+__Version:__ 0.1.10
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
@@ -229,14 +229,6 @@ modules will run in their own unique namespace when loaded in a
 
 
 
-###<a name="type-command">command()</a>##
-
-
-
-	command() = <a href="pose.md#type-command">pose:command()</a>
-
-
-
 ###<a name="type-directory">directory()</a>##
 
 
@@ -300,7 +292,7 @@ compiling and loading updated module as necessary.</td></tr></table>
 ###load_module/2##
 
 
-	load_module(Command::<a href="#type-command">command()</a>, Path::<a href="#type-search_path">search_path()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a>
+	load_module(Command::<a href="pose.md#type-command">pose:command()</a>, Path::<a href="#type-search_path">search_path()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a>
 <br></br>
 
 

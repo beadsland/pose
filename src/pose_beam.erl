@@ -26,9 +26,9 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.3
+%% @version 0.1.4
 -module(pose_beam).
--version("0.1.3"). 
+-version("0.1.4"). 
 
 %%
 %% Include files
@@ -80,7 +80,7 @@ get_attribute(Beam, Attribute) ->
     {ok, Data}              -> {ok, proplists:get_value(Attribute, Data)}
   end.
 
--type source() :: string() | undefined.
+-type source() :: file:filename() | undefined.
 -spec get_source(Beam :: beam()) -> {ok, source()} | chunk_error().
 %% @doc Get .erl file source of a beam.
 get_source(Beam) ->
@@ -89,7 +89,7 @@ get_source(Beam) ->
     {info, missing_chunk} -> {ok, undefined};
     {ok, Data}            -> {ok, proplists:get_value(source, Data)}
   end.
-  
+
 -type module_version() :: term() | [term()].
 -spec get_module_vsn(Beam :: beam()) -> {ok, module_version()} | chunk_error().
 %% @doc Get version of a beam.
