@@ -1,8 +1,8 @@
-@todo pose_code: refactor path search to pose_command
-@todo pose_code: elim load/1
-@todo pose_code: elim load_module/1
 @todo pose_command: code:which/1 not reliably providing ebin dir
 @todo hot: only swapping "pose", not submodules
 @todo hot: crashing on multiple changes
 @todo pose_code: rewrite do_load
-@todo ...plus 24 more (see TODO.edoc)
+@todo pose_beam: review/refactor slurp
+@todo stdio: beam_lib:format_error (and beam_lib, file_error)
+@todo pose: make good
+@todo ...plus 21 more (see TODO.edoc)
