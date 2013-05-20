@@ -1,6 +1,3 @@
-@todo folderl: duplicate stdout/stderr
-@todo macro: refactor doexit and donoise
-@todo posure: report absname calls
 @todo pose: refactor absname assumption of pwd
 @todo pose_code: refactor path search to pose_command
 @todo pose_code: elim load/1
