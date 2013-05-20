@@ -102,7 +102,7 @@ run(IO, ARG, ENV) -> gen_command:run(IO, ARG, ENV, ?MODULE).
 %% @private Callback entry point for gen_command behaviour.
 do_run(IO, ARG) ->
   ?STDOUT("Running Posure ~s package import checker~n", [?VERSION(?MODULE)]),
-  Src = filename:absname("src"),
+  Src = filename:join(pose:iwd(), "src"),
   Pattern = lists:append(Src, "/*.erl"),
   Source = filelib:wildcard(Pattern),
   case slurp_pose_sources(Source) of

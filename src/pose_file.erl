@@ -165,11 +165,7 @@ find_parallel_folder(OldFldr, NewFldr, {folders, [Head | Tail]}) ->
 %% @doc Ascend absolute path of file relative to current working directory, to 
 %% obtain its canonical system path.
 %% @end
-realname(File) ->
-  case file:get_cwd() of
-    {error, Reason} -> {error, {cwd, Reason}};
-    {ok, Dir}       -> realname(File, Dir)
-  end.
+realname(File) -> realname(File, pose:iwd()).
 
 -type exit_status() :: integer().
 -type realname_error() :: {error, {exit_status(), [string()]}}.
@@ -183,12 +179,10 @@ realname(File, Dir) when is_binary(File) -> realname(binary_to_list(File), Dir);
 realname(File, Dir) -> {OS, _} = os:type(), realname(File, Dir, OS).
 
 % Determine absolute path, dealing as necessary with UNC paths.
-realname([First | [Second | Rest]], _Dir, win32) when First==$\\, Second==$\\;
-                                                      First==$/, Second==$/ ->
-  do_realname(unc, [First | [Second | Rest]]);
-realname(File, [First | [Second | Rest]], win32) when First==$\\, Second==$\\;
-                                                      First==$/, Second==$/ ->
-  do_realname(unc, filename:absname(File, [First | [Second | Rest]]));
+realname([F, S | _Rest]=File, _Dir, win32) when F==$\\, S==$\\; F==$/, S==$/ ->
+  do_realname(unc, File);
+realname(File, [F, S | _Rest]=Dir, win32) when F==$\\, S==$\\; F==$/, S==$/ ->
+  do_realname(unc, filename:absname(File, Dir));
 realname(File, Dir, OS) ->
   AbsName = filename:absname(File, Dir),
   case realname_by_cwd(AbsName) of

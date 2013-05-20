@@ -219,8 +219,7 @@ now_compile_error(Filename, Errors, Warnings) ->
 
 %% @todo make this chdir safe
 get_otp_package(BinDir) ->
-  Pwd = filename:absname(""),
-  {ok, MP} = re:compile("^" ++ Pwd ++ "/(.*)$"),
+  {ok, MP} = re:compile("^" ++ pose:iwd() ++ "/(.*)$"),
   case re:run(BinDir, MP, [{capture, [1], list}]) of
     nomatch         -> {error, off_pwd};
     {match, [Path]} -> get_otp_package(BinDir, Path)
@@ -250,7 +249,7 @@ get_otp_includes(BinDir) ->
   case pose_file:find_parallel_folder("ebin", "_temp_", BinDir) of
     {true, TempDir} ->
       {ok, get_otp_includes(TempDir, ["apps"]) ++
-           get_otp_includes(filename:absname("_temp_"), [Deps])};
+           get_otp_includes(filename:join(pose:iwd(), "_temp_"), [Deps])};
     {false, BinDir} ->
       {error, not_otp}
   end.

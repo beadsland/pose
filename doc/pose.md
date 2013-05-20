@@ -9,9 +9,9 @@
 
 Entry points for running `pose`-compatible commands.
 
-Copyright (c) 2012 Beads D. Land-Trujillo
+Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.8
+__Version:__ 0.1.9
 
 __Behaviours:__ [`gen_command`](gen_command.md).
 
@@ -67,7 +67,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 <table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#deps-0">deps/0</a></td><td>Return project subdirectory in which project dependencies are found.</td></tr><tr><td valign="top"><a href="#env-0">env/0</a></td><td>Return a record of all <code>pose</code> process environment variables.</td></tr><tr><td valign="top"><a href="#env-1">env/1</a></td><td>Return a value among the <code>pose</code> process environment variables.</td></tr><tr><td valign="top"><a href="#init-2">init/2</a></td><td>Initialize <code>pose</code> process.</td></tr><tr><td valign="top"><a href="#iwd-0">iwd/0</a></td><td>Return the initial working directory of the Erlang runtime.</td></tr><tr><td valign="top"><a href="#path-0">path/0</a></td><td>Return the current search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#run-3">run/3</a></td><td></td></tr><tr><td valign="top"><a href="#send_load_warnings-3">send_load_warnings/3</a></td><td>Send messages to <code>stderr</code> process detailing any warnings received from
 <code>pose_command:load/1</code>.</td></tr><tr><td valign="top"><a href="#setenv-2">setenv/2</a></td><td>Assign a value to a <code>pose</code> process environment variable, such that
-it will be shared with <code>pose</code> subprocesses that inherit the environment.</td></tr><tr><td valign="top"><a href="#setpath-1">setpath/1</a></td><td>Set the search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr></table>
+it will be shared with <code>pose</code> subprocesses that inherit the environment.</td></tr><tr><td valign="top"><a href="#setpath-1">setpath/1</a></td><td>Set the search path for <code>pose</code> command modules.</td></tr><tr><td valign="top"><a href="#start-0">start/0</a></td><td>Equivalent to <a href="#start-1"><tt>start([])</tt></a>.</td></tr><tr><td valign="top"><a href="#start-1">start/1</a></td><td>Start as a blocking function.</td></tr><tr><td valign="top"><a href="#startenv-0">startenv/0</a></td><td>Initialize system-initial environment variables.</td></tr></table>
 
 
 <a name="functions"></a>
@@ -185,4 +185,13 @@ Equivalent to [`start([])`](#start-1).<a name="start-1"></a>
 <br></br>
 
 
-Start as a blocking function.
+Start as a blocking function.<a name="startenv-0"></a>
+
+###startenv/0##
+
+
+	startenv() -> #env{all = [<a href="#type-env_prop">env_prop()</a>]}
+<br></br>
+
+
+Initialize system-initial environment variables.
