@@ -174,9 +174,9 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.9
+%% @version 0.1.10
 -module(pose_code).
--version("0.1.9"). 
+-version("0.1.10"). 
 
 %%
 %% Include files
@@ -191,7 +191,7 @@
 %%
 
 % used from within pose applications
--export([load/1, load_module/1, load_module/2]).
+-export([load_module/2]).
 -export_type([load_err/0, load_warn/0]).
 
 -compile({no_auto_import, [load_module/2]}).
@@ -200,29 +200,16 @@
 %% API functions
 %%
 
--type command() :: pose:command().
 -type load_warn() :: diff_path | flat_pkg.
 -type error() :: atom() | {atom(), error()}.
 -type load_err() :: {load, error()} | {slurp, error()} | error().
 -type load_mod_rtn() :: {module, module()}
                         | {module, module(), load_warn()}
                         | {error, load_err()}.
--spec load(Command :: command()) -> load_mod_rtn().
-%% @equiv load_module(Command)
-%% @deprecated
-load(Command) -> load_module(Command).
-
--spec load_module(Command :: command()) -> load_mod_rtn().
-%% @doc Locate command on search path supplied by `PATH' environment
-%% variable, compiling and loading updated module as necessary.
-%% @end
-%% @deprecated Initial PATH search should be done by pose_command.
-load_module(Command) -> load_module(Command, pose:path()).
-
 -type directory() :: file:filename().
 -type search_path() :: [directory()].
--spec load_module(Command :: command(), Path :: search_path())
-           -> load_mod_rtn().
+-spec load_module(Command :: pose:command(), Path :: search_path())
+                                                            -> load_mod_rtn().
 %% @doc Locate command on search path supplied by `Path' parameter,
 %% compiling and loading updated module as necessary.
 %% @end

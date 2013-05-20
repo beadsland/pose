@@ -287,8 +287,7 @@ modules will run in their own unique namespace when loaded in a
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load-1">load/1</a></td><td>Equivalent to <a href="#load_module-1"><tt>load_module(Command)</tt></a>.</td></tr><tr><td valign="top"><a href="#load_module-1">load_module/1</a></td><td>(<em>Deprecated</em>.) Locate command on search path supplied by <code>PATH</code> environment
-variable, compiling and loading updated module as necessary.</td></tr><tr><td valign="top"><a href="#load_module-2">load_module/2</a></td><td>Locate command on search path supplied by <code>Path</code> parameter,
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#load_module-2">load_module/2</a></td><td>Locate command on search path supplied by <code>Path</code> parameter,
 compiling and loading updated module as necessary.</td></tr></table>
 
 
@@ -296,28 +295,7 @@ compiling and loading updated module as necessary.</td></tr></table>
 
 ##Function Details##
 
-<a name="load-1"></a>
-
-###load/1##
-
-
-	load(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a>
-<br></br>
-
-
-Equivalent to [`load_module(Command)`](#load_module-1).<a name="load_module-1"></a>
-
-###load_module/1##
-
-
-	load_module(Command::<a href="#type-command">command()</a>) -> <a href="#type-load_mod_rtn">load_mod_rtn()</a>
-<br></br>
-
-
-__This function is deprecated:__ Initial PATH search should be done by pose_command.
-
-Locate command on search path supplied by `PATH` environment
-variable, compiling and loading updated module as necessary.<a name="load_module-2"></a>
+<a name="load_module-2"></a>
 
 ###load_module/2##
 

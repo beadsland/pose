@@ -26,15 +26,15 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.7
+%% @version 0.1.8
 -module(pose_command).
--version("0.1.7").
+-version("0.1.8").
 
 %%
 %% Include files
 %%
 
-%-define(debug, true).
+-define(debug, true).
 -include_lib("pose/include/interface.hrl").
 -include_lib("pose/include/macro.hrl").
 
@@ -65,7 +65,7 @@ load(Command) -> load_command(Command).
 % @end
 load_command(Command) ->
   ?DEBUG("Pose loading command ~p~n", [Command]),
-  case pose_code:load_module(Command) of
+  case pose_code:load_module(Command, pose:path()) of
     {module, Module, Warning} -> load_command(Command, Module, [Warning]);
     {module, Module}          -> load_command(Command, Module, []);
     {error, What}             -> {error, What, []}
@@ -83,7 +83,6 @@ load_command(Command) ->
 %% @todo get PATH from environment
 %% @todo add to PATH from erl commandline
 load_command(Command, Module, Warnings) ->
-  %?BAIL(Module:module_info()),
   BinPath = filename:dirname(code:which(Module)),
   ?DEBUG({binpath, BinPath}),
   case pose_file:find_parallel_folder("ebin", "src", BinPath) of
