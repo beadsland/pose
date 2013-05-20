@@ -300,7 +300,7 @@ is_current(Module, Beam) ->
 
 % Compare loaded source file with source file of beam.
 same_source(Module, Beam) ->
-  LoadedSrc = proplists:get_value(vsn, Module:module_info(compile)),
+  LoadedSrc = proplists:get_value(source, Module:module_info(compile)),
   case pose_beam:get_source(Beam) of 
     {error, Reason}     -> {false, {diff_src, Reason}};
     {ok, undefined}     -> {false, {diff_src, undefined}};
