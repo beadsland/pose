@@ -1,8 +1,8 @@
-@todo pose: refactor absname assumption of pwd
 @todo pose_code: refactor path search to pose_command
 @todo pose_code: elim load/1
 @todo pose_code: elim load_module/1
 @todo pose_command: code:which/1 not reliably providing ebin dir
 @todo hot: only swapping "pose", not submodules
 @todo hot: crashing on multiple changes
-@todo ...plus 25 more (see TODO.edoc)
+@todo pose_code: rewrite do_load
+@todo ...plus 24 more (see TODO.edoc)
