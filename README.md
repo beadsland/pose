@@ -20,13 +20,13 @@ which was removed in Erlang/OTP R16.
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">pose:code: reporting diff_src unnecessarily</font>
-* <font color="red">pose_code: submit ebin to code:load</font>
 * <font color="red">pose_file: find_parallel_folder simple false</font>
 * <font color="red">pose_code: rewrite do_load</font>
 * <font color="red">pose_beam: review/refactor slurp</font>
 * <font color="red">stdio: beam_lib:format_error (and beam_lib, file_error)</font>
 * <font color="red">pose: make good</font>
-* <font color="red">...plus 21 more (see TODO.edoc)
+* <font color="red">test all projects working under r16</font>
+* <font color="red">...plus 20 more (see TODO.edoc)
 </font>
 
 
