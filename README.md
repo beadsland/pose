@@ -19,14 +19,14 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_command: srcpath/1, ebinpath/1</font>
-* <font color="red">pose_command: code:which/1 not reliably providing ebin dir</font>
 * <font color="red">hot: only swapping "pose", not submodules</font>
 * <font color="red">hot: crashing on multiple changes</font>
 * <font color="red">pose_code: submit ebin to code:load</font>
 * <font color="red">pose_file: find_parallel_folder simple false</font>
 * <font color="red">pose_code: rewrite do_load</font>
-* <font color="red">...plus 24 more (see TODO.edoc)
+* <font color="red">pose_beam: review/refactor slurp</font>
+* <font color="red">stdio: beam_lib:format_error (and beam_lib, file_error)</font>
+* <font color="red">...plus 22 more (see TODO.edoc)
 </font>
 
 
