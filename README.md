@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">hot: only swapping "pose", not submodules</font>
 * <font color="red">hot: crashing on multiple changes</font>
 * <font color="red">pose_code: submit ebin to code:load</font>
+* <font color="red">pose_file: find_parallel_folder simple false</font>
 * <font color="red">pose_code: rewrite do_load</font>
-* <font color="red">pose_beam: review/refactor slurp</font>
-* <font color="red">...plus 23 more (see TODO.edoc)
+* <font color="red">...plus 24 more (see TODO.edoc)
 </font>
 
 
