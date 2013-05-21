@@ -1,5 +1,3 @@
-@todo hot: only swapping "pose", not submodules
-@todo hot: crashing on multiple changes
 @todo pose_code: submit ebin to code:load
 @todo pose_file: find_parallel_folder simple false
 @todo pose_code: rewrite do_load

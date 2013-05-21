@@ -107,17 +107,17 @@ run(IO, ARG, ENV, Module) ->
   put(command, Module),
   Module:do_run(IO, ARG).
 
--type load_rtn() :: {module, module()} | {error, pose_code:load_err()}.
--spec load_command(IO :: #std{}, Command :: pose:command()) ->  load_rtn().
+-type load_return() :: {module, module()} | {error, pose_code:load_err()}.
+-spec load_command(IO :: #std{}, Command :: pose:command()) ->  load_return().
 % Load a pose command, sending off any warnings returned.
 load_command(IO, Command) ->
   case pose_command:load(Command) of
     {module, Module, Warnings}  ->
       pose:send_load_warnings(IO, Command, Warnings),
       {module, Module};
-    {error, What, Warnings}     ->
+    {error, Reason, Warnings}     ->
       pose:send_load_warnings(IO, Command, Warnings),
-      {error, What}
+      {error, Reason}
   end.
 
 -spec get_version(Module :: module()) -> string().

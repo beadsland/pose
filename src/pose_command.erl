@@ -43,32 +43,33 @@
 %%
 
 -export([load/1, load_command/1]).
--export_type([load_mod_warn/0]).
 
 %%
 %% API Functions
 %%
 
--type load_warn() :: pose_code:load_warn().
--type load_err() :: pose_code:load_err().
--type load_mod_warn() :: {module(), load_warn()} | load_warn().
--type load_cmd_rtn() :: {module, module(), [load_mod_warn()]}
-                        | {error, load_err(), [load_mod_warn()]}.
--spec load(Command :: pose:command()) -> load_cmd_rtn().
+-type load_warnings() :: [pose_code:load_warn()].
+-type load_result() :: {module, module(), load_warnings()}.
+-type load_err_term() :: pose_code:load_err() | nopath | {submodules, nopath}.
+-type load_error() :: {error, load_err_term(), load_warnings()}.
+-type load_return() :: load_result() | load_error().
+-spec load(Command :: pose:command()) -> load_return().
 %% @equiv load_command(Command)
 load(Command) -> load_command(Command).
 
--spec load_command(Command :: pose:command()) -> load_cmd_rtn().
+-spec load_command(Command :: pose:command()) -> load_return().
 % @doc Load a command module and all submodules in the same directory.
 % Here, a submodule is indicated by the syntax
 % <code><i>module</i>_<i>subpart</i></code>.
 % @end
+load_command(Command) when is_atom(Command) -> 
+  load_command(atom_to_list(Command));
 load_command(Command) ->
-  ?DEBUG("Pose loading command ~p~n", [Command]),
+  ?DEBUG("Pose loading command ~s~n", [Command]),
   case pose_code:load_module(Command, pose:path()) of
     {module, Module, Warning} -> load_command(Command, Module, [Warning]);
     {module, Module}          -> load_command(Command, Module, []);
-    {error, What}             -> {error, What, []}
+    {error, Reason}           -> {error, Reason}
   end.
 
 %%
@@ -81,93 +82,81 @@ load_command(Command) ->
 
 % Get the folder where submodules of our command are to be found.
 load_command(Command, Module, Warnings) ->
-  case proplists:get_value(source, Module:module_info(compile)) of
-    undefined -> {error, no_source};
-    Source    -> SrcPath = filename:dirname(Source),
-                 load_command(Command, Module, Warnings, SrcPath)
+  case srcpath(Module) of 
+    undefined -> EbinPath = ebinpath(Module),
+                 load_command(Command, Module, Warnings, EbinPath, ".beam");
+    SrcPath   -> load_command(Command, Module, Warnings, SrcPath, ".erl")
   end.
 
-load_command(Command, Module, Warnings, SrcPath) ->           
-  BinPath = SrcPath,
-  case pose_file:find_parallel_folder("src", "ebin", SrcPath) of
-    {true, BinPath}     ->
-      SubModList = get_submodule_list(Command, BinPath, {binpath, BinPath});
-    {false, SrcPath}    ->
-      SubModList = get_submodule_list(Command, BinPath, ".beam")
-  end,
-  ?DEBUG("submodule list: ~p~n", [SubModList]),
-  load_command(Command, Module, BinPath, Warnings, SubModList).
-
-srcpath(Module) ->
-  case proplists:get_value(source, Module:module_info(compile)) of 
-    undefined -> srcpath(Module, ebinpath(Module));
-    Source    -> filename:dirname(Source)
+% Find any submodules of command that are to be loaded.
+load_command(_Command, _Module, Warnings, undefined, _Extn) -> 
+  {error, nopath, Warnings};
+load_command(Command, Module, Warnings, Path, Extn) ->
+  BasePattern = string:concat(Command, string:concat("_*", Extn)),
+  Pattern = filename:join(Path, BasePattern),
+  SubMods = [get_submodule_subpattern(X) || X <- filelib:wildcard(Pattern)],
+  case pose_file:find_parallel_folder("src", "ebin", Path) of
+    {false, _}       -> {error, {submodules, nopath}};
+    {true, EbinPath} -> load_submodules(Module, EbinPath, Warnings, SubMods)
   end.
 
-srcpath(_Module, undefined) -> undefined;
-srcpath(Module, EbinPath) ->
-  case pose_file:find_parallel_folder("ebin", "src", EbinPath) of
-    {false, _}      -> undefined;
-    {true, SrcPath} -> SrcPath
+% Load each submodule, appending to warnings list as necessary.
+load_submodules(Module, _Path, Warnings, []) -> {module, Module, Warnings};
+load_submodules(Module, Path, Warnings, [Head | Tail]) ->  
+  ?DEBUG("Pose loading submodule ~s~n", [Head]),  
+  case pose_code:load_module(Head, [Path]) of
+    {module, _SubModule, NewWarn}   ->
+      UpdatedWarnings = [{Head, NewWarn} | Warnings],
+      load_submodules(Module, Path, UpdatedWarnings, Tail);
+    {module, _SubModule}            ->
+      load_submodules(Module, Path, Warnings, Tail);
+    {error, Reason}                 ->
+      {error, {Head, Reason}, Warnings}
   end.
 
-ebinpath(Module) ->
-  case code:is_loaded(Module) of
-    false                           -> undefined;
-    {file, Atom} when is_atom(Atom) -> ebinpath(Module, srcpath(Module));
-    {file, File}                    -> ebinpath(Module, File)
-  end.
-
-ebinpath(_Module, undefined) -> undefined;
-ebinpath(_Module, {false, _}) -> undefined;
-ebinpath(_Module, {true, Path}) -> Path; 
-ebinpath(Module, File) ->
-  case filename:extension(File) of
-    []      -> undefined;
-    ".beam" -> filename:dirname(File);
-    ".erl"  -> Dir = filename:dirname(File),
-               Parallel = pose_file:find_parallel_folder("ebin", "src", Dir),
-               ebinpath(Module, Parallel)
-  end.
-
-
-  
-
-
-
-
-% List submodules, in source folder, if readable, or else in binaries folder.
-get_submodule_list(Command, BinPath, Data) when is_atom(Command) ->
-  get_submodule_list(atom_to_list(Command), BinPath, Data);
-get_submodule_list(Command, BinPath, {srcpath, SrcPath}) ->
-  case pose_file:can_read(SrcPath) of
-    true            -> get_submodule_list(Command, SrcPath, ".erl");
-    false           -> get_submodule_list(Command, BinPath, ".beam");
-    {error, _What}  -> get_submodule_list(Command, BinPath, ".beam")
-  end;
-get_submodule_list(Command, Path, Extension) ->
-  Pattern = lists:append([Path, "/", Command, "_*", Extension]),
-  ?DEBUG({submodule_pattern, Pattern}),
-  WildList = filelib:wildcard(Pattern),
-  [get_submodule_subpattern(X) || X <- WildList].
-
-% Predicate function for get_submodule_list/3 list comprehension.
+% Predicate function for get_submodule_list list comprehension.
 get_submodule_subpattern(File) ->
   {ok, MP} = re:compile("^.*/([^/]+)\\.[beamrl]+$"),
   Options = [{capture, [1], list}],
   {match, [Module]} = re:run(File, MP, Options),
   list_to_atom(Module).
 
-% Load each submodule, appending to warnings list as necessary.
-load_command(_Command, Module, _BinPath, Warnings, []) ->
-  {module, Module, Warnings};
-load_command(Command, Module, BinPath, Warnings, [Head | Tail]) ->
-  case pose_code:load_module(Head, [BinPath]) of
-    {module, _SubModule, NewWarn}   ->
-      UpdatedWarnings = [{Head, NewWarn} | Warnings],
-      load_command(Command, Module, BinPath, UpdatedWarnings, Tail);
-    {module, _SubModule}            ->
-      load_command(Command, Module, BinPath, Warnings, Tail);
-    {error, What}                   ->
-      {error, {Head, What}, Warnings}
+% Try to determine the source directory of a module.
+srcpath(Module) ->
+  case srcinfo(Module) of 
+    undefined -> srcpath(Module, ebinpath(Module));
+    Source    -> filename:dirname(Source)
   end.
+
+% Look for source directory as parallel of binary directory.
+srcpath(_Module, undefined) -> undefined;
+srcpath(_Module, EbinPath) ->
+  case pose_file:find_parallel_folder("ebin", "src", EbinPath) of
+    {false, _}      -> undefined;
+    {true, SrcPath} -> SrcPath
+  end.
+
+% Get source file from compile info, unless it was stripped.
+srcinfo(Module) -> proplists:get_value(source, Module:module_info(compile)). 
+
+% Determine the binary directory of the module.
+ebinpath(Module) ->
+  case code:is_loaded(Module) of
+    false                           -> undefined;
+    {file, Atom} when is_atom(Atom) -> ebinpath(Module, srcinfo(Module));
+    {file, File}                    -> ebinpath(Module, File)
+  end.
+
+% Confirm we've got a binary path, or find it as parallel to a source path.
+ebinpath(_Module, undefined) -> undefined;
+ebinpath(Module, File) ->
+  case filename:extension(File) of
+    []      -> undefined;
+    ".beam" -> filename:dirname(File);
+    ".erl"  -> Dir = filename:dirname(File),
+               Parallel = pose_file:find_parallel_folder("src", "ebin", Dir),
+               ebinpath(Module, File, Parallel)
+  end.
+
+ebinpath(_Module, _File, {false, _}) -> undefined;
+ebinpath(_Module, _File, {true, Path}) -> Path.

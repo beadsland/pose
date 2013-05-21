@@ -72,11 +72,11 @@ as a non-zero status by `pose`.  Use an explicit `exit(ok)`, instead.
 
 
 
-###<a name="type-load_rtn">load_rtn()</a>##
+###<a name="type-load_return">load_return()</a>##
 
 
 
-	load_rtn() = {module, module()} | {error, <a href="pose_code.md#type-load_err">pose_code:load_err()</a>}
+	load_return() = {module, module()} | {error, <a href="pose_code.md#type-load_err">pose_code:load_err()</a>}
 <a name="index"></a>
 
 ##Function Index##
@@ -112,7 +112,7 @@ Smart VERSION/1 macro function.<a name="load_command-2"></a>
 ###load_command/2##
 
 
-	load_command(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_rtn">load_rtn()</a>
+	load_command(IO::#std{in = pid(), out = pid(), err = pid(), stop = boolean(), echo = boolean()}, Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_return">load_return()</a>
 <br></br>
 
 

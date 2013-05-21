@@ -11,7 +11,7 @@ Load command modules and submodules in a single operation.
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.7
+__Version:__ 0.1.8
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -21,35 +21,43 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-###<a name="type-load_cmd_rtn">load_cmd_rtn()</a>##
+###<a name="type-load_err_term">load_err_term()</a>##
 
 
 
-	load_cmd_rtn() = {module, module(), [<a href="#type-load_mod_warn">load_mod_warn()</a>]} | {error, <a href="#type-load_err">load_err()</a>, [<a href="#type-load_mod_warn">load_mod_warn()</a>]}
+	load_err_term() = <a href="pose_code.md#type-load_err">pose_code:load_err()</a> | nopath | {submodules, nopath}
 
 
 
-###<a name="type-load_err">load_err()</a>##
+###<a name="type-load_error">load_error()</a>##
 
 
 
-	load_err() = <a href="pose_code.md#type-load_err">pose_code:load_err()</a>
+	load_error() = {error, <a href="#type-load_err_term">load_err_term()</a>, <a href="#type-load_warnings">load_warnings()</a>}
 
 
 
-###<a name="type-load_mod_warn">load_mod_warn()</a>##
+###<a name="type-load_result">load_result()</a>##
 
 
 
-	load_mod_warn() = {module(), <a href="#type-load_warn">load_warn()</a>} | <a href="#type-load_warn">load_warn()</a>
+	load_result() = {module, module(), <a href="#type-load_warnings">load_warnings()</a>}
 
 
 
-###<a name="type-load_warn">load_warn()</a>##
+###<a name="type-load_return">load_return()</a>##
 
 
 
-	load_warn() = <a href="pose_code.md#type-load_warn">pose_code:load_warn()</a>
+	load_return() = <a href="#type-load_result">load_result()</a> | <a href="#type-load_error">load_error()</a>
+
+
+
+###<a name="type-load_warnings">load_warnings()</a>##
+
+
+
+	load_warnings() = [<a href="pose_code.md#type-load_warn">pose_code:load_warn()</a>]
 <a name="index"></a>
 
 ##Function Index##
@@ -67,7 +75,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ###load/1##
 
 
-	load(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a>
+	load(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_return">load_return()</a>
 <br></br>
 
 
@@ -76,7 +84,7 @@ Equivalent to [`load_command(Command)`](#load_command-1).<a name="load_command-1
 ###load_command/1##
 
 
-	load_command(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_cmd_rtn">load_cmd_rtn()</a>
+	load_command(Command::<a href="pose.md#type-command">pose:command()</a>) -> <a href="#type-load_return">load_return()</a>
 <br></br>
 
 
