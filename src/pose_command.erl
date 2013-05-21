@@ -79,20 +79,62 @@ load_command(Command) ->
 % Load command
 %%%
 
-% Determine if we can refer to a parallel source folder.
-%% @todo get PATH from environment
-%% @todo add to PATH from erl commandline
+% Get the folder where submodules of our command are to be found.
 load_command(Command, Module, Warnings) ->
-  BinPath = filename:dirname(code:which(Module)),
-  ?DEBUG({binpath, BinPath}),
-  case pose_file:find_parallel_folder("ebin", "src", BinPath) of
-    {true, SrcPath}     ->
-      SubModList = get_submodule_list(Command, BinPath, {srcpath, SrcPath});
-    {false, BinPath}    ->
+  case proplists:get_value(source, Module:module_info(compile)) of
+    undefined -> {error, no_source};
+    Source    -> SrcPath = filename:dirname(Source),
+                 load_command(Command, Module, Warnings, SrcPath)
+  end.
+
+load_command(Command, Module, Warnings, SrcPath) ->           
+  BinPath = SrcPath,
+  case pose_file:find_parallel_folder("src", "ebin", SrcPath) of
+    {true, BinPath}     ->
+      SubModList = get_submodule_list(Command, BinPath, {binpath, BinPath});
+    {false, SrcPath}    ->
       SubModList = get_submodule_list(Command, BinPath, ".beam")
   end,
   ?DEBUG("submodule list: ~p~n", [SubModList]),
   load_command(Command, Module, BinPath, Warnings, SubModList).
+
+srcpath(Module) ->
+  case proplists:get_value(source, Module:module_info(compile)) of 
+    undefined -> srcpath(Module, ebinpath(Module));
+    Source    -> filename:dirname(Source)
+  end.
+
+srcpath(_Module, undefined) -> undefined;
+srcpath(Module, EbinPath) ->
+  case pose_file:find_parallel_folder("ebin", "src", EbinPath) of
+    {false, _}      -> undefined;
+    {true, SrcPath} -> SrcPath
+  end.
+
+ebinpath(Module) ->
+  case code:is_loaded(Module) of
+    false                           -> undefined;
+    {file, Atom} when is_atom(Atom) -> ebinpath(Module, srcpath(Module));
+    {file, File}                    -> ebinpath(Module, File)
+  end.
+
+ebinpath(_Module, undefined) -> undefined;
+ebinpath(_Module, {false, _}) -> undefined;
+ebinpath(_Module, {true, Path}) -> Path; 
+ebinpath(Module, File) ->
+  case filename:extension(File) of
+    []      -> undefined;
+    ".beam" -> filename:dirname(File);
+    ".erl"  -> Dir = filename:dirname(File),
+               Parallel = pose_file:find_parallel_folder("ebin", "src", Dir),
+               ebinpath(Module, Parallel)
+  end.
+
+
+  
+
+
+
 
 % List submodules, in source folder, if readable, or else in binaries folder.
 get_submodule_list(Command, BinPath, Data) when is_atom(Command) ->
