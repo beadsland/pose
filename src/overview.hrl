@@ -18,7 +18,7 @@
 %% by brackets replaced by your own identifying information:
 %% "Portions Copyright [year] [name of copyright owner]"
 %%
-%% Copyright 2012 Beads D. Land-Trujillo.  All Rights Reserved
+%% Copyright 2012, 2013 Beads D. Land-Trujillo.  All Rights Reserved.
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
@@ -28,6 +28,7 @@
 %%
 %% <ul>
 %% <li> {@section Installation} </li>
+%% <li> {@section Just-in-Time Packaging} </li>
 %% <li> {@section Standard I/O} </li>
 %% <li> {@section Macros} </li>
 %% </ul>
@@ -55,11 +56,23 @@
 %% (The `debug' macro definition can be uncommented when `pose' debugging
 %% output is to be included on `stderr'.)
 %%
-%% Any application using the `pose' interface must initialize `pose'
-%% with the `?INIT_POSE' macro before other macros can be used.
+%% ==Just-in-Time Packaging==
 %%
-%% Any process using the debugging feature must additionally call the
-%% `?INIT_DEBUG' macro.
+%% The `pose' project provides for just-in-time packaging (JITP) as part of
+%% the functionality of {@link pose_code}.  Packages were an experimental 
+%% feature of Erlang/OTP officially removed as of R16A01.  This project and 
+%% projects dependent on it are therefore developed to run under
+%% <a href="http://www.erlang.org/download_release/14">Erlang/OTP R15B01</a>,
+%% but should be compatible with later releases.  
+%%
+%% When fully implemented, `pose' JITP will allow for the arbitrary loading
+%% and concurrent operation of likenamed modules that participate in the 
+%% `pose' architecture.  This will allow for seamless testing and comparison 
+%% of derivative and variant code within the same runtime system.  
+%% Meanwhile, as packages are only assigned to `pose'-compatible modules at 
+%% compile time, existing Erlang development tools need know nothing about 
+%% packages to work with `pose'-compatible modules, nor need packages be 
+%% supported when such code is put into production.
 %%
 %% ==Standard I/O==
 %%

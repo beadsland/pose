@@ -11,7 +11,7 @@ Intuitive module loader, used by [`pose_command`](pose_command.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.10
+__Version:__ 0.1.11
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
@@ -209,6 +209,30 @@ following pattern in their `pose`-compatible modules.
 	  -package(?package).
 	  -endif.
 	  % END POSE PACKAGE PATTERN
+
+
+
+
+A similar pattern is used to facilitiate calls to functions of Erlang/OTP
+libraries and other user modules.  In addition to being considered woefully
+bad practice--as it imports all exported functions of another module into
+the current module's namespace--the `import/1` compiler directive was
+dropped entirely as of R16A01, its only real purpose having been as a
+kludge to enable packages to call functions in unpackaged modules.
+
+
+
+For the purposes of `pose`-compatible modules, we make our `import/1`
+directives conditional.  They are safely ignored by development tools and
+standard compilation, only coming into play as a function of just-in-time
+packaging when `pose` is running under Erlang/OTP R15.
+
+	
+	  % BEGIN POSE PACKAGE IMPORTS
+	  -ifdef(package).
+	  -import(gen_command).
+	  -endif.
+	  % END POSE PACKAGE IMPORTS
 
 
 

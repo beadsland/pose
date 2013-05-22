@@ -154,6 +154,26 @@
 %% % END POSE PACKAGE PATTERN
 %% </pre>
 %%
+%% A similar pattern is used to facilitiate calls to functions of Erlang/OTP 
+%% libraries and other user modules.  In addition to being considered woefully
+%% bad practice--as it imports all exported functions of another module into 
+%% the current module's namespace--the `import/1' compiler directive was 
+%% dropped entirely as of R16A01, its only real purpose having been as a 
+%% kludge to enable packages to call functions in unpackaged modules.
+%%
+%% For the purposes of `pose'-compatible modules, we make our `import/1' 
+%% directives conditional.  They are safely ignored by development tools and
+%% standard compilation, only coming into play as a function of just-in-time
+%% packaging when `pose' is running under Erlang/OTP R15.
+%%
+%% <pre>
+%% % BEGIN POSE PACKAGE IMPORTS
+%% -ifdef(package).
+%% -import(gen_command).
+%% -endif.
+%% % END POSE PACKAGE IMPORTS
+%% </pre>
+%% 
 %% When `pose' sees that a module has been compiled with a `-package'
 %% attribute of `default', it recompiles the module with the macro `?package'
 %% set to a path unique to that module and the other modules in the same
@@ -174,9 +194,9 @@
 %% TODO: module binary service (to avoid repetitive slurps)
 %% TODO: conservative module loader (to preserve against collisions)
 
-%% @version 0.1.10
+%% @version 0.1.11
 -module(pose_code).
--version("0.1.10"). 
+-version("0.1.11"). 
 
 %%
 %% Include files

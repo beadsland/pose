@@ -5,28 +5,28 @@
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.2
+__Version:__ 0.1.3
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 
 __References__* For a project using `pose`, see
 [`nosh`](http://github.com/beadsland/nosh).
-* This project and its dependent projects require
-[Erlang/OTP R15B01](http://www.erlang.org/download_release/14).
-The `nosh` architecture depends on the experimental `package` feature,
-which was removed in Erlang/OTP R16.
+* This project and projects that depend on it are developed under
+[Erlang/OTP R15B01](http://www.erlang.org/download_release/14),
+to take advantage of the experimental `package` feature.  (Support for
+packages was removed from Erlang/OTP as of R16A01.)
 
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_code: update docs re r15</font>
 * <font color="red">nosh: indicate release in prompt</font>
 * <font color="red">nosh: echo commands before running</font>
 * <font color="red">superl: arity check</font>
 * <font color="red">pose_code: rewrite do_load</font>
 * <font color="red">pose_beam: review/refactor slurp</font>
 * <font color="red">stdio: beam_lib:format_error (and beam_lib, file_error)</font>
-* <font color="red">...plus 18 more (see TODO.edoc)
+* <font color="red">stderr: indent wrap by 3</font>
+* <font color="red">...plus 17 more (see TODO.edoc)
 </font>
 
 
@@ -36,6 +36,8 @@ This is the POSIX-like interface emulation for use with the
  
 
 * [Installation](http://github.com/beadsland/pose/blob/master/doc/README.md#Installation)
+
+* [Just-in-Time Packaging](http://github.com/beadsland/pose/blob/master/doc/README.md#Just-in-Time_Packaging)
 
 * [Standard I/O](http://github.com/beadsland/pose/blob/master/README.md#Standard_I/O)
 
@@ -77,13 +79,28 @@ interface header file:
  
 
 
-Any application using the `pose` interface must initialize `pose`
-  with the `?INIT_POSE` macro before other macros can be used.
+###<a name="Just-in-Time_Packaging">Just-in-Time Packaging</a>##
+
  
 
 
-Any process using the debugging feature must additionally call the
-`?INIT_DEBUG` macro.
+The `pose` project provides for just-in-time packaging (JITP) as part of
+  the functionality of [`pose_code`](http://github.com/beadsland/pose/blob/master/doc/pose_code.md).  Packages were an experimental
+  feature of Erlang/OTP officially removed as of R16A01.  This project and
+  projects dependent on it are therefore developed to run under
+[Erlang/OTP R15B01](http://www.erlang.org/download_release/14),
+but should be compatible with later releases.
+ 
+
+
+When fully implemented, `pose` JITP will allow for the arbitrary loading
+  and concurrent operation of likenamed modules that participate in the
+`pose` architecture.  This will allow for seamless testing and comparison
+  of derivative and variant code within the same runtime system.
+  Meanwhile, as packages are only assigned to `pose`-compatible modules at
+  compile time, existing Erlang development tools need know nothing about
+  packages to work with `pose`-compatible modules, nor need packages be
+supported when such code is put into production.
  
 
 
