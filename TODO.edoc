@@ -1,3 +1,4 @@
+@todo posure: fails to see filename used in superl
 @todo superl: arity check
 @todo pose_code: rewrite do_load
 @todo pose_beam: review/refactor slurp
