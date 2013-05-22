@@ -11,7 +11,7 @@ Beam binary utility functions used by [`pose_code`](pose_code.md).
 
 Copyright (c) 2012, 2013 Beads D. Land-Trujillo
 
-__Version:__ 0.1.3
+__Version:__ 0.1.4
 
 __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`](http://twitter.com/beadsland)).
 <a name="types"></a>
@@ -137,7 +137,7 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 
 
 
-	source() = string() | undefined
+	source() = <a href="file.md#type-filename">file:filename()</a> | undefined
 <a name="index"></a>
 
 ##Function Index##
