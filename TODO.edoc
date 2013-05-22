@@ -18,6 +18,8 @@
 @todo macro: elim attrib macro
 @todo pose: why use exec?
 @todo realname: confirm pwd trick concurrency-safe
+@todo acme: get up and running
+@todo labs: domain consolidation
 @todo eclipse: restore invalid location of tag (li) warnings
 @todo edown: fix sample html to clear (li) warnings
 @todo eclipse: restore no start tag (&lt;p&gt;) warnings
