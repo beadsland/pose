@@ -103,7 +103,7 @@ load_command(Command, Module, Warnings, Path, Extn) ->
 % Load each submodule, appending to warnings list as necessary.
 load_submodules(Module, _Path, Warnings, []) -> {module, Module, Warnings};
 load_submodules(Module, Path, Warnings, [Head | Tail]) ->  
-  ?DEBUG("Pose loading submodule ~s~n", [Head]),  
+  %?DEBUG("Pose loading submodule ~s~n", [Head]),  
   case pose_code:load_module(Head, [Path]) of
     {module, _SubModule, NewWarn}   ->
       UpdatedWarnings = [{Head, NewWarn} | Warnings],
