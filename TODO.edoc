@@ -1,3 +1,4 @@
+@todo pose args being converted to strings?
 @todo nosh: echo commands before running
 @todo superl: arity check
 @todo pose_code: rewrite do_load

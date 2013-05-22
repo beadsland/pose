@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">pose args being converted to strings?</font>
 * <font color="red">nosh: echo commands before running</font>
 * <font color="red">superl: arity check</font>
 * <font color="red">pose_code: rewrite do_load</font>
 * <font color="red">pose_beam: review/refactor slurp</font>
 * <font color="red">stdio: beam_lib:format_error (and beam_lib, file_error)</font>
 * <font color="red">stderr: indent wrap by 3</font>
-* <font color="red">pose: make good</font>
-* <font color="red">...plus 16 more (see TODO.edoc)
+* <font color="red">...plus 17 more (see TODO.edoc)
 </font>
 
 
