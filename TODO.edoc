@@ -1,4 +1,3 @@
-@todo nosh: indicate release in prompt
 @todo nosh: echo commands before running
 @todo superl: arity check
 @todo pose_code: rewrite do_load
