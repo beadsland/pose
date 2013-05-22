@@ -1,16 +1,14 @@
-@todo pose:code: reporting diff_src unnecessarily
-@todo pose_file: find_parallel_folder simple false
-@todo pose_code: rewrite do_load
-@todo pose_beam: review/refactor slurp
-@todo stdio: beam_lib:format_error (and beam_lib, file_error)
-@todo pose: make good
 @todo test all projects working under r16
 @todo nosh: update docs re r15
 @todo pose: update docs re r15
 @todo pose_code: update docs re r15
 @todo nosh: indicate release in prompt
-@todo stderr: indent wrap by 3
 @todo superl: arity check
+@todo pose_code: rewrite do_load
+@todo pose_beam: review/refactor slurp
+@todo stdio: beam_lib:format_error (and beam_lib, file_error)
+@todo stderr: indent wrap by 3
+@todo pose: make good
 @todo noterm: pose package
 @todo noterm: integrate folderl
 @todo nosh: refactor bin/nosh
