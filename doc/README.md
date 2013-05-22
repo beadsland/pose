@@ -19,11 +19,11 @@ which was removed in Erlang/OTP R16.
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">test all projects working under r16</font>
 * <font color="red">nosh: update docs re r15</font>
 * <font color="red">pose: update docs re r15</font>
 * <font color="red">pose_code: update docs re r15</font>
 * <font color="red">nosh: indicate release in prompt</font>
+* <font color="red">nosh: echo commands before running</font>
 * <font color="red">superl: arity check</font>
 * <font color="red">pose_code: rewrite do_load</font>
 * <font color="red">...plus 20 more (see TODO.edoc)
