@@ -1,5 +1,7 @@
 @todo posure: fails to see filename used in superl
 @todo superl: arity check
+@todo make good: add dializer
+@todo all projects: make good
 @todo pose_code: rewrite do_load
 @todo pose_beam: review/refactor slurp
 @todo stdio: beam_lib:format_error (and beam_lib, file_error)
