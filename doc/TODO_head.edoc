@@ -1,8 +1,8 @@
+@todo posure: experiment with erl_scan
+@todo posure: experiment with erl_parse
 @todo posure: fails to see filename used in superl
 @todo superl: arity check
 @todo make good: add dializer
 @todo all projects: make good
 @todo pose_code: rewrite do_load
-@todo pose_beam: review/refactor slurp
-@todo stdio: beam_lib:format_error (and beam_lib, file_error)
-@todo ...plus 18 more (see TODO.edoc)
+@todo ...plus 20 more (see TODO.edoc)

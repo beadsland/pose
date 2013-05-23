@@ -1,3 +1,5 @@
+@todo posure: experiment with erl_scan
+@todo posure: experiment with erl_parse
 @todo posure: fails to see filename used in superl
 @todo superl: arity check
 @todo make good: add dializer
