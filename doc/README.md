@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">posure: experiment with erl_scan</font>
+* <font color="red">posure: preprocess before parse</font>
 * <font color="red">posure: experiment with erl_parse</font>
 * <font color="red">posure: fails to see filename used in superl</font>
 * <font color="red">superl: arity check</font>
