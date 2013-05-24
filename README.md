@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">posure: fails to see filename used in superl</font>
 * <font color="red">superl: arity check</font>
 * <font color="red">make good: add dializer</font>
-* <font color="red">...plus 22 more (see TODO.edoc)
+* <font color="red">...plus 23 more (see TODO.edoc)
 </font>
 
 

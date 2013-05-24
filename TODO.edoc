@@ -10,6 +10,7 @@
 @todo pose_beam: review/refactor slurp
 @todo stdio: beam_lib:format_error (and beam_lib, file_error)
 @todo stderr: indent wrap by 3
+@todo stderr: badmatch {error,...}
 @todo pose: make good
 @todo noterm: pose package
 @todo noterm: integrate folderl
