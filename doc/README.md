@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">posure: refactor syntax code</font>
 * <font color="red">superl: arity check</font>
 * <font color="red">make good: add dializer</font>
 * <font color="red">makefile: overview.edoc.src</font>
 * <font color="red">all projects: make good</font>
 * <font color="red">pose_code: rewrite do_load</font>
 * <font color="red">pose_code: import/1s at compile time</font>
-* <font color="red">pose_code: refactor posure</font>
-* <font color="red">...plus 22 more (see TODO.edoc)
+* <font color="red">...plus 23 more (see TODO.edoc)
 </font>
 
 
@@ -265,5 +265,6 @@ The `pose` interface provides a number of macros for use by
 <tr><td><a href="pose_short.md" class="module">pose_short</a></td></tr>
 <tr><td><a href="pose_shout.md" class="module">pose_shout</a></td></tr>
 <tr><td><a href="pose_stdio.md" class="module">pose_stdio</a></td></tr>
+<tr><td><a href="pose_syntax.md" class="module">pose_syntax</a></td></tr>
 <tr><td><a href="posure.md" class="module">posure</a></td></tr></table>
 
