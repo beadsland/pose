@@ -167,7 +167,10 @@ do_erlexit(RunPid, Reason) ->
     Start   -> PreString = string:left(Reperr, Start-1),
                String1 = io_lib:format("~s ~p", [PreString, RunPid]),
                String2 = string:substr(Reperr, Start+2),
-               NewFirst = ?FORMAT_ERLERR({String1, String2})
+               case String2 of
+                 [] -> NewFirst = String1;
+                 _  -> NewFirst = ?FORMAT_ERLERR({String1, String2})
+               end
   end,
   NewReason = string:join([NewFirst | Rest], "\n"),
   do_output(erlerr, NewReason),
