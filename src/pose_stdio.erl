@@ -233,7 +233,7 @@ format_erlatom(Atom) ->
 format_erlelse(Else) ->
   IsString = is_string(Else),
   if IsString   -> io_lib:format("~s", [Else]);
-     true       -> String = io_lib:format("      ~72p", [Else]),
+     true       -> String = io_lib:format("      ~72P", [Else, 25]),
                    re:replace(String, "^\s*", "", [{return, list}])
   end.
 
