@@ -1,8 +1,8 @@
-@todo posure: capture module_qualifier
-@todo posure: experiment with syntaxtree() data type
-@todo posure: experiment with epp_dodger
-@todo posure: preprocess before parse
-@todo posure: experiment with erl_parse
-@todo posure: fails to see filename used in superl
 @todo superl: arity check
-@todo ...plus 28 more (see TODO.edoc)
+@todo make good: add dializer
+@todo makefile: overview.edoc.src
+@todo all projects: make good
+@todo pose_code: rewrite do_load
+@todo pose_code: import/1s at compile time
+@todo pose_code: refactor posure
+@todo ...plus 22 more (see TODO.edoc)
