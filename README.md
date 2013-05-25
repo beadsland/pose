@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">stdio: erlelse not limiting</font>
+* <font color="red">stdio: erlerr not matching twotup</font>
+* <font color="red">stdio: bail not limited</font>
 * <font color="red">posure: refactor syntax code</font>
 * <font color="red">superl: arity check</font>
 * <font color="red">make good: add dializer</font>
 * <font color="red">makefile: overview.edoc.src</font>
-* <font color="red">all projects: make good</font>
-* <font color="red">pose_code: rewrite do_load</font>
-* <font color="red">pose_code: import/1s at compile time</font>
-* <font color="red">...plus 23 more (see TODO.edoc)
+* <font color="red">...plus 26 more (see TODO.edoc)
 </font>
 
 
