@@ -124,7 +124,8 @@ send_debug(Output, Debug, true) -> Debug ! {debug, self(), Output}, ok.
 
 -spec format_erlerr(What :: any()) -> string().
 %% @doc Smartly format erlerr messages.
-format_erlerr({Term, [{_M, _F, _A, _S} | _Tail]=Stack}) -> 
+format_erlerr({Term, [{M, F, A, S} | _Tail]=Stack}) 
+                       when is_atom(M), is_atom(F), is_integer(A), is_list(S) -> 
   format_erldump(Term, Stack);
 format_erlerr({Term, Data}) -> format_erltwotup(Term, Data);
 format_erlerr(Atom) when is_atom(Atom) -> format_erlatom(Atom);
@@ -232,7 +233,7 @@ format_erlatom(Atom) ->
 % Smartly format strings, nested deep lists, complex tuples, and whatever else.
 format_erlelse(Else) ->
   IsString = is_string(Else),
-  if IsString   -> io_lib:format("~s", [Else]);
+  if IsString   -> Else;
      true       -> String = io_lib:format("      ~72P", [Else, 25]),
                    re:replace(String, "^\s*", "", [{return, list}])
   end.

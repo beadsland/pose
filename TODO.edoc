@@ -1,5 +1,3 @@
-@todo stdio: erlerr not matching twotup
-@todo stdio: bail not limited
 @todo posure: refactor syntax code
 @todo superl: arity check
 @todo make good: add dializer
