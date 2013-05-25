@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">pose_stdio: extraneous empty list on bail</font>
 * <font color="red">posure: capture module_qualifier</font>
 * <font color="red">posure: experiment with syntaxtree() data type</font>
 * <font color="red">posure: experiment with epp_dodger</font>
 * <font color="red">posure: preprocess before parse</font>
 * <font color="red">posure: experiment with erl_parse</font>
 * <font color="red">posure: fails to see filename used in superl</font>
-* <font color="red">...plus 29 more (see TODO.edoc)
+* <font color="red">superl: arity check</font>
+* <font color="red">...plus 28 more (see TODO.edoc)
 </font>
 
 
