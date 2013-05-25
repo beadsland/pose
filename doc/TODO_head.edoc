@@ -1,8 +1,8 @@
-@todo stdio: erlelse not limiting
 @todo stdio: erlerr not matching twotup
 @todo stdio: bail not limited
 @todo posure: refactor syntax code
 @todo superl: arity check
 @todo make good: add dializer
 @todo makefile: overview.edoc.src
-@todo ...plus 26 more (see TODO.edoc)
+@todo all projects: make good
+@todo ...plus 25 more (see TODO.edoc)
