@@ -48,7 +48,7 @@
 
 % Type-specific API entry points.
 
--export([qualifiers/1]).
+-export([qualifiers/1, functions/1]).
 
 %%
 %% API Functions
@@ -68,7 +68,7 @@ harvest(_Type, [], Picks) -> Picks;
 harvest(Type, [Head | Tail], Picks) ->
   case erl_syntax:type(Head) of
     Type -> NewPicks = [erl_syntax:data(Head) | Picks];
-    T    -> NewPicks = Picks
+    _    -> NewPicks = Picks
   end,
   harvest(Type, lists:flatten(erl_syntax:subtrees(Head)) ++ Tail, NewPicks).
 
@@ -76,11 +76,24 @@ harvest(Type, [Head | Tail], Picks) ->
 %% @doc Uniquely list all modules that qualify function calls.
 qualifiers(File) -> qualifiers(harvest(module_qualifier, File), sets:new()).
 
-% Extract module name from qualifier structure.
+% Extract module name from qualifier data.
 qualifiers([], Set) -> sets:to_list(Set);
 qualifiers([{module_qualifier, {atom, _, Module}, _} | Tail], Set) ->
   qualifiers(Tail, sets:add_element(Module, Set));
 qualifiers([_Head | Tail], Set) -> qualifiers(Tail, Set).
+
+-spec functions(File :: filename()) -> [{module(), arity()}].
+%% @doc List all functions defined in module.
+functions(File) -> 
+  Funcs = pose_syntax:harvest(function, File),
+  functions(Funcs, []).
+
+% Extract function name and arity from function data.
+functions([], List) -> List;
+functions([{function, NameNode, [Clause | _]} | Tail], List) ->
+  Function = erl_syntax:concrete(NameNode),
+  {clause, Params, _, _} = erl_syntax:data(Clause),
+  functions(Tail, [{Function, length(Params)} | List]).
 
 %%
 %% Local Functions
