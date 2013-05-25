@@ -28,8 +28,7 @@
 %% @author Beads D. Land-Trujillo [http://twitter.com/beadsland]
 %% @copyright 2012, 2013 Beads D. Land-Trujillo
 
-%% @version 0.1.7
-
+%% @version 0.1.8
 -define(module, posure).
 
 % BEGIN POSE PACKAGE PATTERN
@@ -42,7 +41,7 @@
 -endif.
 % END POSE PACKAGE PATTERN
 
--version("0.1.7").
+-version("0.1.8").
 
 %%
 %% Include files
@@ -64,6 +63,11 @@
 -import(proplists).
 -import(ordsets).
 -import(string).
+-import(erl_scan).
+-import(erl_parse).
+-import(epp_dodger).
+-import(erl_syntax).
+-import(set).
 -endif.
 % END POSE PACKAGE IMPORTS
 
@@ -141,11 +145,11 @@ send_warnings(IO, Commands, [{File, Data} | Tail]) ->
 % For each file, identify where imports and calls don't match up.
 send_warnings(IO, Commands, File, Data, Tail, {Cond, Uncond}) -> 
   ThisCommand = get_command_name(File),
-  Imports = lists:append(Cond, Uncond),
+  Imports = [list_to_atom(X) || X <- lists:append(Cond, Uncond)],
   ?DEBUG("imports: ~p~n", [Imports]),
-  Called = get_called_modules(Data),
+  Called = get_called_modules(File),
   ?DEBUG("called: ~p~n", [Called]),
-
+  
   Unimported = test_unimported(IO, ThisCommand, Imports, Called, Commands),
   BadDirect = test_baddirect(IO, ThisCommand, Called, Commands),
   UnqualLoops = test_unqualloops(IO, ThisCommand, Data),
@@ -276,14 +280,27 @@ get_imported_modules(IO, Command, Tail, ifdef, Import) when is_list(Import) ->
   {ok, [Import | Cond], Uncond}.
 
 % Scan a file for all fully qualified module calls.
-get_called_modules(Data) ->
-  {ok, MP} = re:compile("^[^\\%\\n]*[\\s\\[\\{\\(\\,]([a-z_]+)\\:[a-z_]+\\(",
-                        [multiline]),
-  case re:run(Data, MP, [global, {capture, [1], list}]) of
-    nomatch             -> [];
-    {match, Imports}    -> List = [lists:nth(1, X) || X <- Imports],
-                           sets:to_list(sets:from_list(List))
-  end.
+get_called_modules(File) ->
+  {ok, Trees} = epp_dodger:parse_file(File),
+  qualifiers(Trees).
+
+qualifiers(Trees) -> qualifiers(harvest(module_qualifier, Trees), sets:new()).
+
+qualifiers([], Set) -> sets:to_list(Set);
+qualifiers([{module_qualifier, {atom, _, Module}, _} | Tail], Set) ->
+  qualifiers(Tail, sets:add_element(Module, Set));
+qualifiers([{module_qualifier, {_ , _, _}, _} | Tail], Set) -> 
+  qualifiers(Tail, Set).
+
+harvest(Type, Trees) -> harvest(Type, Trees, []).
+
+harvest(_Type, [], Picks) -> Picks;
+harvest(Type, [Head | Tail], Picks) ->
+  case erl_syntax:type(Head) of
+    Type -> NewPicks = [erl_syntax:data(Head) | Picks];
+    _    -> NewPicks = Picks
+  end,
+  harvest(Type, lists:flatten(erl_syntax:subtrees(Head)) ++ Tail, NewPicks).
 
 %%%
 % Slurp pose sources
