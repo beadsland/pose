@@ -1,8 +1,8 @@
-@todo macro: bail shadowed complaints
-@todo macro: bail depth limit
+@todo pose_stdio: extraneous empty list on bail
 @todo posure: capture module_qualifier
 @todo posure: experiment with syntaxtree() data type
 @todo posure: experiment with epp_dodger
 @todo posure: preprocess before parse
 @todo posure: experiment with erl_parse
-@todo ...plus 30 more (see TODO.edoc)
+@todo posure: fails to see filename used in superl
+@todo ...plus 29 more (see TODO.edoc)
