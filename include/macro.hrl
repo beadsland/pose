@@ -30,11 +30,15 @@
     proplists:get_value(Attribute, Module:module_info(attributes))).
 -define(VERSION(Module), gen_command:get_version(Module)).
 
-% Src: http://erlang.2086793.n4.nabble.com/Why-no-FUNCTION-macro-td2099004.html
+
+% Original source: 
+%   http://erlang.2086793.n4.nabble.com/Why-no-FUNCTION-macro-td2099004.html
+% Hacked to run w/o variables.
+-define(CURRFUNC, process_info(self(), current_function)).
 -define(FUNCTION,
-        case process_info(self(), current_function) of {_, {_,F,_}} -> F end).
+        case ?CURRFUNC of {_, {_,_,_}} -> element(2,element(2,?CURRFUNC)) end).
 -define(ARITY,
-        case process_info(self(), current_function) of {_, {_,_,A}} -> A end).
+        case ?CURRFUNC of {_, {_,_,_}} -> element(3,element(2,?CURRFUNC)) end).
 
 -ifdef(package).
 -import(lists).
