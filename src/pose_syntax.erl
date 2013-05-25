@@ -42,36 +42,45 @@
 %% Exported Functions
 %%
 
-% API entry points
+% Generic API entry point
 
--export([]).
+-export([harvest/2]).
+
+% Type-specific API entry points.
+
+-export([qualifiers/1]).
 
 %%
 %% API Functions
 %%
 
-% Scan a file for all fully qualified module calls.
-get_called_modules(File) ->
-  {ok, Trees} = epp_dodger:parse_file(File),
-  qualifiers(Trees).
+-type syntax_type() :: atom().
+-type filename() :: file:filename().
+-type node_data() :: term().
+-spec harvest(Type :: syntax_type(), File :: filename()) -> [node_data()].
+%% @doc List all items of a specific type in an Erlang source file.
+harvest(Type, File) -> 
+  {ok, Forms} = epp_dodger:parse_file(File, [{no_fail, true}, {clever, true}]),
+  harvest(Type, Forms, []).
 
-qualifiers(Trees) -> qualifiers(harvest(module_qualifier, Trees), sets:new()).
-
-qualifiers([], Set) -> sets:to_list(Set);
-qualifiers([{module_qualifier, {atom, _, Module}, _} | Tail], Set) ->
-  qualifiers(Tail, sets:add_element(Module, Set));
-qualifiers([{module_qualifier, {_ , _, _}, _} | Tail], Set) -> 
-  qualifiers(Tail, Set).
-
-harvest(Type, Trees) -> harvest(Type, Trees, []).
-
+% Traverse list of syntax trees, extracting data of each node of specified type.
 harvest(_Type, [], Picks) -> Picks;
 harvest(Type, [Head | Tail], Picks) ->
   case erl_syntax:type(Head) of
     Type -> NewPicks = [erl_syntax:data(Head) | Picks];
-    _    -> NewPicks = Picks
+    T    -> NewPicks = Picks
   end,
   harvest(Type, lists:flatten(erl_syntax:subtrees(Head)) ++ Tail, NewPicks).
+
+-spec qualifiers(File :: filename()) -> [module()].
+%% @doc Uniquely list all modules that qualify function calls.
+qualifiers(File) -> qualifiers(harvest(module_qualifier, File), sets:new()).
+
+% Extract module name from qualifier structure.
+qualifiers([], Set) -> sets:to_list(Set);
+qualifiers([{module_qualifier, {atom, _, Module}, _} | Tail], Set) ->
+  qualifiers(Tail, sets:add_element(Module, Set));
+qualifiers([_Head | Tail], Set) -> qualifiers(Tail, Set).
 
 %%
 %% Local Functions

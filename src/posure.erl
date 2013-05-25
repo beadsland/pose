@@ -68,6 +68,7 @@
 -import(epp_dodger).
 -import(erl_syntax).
 -import(set).
+-import(pose_syntax).
 -endif.
 % END POSE PACKAGE IMPORTS
 
@@ -280,27 +281,7 @@ get_imported_modules(IO, Command, Tail, ifdef, Import) when is_list(Import) ->
   {ok, [Import | Cond], Uncond}.
 
 % Scan a file for all fully qualified module calls.
-get_called_modules(File) ->
-  {ok, Trees} = epp_dodger:parse_file(File),
-  qualifiers(Trees).
-
-qualifiers(Trees) -> qualifiers(harvest(module_qualifier, Trees), sets:new()).
-
-qualifiers([], Set) -> sets:to_list(Set);
-qualifiers([{module_qualifier, {atom, _, Module}, _} | Tail], Set) ->
-  qualifiers(Tail, sets:add_element(Module, Set));
-qualifiers([{module_qualifier, {_ , _, _}, _} | Tail], Set) -> 
-  qualifiers(Tail, Set).
-
-harvest(Type, Trees) -> harvest(Type, Trees, []).
-
-harvest(_Type, [], Picks) -> Picks;
-harvest(Type, [Head | Tail], Picks) ->
-  case erl_syntax:type(Head) of
-    Type -> NewPicks = [erl_syntax:data(Head) | Picks];
-    _    -> NewPicks = Picks
-  end,
-  harvest(Type, lists:flatten(erl_syntax:subtrees(Head)) ++ Tail, NewPicks).
+get_called_modules(File) -> pose_syntax:qualifiers(File).
 
 %%%
 % Slurp pose sources
