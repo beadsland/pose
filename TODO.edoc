@@ -1,3 +1,4 @@
+@todo macro: bail shadowed complaints
 @todo macro: bail depth limit
 @todo posure: capture module_qualifier
 @todo posure: experiment with syntaxtree() data type
