@@ -47,14 +47,23 @@ __Authors:__ Beads D. Land-Trujillo (_web site:_ [`http://twitter.com/beadsland`
 ##Function Index##
 
 
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#harvest-2">harvest/2</a></td><td>List all items of a specific type in an Erlang source file.</td></tr><tr><td valign="top"><a href="#qualifiers-1">qualifiers/1</a></td><td>Uniquely list all modules that qualify function calls.</td></tr></table>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#functions-1">functions/1</a></td><td>List all functions defined in module.</td></tr><tr><td valign="top"><a href="#harvest-2">harvest/2</a></td><td>List all items of a specific type in an Erlang source file.</td></tr><tr><td valign="top"><a href="#qualifiers-1">qualifiers/1</a></td><td>Uniquely list all modules that qualify function calls.</td></tr></table>
 
 
 <a name="functions"></a>
 
 ##Function Details##
 
-<a name="harvest-2"></a>
+<a name="functions-1"></a>
+
+###functions/1##
+
+
+	functions(File::<a href="#type-filename">filename()</a>) -> [{module(), arity()}]
+<br></br>
+
+
+List all functions defined in module.<a name="harvest-2"></a>
 
 ###harvest/2##
 
