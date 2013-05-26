@@ -219,6 +219,9 @@ format_erlrun(Reason, _Stack, _Class, Error) ->
   
 % Smartly format 2-tuples of arbitrary terms, which is how we expect all deep
 % errors to be formed.
+format_erltwotup(beam_lib, Reason) -> 
+  String = lists:flatten(beam_lib:format_error(Reason)),
+  re:replace(String, "\"", "", [global, {return, list}]);
 format_erltwotup(Term, Data) ->
   String1 = lists:flatten(format_erlerr(Term)), 
   String2 = lists:flatten(format_erlerr(Data)),
