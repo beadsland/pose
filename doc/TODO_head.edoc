@@ -1,8 +1,8 @@
-@todo tuner: plt for project/release/deps
+@todo pose_code: import/1s at compile time
 @todo tuner: compare plt apps to used apps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
 @todo tuner: run on source
-@todo pose_code: import/1s at compile time
 @todo pose: erlang support for inheritance
-@todo ...plus 36 more (see TODO.edoc)
+@todo great: short-circuit good
+@todo ...plus 35 more (see TODO.edoc)
