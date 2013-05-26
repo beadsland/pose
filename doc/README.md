@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">tuner: add needed apps</font>
 * <font color="red">tuner: run on source</font>
 * <font color="red">great: short-circuit good</font>
-* <font color="red">...plus 36 more (see TODO.edoc)
+* <font color="red">...plus 37 more (see TODO.edoc)
 </font>
 
 
@@ -261,6 +261,7 @@ The `pose` interface provides a number of macros for use by
 <tr><td><a href="pose_compile.md" class="module">pose_compile</a></td></tr>
 <tr><td><a href="pose_file.md" class="module">pose_file</a></td></tr>
 <tr><td><a href="pose_open.md" class="module">pose_open</a></td></tr>
+<tr><td><a href="pose_package.md" class="module">pose_package</a></td></tr>
 <tr><td><a href="pose_shell.md" class="module">pose_shell</a></td></tr>
 <tr><td><a href="pose_short.md" class="module">pose_short</a></td></tr>
 <tr><td><a href="pose_shout.md" class="module">pose_shout</a></td></tr>

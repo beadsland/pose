@@ -13,6 +13,7 @@
 @todo cron: prepend good to todo
 @todo makefile: overview.edoc.src
 @todo all projects: make good
+@todo pose: refactor package pattern to include?
 @todo pose: erlang support for inheritance
 @todo pose_code: rewrite do_load
 @todo pose_code: refactor posure
