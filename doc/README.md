@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">make good: add dializer</font>
+* <font color="red">where does erlide store plts?</font>
+* <font color="red">why separate plts?</font>
+* <font color="red">makefile: find ebins</font>
+* <font color="red">makefile: build_plt</font>
+* <font color="red">make good: add dialyzer</font>
+* <font color="red">dialyzer: R15b02</font>
 * <font color="red">makefile: overview.edoc.src</font>
-* <font color="red">all projects: make good</font>
-* <font color="red">pose_code: rewrite do_load</font>
-* <font color="red">pose_code: import/1s at compile time</font>
-* <font color="red">pose_code: refactor posure</font>
-* <font color="red">pose_beam: review/refactor slurp</font>
-* <font color="red">...plus 21 more (see TODO.edoc)
+* <font color="red">...plus 26 more (see TODO.edoc)
 </font>
 
 
