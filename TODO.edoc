@@ -2,6 +2,7 @@
 @todo tuner: plt for project/release/deps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
+@todo pose_code: import/1s at compile time
 @todo great: short-circuit good
 @todo makefile: tune as part of good
 @todo pose: notfound as two words
@@ -12,7 +13,6 @@
 @todo makefile: overview.edoc.src
 @todo all projects: make good
 @todo pose_code: rewrite do_load
-@todo pose_code: import/1s at compile time
 @todo pose_code: refactor posure
 @todo pose_beam: review/refactor slurp
 @todo stdio: beam_lib:format_error (and beam_lib, file_error)

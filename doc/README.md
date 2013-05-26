@@ -23,9 +23,9 @@ __<font color="red">To do</font>__
 * <font color="red">tuner: plt for project/release/deps</font>
 * <font color="red">tuner: remove unnecessary apps</font>
 * <font color="red">tuner: add needed apps</font>
+* <font color="red">pose_code: import/1s at compile time</font>
 * <font color="red">great: short-circuit good</font>
 * <font color="red">makefile: tune as part of good</font>
-* <font color="red">pose: notfound as two words</font>
 * <font color="red">...plus 34 more (see TODO.edoc)
 </font>
 

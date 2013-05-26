@@ -2,7 +2,7 @@
 @todo tuner: plt for project/release/deps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
+@todo pose_code: import/1s at compile time
 @todo great: short-circuit good
 @todo makefile: tune as part of good
-@todo pose: notfound as two words
 @todo ...plus 34 more (see TODO.edoc)
