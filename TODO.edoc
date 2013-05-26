@@ -5,6 +5,7 @@
 @todo tuner: add needed apps
 @todo great: short-circuit good
 @todo makefile: tune as part of good
+@todo pose: notfound as two words
 @todo dialyzer: upgrade to R15b02
 @todo nosh: document R15b02
 @todo pose: document R15b02
