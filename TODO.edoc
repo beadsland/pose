@@ -1,8 +1,14 @@
-@todo makefile: find ebins
-@todo makefile: incremental remove plt
-@todo makefile: incremental add plt
-@todo make good: add dialyzer
-@todo dialyzer: R15b02
+@todo tune: all modules called
+@todo tune: all apps used
+@todo tune: plt for project/release/deps
+@todo tune: remove unnecessary apps
+@todo tune: add needed apps
+@todo makefile: short-circut apps
+@todo makefile: tune as part of good
+@todo dialyzer: upgrade to R15b02
+@todo nosh: document R15b02
+@todo pose: document R15b02
+@todo cron: prepend good to todo
 @todo makefile: overview.edoc.src
 @todo all projects: make good
 @todo pose_code: rewrite do_load

@@ -1,8 +1,8 @@
-@todo makefile: find ebins
-@todo makefile: incremental remove plt
-@todo makefile: incremental add plt
-@todo make good: add dialyzer
-@todo dialyzer: R15b02
-@todo makefile: overview.edoc.src
-@todo all projects: make good
-@todo ...plus 25 more (see TODO.edoc)
+@todo tune: all modules called
+@todo tune: all apps used
+@todo tune: plt for project/release/deps
+@todo tune: remove unnecessary apps
+@todo tune: add needed apps
+@todo makefile: short-circut apps
+@todo makefile: tune as part of good
+@todo ...plus 31 more (see TODO.edoc)
