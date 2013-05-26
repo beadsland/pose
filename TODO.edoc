@@ -1,5 +1,4 @@
-@todo tuner: not running at all??
-@todo tuner: deps only ebin
+@todo tuner: deps only commands
 @todo tuner: plt for project/release/deps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
