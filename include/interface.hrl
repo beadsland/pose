@@ -22,6 +22,10 @@
 %% -----------------------------------------------------------------------
 %% CDDL HEADER END
 
+-ifdef(package).
+-compile({parse_transform, pose_package}).
+-endif.
+
 % IO is first parameter to pose entry points.
 -record(std, {in = self() :: pid(), out = self() :: pid(),
               err = self() :: pid(),

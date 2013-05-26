@@ -1,4 +1,3 @@
-@todo pose: parse_transform to add import/1s
 @todo posure: stop checking for import/1
 @todo all projects: remove pose package patterns
 @todo pose_code: remove docs on pose package pattern
