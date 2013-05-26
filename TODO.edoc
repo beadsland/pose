@@ -1,7 +1,6 @@
-@todo where does erlide store plts?
-@todo why separate plts?
 @todo makefile: find ebins
-@todo makefile: build_plt
+@todo makefile: incremental remove plt
+@todo makefile: incremental add plt
 @todo make good: add dialyzer
 @todo dialyzer: R15b02
 @todo makefile: overview.edoc.src
