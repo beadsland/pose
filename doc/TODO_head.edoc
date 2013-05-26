@@ -1,8 +1,8 @@
-@todo stdio: beam_lib error formatting
-@todo tuner: get deps from rebar.config
-@todo tuner: correct deps when doubledot
+@todo tuner: trace all qualifier dependencies
 @todo tuner: plt for project/release/deps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
 @todo great: short-circuit good
-@todo ...plus 36 more (see TODO.edoc)
+@todo makefile: tune as part of good
+@todo pose: notfound as two words
+@todo ...plus 34 more (see TODO.edoc)

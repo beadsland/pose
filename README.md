@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">stdio: beam_lib error formatting</font>
-* <font color="red">tuner: get deps from rebar.config</font>
-* <font color="red">tuner: correct deps when doubledot</font>
+* <font color="red">tuner: trace all qualifier dependencies</font>
 * <font color="red">tuner: plt for project/release/deps</font>
 * <font color="red">tuner: remove unnecessary apps</font>
 * <font color="red">tuner: add needed apps</font>
 * <font color="red">great: short-circuit good</font>
-* <font color="red">...plus 36 more (see TODO.edoc)
+* <font color="red">makefile: tune as part of good</font>
+* <font color="red">pose: notfound as two words</font>
+* <font color="red">...plus 34 more (see TODO.edoc)
 </font>
 
 
