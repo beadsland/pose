@@ -1,8 +1,7 @@
-@todo tune: all modules called
-@todo tune: all apps used
-@todo tune: plt for project/release/deps
-@todo tune: remove unnecessary apps
-@todo tune: add needed apps
+@todo tuner: deps only ebin
+@todo tuner: plt for project/release/deps
+@todo tuner: remove unnecessary apps
+@todo tuner: add needed apps
 @todo great: short-circuit good
 @todo makefile: tune as part of good
 @todo dialyzer: upgrade to R15b02
@@ -36,4 +35,7 @@
 @todo edoc: see if new canversion resolves issues
 @todo edown: fix sample html to clear &lt;p&gt; warnings
 @todo edoc: fix generator to clear &lt;p&gt; warnings
+@todo superl: pwd not iwd
+@todo posure: pwd not iwd
+@todo tuner: pwd not iwd
 @todo resume work on 2do_go4

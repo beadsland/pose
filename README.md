@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">tune: all modules called</font>
-* <font color="red">tune: all apps used</font>
-* <font color="red">tune: plt for project/release/deps</font>
-* <font color="red">tune: remove unnecessary apps</font>
-* <font color="red">tune: add needed apps</font>
+* <font color="red">tuner: deps only ebin</font>
+* <font color="red">tuner: plt for project/release/deps</font>
+* <font color="red">tuner: remove unnecessary apps</font>
+* <font color="red">tuner: add needed apps</font>
 * <font color="red">great: short-circuit good</font>
 * <font color="red">makefile: tune as part of good</font>
-* <font color="red">...plus 31 more (see TODO.edoc)
+* <font color="red">dialyzer: upgrade to R15b02</font>
+* <font color="red">...plus 33 more (see TODO.edoc)
 </font>
 
 
