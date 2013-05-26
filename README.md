@@ -24,7 +24,7 @@ __<font color="red">To do</font>__
 * <font color="red">tune: plt for project/release/deps</font>
 * <font color="red">tune: remove unnecessary apps</font>
 * <font color="red">tune: add needed apps</font>
-* <font color="red">makefile: short-circut apps</font>
+* <font color="red">great: short-circuit good</font>
 * <font color="red">makefile: tune as part of good</font>
 * <font color="red">...plus 31 more (see TODO.edoc)
 </font>
