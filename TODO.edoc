@@ -1,4 +1,5 @@
-@todo tuner: deps only commands
+@todo tuner: get deps from rebar.config
+@todo tuner: correct deps when doubledot
 @todo tuner: plt for project/release/deps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
