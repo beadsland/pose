@@ -1,8 +1,8 @@
+@todo stdio: nomatch error expansion
+@todo stdio: beam_lib error formatting
 @todo tuner: get deps from rebar.config
 @todo tuner: correct deps when doubledot
 @todo tuner: plt for project/release/deps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
-@todo great: short-circuit good
-@todo makefile: tune as part of good
-@todo ...plus 35 more (see TODO.edoc)
+@todo ...plus 37 more (see TODO.edoc)

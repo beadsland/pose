@@ -1,3 +1,5 @@
+@todo stdio: nomatch error expansion
+@todo stdio: beam_lib error formatting
 @todo tuner: get deps from rebar.config
 @todo tuner: correct deps when doubledot
 @todo tuner: plt for project/release/deps
