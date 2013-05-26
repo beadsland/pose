@@ -163,6 +163,8 @@ format_erlrun1(Atom, [Head | _Tail]) ->
 format_erlrun2({badmatch, {error, {ErrString, Position}}}, [Head | _Tail]) 
                                 when is_list(ErrString), is_integer(Position) ->
   format_badcompile(ErrString, Position, Head);
+format_erlrun2({badmatch, {error, Reason}}, [Head | _Tail]) ->
+  format_badmatch(Reason, Head);
 format_erlrun2({Atom, Term}, [Head | _Tail]) when Atom == badarity ->
   format_erlrun({Atom, Term}, [Head], error);
 format_erlrun2({Atom, Term}, [Head | _Tail]) 
@@ -178,12 +180,16 @@ format_erlrun2({Atom, Term}, [Head | _Tail]) ->
      true       -> format_erlerr({Atom, Term})
   end.
 
+% Proactively expand bad matches on error tuples.
+format_badmatch(Reason, Head) ->
+  BadMatch = lists:flatten(format_erlrun({badmatch, []}, [Head])),
+  Stripped = string:left(BadMatch, string:len(BadMatch)-3),
+  format_erlerr({Stripped, {error, Reason}}).
+
 % Proactively guess badmatches on things like "missing )" are re:compile errors.
 format_badcompile(ErrString, Position, Head) ->
   ReCompileErr = io_lib:format("~s, at char ~p", [ErrString, Position]),
-  BadMatchErr = format_erlrun({badmatch, ""}, [Head]),
-  StripBadMatchErr = string:strip(lists:flatten(BadMatchErr), right),
-  format_erlerr({StripBadMatchErr, {re_compile, ReCompileErr}}). 
+  format_badmatch(ReCompileErr, Head). 
   
 % Try to obtain runtime error string for 4-tuple errors.
 format_erlrun4({Atom, T1, T2, T3}, [Head | _Tail]) ->
