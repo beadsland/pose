@@ -1,8 +1,8 @@
+@todo pose: parse_transform to add import/1s
 @todo pose_code: import/1s at compile time
 @todo tuner: compare plt apps to used apps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
 @todo tuner: run on source
-@todo pose: erlang support for inheritance
 @todo great: short-circuit good
-@todo ...plus 35 more (see TODO.edoc)
+@todo ...plus 36 more (see TODO.edoc)

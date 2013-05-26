@@ -1,9 +1,9 @@
+@todo pose: parse_transform to add import/1s
 @todo pose_code: import/1s at compile time
 @todo tuner: compare plt apps to used apps
 @todo tuner: remove unnecessary apps
 @todo tuner: add needed apps
 @todo tuner: run on source
-@todo pose: erlang support for inheritance
 @todo great: short-circuit good
 @todo makefile: tune as part of good
 @todo pose: notfound as two words
@@ -13,6 +13,7 @@
 @todo cron: prepend good to todo
 @todo makefile: overview.edoc.src
 @todo all projects: make good
+@todo pose: erlang support for inheritance
 @todo pose_code: rewrite do_load
 @todo pose_code: refactor posure
 @todo pose_beam: review/refactor slurp
