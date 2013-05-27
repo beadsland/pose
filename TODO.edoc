@@ -1,4 +1,6 @@
-@todo all projects: doc/deps
+@todo rebar.config.script: configure README path
+@todo make make: sync rebar.config.script
+@todo rebar.config: make make & check in
 @todo make: sed for FOLD
 @todo make: fix TUNER pass-through
 @todo tuner: edoc failures

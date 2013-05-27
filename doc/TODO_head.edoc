@@ -1,8 +1,8 @@
-@todo all projects: doc/deps
+@todo rebar.config.script: configure README path
+@todo make make: sync rebar.config.script
+@todo rebar.config: make make & check in
 @todo make: sed for FOLD
 @todo make: fix TUNER pass-through
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
-@todo pose_code: remove docs on pose package pattern
-@todo interface: do we still need import/1s?
-@todo ...plus 43 more (see TODO.edoc)
+@todo ...plus 45 more (see TODO.edoc)
