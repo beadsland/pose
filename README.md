@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">rebar.config.script: force halt with Config</font>
 * <font color="red">rebar.config.script: configure README path</font>
+* <font color="red">make: fix TUNER pass-through</font>
 * <font color="red">make make: sync rebar.config.script</font>
 * <font color="red">rebar.config: make make & check in</font>
+* <font color="red">nosh: Makefile</font>
 * <font color="red">make: sed for FOLD</font>
-* <font color="red">make: fix TUNER pass-through</font>
 * <font color="red">make todo: encode &</font>
-* <font color="red">...plus 49 more (see TODO.edoc)
+* <font color="red">...plus 51 more (see TODO.edoc)
 </font>
 
 
@@ -35,13 +35,13 @@ This is the POSIX-like interface emulation for use with the
   emulator and `nosh`-compatible projects.
  
 
-* [Installation](http://github.com/beadsland/pose/blob/master/doc/README.md#Installation)
+* [Installation](http://github.com/beadsland/__PROJECT__/blob/master/doc/README.md#Installation)
 
-* [Just-in-Time Packaging](http://github.com/beadsland/pose/blob/master/doc/README.md#Just-in-Time_Packaging)
+* [Just-in-Time Packaging](http://github.com/beadsland/__PROJECT__/blob/master/doc/README.md#Just-in-Time_Packaging)
 
-* [Standard I/O](http://github.com/beadsland/pose/blob/master/README.md#Standard_I/O)
+* [Standard I/O](http://github.com/beadsland/__PROJECT__/blob/master/README.md#Standard_I/O)
 
-* [Macros](http://github.com/beadsland/pose/blob/master/doc/README.md#Macros)
+* [Macros](http://github.com/beadsland/__PROJECT__/blob/master/doc/README.md#Macros)
 
 
  
@@ -85,7 +85,7 @@ interface header file:
 
 
 The `pose` project provides for just-in-time packaging (JITP) as part of
-  the functionality of [`pose_code`](http://github.com/beadsland/pose/blob/master/doc/pose_code.md).  Packages were an experimental
+  the functionality of [`pose_code`](http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_code.md).  Packages were an experimental
   feature of Erlang/OTP officially removed as of R16A01.  This project and
   projects dependent on it are therefore developed to run under
 [Erlang/OTP R15B01](http://www.erlang.org/download_release/14),
@@ -253,19 +253,19 @@ The `pose` interface provides a number of macros for use by
 
 
 <table width="100%" border="0" summary="list of modules">
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/gen_command.md" class="module">gen_command</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose.md" class="module">pose</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_beam.md" class="module">pose_beam</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_code.md" class="module">pose_code</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_command.md" class="module">pose_command</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_compile.md" class="module">pose_compile</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_file.md" class="module">pose_file</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_open.md" class="module">pose_open</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_package.md" class="module">pose_package</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_shell.md" class="module">pose_shell</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_short.md" class="module">pose_short</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_shout.md" class="module">pose_shout</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/pose_syntax.md" class="module">pose_syntax</a></td></tr>
-<tr><td><a href="http://github.com/beadsland/pose/blob/master/doc/posure.md" class="module">posure</a></td></tr></table>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/gen_command.md" class="module">gen_command</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose.md" class="module">pose</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_beam.md" class="module">pose_beam</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_code.md" class="module">pose_code</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_command.md" class="module">pose_command</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_compile.md" class="module">pose_compile</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_file.md" class="module">pose_file</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_open.md" class="module">pose_open</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_package.md" class="module">pose_package</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_shell.md" class="module">pose_shell</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_short.md" class="module">pose_short</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_shout.md" class="module">pose_shout</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_stdio.md" class="module">pose_stdio</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/pose_syntax.md" class="module">pose_syntax</a></td></tr>
+<tr><td><a href="http://github.com/beadsland/__PROJECT__/blob/master/doc/posure.md" class="module">posure</a></td></tr></table>
 
