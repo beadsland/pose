@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">rebar.config.script: bad_directory error</font>
-* <font color="red">rebar-edoc.config: edoc-info errors</font>
-* <font color="red">make: rebar-edoc.config</font>
-* <font color="red">all projects: doc/deps</font>
+* <font color="red">rebar.config.script: force halt with Config</font>
+* <font color="red">rebar.config.script: configure README path</font>
+* <font color="red">make make: sync rebar.config.script</font>
+* <font color="red">rebar.config: make make & check in</font>
 * <font color="red">make: sed for FOLD</font>
 * <font color="red">make: fix TUNER pass-through</font>
-* <font color="red">tuner: edoc failures</font>
-* <font color="red">...plus 46 more (see TODO.edoc)
+* <font color="red">make todo: encode &</font>
+* <font color="red">...plus 49 more (see TODO.edoc)
 </font>
 
 
