@@ -100,7 +100,7 @@ current:	neat make
 				$(DOCSBAR:_ecmds_=update-deps compile doc) \
 				); \
 		else (	$(CROWBAR:_cmds_=compile); \
-				$(DOCSBAR:_cmds_=compile doc) \
+				$(DOCSBAR:_ecmds_=compile doc) \
 				); fi
 
 clean:		neat make
