@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">make make: _file_ w/in filename</font>
 * <font color="red">make make: generic sync btw include and root</font>
 * <font color="red">make make: sync rebar.config.script</font>
 * <font color="red">rebar.config: make make & check in</font>
 * <font color="red">nosh: Makefile</font>
 * <font color="red">make: sed for FOLD</font>
 * <font color="red">make todo: encode &</font>
-* <font color="red">tuner: edoc failures</font>
-* <font color="red">...plus 50 more (see TODO.edoc)
+* <font color="red">...plus 51 more (see TODO.edoc)
 </font>
 
 

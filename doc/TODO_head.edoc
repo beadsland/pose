@@ -1,8 +1,8 @@
+@todo make make: _file_ w/in filename
 @todo make make: generic sync btw include and root
 @todo make make: sync rebar.config.script
 @todo rebar.config: make make &amp; check in
 @todo nosh: Makefile
 @todo make: sed for FOLD
 @todo make todo: encode &amp;
-@todo tuner: edoc failures
-@todo ...plus 50 more (see TODO.edoc)
+@todo ...plus 51 more (see TODO.edoc)
