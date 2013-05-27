@@ -58,7 +58,7 @@ todo:	README.md
 		then (git commit $(TODO_FILES) -m "updated todo"); fi
 
 README.md:	doc/TODO_head.edoc doc/overview.edoc src/overview.hrl
-	@$(CROWBAR:_cmds_=doc)
+	@$(DOCSBAR:_ecmds_=doc)
 
 doc/TODO_head.edoc:		TODO.edoc
 	@(sed '7q' TODO.edoc; if [ $(TODO_MORE) -gt 0 ]; \
@@ -79,7 +79,7 @@ neat:	$(wildcard doc/*.md)
 doc/README.md:	;
 	
 doc/%.md:		src/%.erl
-	@$(DOCSBAR:_cmds_=doc)
+	@$(DOCSBAR:_ecmds_=doc)
 
 src/%.erl:		force
 	@if [ ! -f src/$*.erl ]; then (git rm -f doc/$*.*); fi
@@ -99,7 +99,7 @@ current:	neat make
 		then (	$(CROWBAR:_cmds_=update-deps compile); \
 				$(DOCSBAR:_ecmds_=update-deps compile doc) \
 				); \
-		else (	$(CROWBAR:_cmds_=update-deps compile); \
+		else (	$(CROWBAR:_cmds_=compile); \
 				$(DOCSBAR:_cmds_=compile doc) \
 				); fi
 
