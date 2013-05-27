@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">parse_trans: get working in dev</font>
 * <font color="red">rebar: conflicting edowns</font>
 * <font color="red">tuner: edoc failures</font>
-* <font color="red">pose_package: dynamic import/1s</font>
 * <font color="red">posure: stop checking for import/1</font>
 * <font color="red">pose_code: remove docs on pose package pattern</font>
 * <font color="red">interface: do we still need import/1s?</font>
-* <font color="red">...plus 43 more (see TODO.edoc)
+* <font color="red">pose: refactor package pattern to include?</font>
+* <font color="red">pose: erlang support for inheritance</font>
+* <font color="red">...plus 41 more (see TODO.edoc)
 </font>
 
 
