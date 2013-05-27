@@ -1,5 +1,4 @@
 @todo rebar.config: make make &amp; check in
-@todo nosh: Makefile
 @todo make: sed for FOLD
 @todo make todo: encode &amp;
 @todo tuner: edoc failures

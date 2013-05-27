@@ -1,8 +1,8 @@
-@todo make make: _file_ w/in filename
-@todo make make: generic sync btw include and root
-@todo make make: sync rebar.config.script
 @todo rebar.config: make make &amp; check in
-@todo nosh: Makefile
 @todo make: sed for FOLD
 @todo make todo: encode &amp;
-@todo ...plus 51 more (see TODO.edoc)
+@todo tuner: edoc failures
+@todo posure: stop checking for import/1
+@todo pose_code: remove docs on pose package pattern
+@todo interface: do we still need import/1s?
+@todo ...plus 47 more (see TODO.edoc)
