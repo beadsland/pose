@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">pose_package: dynamic import/1s</font>
 * <font color="red">posure: stop checking for import/1</font>
-* <font color="red">all projects: remove pose package patterns</font>
 * <font color="red">pose_code: remove docs on pose package pattern</font>
 * <font color="red">interface: do we still need import/1s?</font>
 * <font color="red">pose: refactor package pattern to include?</font>
