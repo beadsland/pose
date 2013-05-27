@@ -1,8 +1,10 @@
+@todo rebar.config.script: force halt with Config
 @todo rebar.config.script: configure README path
 @todo make make: sync rebar.config.script
-@todo rebar.config: make make & check in
+@todo rebar.config: make make &amp; check in
 @todo make: sed for FOLD
 @todo make: fix TUNER pass-through
+@todo make todo: encode &amp;
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern
