@@ -1,5 +1,4 @@
-@todo rebar.config: make make &amp; check in
-@todo make: sed for FOLD
+@todo make: folderl or sed for FOLD
 @todo make todo: encode &amp;
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
