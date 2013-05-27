@@ -1,6 +1,7 @@
 @todo make: rebar-edoc.config
+@todo all projects: doc/deps
+@todo make: sed for FOLD
 @todo make: fix TUNER pass-through
-@todo all projects: deps-edoc
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern
