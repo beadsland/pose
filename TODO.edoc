@@ -1,4 +1,3 @@
-@todo rebar.config.script: configure README path
 @todo make: fix TUNER pass-through
 @todo make make: sync rebar.config.script
 @todo rebar.config: make make &amp; check in
