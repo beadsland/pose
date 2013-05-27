@@ -1,3 +1,5 @@
+@todo rebar.config.script: doc/deps not deps
+@todo rebar.config.script: bad_directory error
 @todo make: rebar-edoc.config
 @todo all projects: doc/deps
 @todo make: sed for FOLD
