@@ -44,7 +44,9 @@
 @todo edown: fix sample html to clear (li) warnings
 @todo eclipse: restore no start tag (&lt;p&gt;) warnings
 @todo edoc: document bug fixes
-@todo edoc: see if new canversion resolves issues
+@todo edoc: see if new version resolves issues
+@todo edoc: divine readme github so not hardcoded
+@todo rebar.config: no longer replacing __PROJECT__
 @todo edown: fix sample html to clear &lt;p&gt; warnings
 @todo edoc: fix generator to clear &lt;p&gt; warnings
 @todo superl: pwd not iwd
