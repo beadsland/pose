@@ -1,8 +1,8 @@
 @todo parse_trans: get working in dev
+@todo rebar: conflicting edowns
 @todo tuner: edoc failures
 @todo pose_package: dynamic import/1s
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern
 @todo interface: do we still need import/1s?
-@todo pose: refactor package pattern to include?
-@todo ...plus 42 more (see TODO.edoc)
+@todo ...plus 43 more (see TODO.edoc)

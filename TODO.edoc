@@ -1,4 +1,5 @@
 @todo parse_trans: get working in dev
+@todo rebar: conflicting edowns
 @todo tuner: edoc failures
 @todo pose_package: dynamic import/1s
 @todo posure: stop checking for import/1
