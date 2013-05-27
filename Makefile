@@ -32,12 +32,13 @@ SUPPATH = $(wildcard ../superl)
 
 ifeq ("$(SUPPATH)","")
 	SUPERL	=
+	TUNER	=
    $(warning superl not found parallel: skipping)
 endif
 
 DEPS =		..
 POSEBIN	=	ebin
-SUBPASS	+= 	POSEBIN=$(POSEBIN) DEPS=$(DEPS) SUPERL="$(SUPERL)"
+SUBPASS	+= 	POSEBIN=$(POSEBIN) DEPS=$(DEPS) SUPERL="$(SUPERL)" TUNER="$(TUNER)"
 
 #
 # Run non-overridden common rules.

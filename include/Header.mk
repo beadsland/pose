@@ -121,7 +121,7 @@ ERL	=		erl -noshell $(SILENT) -pz deps/parse_trans/ebin \
 POSURE	=	-s pose start posure
 ifndef SUPERL
 	SUPERL = -s pose start superl
-	TUNER =	-s pose start tuner	
+	TUNER =	-s pose start tuner
 else
 	SUBPASS += SUPERL="$(SUPERL)" TUNER="$(TUNER)" 	# only pass on if redefined
 endif
