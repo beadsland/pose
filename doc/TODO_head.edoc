@@ -1,8 +1,8 @@
 @todo make: folderl or sed for FOLD
+@todo make: refactor folderl to make
 @todo make todo: encode &amp;
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern
 @todo interface: do we still need import/1s?
-@todo pose: refactor package pattern to include?
-@todo ...plus 46 more (see TODO.edoc)
+@todo ...plus 47 more (see TODO.edoc)
