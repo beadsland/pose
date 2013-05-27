@@ -1,8 +1,8 @@
+@todo rebar: research fork conflicts
 @todo rebar: conflicting edowns
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern
 @todo interface: do we still need import/1s?
 @todo pose: refactor package pattern to include?
-@todo pose: erlang support for inheritance
-@todo ...plus 41 more (see TODO.edoc)
+@todo ...plus 42 more (see TODO.edoc)

@@ -1,3 +1,4 @@
+@todo rebar: research fork conflicts
 @todo rebar: conflicting edowns
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
