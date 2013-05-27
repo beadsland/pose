@@ -1,8 +1,8 @@
-@todo make docs: REBAR_ALT not working
-@todo rebar.config.script: configure README path
+make docs@todo rebar.config.script: configure README path
+@todo make: fix TUNER pass-through
 @todo make make: sync rebar.config.script
 @todo rebar.config: make make &amp; check in
 @todo make: sed for FOLD
-@todo make: fix TUNER pass-through
 @todo make todo: encode &amp;
-@todo ...plus 51 more (see TODO.edoc)
+@todo tuner: edoc failures
+@todo ...plus 50 more (see TODO.edoc)
