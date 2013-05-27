@@ -1,5 +1,5 @@
 This directory holds .hrl Erlang library files, .mk Makefiles,
-.sh Bash shell files, and a gitignore.template file.
+.sh Bash shell files, a gitignore.template, and a rebar-edoc.config file.
 
 The only .hrl files are those used by the nosh and pose-compatible
 nosh subprojects.  These .hrl files are stored under the pose 
@@ -13,3 +13,7 @@ the files and pick up any changes.
 
 The gitignore.template file serves to keep the .gitignore files of
 all related projects synchronized.
+
+The rebar-edoc.config file is used for managing forked dependencies involved
+in the creation of documentation.  This is done because some other projects
+we depend on require other forks of the same edoc-related projects.

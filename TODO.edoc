@@ -1,5 +1,3 @@
-@todo rebar.config.script: bad_directory error
-@todo make: rebar-edoc.config
 @todo all projects: doc/deps
 @todo make: sed for FOLD
 @todo make: fix TUNER pass-through

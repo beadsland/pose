@@ -83,6 +83,7 @@ GREP =		grep --line-buffered
 SUCCINCT =	$(GREP) -v "Entering directory" | $(GREP) -v "Leaving directory"
 FOLD = 		cat
 CROWBAR	=	$(SUBPASS) $(REBAR) _cmds_ | $(SUCCINCT) 2>&1 | $(FOLD)
+DOCSBAR =	REBAR_ALT=include/rebar-edoc.config $(CROWBAR:_cmds_=_ecmds_)
 
 B_PREFIX = 	.unison/
 B_SUFFIX =	.0.bak
@@ -114,7 +115,8 @@ endif
 
 GOOD_DEPS = $(shell test -d ../pose -a -d ../superl && echo .. || $(DEPS))
 SILENT =	-kernel error_logger silent
-ERL	=		erl -noshell $(SILENT) -i $(DEPS) -deps $(DEPS) -pa $(POSEBIN)
+ERL	=		erl -noshell $(SILENT) -pz deps/parse_trans/ebin \
+				-i $(DEPS) -deps $(DEPS) -pa $(POSEBIN)
 
 POSURE	=	-s pose start posure
 ifndef SUPERL

@@ -1,0 +1,11 @@
+case os:getenv("REBAR_ALT") of
+  false -> CONFIG; 
+  []    -> CONFIG; 
+  Path  -> 
+    case file:consult(filename:absname(Path)) of
+      {error, Reason} -> Error = file:format_error(Reason),
+                         String = io:format("ERROR: ~s: ~s~n", [Path, Error]),
+                         halt();
+      {ok, Config}    -> Config
+    end
+end.

@@ -79,7 +79,7 @@ neat:	$(wildcard doc/*.md)
 doc/README.md:	;
 	
 doc/%.md:		src/%.erl
-	@$(CROWBAR:_cmds_=doc)
+	@$(DOCSBAR:_cmds_=doc)
 
 src/%.erl:		force
 	@if [ ! -f src/$*.erl ]; then (git rm -f doc/$*.*); fi
@@ -91,17 +91,26 @@ force:		;
 #
 
 compile:	neat
-	@$(CROWBAR:_cmds_=compile doc)
+	@$(CROWBAR:_cmds_=compile)
+	@$(DOCSBAR:_ecmds_=compile doc)
 
 current:	neat make
-	@if [ "$(ONLINE)" == yes ]; \
-		then $(CROWBAR:_cmds_=update-deps compile doc); \
-		else $(CROWBAR:_cmds_=compile doc); fi
+	@if [ "$(ONLINE)" == "yes" ]; \
+		then (	$(CROWBAR:_cmds_=update-deps compile); \
+				$(DOCSBAR:_ecmds_=update-deps compile doc) \
+				); \
+		else (	$(CROWBAR:_cmds_=update-deps compile); \
+				$(DOCSBAR:_cmds_=compile doc) \
+				); fi
 
 clean:		neat make
-	@if [ "$(ONLINE)" == yes ]; \
-		then (rm -rf deps; $(CROWBAR:_cmds_=clean get-deps)); \
-		else ($(CROWBAR:_cmds_=clean)); fi
+	@if [ "$(ONLINE)" == "yes" ]; \
+		then (  $(CROWBAR:_cmds_=clean delete-deps); \
+				$(CROWBAR:_cmds_=get-deps); \
+				$(DOCSBAR:_ecmds_=delete-deps); \
+				$(DOCSBAR:_ecmds_=get-deps) \
+				); \
+		else $(CROWBAR:_cmds_=clean); fi
 	
 #
 # Rules for managing revisions and synchronized common files

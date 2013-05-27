@@ -1,8 +1,8 @@
 @todo rebar.config.script: bad_directory error
+@todo rebar-edoc.config: edoc-info errors
 @todo make: rebar-edoc.config
 @todo all projects: doc/deps
 @todo make: sed for FOLD
 @todo make: fix TUNER pass-through
 @todo tuner: edoc failures
-@todo posure: stop checking for import/1
-@todo ...plus 45 more (see TODO.edoc)
+@todo ...plus 46 more (see TODO.edoc)
