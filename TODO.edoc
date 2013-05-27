@@ -1,3 +1,5 @@
+@todo parse_trans: get working in dev
+@todo tuner: edoc failures
 @todo pose_package: dynamic import/1s
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern
