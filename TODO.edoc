@@ -1,4 +1,5 @@
 @todo make: rebar-edoc.config
+@todo make: fix TUNER pass-through
 @todo all projects: deps-edoc
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1

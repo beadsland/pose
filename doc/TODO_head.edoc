@@ -1,8 +1,8 @@
 @todo make: rebar-edoc.config
+@todo make: fix TUNER pass-through
 @todo all projects: deps-edoc
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern
 @todo interface: do we still need import/1s?
-@todo pose: refactor package pattern to include?
-@todo ...plus 42 more (see TODO.edoc)
+@todo ...plus 43 more (see TODO.edoc)
