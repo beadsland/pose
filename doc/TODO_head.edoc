@@ -1,5 +1,5 @@
-@todo rebar: research fork conflicts
-@todo rebar: conflicting edowns
+@todo make: rebar-edoc.config
+@todo all projects: deps-edoc
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
 @todo pose_code: remove docs on pose package pattern

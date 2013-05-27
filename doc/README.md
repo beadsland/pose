@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">rebar: research fork conflicts</font>
-* <font color="red">rebar: conflicting edowns</font>
+* <font color="red">make: rebar-edoc.config</font>
+* <font color="red">all projects: deps-edoc</font>
 * <font color="red">tuner: edoc failures</font>
 * <font color="red">posure: stop checking for import/1</font>
 * <font color="red">pose_code: remove docs on pose package pattern</font>
