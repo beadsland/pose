@@ -119,8 +119,9 @@ ERL	=		erl -noshell $(SILENT) -i $(DEPS) -deps $(DEPS) -pa $(POSEBIN)
 POSURE	=	-s pose start posure
 ifndef SUPERL
 	SUPERL = -s pose start superl
+	TUNER =	-s pose start tuner	
 else
-	SUBPASS += SUPERL="$(SUPERL)" 	# only pass on if redefined
+	SUBPASS += SUPERL="$(SUPERL)" TUNER="$(TUNER)" 	# only pass on if redefined
 endif
 NOTERM	=	-s pose start noterm
 STOP	=	-s init stop

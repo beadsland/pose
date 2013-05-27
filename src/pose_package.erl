@@ -50,19 +50,20 @@
 %% API Functions
 %%
 
-parse_transform(Tree, _Options) -> insert_imports(Tree, []).
+parse_transform(Tree, _Options) -> 
+  insert_imports(parse_trans:get_file(Tree), Tree, []).
   
 %%
 %% Local Functions
 %%
 
-insert_imports([], List) -> lists:reverse(List);
-insert_imports([{attribute, _, module, [_]} = Head | Tail], List) -> 
-  insert_imports(Tail, [Head | List]);
-insert_imports([{attribute, Line, module, _Module} = Head | Tail], List) ->
-  Imports = [gen_command, pose, filename, filelib, sets, pose_syntax, code, 
-             pose_file, string, erlang, io_lib, re, file],
+insert_imports(_File, [], List) -> lists:reverse(List);
+insert_imports(File, [{attribute, _, module, [_]} = Head | Tail], List) -> 
+  insert_imports(File, Tail, [Head | List]);
+insert_imports(File, [{attribute, Line, module, _Module}=Head | Tail], List) ->
+  Imports = pose_syntax:qualifiers(File),
   Inserts = [{attribute, Line, import, [X]} || X <- Imports],
-  insert_imports(Tail, lists:append(Inserts, [Head | List]));
-insert_imports([Head | Tail], List) -> insert_imports(Tail, [Head | List]).
+  insert_imports(File, Tail, lists:append(Inserts, [Head | List]));
+insert_imports(File, [Head | Tail], List) -> 
+  insert_imports(File, Tail, [Head | List]).
   

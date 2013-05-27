@@ -38,7 +38,7 @@ good:		override DEPS := $(GOOD_DEPS)
 good:		
 	@$(SUBMAKE:_param_=-f include/Common.mk $(POSEBIN)/pose.beam) \
 		| ($(GREP) -v "is up to date"; status=$$?)
-	@$(ERL) $(SUPERL) $(POSURE) $(STOP)
+	@$(ERL) $(SUPERL) $(POSURE) $(TUNER) $(STOP)
 
 %/ebin/pose.beam:	%/src/pose.erl
 	@echo Compiling pose
