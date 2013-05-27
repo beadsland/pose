@@ -1,3 +1,4 @@
+@todo make make: generic sync btw include and root
 @todo make make: sync rebar.config.script
 @todo rebar.config: make make &amp; check in
 @todo nosh: Makefile

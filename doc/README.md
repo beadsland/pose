@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">make: fix TUNER pass-through</font>
+* <font color="red">make make: generic sync btw include and root</font>
 * <font color="red">make make: sync rebar.config.script</font>
 * <font color="red">rebar.config: make make & check in</font>
 * <font color="red">nosh: Makefile</font>
