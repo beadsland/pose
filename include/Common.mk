@@ -122,10 +122,10 @@ push:	make docup
 
 make:	$(patsubst include/%.mk, \
 			include/$(B_PREFIX)%.mk$(B_SUFFIX), $(wildcard include/*.mk))
-	@$(GITIGNORE_PRE)
+	@$(PRESYNC_ALL)
 	@if [ "$(shell basename $(CURDIR))" != nosh ]; \
 		then ($(UNISON) -merge "$(MERGE)"); fi
-	@$(GITIGNORE_POST)
+	@$(POSTSYNC_ALL)
 
 include/$(B_PREFIX)%.mk$(B_SUFFIX):		include/%.mk
 	@if [ ! -f $@ ]; \
