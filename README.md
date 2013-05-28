@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">17 inches</font>
+* <font color="red">scale</font>
+* <font color="red">transport</font>
+* <font color="red">rescale note</font>
 * <font color="red">make: refactor folderl to make</font>
 * <font color="red">make: folderl for FOLD</font>
 * <font color="red">make todo: encode &</font>
-* <font color="red">tuner: edoc failures</font>
-* <font color="red">posure: stop checking for import/1</font>
-* <font color="red">pose_code: remove docs on pose package pattern</font>
-* <font color="red">interface: do we still need import/1s?</font>
-* <font color="red">...plus 47 more (see TODO.edoc)
+* <font color="red">...plus 51 more (see TODO.edoc)
 </font>
 
 
