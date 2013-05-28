@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">make: folderl or sed for FOLD</font>
 * <font color="red">make: refactor folderl to make</font>
+* <font color="red">make: folderl for FOLD</font>
 * <font color="red">make todo: encode &</font>
 * <font color="red">tuner: edoc failures</font>
 * <font color="red">posure: stop checking for import/1</font>
