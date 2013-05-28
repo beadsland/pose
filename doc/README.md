@@ -20,11 +20,11 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">breaker</font>
-* <font color="red">clean</font>
 * <font color="red">slices and wedges</font>
 * <font color="red">connector</font>
 * <font color="red">rescale note</font>
 * <font color="red">machine</font>
+* <font color="red">clean</font>
 * <font color="red">transport</font>
 * <font color="red">...plus 54 more (see TODO.edoc)
 </font>
