@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">deep clean</font>
 * <font color="red">breaker</font>
 * <font color="red">connector</font>
 * <font color="red">transport</font>
 * <font color="red">machine</font>
 * <font color="red">make: refactor folderl to make</font>
 * <font color="red">make: folderl for FOLD</font>
-* <font color="red">...plus 52 more (see TODO.edoc)
+* <font color="red">make todo: encode &</font>
+* <font color="red">...plus 51 more (see TODO.edoc)
 </font>
 
 
