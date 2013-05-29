@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">deep clean</font>
 * <font color="red">breaker</font>
 * <font color="red">connector</font>
-* <font color="red">rescale note</font>
 * <font color="red">machine</font>
 * <font color="red">transport</font>
-* <font color="red">...plus 54 more (see TODO.edoc)
+* <font color="red">make: refactor folderl to make</font>
+* <font color="red">...plus 53 more (see TODO.edoc)
 </font>
 
 
