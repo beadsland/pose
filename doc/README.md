@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">geeklist link</font>
 * <font color="red">review geeklist</font>
-* <font color="red">transport research</font>
 * <font color="red">transport docs</font>
-* <font color="red">transport trial</font>
 * <font color="red">condition</font>
 * <font color="red">connector</font>
-* <font color="red">...plus 59 more (see TODO.edoc)
+* <font color="red">transport trial</font>
+* <font color="red">machine</font>
+* <font color="red">...plus 58 more (see TODO.edoc)
 </font>
 
 
