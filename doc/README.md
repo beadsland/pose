@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">card</font>
 * <font color="red">cleaners</font>
 * <font color="red">brooklyn</font>
-* <font color="red">...plus 60 more (see TODO.edoc)
+* <font color="red">...plus 58 more (see TODO.edoc)
 </font>
 
 
