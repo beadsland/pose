@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">geeklist link</font>
-* <font color="red">transport docs</font>
-* <font color="red">transport trial</font>
-* <font color="red">card</font>
-* <font color="red">cleaners</font>
 * <font color="red">storage</font>
 * <font color="red">machine</font>
+* <font color="red">chronicles</font>
+* <font color="red">card</font>
+* <font color="red">cleaners</font>
+* <font color="red">brooklyn</font>
 * <font color="red">...plus 60 more (see TODO.edoc)
 </font>
 
