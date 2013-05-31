@@ -20,8 +20,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">card</font>
-* <font color="red">cleaners</font>
 * <font color="red">brooklyn</font>
+* <font color="red">combing</font>
 * <font color="red">alma</font>
 * <font color="red">bk acct</font>
 * <font color="red">storage</font>
