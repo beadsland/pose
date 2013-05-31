@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">condition</font>
 * <font color="red">connector</font>
+* <font color="red">squeezer</font>
 * <font color="red">prep</font>
 * <font color="red">transport docs</font>
 * <font color="red">transport trial</font>
 * <font color="red">card</font>
-* <font color="red">cleaners</font>
-* <font color="red">...plus 63 more (see TODO.edoc)
+* <font color="red">...plus 64 more (see TODO.edoc)
 </font>
 
 
