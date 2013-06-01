@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">bike map</font>
-* <font color="red">code.txt</font>
 * <font color="red">resume full sync</font>
 * <font color="red">market helper</font>
+* <font color="red">app</font>
 * <font color="red">evernote</font>
 * <font color="red">cc checklist</font>
 * <font color="red">combing</font>
-* <font color="red">...plus 63 more (see TODO.edoc)
+* <font color="red">alma</font>
+* <font color="red">...plus 62 more (see TODO.edoc)
 </font>
 
 
