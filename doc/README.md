@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">market</font>
-* <font color="red">schednyc</font>
+* <font color="red">apps2sd</font>
+* <font color="red">usb data transfer mode</font>
 * <font color="red">pdf reader</font>
 * <font color="red">evernote</font>
 * <font color="red">market helper</font>
 * <font color="red">code.txt</font>
 * <font color="red">resume full sync</font>
-* <font color="red">...plus 63 more (see TODO.edoc)
+* <font color="red">...plus 65 more (see TODO.edoc)
 </font>
 
 
