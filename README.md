@@ -19,11 +19,11 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">firmware</font>
-* <font color="red">amr</font>
+* <font color="red">reinstall apps</font>
 * <font color="red">non-market</font>
 * <font color="red">wifi</font>
 * <font color="red">sony store</font>
+* <font color="red">code.txt</font>
 * <font color="red">resume full sync</font>
 * <font color="red">pdf reader</font>
 * <font color="red">...plus 64 more (see TODO.edoc)
