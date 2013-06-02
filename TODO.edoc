@@ -1,5 +1,6 @@
 @todo timer
 @todo battery
+@todo refill
 @todo transport trial
 @todo bk acct
 @todo gklst micro
@@ -7,6 +8,7 @@
 @todo voice announce
 @todo make: refactor folderl to make
 @todo make: folderl for FOLD
+@todo dogo: sync evernote
 @todo make todo: encode &amp;
 @todo tuner: edoc failures
 @todo posure: stop checking for import/1
