@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">clear temp</font>
-* <font color="red">doublesync</font>
-* <font color="red">sd card</font>
-* <font color="red">short on usb</font>
-* <font color="red">swap speakers</font>
-* <font color="red">usb cable</font>
-* <font color="red">bios battery</font>
+* <font color="red">laptop: clear temp</font>
+* <font color="red">laptop: doublesync</font>
+* <font color="red">laptop: sd card</font>
+* <font color="red">laptop: short on usb</font>
+* <font color="red">laptop: swap speakers</font>
+* <font color="red">laptop: usb cable</font>
+* <font color="red">laptop: battery diagnostic</font>
 * <font color="red">...plus 72 more (see TODO.edoc)
 </font>
 
