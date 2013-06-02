@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">bk acct</font>
 * <font color="red">gklst micro</font>
 * <font color="red">storage</font>
-* <font color="red">ichill</font>
-* <font color="red">...plus 55 more (see TODO.edoc)
+* <font color="red">voice announce</font>
+* <font color="red">...plus 54 more (see TODO.edoc)
 </font>
 
 
