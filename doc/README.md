@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">battery diagnostic</font>
 * <font color="red">power cord</font>
+* <font color="red">blue screen test</font>
 * <font color="red">swap speakers</font>
 * <font color="red">photos</font>
 * <font color="red">bios battery</font>
 * <font color="red">eclipse updates</font>
-* <font color="red">erlide error</font>
-* <font color="red">...plus 65 more (see TODO.edoc)
+* <font color="red">...plus 66 more (see TODO.edoc)
 </font>
 
 
