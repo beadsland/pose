@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">timer</font>
 * <font color="red">battery</font>
 * <font color="red">refill</font>
+* <font color="red">black screen</font>
 * <font color="red">transport trial</font>
 * <font color="red">bk acct</font>
 * <font color="red">gklst micro</font>
-* <font color="red">storage</font>
-* <font color="red">...plus 63 more (see TODO.edoc)
+* <font color="red">...plus 62 more (see TODO.edoc)
 </font>
 
 
