@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: usb kills computer</font>
 * <font color="red">power supply tester</font>
 * <font color="red">desktop: won't start</font>
+* <font color="red">brooklyn</font>
 * <font color="red">c: full</font>
 * <font color="red">eclipse: conflicting dependencies</font>
-* <font color="red">eclipse: updates</font>
-* <font color="red">...plus 67 more (see TODO.edoc)
+* <font color="red">...plus 68 more (see TODO.edoc)
 </font>
 
 
