@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">mouthwash</font>
 * <font color="red">dish soap (8)</font>
 * <font color="red">litter</font>
+* <font color="red">power supply tester (9)</font>
 * <font color="red">desktop: bios battery</font>
-* <font color="red">eclipse: conflicting dependencies</font>
-* <font color="red">...plus 68 more (see TODO.edoc)
+* <font color="red">...plus 69 more (see TODO.edoc)
 </font>
 
 
