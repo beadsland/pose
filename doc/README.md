@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: blocked startup</font>
 * <font color="red">laptop: battery</font>
+* <font color="red">laptop: evernote</font>
 * <font color="red">brooklyn</font>
 * <font color="red">power supply tester</font>
 * <font color="red">desktop: won't start</font>
 * <font color="red">eclipse: conflicting dependencies</font>
-* <font color="red">eclipse: updates</font>
-* <font color="red">...plus 67 more (see TODO.edoc)
+* <font color="red">...plus 69 more (see TODO.edoc)
 </font>
 
 
