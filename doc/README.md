@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: usb cable</font>
 * <font color="red">laptop: battery diagnostic</font>
 * <font color="red">laptop: power cord</font>
-* <font color="red">...plus 71 more (see TODO.edoc)
+* <font color="red">...plus 72 more (see TODO.edoc)
 </font>
 
 
