@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: sd sync</font>
 * <font color="red">aspirin</font>
-* <font color="red">dish soap</font>
+* <font color="red">mouthwash</font>
+* <font color="red">dish soap (8)</font>
 * <font color="red">litter</font>
 * <font color="red">desktop: bios battery</font>
 * <font color="red">eclipse: conflicting dependencies</font>
-* <font color="red">eclipse: updates</font>
-* <font color="red">...plus 67 more (see TODO.edoc)
+* <font color="red">...plus 68 more (see TODO.edoc)
 </font>
 
 
