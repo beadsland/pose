@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">eclipse: conflicting dependencies</font>
 * <font color="red">eclipse: updates</font>
-* <font color="red">eclipse: resintall egit</font>
-* <font color="red">eclipse: resintall wrangler</font>
+* <font color="red">eclipse: reinstall shelled</font>
+* <font color="red">eclipse: reinstall egit</font>
+* <font color="red">eclipse: reinstall wrangler</font>
 * <font color="red">eclipse: erlide error</font>
 * <font color="red">defrag?</font>
-* <font color="red">alma</font>
-* <font color="red">...plus 66 more (see TODO.edoc)
+* <font color="red">...plus 67 more (see TODO.edoc)
 </font>
 
 
