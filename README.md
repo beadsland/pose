@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">dish soap</font>
-* <font color="red">pink salt</font>
 * <font color="red">aspirin</font>
 * <font color="red">mouthwash</font>
 * <font color="red">litter</font>
 * <font color="red">laptop: usb kills computer</font>
 * <font color="red">power supply tester (9)</font>
-* <font color="red">...plus 71 more (see TODO.edoc)
+* <font color="red">desktop: bios battery</font>
+* <font color="red">c: full</font>
+* <font color="red">...plus 69 more (see TODO.edoc)
 </font>
 
 
