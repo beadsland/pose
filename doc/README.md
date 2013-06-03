@@ -20,10 +20,10 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: sd sync</font>
-* <font color="red">laptop: aerofoil</font>
 * <font color="red">litter</font>
 * <font color="red">aspirin</font>
 * <font color="red">mouthwash</font>
+* <font color="red">laptop: aerofoil</font>
 * <font color="red">laptop: usb kills computer</font>
 * <font color="red">dish soap (8)</font>
 * <font color="red">...plus 72 more (see TODO.edoc)
