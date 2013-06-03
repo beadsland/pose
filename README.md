@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">reader: juice</font>
 * <font color="red">laptop: usb kills computer</font>
 * <font color="red">power supply tester</font>
 * <font color="red">desktop: won't start</font>
 * <font color="red">c: full</font>
 * <font color="red">eclipse: conflicting dependencies</font>
 * <font color="red">eclipse: updates</font>
-* <font color="red">...plus 67 more (see TODO.edoc)
+* <font color="red">eclipse: erlide error</font>
+* <font color="red">...plus 66 more (see TODO.edoc)
 </font>
 
 
