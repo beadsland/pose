@@ -19,10 +19,10 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">prep</font>
 * <font color="red">eclipse: conflicting dependencies</font>
 * <font color="red">eclipse: updates</font>
 * <font color="red">eclipse: resintall egit</font>
+* <font color="red">eclipse: resintall wrangler</font>
 * <font color="red">eclipse: erlide error</font>
 * <font color="red">defrag?</font>
 * <font color="red">alma</font>
