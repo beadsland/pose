@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">brooklyn</font>
+* <font color="red">upside down video</font>
 * <font color="red">power supply tester</font>
 * <font color="red">desktop: won't start</font>
 * <font color="red">prep</font>
