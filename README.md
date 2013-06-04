@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">kepler: org.eclipse.help</font>
 * <font color="red">kepler: erlide</font>
+* <font color="red">kepler: downgrade to 4.2.2 (if erlide unsupported)</font>
+* <font color="red">eclipse: reinstall anyedit</font>
 * <font color="red">eclipse: reinstall xml editors</font>
 * <font color="red">eclipse: reinstall web developer tools</font>
 * <font color="red">eclipse: reinstall egit</font>
-* <font color="red">kepler: updates</font>
-* <font color="red">eclipse: erlide error</font>
-* <font color="red">...plus 69 more (see TODO.edoc)
+* <font color="red">...plus 71 more (see TODO.edoc)
 </font>
 
 
