@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">kepler: org.eclipse.help</font>
 * <font color="red">kepler: erlide</font>
 * <font color="red">kepler: downgrade to 4.2.2 (if erlide unsupported)</font>
-* <font color="red">...plus 76 more (see TODO.edoc)
+* <font color="red">...plus 77 more (see TODO.edoc)
 </font>
 
 
