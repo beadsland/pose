@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">textuml</font>
+* <font color="red">help system</font>
 * <font color="red">headless</font>
 * <font color="red">eclipse ide</font>
 * <font color="red">mdd</font>
