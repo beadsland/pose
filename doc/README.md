@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">vacuum</font>
 * <font color="red">gklst micro</font>
 * <font color="red">storage</font>
-* <font color="red">voice announce</font>
-* <font color="red">...plus 62 more (see TODO.edoc)
+* <font color="red">desktop: power supply tester</font>
+* <font color="red">...plus 61 more (see TODO.edoc)
 </font>
 
 
