@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">juno: reinstall egit</font>
+* <font color="red">juno: log erlide install attempt</font>
+* <font color="red">juno: erlide nightly build</font>
+* <font color="red">erlide: install error ticket</font>
 * <font color="red">transport trial</font>
 * <font color="red">liners</font>
 * <font color="red">bk acct</font>
-* <font color="red">vacuum</font>
-* <font color="red">gklst micro</font>
-* <font color="red">storage</font>
-* <font color="red">desktop: power supply tester</font>
-* <font color="red">...plus 61 more (see TODO.edoc)
+* <font color="red">...plus 64 more (see TODO.edoc)
 </font>
 
 
