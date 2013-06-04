@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">eclipse: conflict: home system base</font>
 * <font color="red">eclipse: conflicting dependencies</font>
 * <font color="red">eclipse: updates</font>
 * <font color="red">eclipse: reinstall shelled</font>
+* <font color="red">eclipse: reinstall xml editors</font>
+* <font color="red">eclipse: reinstall web developer tools</font>
 * <font color="red">eclipse: reinstall egit</font>
-* <font color="red">eclipse: reinstall wrangler</font>
-* <font color="red">eclipse: erlide error</font>
-* <font color="red">defrag?</font>
-* <font color="red">...plus 67 more (see TODO.edoc)
+* <font color="red">...plus 70 more (see TODO.edoc)
 </font>
 
 
