@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">eclipse: reinstall xml editors</font>
-* <font color="red">eclipse: reinstall web developer tools</font>
-* <font color="red">eclipse: reinstall egit</font>
-* <font color="red">kepler: updates</font>
-* <font color="red">eclipse: erlide error</font>
-* <font color="red">carol: friday</font>
+* <font color="red">acronis failing</font>
 * <font color="red">defrag?</font>
-* <font color="red">...plus 70 more (see TODO.edoc)
+* <font color="red">reader: battery</font>
+* <font color="red">alma</font>
+* <font color="red">transport trial</font>
+* <font color="red">liners</font>
+* <font color="red">bk acct</font>
+* <font color="red">...plus 65 more (see TODO.edoc)
 </font>
 
 
