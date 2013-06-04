@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">reader: battery</font>
 * <font color="red">transport trial</font>
 * <font color="red">liners</font>
 * <font color="red">bk acct</font>
 * <font color="red">vacuum</font>
 * <font color="red">gklst micro</font>
 * <font color="red">storage</font>
-* <font color="red">...plus 63 more (see TODO.edoc)
+* <font color="red">voice announce</font>
+* <font color="red">...plus 62 more (see TODO.edoc)
 </font>
 
 
