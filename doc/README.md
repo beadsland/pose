@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">juno: log erlide install attempt</font>
 * <font color="red">juno: erlide nightly build</font>
 * <font color="red">erlide: install error ticket</font>
+* <font color="red">eclipse: error log review</font>
 * <font color="red">transport trial</font>
 * <font color="red">liners</font>
 * <font color="red">bk acct</font>
