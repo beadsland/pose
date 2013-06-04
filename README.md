@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">erlide: remove arbitrary dependency constraint</font>
-* <font color="red">help system</font>
-* <font color="red">headless</font>
-* <font color="red">eclipse ide</font>
-* <font color="red">mdd</font>
-* <font color="red">kepler: org.eclipse.help</font>
-* <font color="red">kepler: erlide</font>
-* <font color="red">...plus 78 more (see TODO.edoc)
+* <font color="red">eclipse: reinstall xml editors</font>
+* <font color="red">eclipse: reinstall web developer tools</font>
+* <font color="red">eclipse: reinstall egit</font>
+* <font color="red">kepler: updates</font>
+* <font color="red">eclipse: erlide error</font>
+* <font color="red">carol: friday</font>
+* <font color="red">defrag?</font>
+* <font color="red">...plus 70 more (see TODO.edoc)
 </font>
 
 

@@ -1,12 +1,3 @@
-@todo erlide: remove arbitrary dependency constraint
-@todo help system
-@todo headless
-@todo eclipse ide
-@todo mdd
-@todo kepler: org.eclipse.help
-@todo kepler: erlide
-@todo kepler: downgrade to 4.2.2 (if erlide unsupported)
-@todo eclipse: reinstall anyedit
 @todo eclipse: reinstall xml editors
 @todo eclipse: reinstall web developer tools
 @todo eclipse: reinstall egit
@@ -23,6 +14,7 @@
 @todo storage
 @todo voice announce
 @todo desktop: won't start
+@todo erlide: install error ticket
 @todo make: folderl for FOLD
 @todo todo: real
 @todo todo: done
