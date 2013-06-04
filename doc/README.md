@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">eclipse: conflict: home system base</font>
-* <font color="red">eclipse: conflicting dependencies</font>
-* <font color="red">eclipse: updates</font>
-* <font color="red">eclipse: reinstall shelled</font>
-* <font color="red">eclipse: reinstall xml editors</font>
-* <font color="red">eclipse: reinstall web developer tools</font>
-* <font color="red">eclipse: reinstall egit</font>
-* <font color="red">...plus 70 more (see TODO.edoc)
+* <font color="red">kepler: import perspective</font>
+* <font color="red">kepler: anyedit</font>
+* <font color="red">kepler: eclipsegraphwiz</font>
+* <font color="red">kepler: amazonaws</font>
+* <font color="red">kepler: wickedshell</font>
+* <font color="red">kepler: phpeclipse</font>
+* <font color="red">kepler: erlide</font>
+* <font color="red">...plus 80 more (see TODO.edoc)
 </font>
 
 
