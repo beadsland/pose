@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">defrag?</font>
+* <font color="red">defrag status</font>
 * <font color="red">reader: battery</font>
 * <font color="red">alma</font>
 * <font color="red">transport trial</font>
