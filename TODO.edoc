@@ -1,3 +1,7 @@
+@todo textuml
+@todo headless
+@todo eclipse ide
+@todo mdd
 @todo kepler: org.eclipse.help
 @todo kepler: erlide
 @todo kepler: downgrade to 4.2.2 (if erlide unsupported)
@@ -7,6 +11,7 @@
 @todo eclipse: reinstall egit
 @todo kepler: updates
 @todo eclipse: erlide error
+@todo carol: friday
 @todo defrag?
 @todo alma
 @todo transport trial
