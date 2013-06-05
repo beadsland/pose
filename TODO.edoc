@@ -9,7 +9,7 @@
 @todo folderl: refactor to folder.sh
 @todo todo: real
 @todo todo: done
-@todo make: info lines to stderr
+@todo folderl: refactor to pose
 @todo folderl: stderr to devnull
 @todo dogo: evm to edoc
 @todo dogo: unison
