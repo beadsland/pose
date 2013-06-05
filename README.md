@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">card</font>
 * <font color="red">storage</font>
 * <font color="red">desktop: power supply tester</font>
-* <font color="red">...plus 71 more (see TODO.edoc)
+* <font color="red">...plus 70 more (see TODO.edoc)
 </font>
 
 
