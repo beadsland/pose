@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">transport trial</font>
-* <font color="red">liners</font>
-* <font color="red">bk acct</font>
+* <font color="red">bk: liners</font>
+* <font color="red">bk: sweep</font>
+* <font color="red">bk: recyc</font>
 * <font color="red">card</font>
 * <font color="red">storage</font>
 * <font color="red">desktop: power supply tester</font>
-* <font color="red">alma</font>
-* <font color="red">...plus 68 more (see TODO.edoc)
+* <font color="red">...plus 71 more (see TODO.edoc)
 </font>
 
 
