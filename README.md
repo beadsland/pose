@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">make: folderl doubledot</font>
+* <font color="red">make: oragami doubledot (at ifndef time)</font>
 * <font color="red">make: folderl for FOLD</font>
 * <font color="red">todo: real</font>
 * <font color="red">transport trial</font>
