@@ -5,11 +5,13 @@
 @todo storage
 @todo desktop: power supply tester
 @todo gklst micro
-@todo folderl: error prepends "ls"
+@todo folderl: redirecting stderr prepends "ls"
 @todo folderl: display error head before default to sed
+@todo folderl: ptrans based on doubledot deps
 @todo folderl: refactor to folder.sh
 @todo todo: real
 @todo todo: done
+@todo folder.sh: posebin for pose
 @todo folderl: refactor to pose
 @todo folderl: stderr to devnull
 @todo dogo: evm to edoc
