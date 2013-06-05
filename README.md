@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">gklst micro</font>
+* <font color="red">eclipse: unable to find action sets</font>
 * <font color="red">eclipse: error log review</font>
 * <font color="red">transport trial</font>
 * <font color="red">liners</font>
 * <font color="red">bk acct</font>
 * <font color="red">vacuum</font>
 * <font color="red">storage</font>
-* <font color="red">...plus 61 more (see TODO.edoc)
+* <font color="red">...plus 62 more (see TODO.edoc)
 </font>
 
 
