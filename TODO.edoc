@@ -1,6 +1,3 @@
-@todo make: oragami doubledot (at ifndef time)
-@todo make: folderl for FOLD
-@todo todo: real
 @todo transport trial
 @todo liners
 @todo bk acct
@@ -8,6 +5,8 @@
 @todo storage
 @todo desktop: power supply tester
 @todo gklst micro
+@todo folderl: refactor to folder.sh
+@todo todo: real
 @todo todo: done
 @todo make: info lines to stderr
 @todo folderl: stderr to devnull
