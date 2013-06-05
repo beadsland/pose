@@ -5,7 +5,8 @@
 @todo storage
 @todo desktop: power supply tester
 @todo gklst micro
-@todo folderl: crashing on parse transform
+@todo folderl: error prepends "ls"
+@todo folderl: display error head before default to sed
 @todo folderl: refactor to folder.sh
 @todo todo: real
 @todo todo: done
