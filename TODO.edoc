@@ -1,13 +1,13 @@
 @todo bk: liners
 @todo bk: recyc
 @todo bk: sweep
-@todo desktop: power supply tester
 @todo storage
 @todo card
 @todo vacuum
 @todo room
 @todo gklst micro
 @todo bk: acct
+@todo desktop: power supply tester
 @todo folderl: redirecting stderr prepends "ls"
 @todo folderl: display error head before default to sed
 @todo folderl: ptrans based on doubledot deps

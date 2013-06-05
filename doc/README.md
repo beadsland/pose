@@ -22,10 +22,10 @@ __<font color="red">To do</font>__
 * <font color="red">bk: liners</font>
 * <font color="red">bk: recyc</font>
 * <font color="red">bk: sweep</font>
-* <font color="red">desktop: power supply tester</font>
 * <font color="red">storage</font>
 * <font color="red">card</font>
 * <font color="red">vacuum</font>
+* <font color="red">room</font>
 * <font color="red">...plus 69 more (see TODO.edoc)
 </font>
 
