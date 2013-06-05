@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">transport trial</font>
 * <font color="red">liners</font>
 * <font color="red">bk acct</font>
-* <font color="red">vacuum</font>
+* <font color="red">card</font>
 * <font color="red">storage</font>
 * <font color="red">desktop: power supply tester</font>
-* <font color="red">gklst micro</font>
-* <font color="red">...plus 66 more (see TODO.edoc)
+* <font color="red">alma</font>
+* <font color="red">...plus 68 more (see TODO.edoc)
 </font>
 
 
