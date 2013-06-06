@@ -1,3 +1,4 @@
+@todo cover
 @todo vacuum
 @todo review acct
 @todo grocery
@@ -9,6 +10,8 @@
 @todo assist
 @todo desktop: power supply tester
 @todo storage
+@todo laundry
+@todo folderl: ls in prompt?
 @todo folderl: redirecting stderr prepends "ls"
 @todo folderl: display error head before default to sed
 @todo folderl: ptrans based on doubledot deps
