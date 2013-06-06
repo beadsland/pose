@@ -21,7 +21,7 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">tank</font>
 * <font color="red">ski mach</font>
-* <font color="red">tp</font>
+* <font color="red">tp mac6495</font>
 * <font color="red">room</font>
 * <font color="red">laptop: remote</font>
 * <font color="red">itunes: disable media keys</font>
