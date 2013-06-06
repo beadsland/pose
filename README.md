@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">cover</font>
-* <font color="red">review acct</font>
 * <font color="red">grocery</font>
 * <font color="red">room</font>
 * <font color="red">itunes: disable media keys</font>
 * <font color="red">gklst micro</font>
 * <font color="red">bk: acct</font>
-* <font color="red">...plus 72 more (see TODO.edoc)
+* <font color="red">10: card</font>
+* <font color="red">...plus 71 more (see TODO.edoc)
 </font>
 
 
