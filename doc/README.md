@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">10: card</font>
 * <font color="red">assist</font>
 * <font color="red">tank</font>
+* <font color="red">ski mach</font>
 * <font color="red">tp</font>
 * <font color="red">room</font>
 * <font color="red">laptop: remote</font>
