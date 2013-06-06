@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">10: card</font>
 * <font color="red">assist</font>
+* <font color="red">tank</font>
 * <font color="red">tp</font>
 * <font color="red">room</font>
+* <font color="red">laptop: remote</font>
 * <font color="red">itunes: disable media keys</font>
-* <font color="red">gklst micro</font>
-* <font color="red">bk: acct</font>
-* <font color="red">...plus 70 more (see TODO.edoc)
+* <font color="red">...plus 73 more (see TODO.edoc)
 </font>
 
 
