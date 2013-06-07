@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">tank</font>
-* <font color="red">ski mach</font>
 * <font color="red">room</font>
+* <font color="red">acronis: schedule manager</font>
+* <font color="red">acronis: shutdown script</font>
 * <font color="red">itunes: disable media keys</font>
 * <font color="red">gklst micro</font>
 * <font color="red">bk: acct</font>
