@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: power supply tester</font>
 * <font color="red">laundry</font>
-* <font color="red">room</font>
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: picasa: duplicate folders</font>
 * <font color="red">laptop: picasa alternative</font>
+* <font color="red">desktop: power supply tester</font>
+* <font color="red">room</font>
 * <font color="red">...plus 73 more (see TODO.edoc)
 </font>
 
