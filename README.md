@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: voice recorder</font>
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner photo studio</font>
-* <font color="red">...plus 76 more (see TODO.edoc)
+* <font color="red">...plus 77 more (see TODO.edoc)
 </font>
 
 
