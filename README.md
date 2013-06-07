@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">bk</font>
-* <font color="red">desktop: power supply tester</font>
-* <font color="red">...plus 74 more (see TODO.edoc)
+* <font color="red">alma</font>
+* <font color="red">...plus 75 more (see TODO.edoc)
 </font>
 
 
