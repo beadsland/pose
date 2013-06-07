@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">room</font>
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">acronis: schedule manager</font>
-* <font color="red">acronis: shutdown script</font>
-* <font color="red">...plus 71 more (see TODO.edoc)
+* <font color="red">laptop: picasa: duplicate folders</font>
+* <font color="red">laptop: picasa alternative</font>
+* <font color="red">...plus 73 more (see TODO.edoc)
 </font>
 
 
