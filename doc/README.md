@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: dvd</font>
 * <font color="red">desktop: power supply tester</font>
 * <font color="red">tank</font>
-* <font color="red">itunes: as service?</font>
-* <font color="red">...plus 73 more (see TODO.edoc)
+* <font color="red">itunes: startup</font>
+* <font color="red">...plus 72 more (see TODO.edoc)
 </font>
 
 
