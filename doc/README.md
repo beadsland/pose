@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: power supply tester</font>
 * <font color="red">tank</font>
 * <font color="red">acronis: error</font>
-* <font color="red">...plus 71 more (see TODO.edoc)
+* <font color="red">...plus 73 more (see TODO.edoc)
 </font>
 
 
