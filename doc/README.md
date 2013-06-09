@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: voice recorder</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">acronis: shut down script</font>
-* <font color="red">...plus 71 more (see TODO.edoc)
+* <font color="red">laptop: hide remote user</font>
+* <font color="red">...plus 72 more (see TODO.edoc)
 </font>
 
 
