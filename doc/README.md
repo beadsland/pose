@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: 3-pin fan power</font>
 * <font color="red">laptop: tape to talk</font>
 * <font color="red">laptop: remote</font>
-* <font color="red">...plus 77 more (see TODO.edoc)
+* <font color="red">...plus 76 more (see TODO.edoc)
 </font>
 
 
