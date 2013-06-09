@@ -23,9 +23,9 @@ __<font color="red">To do</font>__
 * <font color="red">eclipse: erlang navigator</font>
 * <font color="red">tank</font>
 * <font color="red">desktop: 3-pin fan power</font>
-* <font color="red">desktop: file sync</font>
 * <font color="red">laptop: tape to talk</font>
 * <font color="red">laptop: remote</font>
+* <font color="red">laptop: zoner</font>
 * <font color="red">...plus 75 more (see TODO.edoc)
 </font>
 
