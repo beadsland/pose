@@ -21,8 +21,8 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: file sync</font>
 * <font color="red">tank</font>
-* <font color="red">laptop: remote</font>
 * <font color="red">laptop: review tape to talk</font>
+* <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: hide remote user</font>
