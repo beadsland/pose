@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: file sync</font>
 * <font color="red">tank</font>
 * <font color="red">laptop: remote</font>
-* <font color="red">laptop: review net memo voice recorder</font>
 * <font color="red">laptop: review tape to talk</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">...plus 73 more (see TODO.edoc)
+* <font color="red">laptop: hide remote user</font>
+* <font color="red">...plus 72 more (see TODO.edoc)
 </font>
 
 
