@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">eclipse: new install</font>
-* <font color="red">eclipse: update error</font>
-* <font color="red">eclipse: erlang navigator</font>
+* <font color="red">eclipse: working sets broken</font>
+* <font color="red">eclipse: 4.2 plugins</font>
+* <font color="red">eclipse: 4.3 plugins</font>
 * <font color="red">tank</font>
 * <font color="red">desktop: 3-pin fan power</font>
 * <font color="red">laptop: tape to talk</font>
