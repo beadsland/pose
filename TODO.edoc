@@ -1,6 +1,8 @@
 @todo out for the count
+@todo appt confirm
 @todo tank
 @todo desktop: 3-pin fan power
+@todo laptop: disable name
 @todo laptop: tape to talk
 @todo laptop: remote
 @todo laptop: zoner
@@ -8,10 +10,12 @@
 @todo laptop: hide remote user
 @todo laptop: monitor back
 @todo desktop: file sync
+@todo laptop: web site
 @todo diskeeper: confirm working
 @todo acronis: error
 @todo gklst micro
 @todo bk: acct
+@todo receipts
 @todo folderl: pose dumping iwd on error?
 @todo folderl: ls in prompt?
 @todo folderl: redirecting stderr prepends "ls"
