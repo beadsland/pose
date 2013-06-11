@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">appt confirm</font>
 * <font color="red">tp</font>
 * <font color="red">file open</font>
 * <font color="red">desktop: 3-pin fan power</font>
 * <font color="red">laptop: disable name</font>
+* <font color="red">assist</font>
+* <font color="red">appt</font>
 * <font color="red">laptop: tape to talk</font>
-* <font color="red">laptop: remote</font>
-* <font color="red">...plus 80 more (see TODO.edoc)
+* <font color="red">...plus 81 more (see TODO.edoc)
 </font>
 
 
