@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">desktop: ever</font>
 * <font color="red">desktop: skype</font>
 * <font color="red">desktop: org</font>
-* <font color="red">...plus 91 more (see TODO.edoc)
+* <font color="red">desktop: speedfan</font>
+* <font color="red">...plus 90 more (see TODO.edoc)
 </font>
 
 
