@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: disable name</font>
 * <font color="red">laptop: tape to talk</font>
 * <font color="red">laptop: remote</font>
-* <font color="red">...plus 87 more (see TODO.edoc)
+* <font color="red">...plus 91 more (see TODO.edoc)
 </font>
 
 
