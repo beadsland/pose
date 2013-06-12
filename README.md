@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: slowness</font>
 * <font color="red">laptop: bluescreen</font>
 * <font color="red">laptop: skype</font>
+* <font color="red">laptop: usb camera</font>
 * <font color="red">laptop: disable name</font>
 * <font color="red">laptop: tape to talk</font>
-* <font color="red">laptop: remote</font>
-* <font color="red">...plus 91 more (see TODO.edoc)
+* <font color="red">...plus 92 more (see TODO.edoc)
 </font>
 
 
