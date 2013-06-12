@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: disable name</font>
-* <font color="red">laptop: remote</font>
-* <font color="red">laptop: zoner</font>
-* <font color="red">laptop: dvd</font>
-* <font color="red">desktop: skype</font>
-* <font color="red">desktop: org</font>
 * <font color="red">desktop: speedfan</font>
-* <font color="red">...plus 90 more (see TODO.edoc)
+* <font color="red">desktop: 3-pin fan power</font>
+* <font color="red">desktop: win updates</font>
+* <font color="red">desktop: hide remote user</font>
+* <font color="red">desktop: file sync</font>
+* <font color="red">assist</font>
+* <font color="red">bk</font>
+* <font color="red">...plus 88 more (see TODO.edoc)
 </font>
 
 
