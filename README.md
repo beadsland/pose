@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">tp</font>
+* <font color="red">bluescreen</font>
+* <font color="red">battery</font>
 * <font color="red">laptop: disable name</font>
 * <font color="red">assist</font>
 * <font color="red">appt</font>
 * <font color="red">laptop: tape to talk</font>
-* <font color="red">laptop: remote</font>
-* <font color="red">laptop: zoner</font>
-* <font color="red">...plus 80 more (see TODO.edoc)
+* <font color="red">...plus 83 more (see TODO.edoc)
 </font>
 
 
