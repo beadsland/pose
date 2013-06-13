@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">sponge holders</font>
-* <font color="red">green bags</font>
 * <font color="red">mrkt rsch</font>
 * <font color="red">diskeeper: confirm working</font>
-* <font color="red">...plus 75 more (see TODO.edoc)
+* <font color="red">appt</font>
+* <font color="red">acronis: error</font>
+* <font color="red">...plus 73 more (see TODO.edoc)
 </font>
 
 
