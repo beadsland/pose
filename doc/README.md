@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">laptop: battery test</font>
-* <font color="red">updates: win</font>
 * <font color="red">updates: itunes</font>
-* <font color="red">...plus 83 more (see TODO.edoc)
+* <font color="red">tank</font>
+* <font color="red">sponge holders</font>
+* <font color="red">...plus 81 more (see TODO.edoc)
 </font>
 
 
