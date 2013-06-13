@@ -1,4 +1,3 @@
-@todo laptop: disable name
 @todo laptop: remote
 @todo laptop: zoner
 @todo laptop: dvd
@@ -6,14 +5,14 @@
 @todo sponge holders
 @todo green bags
 @todo mrkt rsch
-@todo appt
-@todo desktop: chipset fan
-@todo desktop: file sync
 @todo diskeeper: confirm working
+@todo appt
 @todo acronis: error
 @todo gklst micro
 @todo bk: acct
 @todo receipts
+@todo desktop: chipset fan
+@todo desktop: file sync
 @todo folderl: pose dumping iwd on error?
 @todo folderl: ls in prompt?
 @todo folderl: redirecting stderr prepends "ls"
