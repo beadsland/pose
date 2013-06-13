@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">assist</font>
 * <font color="red">metro</font>
-* <font color="red">...plus 81 more (see TODO.edoc)
+* <font color="red">tank</font>
+* <font color="red">...plus 80 more (see TODO.edoc)
 </font>
 
 
