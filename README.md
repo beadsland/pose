@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: battery test</font>
-* <font color="red">laptop: web site</font>
-* <font color="red">bk</font>
-* <font color="red">...plus 86 more (see TODO.edoc)
+* <font color="red">updates: win</font>
+* <font color="red">updates: itunes</font>
+* <font color="red">...plus 83 more (see TODO.edoc)
 </font>
 
 
