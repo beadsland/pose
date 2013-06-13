@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">itunes: full</font>
-* <font color="red">itunes: obsolete</font>
+* <font color="red">itunes: red sync</font>
 * <font color="red">laptop: disable name</font>
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">assist</font>
-* <font color="red">...plus 82 more (see TODO.edoc)
+* <font color="red">metro</font>
+* <font color="red">...plus 81 more (see TODO.edoc)
 </font>
 
 
