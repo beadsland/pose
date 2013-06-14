@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">acronis: error</font>
 * <font color="red">depo</font>
 * <font color="red">bk</font>
-* <font color="red">gklst micro</font>
-* <font color="red">...plus 72 more (see TODO.edoc)
+* <font color="red">clnr</font>
+* <font color="red">...plus 74 more (see TODO.edoc)
 </font>
 
 
