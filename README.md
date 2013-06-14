@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">checkin</font>
-* <font color="red">lesson</font>
 * <font color="red">diskeeper: confirm working</font>
 * <font color="red">appt</font>
-* <font color="red">...plus 74 more (see TODO.edoc)
+* <font color="red">acronis: error</font>
+* <font color="red">...plus 73 more (see TODO.edoc)
 </font>
 
 
