@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: remote</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">clean</font>
+* <font color="red">receipts</font>
 * <font color="red">waitlist</font>
 * <font color="red">gklst micro</font>
 * <font color="red">bk: acct</font>
-* <font color="red">...plus 71 more (see TODO.edoc)
+* <font color="red">...plus 70 more (see TODO.edoc)
 </font>
 
 
