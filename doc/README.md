@@ -20,7 +20,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">metal paint</font>
-* <font color="red">desktop: chipset fan</font>
+* <font color="red">desktop: thermal grease</font>
 * <font color="red">desktop: file sync</font>
 * <font color="red">recycle</font>
 * <font color="red">grocery</font>
