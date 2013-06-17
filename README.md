@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: mybook</font>
 * <font color="red">desktop: file sync</font>
 * <font color="red">laptop: screen test</font>
-* <font color="red">recycle</font>
-* <font color="red">...plus 75 more (see TODO.edoc)
+* <font color="red">bottom paint</font>
+* <font color="red">...plus 78 more (see TODO.edoc)
 </font>
 
 
