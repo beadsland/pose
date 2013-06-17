@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: freezing</font>
 * <font color="red">desktop: file sync</font>
 * <font color="red">desktop: mybook</font>
-* <font color="red">...plus 81 more (see TODO.edoc)
+* <font color="red">...plus 83 more (see TODO.edoc)
 </font>
 
 
