@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: all-in-wonder</font>
-* <font color="red">desktop: updates</font>
-* <font color="red">desktop: mouse</font>
+* <font color="red">desktop: hid</font>
 * <font color="red">desktop: drivers</font>
 * <font color="red">desktop: not shutting</font>
 * <font color="red">desktop: freezing</font>
 * <font color="red">desktop: file sync</font>
-* <font color="red">...plus 84 more (see TODO.edoc)
+* <font color="red">desktop: mybook</font>
+* <font color="red">...plus 81 more (see TODO.edoc)
 </font>
 
 
