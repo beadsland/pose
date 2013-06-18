@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: memtest</font>
-* <font color="red">desktop: start menu freezing</font>
+* <font color="red">desktop: spontaneous reboot</font>
+* <font color="red">desktop: ati wdm capture drivers</font>
 * <font color="red">desktop: drivers</font>
 * <font color="red">desktop: not shutting</font>
 * <font color="red">desktop: freezing</font>
