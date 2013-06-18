@@ -1,4 +1,8 @@
-@todo desktop: wd extended test
+@todo desktop: wd extended test: c/g
+@todo desktop: wd extended test: d
+@todo desktop: net 4
+@todo desktop: smartware update
+@todo desktop: smartware new plan
 @todo desktop: drivers
 @todo desktop: ati wdm capture drivers
 @todo desktop: slave drive disconnects
@@ -7,6 +11,10 @@
 @todo desktop: mybook
 @todo appt
 @todo recycle
+@todo laundry
+@todo laptop: net 4
+@todo laptop: smartware
+@todo laptop: smartware new plan
 @todo laptop: remote
 @todo laptop: zoner
 @todo laptop: dvd
