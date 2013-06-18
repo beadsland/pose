@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">desktop: sticky notes</font>
 * <font color="red">desktop: patch roxio 5</font>
 * <font color="red">desktop: disable page zero</font>
 * <font color="red">desktop: not shutting</font>
 * <font color="red">desktop: ati wdm capture drivers</font>
 * <font color="red">desktop: drivers</font>
 * <font color="red">desktop: slave drive disconnects</font>
-* <font color="red">desktop: freezing</font>
-* <font color="red">...plus 79 more (see TODO.edoc)
+* <font color="red">...plus 80 more (see TODO.edoc)
 </font>
 
 
