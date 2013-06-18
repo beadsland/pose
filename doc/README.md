@@ -21,11 +21,11 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: wd extended test: c/g</font>
 * <font color="red">desktop: wd extended test: d</font>
-* <font color="red">desktop: net 4</font>
 * <font color="red">desktop: smartware update</font>
 * <font color="red">desktop: smartware new plan</font>
 * <font color="red">desktop: drivers</font>
 * <font color="red">desktop: ati wdm capture drivers</font>
+* <font color="red">desktop: slave drive disconnects</font>
 * <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
