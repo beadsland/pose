@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: zoner skin/size</font>
-* <font color="red">laptop: tape to talk to sd?</font>
-* <font color="red">android: file manager</font>
-* <font color="red">desktop: wake on lan</font>
-* <font color="red">desktop: better wol app</font>
+* <font color="red">android: tape a talk to sd?</font>
 * <font color="red">desktop: updates</font>
 * <font color="red">desktop: smartware</font>
-* <font color="red">...plus 89 more (see TODO.edoc)
+* <font color="red">desktop: drivers</font>
+* <font color="red">desktop: ati wdm capture drivers</font>
+* <font color="red">desktop: slave drive disconnects</font>
+* <font color="red">desktop: freezing</font>
+* <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
 
