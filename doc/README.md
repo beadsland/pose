@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: drivers</font>
 * <font color="red">desktop: mouse driver</font>
 * <font color="red">desktop: slave drive disconnects</font>
 * <font color="red">desktop: freezing</font>
 * <font color="red">desktop: file sync</font>
 * <font color="red">desktop: mybook</font>
 * <font color="red">desktop: smartware</font>
+* <font color="red">desktop: slimdrivers</font>
 * <font color="red">...plus 91 more (see TODO.edoc)
 </font>
 
