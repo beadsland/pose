@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">desktop: smartware installer error</font>
 * <font color="red">desktop: smartware update</font>
 * <font color="red">desktop: smartware new plan</font>
 * <font color="red">desktop: drivers</font>
 * <font color="red">desktop: ati wdm capture drivers</font>
 * <font color="red">desktop: slave drive disconnects</font>
 * <font color="red">desktop: freezing</font>
-* <font color="red">desktop: file sync</font>
-* <font color="red">...plus 84 more (see TODO.edoc)
+* <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
 
