@@ -1,4 +1,3 @@
-@todo desktop: ati system check
 @todo desktop: drivers
 @todo desktop: mouse driver
 @todo desktop: slave drive disconnects
@@ -6,6 +5,7 @@
 @todo desktop: file sync
 @todo desktop: mybook
 @todo desktop: smartware
+@todo desktop: start org
 @todo appt
 @todo recycle
 @todo brk
@@ -21,7 +21,8 @@
 @todo laptop: 3gp thumbnails
 @todo laptop: crashes on usb removal
 @todo laptop: defrag
-@todo laptop: disk image
+@todo laptop: disk org
+@todo laptop: start org
 @todo desktop: disk image
 @todo receipts
 @todo waitlist
