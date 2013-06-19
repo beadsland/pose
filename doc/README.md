@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: drivers</font>
 * <font color="red">desktop: slave drive disconnects</font>
 * <font color="red">desktop: freezing</font>
-* <font color="red">...plus 90 more (see TODO.edoc)
+* <font color="red">...plus 92 more (see TODO.edoc)
 </font>
 
 
