@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: smartware</font>
 * <font color="red">laundry</font>
-* <font color="red">trim</font>
 * <font color="red">wash</font>
 * <font color="red">cans</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: dvd</font>
-* <font color="red">...plus 80 more (see TODO.edoc)
+* <font color="red">android: tape a talk to sd?</font>
+* <font color="red">...plus 78 more (see TODO.edoc)
 </font>
 
 
