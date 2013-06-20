@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: photos backup</font>
 * <font color="red">laptop: keyboard driver</font>
 * <font color="red">laptop: mouse driver</font>
-* <font color="red">laptop: drivers</font>
-* <font color="red">...plus 78 more (see TODO.edoc)
+* <font color="red">laptop: lifecam</font>
+* <font color="red">...plus 79 more (see TODO.edoc)
 </font>
 
 
