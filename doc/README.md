@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: zoner</font>
 * <font color="red">android: tape a talk to sd?</font>
 * <font color="red">laptop: photos backup</font>
-* <font color="red">laptop: intel drivers</font>
-* <font color="red">laptop: drivers</font>
 * <font color="red">laptop: crashes on usb removal</font>
-* <font color="red">...plus 77 more (see TODO.edoc)
+* <font color="red">laptop: defrag</font>
+* <font color="red">laptop: start org</font>
+* <font color="red">...plus 75 more (see TODO.edoc)
 </font>
 
 
