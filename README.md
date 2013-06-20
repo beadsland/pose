@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">recycle</font>
 * <font color="red">tpaste</font>
 * <font color="red">laundry</font>
-* <font color="red">laptop: zoner</font>
-* <font color="red">laptop: dvd</font>
-* <font color="red">...plus 79 more (see TODO.edoc)
+* <font color="red">trim</font>
+* <font color="red">wash</font>
+* <font color="red">...plus 81 more (see TODO.edoc)
 </font>
 
 
