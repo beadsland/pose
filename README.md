@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: reinstall video drivers</font>
+* <font color="red">laptop: system restore</font>
 * <font color="red">laptop: not recognizing external monitor</font>
 * <font color="red">laptop: headphones/camera check</font>
 * <font color="red">laptop: dvd</font>
