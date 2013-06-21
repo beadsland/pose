@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: zoner</font>
 * <font color="red">android: dropsync tape-a-talk</font>
 * <font color="red">android: dropbox photos/videos</font>
-* <font color="red">laptop: defrag</font>
-* <font color="red">laptop: start org</font>
-* <font color="red">laptop: disk image</font>
-* <font color="red">...plus 74 more (see TODO.edoc)
+* <font color="red">android: voice recorder uninstall</font>
+* <font color="red">android: disk space</font>
+* <font color="red">laptop: setup repair</font>
+* <font color="red">...plus 79 more (see TODO.edoc)
 </font>
 
 
