@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: not recognizing external monitor</font>
 * <font color="red">laptop: headphones/camera check</font>
 * <font color="red">laptop: dvd</font>
+* <font color="red">laptop: windows font size</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">android: dropsync pro</font>
-* <font color="red">vaio: useability</font>
-* <font color="red">...plus 84 more (see TODO.edoc)
+* <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
 
