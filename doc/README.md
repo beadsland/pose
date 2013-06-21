@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: power wifi</font>
 * <font color="red">android: voice recorder uninstall</font>
 * <font color="red">android: disk space</font>
-* <font color="red">...plus 85 more (see TODO.edoc)
+* <font color="red">...plus 84 more (see TODO.edoc)
 </font>
 
 
