@@ -21,11 +21,11 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
-* <font color="red">android: dropsync tape-a-talk</font>
 * <font color="red">android: dropbox photos/videos</font>
 * <font color="red">android: power wifi</font>
 * <font color="red">android: voice recorder uninstall</font>
 * <font color="red">android: disk space</font>
+* <font color="red">android: dropsync pro</font>
 * <font color="red">...plus 83 more (see TODO.edoc)
 </font>
 
