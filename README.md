@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
-* <font color="red">android: tape a talk to sd?</font>
-* <font color="red">android: tape a talk to dropbox</font>
-* <font color="red">android: dropbox sync alternative</font>
-* <font color="red">android: sync folder to dropbox</font>
+* <font color="red">android: dropsync tape-a-talk</font>
+* <font color="red">android: dropbox photos/videos</font>
 * <font color="red">laptop: defrag</font>
-* <font color="red">...plus 76 more (see TODO.edoc)
+* <font color="red">laptop: start org</font>
+* <font color="red">laptop: disk image</font>
+* <font color="red">...plus 74 more (see TODO.edoc)
 </font>
 
 
