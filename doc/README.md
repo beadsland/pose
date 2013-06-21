@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: dropsync pro</font>
 * <font color="red">vaio: useability</font>
 * <font color="red">toshiba: battery (1pm)</font>
-* <font color="red">...plus 82 more (see TODO.edoc)
+* <font color="red">...plus 83 more (see TODO.edoc)
 </font>
 
 
