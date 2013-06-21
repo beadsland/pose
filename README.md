@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">assist</font>
 * <font color="red">brk</font>
+* <font color="red">desktop: both inputs</font>
+* <font color="red">android: move camera data to sd</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">android: dropsync pro</font>
-* <font color="red">vaio: useability</font>
-* <font color="red">toshiba: battery (1pm)</font>
-* <font color="red">...plus 83 more (see TODO.edoc)
+* <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
 
