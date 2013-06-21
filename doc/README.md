@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">vaio: network card speed</font>
 * <font color="red">vaio: resize</font>
 * <font color="red">other laptop: review</font>
-* <font color="red">...plus 83 more (see TODO.edoc)
+* <font color="red">...plus 82 more (see TODO.edoc)
 </font>
 
 
