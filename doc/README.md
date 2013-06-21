@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">android: dropbox photos/videos</font>
 * <font color="red">android: voice recorder uninstall</font>
 * <font color="red">android: disk space</font>
-* <font color="red">laptop: defrag</font>
-* <font color="red">...plus 78 more (see TODO.edoc)
+* <font color="red">laptop: defrag: c</font>
+* <font color="red">...plus 80 more (see TODO.edoc)
 </font>
 
 
