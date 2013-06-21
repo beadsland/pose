@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: headphones/camera check</font>
+* <font color="red">laptop: headphones/camera check: gtalk</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: windows font size</font>
 * <font color="red">laptop: zoner</font>
