@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">laptop: reinstall video drivers</font>
+* <font color="red">laptop: not recognizing external monitor</font>
 * <font color="red">laptop: headphones/camera check</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">android: dropsync pro</font>
 * <font color="red">vaio: useability</font>
-* <font color="red">other laptop: review</font>
-* <font color="red">laptop: defrag: c</font>
-* <font color="red">...plus 81 more (see TODO.edoc)
+* <font color="red">...plus 84 more (see TODO.edoc)
 </font>
 
 
