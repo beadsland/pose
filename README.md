@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
 * <font color="red">laptop: low disk space warning?</font>
+* <font color="red">laptop: disable viewminder reminders</font>
 * <font color="red">laptop: stickynotes error</font>
 * <font color="red">laptop: teamviewer error</font>
-* <font color="red">laptop: cmd.exe/taskeng.exe at startup?</font>
-* <font color="red">...plus 89 more (see TODO.edoc)
+* <font color="red">...plus 90 more (see TODO.edoc)
 </font>
 
 
