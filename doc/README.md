@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">teamviewer: update</font>
-* <font color="red">android: dropsync pro</font>
-* <font color="red">vaio: useability</font>
 * <font color="red">toshiba: battery (1pm)</font>
-* <font color="red">toshiba: review</font>
 * <font color="red">laptop: drivers</font>
 * <font color="red">laptop: taskkill tv bf mm</font>
-* <font color="red">...plus 90 more (see TODO.edoc)
+* <font color="red">laptop: timeout for startup items</font>
+* <font color="red">laptop: bigger system restore</font>
+* <font color="red">laptop: defrag: c</font>
+* <font color="red">laptop: defrag: d</font>
+* <font color="red">...plus 86 more (see TODO.edoc)
 </font>
 
 
