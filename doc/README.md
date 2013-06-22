@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">toshiba: battery (1pm)</font>
+* <font color="red">desktop: slimcomputer</font>
+* <font color="red">laptop: uninstall toolwiz</font>
+* <font color="red">laptop: system restore</font>
+* <font color="red">laptop: slimcomputer</font>
 * <font color="red">laptop: delay for startup items</font>
 * <font color="red">laptop: taskkill tv bf mm</font>
-* <font color="red">laptop: bigger system restore</font>
-* <font color="red">laptop: start org</font>
-* <font color="red">laptop: defrag: c</font>
-* <font color="red">laptop: defrag: d</font>
-* <font color="red">...plus 81 more (see TODO.edoc)
+* <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
 
