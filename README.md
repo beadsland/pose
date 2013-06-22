@@ -20,7 +20,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: ccleaner: run at startup</font>
-* <font color="red">laptop: out of space?</font>
+* <font color="red">laptop: low disk space warning?</font>
 * <font color="red">laptop: stickynotes error</font>
 * <font color="red">laptop: teamviewer error</font>
 * <font color="red">laptop: gtalk info</font>
