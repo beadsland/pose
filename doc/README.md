@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">dekstop: adaware activation</font>
 * <font color="red">desktop: stickynotes startup</font>
 * <font color="red">desktop: slimcomputer</font>
 * <font color="red">laptop: slimcomputer</font>
 * <font color="red">laptop: delay for startup items</font>
 * <font color="red">laptop: taskkill tv bf mm</font>
 * <font color="red">laptop: bigger system restore</font>
-* <font color="red">...plus 85 more (see TODO.edoc)
+* <font color="red">laptop: start org</font>
+* <font color="red">...plus 84 more (see TODO.edoc)
 </font>
 
 
