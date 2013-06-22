@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: mediamonkey player</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
-* <font color="red">bitt: undown?</font>
-* <font color="red">low free: f</font>
-* <font color="red">...plus 96 more (see TODO.edoc)
+* <font color="red">low free: e</font>
+* <font color="red">abaiko</font>
+* <font color="red">...plus 92 more (see TODO.edoc)
 </font>
 
 
