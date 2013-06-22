@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: move camera data to sd</font>
+* <font color="red">android: speed up phone</font>
 * <font color="red">android: mediamonkey sync</font>
 * <font color="red">android: mediamonkey player</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
+* <font color="red">laptop: review dropbox useage</font>
 * <font color="red">low free: e</font>
-* <font color="red">abaiko</font>
-* <font color="red">...plus 92 more (see TODO.edoc)
+* <font color="red">...plus 93 more (see TODO.edoc)
 </font>
 
 
