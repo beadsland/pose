@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: sticky note msconfig</font>
-* <font color="red">desktop: startup delay</font>
-* <font color="red">laptop: startup delay</font>
+* <font color="red">desktop: soluto</font>
+* <font color="red">laptop: soluto</font>
 * <font color="red">laptop: taskkill tv bf mm</font>
 * <font color="red">laptop: bigger system restore</font>
 * <font color="red">laptop: start org</font>
 * <font color="red">laptop: defrag: c</font>
-* <font color="red">...plus 83 more (see TODO.edoc)
+* <font color="red">...plus 84 more (see TODO.edoc)
 </font>
 
 
