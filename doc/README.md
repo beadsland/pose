@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: not downloading dropbox?</font>
-* <font color="red">desktop: review dropbox usage</font>
-* <font color="red">laptop: cmd.exe/taskeng.exe at startup?</font>
 * <font color="red">teamviewer: update</font>
 * <font color="red">android: dropsync pro</font>
 * <font color="red">vaio: useability</font>
 * <font color="red">toshiba: battery (1pm)</font>
+* <font color="red">toshiba: review</font>
+* <font color="red">laptop: drivers</font>
+* <font color="red">laptop: taskkill tv bf mm</font>
 * <font color="red">...plus 90 more (see TODO.edoc)
 </font>
 

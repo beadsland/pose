@@ -1,12 +1,10 @@
-@todo desktop: not downloading dropbox?
-@todo desktop: review dropbox usage
-@todo laptop: cmd.exe/taskeng.exe at startup?
-@todo teamviewer: update
 @todo android: dropsync pro
 @todo vaio: useability
 @todo toshiba: battery (1pm)
 @todo toshiba: review
+@todo laptop: drivers
 @todo laptop: taskkill tv bf mm
+@todo laptop: timeout for startup items
 @todo laptop: bigger system restore
 @todo laptop: defrag: c
 @todo laptop: defrag: d
@@ -15,6 +13,7 @@
 @todo laptop: macrium schedule
 @todo android: mediamonkey sync
 @todo android: mediamonkey player
+@todo desktop: review dropbox usage
 @todo abaiko
 @todo laptop: abaiko
 @todo desktop: abaiko
