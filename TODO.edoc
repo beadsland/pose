@@ -1,8 +1,7 @@
 @todo toshiba: battery (1pm)
-@todo desktop: tclock
 @todo laptop: tclock
-@todo laptop: taskkill tv bf mm
 @todo laptop: timeout for startup items
+@todo laptop: taskkill tv bf mm
 @todo laptop: bigger system restore
 @todo laptop: defrag: c
 @todo laptop: defrag: d
@@ -18,11 +17,10 @@
 @todo desktop: abaiko
 @todo kitchen clog (2:15)
 @todo receipts
-@todo waitlist
-@todo gklst micro
 @todo bk: acct
-@todo folderl: pose dumping iwd on error?
+@todo gklst micro
 @todo folderl: ls in prompt?
+@todo folderl: pose dumping iwd on error?
 @todo folderl: redirecting stderr prepends "ls"
 @todo folderl: display error head before default to sed
 @todo folderl: ptrans based on doubledot deps
