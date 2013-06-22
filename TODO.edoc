@@ -1,4 +1,5 @@
 @todo toshiba: battery (1pm)
+@todo laptop: efax messenger folder
 @todo laptop: tclock
 @todo laptop: timeout for startup items
 @todo laptop: taskkill tv bf mm
@@ -9,6 +10,7 @@
 @todo laptop: disk image
 @todo laptop: macrium schedule
 @todo laptop: drivers
+@todo blue drive: reformat for mac
 @todo android: mediamonkey sync
 @todo android: mediamonkey player
 @todo android: dropsync pro
@@ -19,7 +21,6 @@
 @todo receipts
 @todo bk: acct
 @todo gklst micro
-@todo folderl: ls in prompt?
 @todo folderl: pose dumping iwd on error?
 @todo folderl: redirecting stderr prepends "ls"
 @todo folderl: display error head before default to sed
