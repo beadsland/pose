@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: review dropbox useage</font>
-* <font color="red">low free: e</font>
-* <font color="red">abaiko</font>
-* <font color="red">laptop: low disk space warning?</font>
 * <font color="red">laptop: cmd.exe/taskeng.exe at startup?</font>
-* <font color="red">desktop: cclearner</font>
-* <font color="red">desktop: low disk space warning</font>
-* <font color="red">...plus 90 more (see TODO.edoc)
+* <font color="red">teamviewer: update</font>
+* <font color="red">android: dropsync pro</font>
+* <font color="red">vaio: useability</font>
+* <font color="red">toshiba: battery (1pm)</font>
+* <font color="red">toshiba: review</font>
+* <font color="red">...plus 88 more (see TODO.edoc)
 </font>
 
 
