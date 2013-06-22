@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: move camera data to sd</font>
+* <font color="red">laptop: dvd</font>
+* <font color="red">laptop: zoner</font>
 * <font color="red">laptop: low disk space warning?</font>
 * <font color="red">laptop: stickynotes error</font>
 * <font color="red">laptop: teamviewer error</font>
 * <font color="red">laptop: cmd.exe/taskeng.exe at startup?</font>
-* <font color="red">android: move camera data to sd</font>
-* <font color="red">laptop: dvd</font>
-* <font color="red">laptop: zoner</font>
 * <font color="red">...plus 89 more (see TODO.edoc)
 </font>
 
