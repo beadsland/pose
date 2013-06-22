@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: low disk space warning?</font>
 * <font color="red">laptop: stickynotes error</font>
 * <font color="red">laptop: teamviewer error</font>
-* <font color="red">...plus 90 more (see TODO.edoc)
+* <font color="red">...plus 91 more (see TODO.edoc)
 </font>
 
 
