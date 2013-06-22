@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: move camera data to sd</font>
+* <font color="red">android: mediamonkey sync</font>
+* <font color="red">android: mediamonkey player</font>
 * <font color="red">laptop: dvd</font>
 * <font color="red">laptop: zoner</font>
-* <font color="red">low disk test</font>
-* <font color="red">laptop: low disk space warning?</font>
-* <font color="red">laptop: stickynotes error</font>
-* <font color="red">laptop: teamviewer error</font>
-* <font color="red">...plus 91 more (see TODO.edoc)
+* <font color="red">bitt: undown?</font>
+* <font color="red">low free: f</font>
+* <font color="red">...plus 96 more (see TODO.edoc)
 </font>
 
 
