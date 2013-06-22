@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">laptop: ccleaner: run at startup</font>
 * <font color="red">laptop: out of space?</font>
+* <font color="red">laptop: stickynotes error</font>
+* <font color="red">laptop: teamviewer error</font>
+* <font color="red">laptop: gtalk info</font>
 * <font color="red">monitor: both inputs</font>
 * <font color="red">android: move camera data to sd</font>
-* <font color="red">laptop: dvd</font>
-* <font color="red">laptop: zoner</font>
-* <font color="red">android: dropsync pro</font>
-* <font color="red">vaio: useability</font>
-* <font color="red">...plus 84 more (see TODO.edoc)
+* <font color="red">...plus 90 more (see TODO.edoc)
 </font>
 
 
