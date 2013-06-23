@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: macrium schedule</font>
+* <font color="red">laptop: google launching on startup?</font>
 * <font color="red">laptop: drivers</font>
 * <font color="red">blue drive: fully synced</font>
 * <font color="red">blue drive: gparted</font>
 * <font color="red">blue drive: reformat for mac</font>
-* <font color="red">blue drive: seagate win drivers</font>
-* <font color="red">...plus 88 more (see TODO.edoc)
+* <font color="red">...plus 91 more (see TODO.edoc)
 </font>
 
 
