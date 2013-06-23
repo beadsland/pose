@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: macrium schedule</font>
 * <font color="red">laptop: drivers</font>
 * <font color="red">blue drive: fully synced</font>
-* <font color="red">desktop: gparted</font>
+* <font color="red">blue drive: gparted</font>
 * <font color="red">blue drive: reformat for mac</font>
 * <font color="red">blue drive: seagate win drivers</font>
-* <font color="red">...plus 87 more (see TODO.edoc)
+* <font color="red">...plus 88 more (see TODO.edoc)
 </font>
 
 
