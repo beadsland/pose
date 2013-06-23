@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: evernote on startup</font>
 * <font color="red">desktop: startup delayer</font>
-* <font color="red">laptop: evernote on startup</font>
 * <font color="red">laptop: startup delayer</font>
 * <font color="red">laptop: taskkill tv bf mm</font>
 * <font color="red">laptop: bigger system restore</font>
 * <font color="red">laptop: start org</font>
-* <font color="red">...plus 85 more (see TODO.edoc)
+* <font color="red">laptop: defrag: c</font>
+* <font color="red">laptop: defrag: d</font>
+* <font color="red">...plus 83 more (see TODO.edoc)
 </font>
 
 
