@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: taskkill tv bf mm</font>
 * <font color="red">android: mediamonkey sync</font>
 * <font color="red">android: mediamonkey player</font>
 * <font color="red">android: dropsync pro</font>
 * <font color="red">vaio: magnifier program</font>
 * <font color="red">laptop: tclock settings file?</font>
 * <font color="red">laptop: bigger system restore</font>
-* <font color="red">...plus 80 more (see TODO.edoc)
+* <font color="red">laptop: start org</font>
+* <font color="red">...plus 79 more (see TODO.edoc)
 </font>
 
 
