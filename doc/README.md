@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">blue drive: reformat for mac</font>
 * <font color="red">blue drive: seagate win drivers</font>
 * <font color="red">blue drive: new blue drive sync</font>
-* <font color="red">...plus 87 more (see TODO.edoc)
+* <font color="red">...plus 89 more (see TODO.edoc)
 </font>
 
 
