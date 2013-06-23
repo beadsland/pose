@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">blue drive: reformat for mac</font>
 * <font color="red">blue drive: seagate win drivers</font>
 * <font color="red">blue drive: new blue drive sync</font>
-* <font color="red">desktop: smart shutdown</font>
-* <font color="red">...plus 90 more (see TODO.edoc)
+* <font color="red">android: airdroid</font>
+* <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
 
