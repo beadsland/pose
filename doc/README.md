@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: startup delayer driver doctor</font>
 * <font color="red">blue drive: fully synced</font>
 * <font color="red">blue drive: reformat for mac</font>
-* <font color="red">...plus 91 more (see TODO.edoc)
+* <font color="red">...plus 92 more (see TODO.edoc)
 </font>
 
 
