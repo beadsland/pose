@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: titanium backup</font>
 * <font color="red">android: mediahub</font>
 * <font color="red">android: mediamonkey sync</font>
-* <font color="red">...plus 85 more (see TODO.edoc)
+* <font color="red">...plus 86 more (see TODO.edoc)
 </font>
 
 
