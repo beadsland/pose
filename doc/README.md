@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">vaio: magnifier program</font>
-* <font color="red">desktop: smartdefrag</font>
-* <font color="red">laptop: smart optimize</font>
 * <font color="red">laptop: safe smartdefrag</font>
 * <font color="red">laptop: taskkill tv bf mm</font>
 * <font color="red">laptop: bigger system restore</font>
 * <font color="red">android: mediamonkey sync</font>
-* <font color="red">...plus 82 more (see TODO.edoc)
+* <font color="red">android: mediamonkey player</font>
+* <font color="red">android: dropsync pro</font>
+* <font color="red">...plus 80 more (see TODO.edoc)
 </font>
 
 
