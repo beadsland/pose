@@ -20,7 +20,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: startup delayer</font>
-* <font color="red">desktop: smartdefrag?</font>
+* <font color="red">laptop: smartdefrag?</font>
 * <font color="red">laptop: startup delayer</font>
 * <font color="red">laptop: taskkill tv bf mm</font>
 * <font color="red">laptop: bigger system restore</font>
