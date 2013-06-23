@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: sluggish</font>
+* <font color="red">android: airdroid</font>
+* <font color="red">android: watchdog</font>
+* <font color="red">android: universal androot</font>
+* <font color="red">android: titanium backup</font>
 * <font color="red">android: mediahub</font>
 * <font color="red">android: mediamonkey sync</font>
-* <font color="red">android: mediamonkey player</font>
-* <font color="red">android: dropsync pro</font>
-* <font color="red">vaio: magnifier program</font>
-* <font color="red">laptop: tclock settings file?</font>
-* <font color="red">...plus 81 more (see TODO.edoc)
+* <font color="red">...plus 85 more (see TODO.edoc)
 </font>
 
 
