@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: 7z sfx</font>
 * <font color="red">laptop: drivers</font>
+* <font color="red">laptop: thunderbird mab errors</font>
 * <font color="red">blue drive: fully synced</font>
 * <font color="red">blue drive: reformat for mac</font>
 * <font color="red">blue drive: seagate win drivers</font>
 * <font color="red">blue drive: new blue drive sync</font>
 * <font color="red">desktop: smart shutdown</font>
-* <font color="red">...plus 89 more (see TODO.edoc)
+* <font color="red">...plus 90 more (see TODO.edoc)
 </font>
 
 
