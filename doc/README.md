@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
-* <font color="red">android: driver update</font>
 * <font color="red">android: root</font>
+* <font color="red">laptop: realtime protection</font>
 * <font color="red">android: titanium restore</font>
 * <font color="red">android: sms restore</font>
 * <font color="red">android: gmail restore</font>
 * <font color="red">android: contacts restore</font>
-* <font color="red">...plus 111 more (see TODO.edoc)
+* <font color="red">...plus 112 more (see TODO.edoc)
 </font>
 
 
