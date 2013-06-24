@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: titanium</font>
+* <font color="red">android: titanium data</font>
+* <font color="red">android: recharge</font>
+* <font color="red">android: titanium select data</font>
 * <font color="red">android: pre 2.3 backup</font>
+* <font color="red">android: mass storage backup</font>
 * <font color="red">android: 2.3</font>
 * <font color="red">android: unknown sources</font>
-* <font color="red">android: titanium backup</font>
-* <font color="red">android: mediahub</font>
-* <font color="red">android: still sluggish?</font>
-* <font color="red">...plus 102 more (see TODO.edoc)
+* <font color="red">...plus 105 more (see TODO.edoc)
 </font>
 
 
