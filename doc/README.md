@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">delivery</font>
+* <font color="red">brk</font>
+* <font color="red">laptop</font>
+* <font color="red">android: change black background</font>
+* <font color="red">android: swype: keyboard blocks typing</font>
+* <font color="red">android: tethering manager error</font>
 * <font color="red">android: recharge</font>
-* <font color="red">android: Remove ATT Radio...</font>
-* <font color="red">android: Remove ATT Hot Spots...</font>
-* <font color="red">android: Remove Days App...</font>
-* <font color="red">android: Remove Daily Briefing App...</font>
-* <font color="red">android: Remove Google Maps...(Remove this app to allow the install of the newest version of Google maps through the market place</font>
-* <font color="red">android: reinstall google maps</font>
-* <font color="red">...plus 119 more (see TODO.edoc)
+* <font color="red">...plus 124 more (see TODO.edoc)
 </font>
 
 
