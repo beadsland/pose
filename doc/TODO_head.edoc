@@ -1,8 +1,8 @@
-@todo android: updates
-@todo android: battery
-@todo android: wakelock detect
 @todo android: android sdk
 @todo android: backup
 @todo android: superoneclick
 @todo android: usb debugging
-@todo ...plus 109 more (see TODO.edoc)
+@todo android: unmount sd
+@todo android: root
+@todo android: superuser
+@todo ...plus 106 more (see TODO.edoc)
