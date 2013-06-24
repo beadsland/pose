@@ -21,11 +21,11 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
 * <font color="red">android: root</font>
-* <font color="red">android: titanium</font>
 * <font color="red">android: titanium restore</font>
 * <font color="red">android: sms restore</font>
 * <font color="red">android: gmail restore</font>
-* <font color="red">...plus 109 more (see TODO.edoc)
+* <font color="red">laptop: adb move</font>
+* <font color="red">...plus 108 more (see TODO.edoc)
 </font>
 
 
