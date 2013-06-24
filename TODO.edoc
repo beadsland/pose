@@ -1,5 +1,5 @@
 @todo delivery
-@todo laptop: dropped skype calls
+@todo android: disable service
 @todo android: tethering manager error
 @todo android: change black background
 @todo android: swype: keyboard blocks typing
@@ -15,6 +15,7 @@
 @todo android: remove allshare
 @todo android: remove oi file manager
 @todo android: move apps off sd card
+@todo android: disable unneeded services
 @todo android: still sluggish?
 @todo android: mediamonkey sync
 @todo android: mediamonkey player
@@ -31,6 +32,7 @@
 @todo android: crash laptop test
 @todo android: better kernel
 @todo android: gtd
+@todo laptop: skype taskbar icon
 @todo laptop: vprot!!!!!
 @todo laptop: fix screen instructions
 @todo laptop: uninstall unneeded
