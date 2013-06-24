@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">laptop: windows ddk</font>
+* <font color="red">laptop: repair installer</font>
 * <font color="red">laptop: intellitype pro 1603</font>
 * <font color="red">laptop: usb human interface device driver</font>
 * <font color="red">laptop: thunderbird mab errors</font>
 * <font color="red">laptop: thunderbird contacts sync</font>
-* <font color="red">laptop: startup delayer driver doctor</font>
-* <font color="red">blue drive: fully synced</font>
-* <font color="red">blue drive: reformat for mac</font>
-* <font color="red">...plus 93 more (see TODO.edoc)
+* <font color="red">laptop: startup delayer</font>
+* <font color="red">...plus 96 more (see TODO.edoc)
 </font>
 
 
