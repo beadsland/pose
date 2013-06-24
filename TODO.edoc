@@ -1,7 +1,6 @@
-@todo android: juicedefender
-@todo android: watchdog
+@todo android: wakelock detect
 @todo android: android sdk
-@todo android: helium
+@todo android: backup
 @todo android: superoneclick
 @todo android: usb debugging
 @todo android: unmount sd
@@ -9,10 +8,13 @@
 @todo android: superuser
 @todo android: airdroid
 @todo android: titanium backup
+@todo android: disable service
+@todo android: autostarts
 @todo android: mediahub
 @todo android: still sluggish?
 @todo android: mediamonkey sync
 @todo android: mediamonkey player
+@todo android: dropbox
 @todo android: dropsync pro
 @todo android: wd2go setup
 @todo android: configure launcher
