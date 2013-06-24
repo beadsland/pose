@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">brk</font>
 * <font color="red">laptop</font>
 * <font color="red">delivery</font>
 * <font color="red">android: change black background</font>
 * <font color="red">android: swype: keyboard blocks typing</font>
 * <font color="red">android: tethering manager error</font>
 * <font color="red">android: recharge</font>
+* <font color="red">android: restore google maps</font>
 * <font color="red">...plus 124 more (see TODO.edoc)
 </font>
 
