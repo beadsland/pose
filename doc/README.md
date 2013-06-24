@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
-* <font color="red">android: mass storage backup</font>
-* <font color="red">android: 2.3</font>
+* <font color="red">android: kies 2.3</font>
 * <font color="red">android: unknown sources</font>
 * <font color="red">android: titanium</font>
 * <font color="red">android: titanium restore</font>
 * <font color="red">android: sms restore</font>
+* <font color="red">android: gmail restore</font>
 * <font color="red">...plus 107 more (see TODO.edoc)
 </font>
 
