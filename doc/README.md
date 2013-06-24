@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: android sdk</font>
+* <font color="red">android: holo backup</font>
 * <font color="red">android: backup</font>
 * <font color="red">android: superoneclick</font>
 * <font color="red">android: usb debugging</font>
 * <font color="red">android: unmount sd</font>
 * <font color="red">android: root</font>
 * <font color="red">android: superuser</font>
-* <font color="red">...plus 106 more (see TODO.edoc)
+* <font color="red">...plus 107 more (see TODO.edoc)
 </font>
 
 
