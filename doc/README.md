@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: juicedefender</font>
+* <font color="red">android: watcher</font>
+* <font color="red">android: dropbox</font>
 * <font color="red">android: unknown sources</font>
 * <font color="red">android: titanium backup</font>
-* <font color="red">android: juicedefender</font>
 * <font color="red">android: airdroid</font>
 * <font color="red">android: disable service</font>
-* <font color="red">android: autostarts</font>
-* <font color="red">android: mediahub</font>
-* <font color="red">...plus 103 more (see TODO.edoc)
+* <font color="red">...plus 105 more (see TODO.edoc)
 </font>
 
 
