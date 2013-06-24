@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: dropbox cpu hog?</font>
 * <font color="red">android: watchdog</font>
-* <font color="red">android: java jdk</font>
 * <font color="red">android: android sdk</font>
 * <font color="red">android: helium</font>
 * <font color="red">android: superoneclick</font>
