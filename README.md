@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: superoneclick</font>
-* <font color="red">android: titanium backup</font>
 * <font color="red">android: superuser</font>
+* <font color="red">android: titanium backup</font>
+* <font color="red">android: juicedefender</font>
 * <font color="red">android: airdroid</font>
 * <font color="red">android: disable service</font>
 * <font color="red">android: autostarts</font>
