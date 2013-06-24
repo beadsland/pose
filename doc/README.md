@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
-* <font color="red">android: rescan media root</font>
-* <font color="red">android: rescan w/o usb debugging</font>
-* <font color="red">android: Remove ATT Navigator...</font>
 * <font color="red">android: error downloading google play books</font>
 * <font color="red">android: Remove ATT Radio...</font>
 * <font color="red">android: Remove ATT Hot Spots...</font>
-* <font color="red">...plus 122 more (see TODO.edoc)
+* <font color="red">android: Remove Days App...</font>
+* <font color="red">android: Remove Daily Briefing App...</font>
+* <font color="red">android: Remove Google Maps...(Remove this app to allow the install of the newest version of Google maps through the market place</font>
+* <font color="red">...plus 119 more (see TODO.edoc)
 </font>
 
 
