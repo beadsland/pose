@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: titanium</font>
 * <font color="red">android: titanium restore</font>
 * <font color="red">android: sms restore</font>
-* <font color="red">...plus 106 more (see TODO.edoc)
+* <font color="red">...plus 107 more (see TODO.edoc)
 </font>
 
 
