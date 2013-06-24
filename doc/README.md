@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: 2.3</font>
 * <font color="red">android: unknown sources</font>
 * <font color="red">android: titanium backup</font>
-* <font color="red">...plus 104 more (see TODO.edoc)
+* <font color="red">...plus 105 more (see TODO.edoc)
 </font>
 
 
