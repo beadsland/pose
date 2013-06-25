@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">sfc</font>
 * <font color="red">windows updates failed</font>
-* <font color="red">eclipse: navigator broken</font>
-* <font color="red">laptop: blocked startup program</font>
 * <font color="red">laptop: tray manager</font>
 * <font color="red">android: voice recorder error</font>
 * <font color="red">android: cyanogen</font>
-* <font color="red">...plus 141 more (see TODO.edoc)
+* <font color="red">android: system theme</font>
+* <font color="red">android: change black background</font>
+* <font color="red">...plus 139 more (see TODO.edoc)
 </font>
 
 
