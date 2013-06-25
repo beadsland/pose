@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">sfc</font>
 * <font color="red">gpedit: wilder post</font>
 * <font color="red">gpedit: other posts</font>
-* <font color="red">disk free monitor</font>
-* <font color="red">windows updates</font>
 * <font color="red">bit</font>
 * <font color="red">laptop: tray manager</font>
-* <font color="red">...plus 141 more (see TODO.edoc)
+* <font color="red">android: cyanogen</font>
+* <font color="red">android: system theme</font>
+* <font color="red">...plus 139 more (see TODO.edoc)
 </font>
 
 
