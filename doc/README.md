@@ -22,10 +22,10 @@ __<font color="red">To do</font>__
 * <font color="red">sfc</font>
 * <font color="red">laptop: tray manager</font>
 * <font color="red">android: voice recorder: no sd card?</font>
-* <font color="red">android: maps: turn off gps</font>
 * <font color="red">android: cyanogen</font>
 * <font color="red">android: system theme</font>
 * <font color="red">android: change black background</font>
+* <font color="red">android: recharge</font>
 * <font color="red">...plus 139 more (see TODO.edoc)
 </font>
 
