@@ -1,17 +1,15 @@
 @todo delivery
 @todo android: cyanogen
 @todo android: system theme
-@todo android: gmail theme
 @todo android: change black background
 @todo android: recharge
-@todo android: restore google maps
-@todo android: Remove Mini Diary...( Samsung, not AT&T app)
 @todo android: Remove Mobile Banking...
 @todo android: Remove Mobile Video...
 @todo android: Remove MobiTV...
 @todo android: Remove Where...
 @todo android: Remove Write And Go...( not AT&T app, a Samsung app, but removable)
 @todo android: remove ypmobile
+@todo android: rerun macros
 @todo android: remove allshare
 @todo android: remove oi file manager
 @todo android: remove sound recorder
@@ -33,6 +31,9 @@
 @todo android: crash laptop test
 @todo android: better kernel
 @todo android: gtd
+@todo desktop: hfs+ driver
+@todo laptop: hfs+ driver
+@todo laptop: ontop for skype
 @todo laptop: skype taskbar icon
 @todo laptop: vprot!!!!!
 @todo laptop: fix screen instructions

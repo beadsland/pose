@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">delivery</font>
 * <font color="red">android: cyanogen</font>
 * <font color="red">android: system theme</font>
-* <font color="red">android: gmail theme</font>
 * <font color="red">android: change black background</font>
 * <font color="red">android: recharge</font>
-* <font color="red">android: restore google maps</font>
-* <font color="red">...plus 127 more (see TODO.edoc)
+* <font color="red">android: Remove Mobile Banking...</font>
+* <font color="red">android: Remove Mobile Video...</font>
+* <font color="red">...plus 128 more (see TODO.edoc)
 </font>
 
 
