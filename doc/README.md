@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">sfc</font>
-* <font color="red">gpedit: wilder post</font>
-* <font color="red">gpedit: other posts</font>
+* <font color="red">windows updates failed</font>
+* <font color="red">eclipse: navigator broken</font>
 * <font color="red">laptop: blocked startup program</font>
 * <font color="red">laptop: tray manager</font>
 * <font color="red">android: voice recorder error</font>
 * <font color="red">android: cyanogen</font>
-* <font color="red">...plus 142 more (see TODO.edoc)
+* <font color="red">...plus 141 more (see TODO.edoc)
 </font>
 
 
