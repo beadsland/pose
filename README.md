@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">delivery</font>
+* <font color="red">task schedule</font>
+* <font color="red">sfc</font>
+* <font color="red">system restore</font>
 * <font color="red">android: cyanogen</font>
 * <font color="red">android: system theme</font>
 * <font color="red">android: change black background</font>
 * <font color="red">android: recharge</font>
-* <font color="red">android: Remove Mobile Banking...</font>
-* <font color="red">android: Remove Mobile Video...</font>
-* <font color="red">...plus 128 more (see TODO.edoc)
+* <font color="red">...plus 135 more (see TODO.edoc)
 </font>
 
 
