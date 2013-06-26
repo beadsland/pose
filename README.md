@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: voice search</font>
+* <font color="red">android: voice search: connection problem</font>
 * <font color="red">android: camera: gallery button not working</font>
 * <font color="red">android: better gallery</font>
 * <font color="red">android: better file shortcut</font>
