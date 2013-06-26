@@ -20,7 +20,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
-* <font color="red">android: quickoffice to system</font>
+* <font color="red">android: play</font>
 * <font color="red">android: system cleanup</font>
 * <font color="red">android: vending error</font>
 * <font color="red">android: google docs</font>
