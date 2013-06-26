@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: email</font>
-* <font color="red">android: gmail icon</font>
-* <font color="red">android: tray</font>
 * <font color="red">android: gmail</font>
+* <font color="red">android: gmail sync</font>
+* <font color="red">android: gmail update</font>
 * <font color="red">android: dropbox?</font>
 * <font color="red">android: real_init?</font>
 * <font color="red">android: system cleanup</font>
-* <font color="red">...plus 157 more (see TODO.edoc)
+* <font color="red">android: google docs</font>
+* <font color="red">...plus 156 more (see TODO.edoc)
 </font>
 
 
