@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: gmail: sync?</font>
-* <font color="red">android: google talk?</font>
+* <font color="red">android: recharge for juice</font>
 * <font color="red">android: gmail: allowed by juice?</font>
-* <font color="red">android: gmail not syncing</font>
 * <font color="red">android: camera firmware 1.0?</font>
 * <font color="red">android: nandroid</font>
 * <font color="red">android: restore fryocam</font>
-* <font color="red">...plus 168 more (see TODO.edoc)
+* <font color="red">android: camera: gallery button not working</font>
+* <font color="red">android: blurcam?</font>
+* <font color="red">...plus 167 more (see TODO.edoc)
 </font>
 
 
