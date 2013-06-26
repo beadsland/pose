@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: voice search: connection problem</font>
 * <font color="red">android: camera: gallery button not working</font>
 * <font color="red">android: better gallery</font>
 * <font color="red">android: better file shortcut</font>
 * <font color="red">android: titanium: default to xsd</font>
 * <font color="red">android: titanium: backups to pc?</font>
 * <font color="red">android: itemize apps to restore</font>
-* <font color="red">...plus 155 more (see TODO.edoc)
+* <font color="red">android: appbrain</font>
+* <font color="red">...plus 154 more (see TODO.edoc)
 </font>
 
 
