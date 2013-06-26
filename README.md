@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: voice search</font>
 * <font color="red">android: can't view photos from camera</font>
-* <font color="red">android: recover camera from sd</font>
+* <font color="red">android: better gallery</font>
+* <font color="red">android: better file shortcut</font>
 * <font color="red">android: titanium: default to xsd</font>
 * <font color="red">android: titanium: backups to pc?</font>
 * <font color="red">android: itemize apps to restore</font>
-* <font color="red">android: appbrain</font>
-* <font color="red">...plus 154 more (see TODO.edoc)
+* <font color="red">...plus 155 more (see TODO.edoc)
 </font>
 
 
