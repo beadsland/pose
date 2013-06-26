@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">android: vending error</font>
 * <font color="red">android: google docs</font>
 * <font color="red">android: dolphin browser</font>
-* <font color="red">android: voice recorder: no sd card?</font>
-* <font color="red">...plus 152 more (see TODO.edoc)
+* <font color="red">android: ftap?</font>
+* <font color="red">...plus 154 more (see TODO.edoc)
 </font>
 
 
