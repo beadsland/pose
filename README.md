@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: gmail update</font>
-* <font color="red">android: dolphin browser</font>
 * <font color="red">android: ftap?</font>
 * <font color="red">android: voice recorder: no sd card?</font>
 * <font color="red">android: prefer metta</font>
 * <font color="red">android: backup via adb</font>
+* <font color="red">android: memos app for evernote</font>
 * <font color="red">android: extract memos</font>
-* <font color="red">...plus 150 more (see TODO.edoc)
+* <font color="red">android: move memos to evernote</font>
+* <font color="red">...plus 149 more (see TODO.edoc)
 </font>
 
 
