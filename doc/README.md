@@ -21,7 +21,7 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: stringnote</font>
 * <font color="red">android: extract memos</font>
-* <font color="red">android: move memos to evernote</font>
+* <font color="red">android: import csv to evernote</font>
 * <font color="red">android: delete memo app</font>
 * <font color="red">android: titanium: backups to pc?</font>
 * <font color="red">android: itemize apps to restore</font>
