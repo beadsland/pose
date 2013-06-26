@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
 * <font color="red">android: email</font>
+* <font color="red">android: google play </font>
 * <font color="red">android: gmail icon</font>
+* <font color="red">android: tray</font>
 * <font color="red">android: system cleanup</font>
-* <font color="red">android: google vending error</font>
 * <font color="red">android: google docs</font>
-* <font color="red">android: dolphin browser</font>
-* <font color="red">...plus 155 more (see TODO.edoc)
+* <font color="red">...plus 156 more (see TODO.edoc)
 </font>
 
 
