@@ -1,12 +1,14 @@
-@todo android: backup via adb
-@todo android: memos app for evernote
+@todo android: stringnote
 @todo android: extract memos
 @todo android: move memos to evernote
+@todo android: delete memo app
 @todo android: titanium: backups to pc?
+@todo android: itemize apps to restore
 @todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
 @todo android: sms backup
+@todo android: backup via adb
 @todo android: full pc backups
 @todo android: nandroid backup
 @todo android: cyanogen
