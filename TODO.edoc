@@ -1,7 +1,5 @@
+@todo android: voice search
 @todo android: better keyboard
-@todo android: extract memos
-@todo android: import csv to evernote
-@todo android: delete memo app
 @todo android: titanium: backups to pc?
 @todo android: itemize apps to restore
 @todo android: full titanium backups
@@ -44,6 +42,9 @@
 @todo android: upnplay?
 @todo android: crash laptop test
 @todo android: confirm juicedefender settings
+@todo android: extract memos
+@todo android: import csv to evernote
+@todo android: delete memo app
 @todo flight info
 @todo cradenza fix
 @todo bank deposit
