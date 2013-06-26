@@ -1,7 +1,10 @@
 @todo android: voice search
-@todo android: better keyboard
+@todo android: can't view photos from camera
+@todo android: recover camera from sd
+@todo android: titanium: default to xsd
 @todo android: titanium: backups to pc?
 @todo android: itemize apps to restore
+@todo android: appbrain
 @todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
@@ -34,7 +37,6 @@
 @todo android: mediamonkey player
 @todo android: purple background
 @todo android: configure launcher
-@todo dropbox: clear duplicate photos
 @todo android: dropbox
 @todo android: dropsync pro
 @todo android: airdroid?
@@ -48,6 +50,7 @@
 @todo flight info
 @todo cradenza fix
 @todo bank deposit
+@todo dropbox: clear duplicate photos
 @todo laptop: mediamonkey dropbox
 @todo laptop: ps tray not working?
 @todo laptop: vprot!!!!!
