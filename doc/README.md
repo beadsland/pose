@@ -20,9 +20,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
-* <font color="red">andriod: system cleaner</font>
-* <font color="red">android: system cleanup</font>
 * <font color="red">android: maps</font>
+* <font color="red">android: youtube</font>
+* <font color="red">android: system cleanup</font>
 * <font color="red">android: restore maps data</font>
 * <font color="red">android: vending error</font>
 * <font color="red">android: google docs</font>
