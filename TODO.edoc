@@ -41,6 +41,7 @@
 @todo android: wd2go setup
 @todo android: upnplay?
 @todo android: crash laptop test
+@todo laptop: ps tray not working?
 @todo laptop: vprot!!!!!
 @todo laptop: how to extract memos
 @todo laptop: windows ddk
@@ -49,8 +50,6 @@
 @todo laptop: usb human interface device driver
 @todo laptop: thunderbird mab errors
 @todo laptop: thunderbird contacts sync
-@todo laptop: startup delayer
-@todo laptop: system tray clearning?
 @todo laptop: startup org
 @todo laptop: soluto?
 @todo vaio: port hub
