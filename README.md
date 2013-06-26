@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: titanium: backups to pc?</font>
 * <font color="red">android: itemize apps to restore</font>
 * <font color="red">android: appbrain</font>
-* <font color="red">...plus 153 more (see TODO.edoc)
+* <font color="red">...plus 154 more (see TODO.edoc)
 </font>
 
 
