@@ -1,4 +1,4 @@
-@todo android: ftap?
+@todo android: voice recorder: move files to tape-a-talk
 @todo android: voice recorder: no sd card?
 @todo android: prefer metta
 @todo android: backup via adb
@@ -45,10 +45,10 @@
 @todo android: upnplay?
 @todo android: crash laptop test
 @todo android: confirm juicedefender settings
-@todo fold clothes
 @todo flight info
 @todo cradenza fix
 @todo bank deposit
+@todo laptop: mediamonkey dropbox
 @todo laptop: ps tray not working?
 @todo laptop: vprot!!!!!
 @todo laptop: windows ddk
@@ -64,6 +64,7 @@
 @todo blue drive: reformat for mac
 @todo blue drive: seagate win drivers
 @todo blue drive: new blue drive sync
+@todo desktop: mediamonkey dropbox
 @todo desktop: wd smartaware error
 @todo desktop: deskpins
 @todo desktop: tray manager
