@@ -1,5 +1,9 @@
 @todo android: camera firmware 1.0?
+@todo android: gingercam
+@todo android: froyocam
 @todo android: camera: gallery button not working
+@todo android: blurcam?
+@todo android: better camera
 @todo android: better gallery
 @todo android: better file shortcut
 @todo android: real_init: why su?
@@ -50,9 +54,11 @@
 @todo android: extract memos
 @todo android: import csv to evernote
 @todo android: delete memo app
+@todo bwash
 @todo litter
 @todo litter scoop
 @todo dropbox: clear duplicate photos
+@todo laptop: chrome: tabs restore
 @todo laptop: mediamonkey dropbox
 @todo laptop: ps tray not working?
 @todo laptop: vprot!!!!!
@@ -69,6 +75,7 @@
 @todo blue drive: reformat for mac
 @todo blue drive: seagate win drivers
 @todo blue drive: new blue drive sync
+@todo desktop: chrome: tabs restore
 @todo desktop: move d to master
 @todo desktop: mediamonkey dropbox
 @todo desktop: wd smartaware error
