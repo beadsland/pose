@@ -1,4 +1,5 @@
 @todo android: recharge
+@todo android: titanium: backups to pc?
 @todo android: voice recorder: no sd card?
 @todo android: full titanium backups
 @todo android: google sync
@@ -7,12 +8,12 @@
 @todo android: full pc backups
 @todo android: nandroid backup
 @todo android: cyanogen
+@todo android: gapps
 @todo android: titanium
 @todo android: full titanium restore
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
-@todo android: maps: gps?
 @todo android: re-remove bloatware?
 @todo android: Remove Mobile Banking...
 @todo android: Remove Mobile Video...
@@ -20,7 +21,6 @@
 @todo android: Remove Where...
 @todo android: Remove Write And Go...( not AT&T app, a Samsung app, but removable)
 @todo android: remove ypmobile
-@todo android: rerun macros
 @todo android: remove allshare
 @todo android: remove oi file manager
 @todo android: remove sound recorder
@@ -30,7 +30,6 @@
 @todo android: mediamonkey sync
 @todo android: mediamonkey player
 @todo android: purple background
-@todo android: launcher banners?
 @todo android: configure launcher
 @todo dropbox: clear duplicate photos
 @todo android: dropbox
