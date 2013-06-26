@@ -21,8 +21,8 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
 * <font color="red">andriod: system cleaner</font>
+* <font color="red">android: move google maps out of system</font>
 * <font color="red">android: vending error</font>
-* <font color="red">android: prefer metta</font>
 * <font color="red">android: google docs</font>
 * <font color="red">android: dolphin browser</font>
 * <font color="red">android: voice recorder: no sd card?</font>

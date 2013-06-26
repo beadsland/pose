@@ -1,12 +1,11 @@
 @todo android: recharge
 @todo andriod: system cleaner
+@todo android: move google maps out of system
 @todo android: vending error
-@todo android: prefer metta
 @todo android: google docs
 @todo android: dolphin browser
 @todo android: voice recorder: no sd card?
-@todo android: app cache cleaner
-@todo desktop: wd smartaware error
+@todo android: prefer metta
 @todo android: backup via adb
 @todo android: extract memos
 @todo android: move memos to evernote
@@ -68,6 +67,7 @@
 @todo blue drive: reformat for mac
 @todo blue drive: seagate win drivers
 @todo blue drive: new blue drive sync
+@todo desktop: wd smartaware error
 @todo desktop: deskpins
 @todo desktop: tray manager
 @todo desktop: MOV Quicktime component
