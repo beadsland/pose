@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: voice recorder: move files to tape-a-talk</font>
+* <font color="red">android: shortcut to old AMRs</font>
 * <font color="red">android: voice recorder: no sd card?</font>
 * <font color="red">android: prefer metta</font>
 * <font color="red">android: backup via adb</font>
