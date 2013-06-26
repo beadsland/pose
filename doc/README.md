@@ -20,8 +20,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
-* <font color="red">android: email</font>
 * <font color="red">android: google play </font>
+* <font color="red">android: email</font>
 * <font color="red">android: gmail icon</font>
 * <font color="red">android: tray</font>
 * <font color="red">android: system cleanup</font>
