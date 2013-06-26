@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
 * <font color="red">android: backup via adb</font>
+* <font color="red">android: extract memos</font>
+* <font color="red">android: move memos to evernote</font>
 * <font color="red">android: titanium: backups to pc?</font>
 * <font color="red">android: voice recorder: no sd card?</font>
 * <font color="red">android: full titanium backups</font>
-* <font color="red">android: google sync</font>
-* <font color="red">android: contact export</font>
-* <font color="red">...plus 141 more (see TODO.edoc)
+* <font color="red">...plus 142 more (see TODO.edoc)
 </font>
 
 
