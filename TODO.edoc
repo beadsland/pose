@@ -1,6 +1,10 @@
+@todo android: tank
+@todo android: report
 @todo android: camera: gallery button not working
 @todo android: better gallery
 @todo android: better file shortcut
+@todo android: real_init: why su?
+@todo flight info
 @todo android: titanium: default to xsd
 @todo android: titanium: backups to pc?
 @todo android: itemize apps to restore
@@ -47,9 +51,7 @@
 @todo android: extract memos
 @todo android: import csv to evernote
 @todo android: delete memo app
-@todo flight info
-@todo cradenza fix
-@todo bank deposit
+@todo litter
 @todo dropbox: clear duplicate photos
 @todo laptop: mediamonkey dropbox
 @todo laptop: ps tray not working?
