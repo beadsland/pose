@@ -1,6 +1,5 @@
 @todo android: recharge
-@todo android: android sdk
-@todo android: adb
+@todo android: backup via adb
 @todo android: titanium: backups to pc?
 @todo android: voice recorder: no sd card?
 @todo android: full titanium backups
@@ -41,10 +40,6 @@
 @todo android: upnplay?
 @todo android: move memo to evernote
 @todo android: crash laptop test
-@todo android: better kernel
-@todo android: gtd
-@todo desktop: hfs+ driver
-@todo laptop: hfs+ driver
 @todo laptop: ontop for skype
 @todo laptop: skype taskbar icon
 @todo laptop: vprot!!!!!
@@ -65,6 +60,7 @@
 @todo blue drive: reformat for mac
 @todo blue drive: seagate win drivers
 @todo blue drive: new blue drive sync
+@todo desktop: deskpins
 @todo desktop: tray manager
 @todo desktop: MOV Quicktime component
 @todo desktop: move MOVs to share
