@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge</font>
+* <font color="red">android: maps</font>
+* <font color="red">android: play books</font>
 * <font color="red">andriod: system cleaner</font>
 * <font color="red">android: move google maps out of system</font>
 * <font color="red">android: vending error</font>
 * <font color="red">android: google docs</font>
-* <font color="red">android: dolphin browser</font>
-* <font color="red">android: ftap?</font>
-* <font color="red">...plus 154 more (see TODO.edoc)
+* <font color="red">...plus 156 more (see TODO.edoc)
 </font>
 
 
