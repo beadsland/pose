@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: recharge for juice</font>
 * <font color="red">android: gmail: allowed by juice?</font>
-* <font color="red">android: nandroid</font>
 * <font color="red">android: restore fryocam</font>
 * <font color="red">android: camera: gallery button not working</font>
-* <font color="red">android: launcher: cameras page</font>
-* <font color="red">android: launcher: bookmark play search?</font>
-* <font color="red">...plus 172 more (see TODO.edoc)
+* <font color="red">android: es file explorer</font>
+* <font color="red">android: better file shortcut</font>
+* <font color="red">android: real_init: why su?</font>
+* <font color="red">...plus 178 more (see TODO.edoc)
 </font>
 
 
