@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">bwash</font>
+* <font color="red">eclipse: android sdk</font>
 * <font color="red">android: emulator</font>
 * <font color="red">android: juice: no data issue</font>
 * <font color="red">android: remote control</font>
