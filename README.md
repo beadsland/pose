@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">eclipse: adk for 2.3.5</font>
 * <font color="red">eclipse: avd</font>
-* <font color="red">android: emulator</font>
+* <font color="red">eclipse: flash emulator</font>
 * <font color="red">android: juice: no data issue</font>
 * <font color="red">android: remote control</font>
 * <font color="red">android: camera thumbnail issue</font>
 * <font color="red">android: titanium: default to xsd</font>
-* <font color="red">...plus 175 more (see TODO.edoc)
+* <font color="red">android: titanium: backups to pc?</font>
+* <font color="red">...plus 174 more (see TODO.edoc)
 </font>
 
 
