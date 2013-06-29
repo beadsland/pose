@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: repartition</font>
 * <font color="red">desktop: image d</font>
 * <font color="red">desktop: restore d</font>
+* <font color="red">android: buttons lit when idle </font>
 * <font color="red">eclipse: avd</font>
-* <font color="red">eclipse: flash emulator</font>
-* <font color="red">...plus 181 more (see TODO.edoc)
+* <font color="red">...plus 182 more (see TODO.edoc)
 </font>
 
 
