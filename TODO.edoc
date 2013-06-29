@@ -1,8 +1,5 @@
 @todo desktop: treesize g
-@todo desktop: prune g
-@todo desktop: repartition
-@todo desktop: image d
-@todo desktop: restore d
+@todo desktop: test new power setup (for 1 day)
 @todo android: buttons lit when idle 
 @todo eclipse: avd
 @todo eclipse: flash emulator
@@ -70,8 +67,7 @@
 @todo android: launcher: imageotag
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
-@todo bwash
-@todo litter
+@todo mwash
 @todo litter scoop
 @todo dropbox: clear duplicate photos
 @todo laptop: chrome: tabs restore
@@ -91,6 +87,10 @@
 @todo blue drive: reformat for mac
 @todo blue drive: seagate win drivers
 @todo blue drive: new blue drive sync
+@todo desktop: prune g
+@todo desktop: repartition
+@todo desktop: image d
+@todo desktop: restore d
 @todo desktop: chrome: tabs restore
 @todo desktop: move d to master
 @todo desktop: mediamonkey dropbox

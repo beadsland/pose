@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: treesize g</font>
-* <font color="red">desktop: prune g</font>
-* <font color="red">desktop: repartition</font>
-* <font color="red">desktop: image d</font>
-* <font color="red">desktop: restore d</font>
+* <font color="red">desktop: test new power setup (for 1 day)</font>
 * <font color="red">android: buttons lit when idle </font>
 * <font color="red">eclipse: avd</font>
+* <font color="red">eclipse: flash emulator</font>
+* <font color="red">android: juice: no data issue</font>
+* <font color="red">android: remote control</font>
 * <font color="red">...plus 182 more (see TODO.edoc)
 </font>
 
