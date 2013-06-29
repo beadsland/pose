@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: rubber band hard drive</font>
 * <font color="red">desktop: test new power setup (for 1 day)</font>
 * <font color="red">android: bln control</font>
-* <font color="red">eclipse: avd</font>
+* <font color="red">eclipse: haxm</font>
+* <font color="red">eclipse: avd </font>
 * <font color="red">eclipse: flash emulator</font>
-* <font color="red">android: juice: no data issue</font>
-* <font color="red">...plus 183 more (see TODO.edoc)
+* <font color="red">...plus 184 more (see TODO.edoc)
 </font>
 
 
