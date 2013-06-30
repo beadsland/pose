@@ -19,11 +19,11 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: test new power setup</font>
-* <font color="red">android: bln control</font>
+* <font color="red">virtualbox: network</font>
 * <font color="red">virtualbox: vm</font>
 * <font color="red">virtualbox: flash emulator</font>
 * <font color="red">virtualbox: mac?</font>
+* <font color="red">android: bln control</font>
 * <font color="red">android: juice: no data issue</font>
 * <font color="red">android: remote control</font>
 * <font color="red">...plus 182 more (see TODO.edoc)
