@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">virtualbox: flash emulator</font>
+* <font color="red">desktop: snow leopard iso</font>
+* <font color="red">desktop: hackboot 1</font>
+* <font color="red">desktop: hackboot 2</font>
+* <font color="red">desktop: multibeast 4</font>
 * <font color="red">virtualbox: mac?</font>
+* <font color="red">desktop: video software</font>
 * <font color="red">android: bln control</font>
-* <font color="red">android: juice: no data issue</font>
-* <font color="red">android: remote control</font>
-* <font color="red">android: camera thumbnail issue</font>
-* <font color="red">android: titanium: default to xsd</font>
-* <font color="red">...plus 180 more (see TODO.edoc)
+* <font color="red">...plus 185 more (see TODO.edoc)
 </font>
 
 
