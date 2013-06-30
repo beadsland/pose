@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: hackboot 1</font>
 * <font color="red">desktop: hackboot 2</font>
 * <font color="red">desktop: multibeast 4</font>
-* <font color="red">virtualbox: mac?</font>
-* <font color="red">desktop: video software</font>
-* <font color="red">android: bln control</font>
-* <font color="red">...plus 185 more (see TODO.edoc)
+* <font color="red">desktop: virtualbox: video software</font>
+* <font color="red">android: camera thumbnail issue</font>
+* <font color="red">android: titanium: default to xsd</font>
+* <font color="red">...plus 184 more (see TODO.edoc)
 </font>
 
 
