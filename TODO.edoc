@@ -1,10 +1,7 @@
 @todo desktop: test new power setup
 @todo android: bln control
-@todo virtualbox: alt-f1 netcfg
-@todo virtualbox: cmd: adb connect <ip>
-@todo eclipse: adt: device
-@todo eclipse: avd 
-@todo eclipse: flash emulator
+@todo virtualbox: vm
+@todo virtualbox: flash emulator
 @todo virtualbox: mac?
 @todo android: juice: no data issue
 @todo android: remote control
