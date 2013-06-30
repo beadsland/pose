@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
-* <font color="red">desktop: hackboot 1</font>
-* <font color="red">desktop: hackboot 2</font>
-* <font color="red">desktop: multibeast 4</font>
-* <font color="red">desktop: virtualbox: video software</font>
 * <font color="red">android: camera gallery blank</font>
-* <font color="red">android: titanium: default to xsd</font>
+* <font color="red">android: itemize apps to restore</font>
+* <font color="red">android: appbrain</font>
+* <font color="red">android: full titanium backups</font>
+* <font color="red">android: google sync</font>
+* <font color="red">android: contact export</font>
 * <font color="red">...plus 184 more (see TODO.edoc)
 </font>
 
