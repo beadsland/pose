@@ -1,6 +1,5 @@
 @todo desktop: test new power setup
 @todo android: bln control
-@todo virtualbox: install android x86
 @todo virtualbox: alt-f1 netcfg
 @todo virtualbox: cmd: adb connect <ip>
 @todo eclipse: adt: device

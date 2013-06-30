@@ -1,8 +1,8 @@
 @todo desktop: test new power setup
 @todo android: bln control
-@todo virtualbox: install android x86
 @todo virtualbox: alt-f1 netcfg
 @todo virtualbox: cmd: adb connect <ip>
 @todo eclipse: adt: device
 @todo eclipse: avd 
-@todo ...plus 186 more (see TODO.edoc)
+@todo eclipse: flash emulator
+@todo ...plus 185 more (see TODO.edoc)
