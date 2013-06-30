@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: rubber band hard drive</font>
-* <font color="red">desktop: test new power setup (for 1 day)</font>
+* <font color="red">desktop: test new power setup</font>
 * <font color="red">android: bln control</font>
 * <font color="red">eclipse: avd </font>
 * <font color="red">eclipse: flash emulator</font>
 * <font color="red">android: juice: no data issue</font>
 * <font color="red">android: remote control</font>
-* <font color="red">...plus 182 more (see TODO.edoc)
+* <font color="red">android: camera thumbnail issue</font>
+* <font color="red">...plus 181 more (see TODO.edoc)
 </font>
 
 
