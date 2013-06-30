@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
-* <font color="red">android: keyboard problem?</font>
+* <font color="red">desktop: freezes</font>
 * <font color="red">vaio: port hub</font>
-* <font color="red">android: go keyboard: keeps getting lost</font>
 * <font color="red">blue drive: fully synced</font>
 * <font color="red">blue drive: reformat for mac</font>
 * <font color="red">blue drive: seagate win drivers</font>
+* <font color="red">blue drive: new blue drive sync</font>
 * <font color="red">...plus 190 more (see TODO.edoc)
 </font>
 
