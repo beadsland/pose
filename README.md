@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: port hub</font>
-* <font color="red">blue drive: fully synced</font>
-* <font color="red">blue drive: reformat for mac</font>
-* <font color="red">blue drive: seagate win drivers</font>
-* <font color="red">blue drive: new blue drive sync</font>
-* <font color="red">...plus 190 more (see TODO.edoc)
+* <font color="red">viao: uninstall zilla</font>
+* <font color="red">viao: uninstall begone</font>
+* <font color="red">vaio: uninstall mcaffee</font>
+* <font color="red">vaio: adaware</font>
+* <font color="red">vaio: reset clock</font>
+* <font color="red">...plus 195 more (see TODO.edoc)
 </font>
 
 
