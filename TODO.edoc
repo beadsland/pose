@@ -1,7 +1,56 @@
 @todo desktop: snow leopard iso
 @todo android: camera gallery blank
-@todo android: itemize apps to restore
+@todo android: keyboard problem?
+@todo laptop: chrome: tabs restore
+@todo laptop: mediamonkey dropbox
+@todo laptop: ps tray not working?
+@todo laptop: vprot!!!!!
+@todo laptop: windows ddk
+@todo laptop: repair installer
+@todo laptop: intellitype pro 1603
+@todo laptop: usb human interface device driver
+@todo laptop: thunderbird mab errors
+@todo laptop: thunderbird contacts sync
+@todo laptop: startup org
+@todo laptop: soluto?
+@todo mwash
+@todo litter scoop
+@todo vaio: port hub
+@todo blue drive: fully synced
+@todo blue drive: reformat for mac
+@todo blue drive: seagate win drivers
+@todo blue drive: new blue drive sync
+@todo desktop: prune g
+@todo desktop: repartition
+@todo desktop: image d
+@todo desktop: restore d
+@todo desktop: chrome: tabs restore
+@todo desktop: move d to master
+@todo desktop: mediamonkey dropbox
+@todo desktop: wd smartaware error
+@todo desktop: deskpins
+@todo desktop: tray manager
+@todo desktop: MOV Quicktime component
+@todo desktop: move MOVs to share
+@todo desktop: python 2.5
+@todo desktop: cheetah
+@todo desktop: mail trends
+@todo desktop: gmail meter
+@todo desktop: batch convert AMRs
+@todo desktop: hackboot 1
+@todo desktop: hackboot 2
+@todo desktop: multibeast 4
+@todo desktop: virtualbox: video software
+@todo android: teamviewer quicksupport samsung
+@todo android: bln control
+@todo android: juice: data autofix
+@todo android: disable live wallpaper
+@todo android: image to virtualbox
+@todo android: titanium: default to xsd
+@todo android: titanium: backups to pc?
+@todo android: privacy: buackup data/auto restore
 @todo android: appbrain
+@todo android: itemize apps to restore
 @todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
@@ -11,6 +60,9 @@
 @todo android: nandroid backup
 @todo android: cyanogen
 @todo android: gapps
+@todo android: appbrain
+@todo android: fast web installer
+@todo android: full restore
 @todo android: titanium
 @todo android: full titanium restore
 @todo android: resume google syncing
@@ -59,54 +111,7 @@
 @todo android: launcher: imageotag
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
-@todo mwash
-@todo litter scoop
 @todo dropbox: clear duplicate photos
-@todo laptop: chrome: tabs restore
-@todo laptop: mediamonkey dropbox
-@todo laptop: ps tray not working?
-@todo laptop: vprot!!!!!
-@todo laptop: windows ddk
-@todo laptop: repair installer
-@todo laptop: intellitype pro 1603
-@todo laptop: usb human interface device driver
-@todo laptop: thunderbird mab errors
-@todo laptop: thunderbird contacts sync
-@todo laptop: startup org
-@todo laptop: soluto?
-@todo vaio: port hub
-@todo blue drive: fully synced
-@todo blue drive: reformat for mac
-@todo blue drive: seagate win drivers
-@todo blue drive: new blue drive sync
-@todo desktop: prune g
-@todo desktop: repartition
-@todo desktop: image d
-@todo desktop: restore d
-@todo desktop: chrome: tabs restore
-@todo desktop: move d to master
-@todo desktop: mediamonkey dropbox
-@todo desktop: wd smartaware error
-@todo desktop: deskpins
-@todo desktop: tray manager
-@todo desktop: MOV Quicktime component
-@todo desktop: move MOVs to share
-@todo desktop: python 2.5
-@todo desktop: cheetah
-@todo desktop: mail trends
-@todo desktop: gmail meter
-@todo desktop: batch convert AMRs
-@todo desktop: hackboot 1
-@todo desktop: hackboot 2
-@todo desktop: multibeast 4
-@todo desktop: virtualbox: video software
-@todo android: teamviewer quicksupport samsung
-@todo android: bln control
-@todo android: juice: data autofix
-@todo android: disable live wallpaper
-@todo android: image to virtualbox
-@todo android: titanium: default to xsd
-@todo android: titanium: backups to pc?
 @todo catfood query
 @todo org cradenza
 @todo sync red to black

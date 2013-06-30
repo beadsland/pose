@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">android: camera gallery blank</font>
-* <font color="red">android: itemize apps to restore</font>
-* <font color="red">android: appbrain</font>
-* <font color="red">android: full titanium backups</font>
-* <font color="red">android: google sync</font>
-* <font color="red">android: contact export</font>
-* <font color="red">...plus 184 more (see TODO.edoc)
+* <font color="red">android: keyboard problem?</font>
+* <font color="red">laptop: chrome: tabs restore</font>
+* <font color="red">laptop: mediamonkey dropbox</font>
+* <font color="red">laptop: ps tray not working?</font>
+* <font color="red">laptop: vprot!!!!!</font>
+* <font color="red">...plus 189 more (see TODO.edoc)
 </font>
 
 
