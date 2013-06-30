@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">viao: uninstall zilla</font>
-* <font color="red">viao: uninstall begone</font>
+* <font color="red">vaio: uninstall zilla</font>
+* <font color="red">vaio: uninstall begone</font>
+* <font color="red">vaio: uninstall aol</font>
 * <font color="red">vaio: uninstall mcaffee</font>
-* <font color="red">vaio: adaware</font>
-* <font color="red">vaio: reset clock</font>
-* <font color="red">...plus 195 more (see TODO.edoc)
+* <font color="red">vaio: uninstall p-cillin</font>
+* <font color="red">...plus 196 more (see TODO.edoc)
 </font>
 
 
