@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: revo</font>
-* <font color="red">vaio: uninstall mcaffee</font>
+* <font color="red">vaio: uninstall mcaffee antivirus</font>
+* <font color="red">vaio: uninstall mcaffee security center</font>
 * <font color="red">vaio: uninstall p-cillin</font>
 * <font color="red">vaio: adaware</font>
 * <font color="red">vaio: defrag</font>
-* <font color="red">...plus 195 more (see TODO.edoc)
+* <font color="red">...plus 196 more (see TODO.edoc)
 </font>
 
 
