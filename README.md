@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
-* <font color="red">desktop: dskchk g</font>
-* <font color="red">desktop: dskchk log</font>
-* <font color="red">desktop: dskchk c</font>
+* <font color="red">desktop: clear space on g</font>
+* <font color="red">desktop: repartition</font>
+* <font color="red">desktop: move d to main drive</font>
+* <font color="red">desktop: remove "my sharing folders"</font>
 * <font color="red">desktop: freezes</font>
 * <font color="red">vaio: repartition</font>
-* <font color="red">vaio: virtual memory</font>
-* <font color="red">...plus 199 more (see TODO.edoc)
+* <font color="red">...plus 200 more (see TODO.edoc)
 </font>
 
 
