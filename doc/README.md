@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: freezes</font>
 * <font color="red">vaio: minitool</font>
 * <font color="red">vaio: repartition</font>
-* <font color="red">...plus 202 more (see TODO.edoc)
+* <font color="red">...plus 200 more (see TODO.edoc)
 </font>
 
 
