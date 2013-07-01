@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: dskchk g</font>
 * <font color="red">desktop: dskchk c</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: adaware</font>
-* <font color="red">vaio: defrag</font>
-* <font color="red">...plus 198 more (see TODO.edoc)
+* <font color="red">vaio: treesize</font>
+* <font color="red">vaio: repartition</font>
+* <font color="red">...plus 200 more (see TODO.edoc)
 </font>
 
 
