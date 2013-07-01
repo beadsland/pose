@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
-* <font color="red">desktop: clear space on g</font>
 * <font color="red">desktop: repartition</font>
 * <font color="red">desktop: smartware d</font>
 * <font color="red">desktop: restore d to main drive</font>
+* <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: gparted</font>
+* <font color="red">vaio: ccboot?</font>
 * <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
