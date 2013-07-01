@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: dskchk log</font>
 * <font color="red">desktop: dskchk c</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: minitool</font>
 * <font color="red">vaio: repartition</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">vaio: virtual memory</font>
+* <font color="red">...plus 199 more (see TODO.edoc)
 </font>
 
 
