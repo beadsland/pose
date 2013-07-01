@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: restore d to main drive</font>
 * <font color="red">desktop: freezes</font>
 * <font color="red">vaio: gparted</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
 
