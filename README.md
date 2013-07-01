@@ -25,7 +25,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: disk image d</font>
 * <font color="red">desktop: move d to main drive</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: minitool</font>
+* <font color="red">vaio: repartition</font>
 * <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
