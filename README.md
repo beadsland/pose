@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">blue drive: fully synced</font>
 * <font color="red">blue drive: gpart</font>
-* <font color="red">...plus 194 more (see TODO.edoc)
+* <font color="red">...plus 193 more (see TODO.edoc)
 </font>
 
 
