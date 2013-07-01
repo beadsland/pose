@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: restore d to main drive</font>
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: pxe</font>
-* <font color="red">...plus 208 more (see TODO.edoc)
+* <font color="red">vaio: bootable cd?</font>
+* <font color="red">...plus 207 more (see TODO.edoc)
 </font>
 
 
