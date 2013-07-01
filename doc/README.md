@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: repartition</font>
 * <font color="red">desktop: image d to blue</font>
 * <font color="red">desktop: restore d to main drive</font>
+* <font color="red">desktop: final repartition</font>
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: bootable cd?</font>
-* <font color="red">...plus 207 more (see TODO.edoc)
+* <font color="red">...plus 196 more (see TODO.edoc)
 </font>
 
 
