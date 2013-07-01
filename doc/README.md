@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
-* <font color="red">desktop: repartition</font>
-* <font color="red">desktop: image d to blue</font>
-* <font color="red">desktop: restore d to main drive</font>
+* <font color="red">desktop: copy d to main</font>
 * <font color="red">desktop: final repartition</font>
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">...plus 196 more (see TODO.edoc)
+* <font color="red">blue drive: fully synced</font>
+* <font color="red">blue drive: gpart</font>
+* <font color="red">...plus 194 more (see TODO.edoc)
 </font>
 
 
