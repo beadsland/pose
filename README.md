@@ -20,8 +20,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
-* <font color="red">desktop: dskchk d</font>
 * <font color="red">desktop: dskchk g</font>
+* <font color="red">desktop: dskchk log</font>
 * <font color="red">desktop: dskchk c</font>
 * <font color="red">desktop: freezes</font>
 * <font color="red">vaio: hexxeh img</font>
