@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">desktop: freezes</font>
 * <font color="red">vaio: updates</font>
+* <font color="red">vaio: mcaffee: msconfig</font>
 * <font color="red">vaio: adaware</font>
 * <font color="red">vaio: defrag</font>
 * <font color="red">vaio: updates</font>
-* <font color="red">vaio: test chrome</font>
-* <font color="red">...plus 195 more (see TODO.edoc)
+* <font color="red">...plus 197 more (see TODO.edoc)
 </font>
 
 
