@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: dskchk g</font>
 * <font color="red">desktop: dskchk c</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: repartition</font>
-* <font color="red">vaio: adaware</font>
-* <font color="red">...plus 199 more (see TODO.edoc)
+* <font color="red">vaio: hexxeh img</font>
+* <font color="red">vaio: windows image writer</font>
+* <font color="red">...plus 202 more (see TODO.edoc)
 </font>
 
 
