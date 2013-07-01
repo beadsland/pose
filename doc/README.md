@@ -21,11 +21,11 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: uninstall p-cillin</font>
 * <font color="red">vaio: adaware</font>
 * <font color="red">vaio: defrag</font>
 * <font color="red">vaio: updates</font>
 * <font color="red">vaio: test chrome</font>
+* <font color="red">vaio: test gtalk</font>
 * <font color="red">...plus 194 more (see TODO.edoc)
 </font>
 
