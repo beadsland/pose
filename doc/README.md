@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">desktop: clear space on g</font>
 * <font color="red">desktop: repartition</font>
+* <font color="red">desktop: disk image d</font>
 * <font color="red">desktop: move d to main drive</font>
-* <font color="red">desktop: remove "my sharing folders"</font>
 * <font color="red">desktop: freezes</font>
-* <font color="red">vaio: repartition</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">vaio: poweriso</font>
+* <font color="red">...plus 202 more (see TODO.edoc)
 </font>
 
 
