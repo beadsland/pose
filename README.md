@@ -21,7 +21,7 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: snow leopard iso</font>
 * <font color="red">desktop: repartition</font>
-* <font color="red">desktop: smartware d</font>
+* <font color="red">desktop: image d to blue</font>
 * <font color="red">desktop: restore d to main drive</font>
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">desktop: freezes</font>
