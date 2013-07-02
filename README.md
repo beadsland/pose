@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: google drive
-todo desktop: virtualbox: mac</font>
-* <font color="red">blue drive: archive folders</font>
+* <font color="red">desktop: google drive</font>
+* <font color="red">desktop: virtualbox: mac</font>
 * <font color="red">desktop: virtualbox: format</font>
 * <font color="red">blue drive: gpart</font>
 * <font color="red">blue drive: seagate win drivers</font>
 * <font color="red">blue drive: new blue drive sync</font>
+* <font color="red">desktop: virtualbox: video software</font>
 * <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
