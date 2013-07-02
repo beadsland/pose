@@ -1,6 +1,6 @@
 @todo blue drive: fully synced
-@todo desktop: evernote: fatal error
 @todo desktop: smartware: update
+@todo desktop: smartware: error
 @todo desktop: dropbox
 @todo desktop: google drive
 @todo desktop: consolidate downloads folders
@@ -12,7 +12,6 @@
 @todo desktop: virtualbox: video software
 @todo desktop: chrome: tabs restore
 @todo desktop: mediamonkey dropbox
-@todo desktop: wd smartware error
 @todo desktop: close up
 @todo desktop: deskpins
 @todo desktop: tray manager
@@ -32,6 +31,8 @@
 @todo desktop: duplicates: all
 @todo desktop: linksys
 @todo desktop: rehide g
+@todo desktop: start org
+@todo desktop: try hibernate again
 @todo mwash
 @todo litter scoop
 @todo lumosity
@@ -107,6 +108,7 @@
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
 @todo dropbox: clear duplicate photos
+@todo laptop: smartware: update
 @todo laptop: chrome: settings: continue where left off
 @todo laptop: chrome: session manager
 @todo laptop: mediamonkey dropbox
