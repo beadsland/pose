@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: smartware: error</font>
+* <font color="red">desktop; smartware: service dependencies</font>
 * <font color="red">desktop: evernote: error</font>
 * <font color="red">desktop: dropbox</font>
 * <font color="red">desktop: google drive</font>
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">desktop: virtualbox</font>
-* <font color="red">desktop: virtualbox: format</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
