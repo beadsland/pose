@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: virtualbox</font>
 * <font color="red">desktop: virtualbox: format</font>
 * <font color="red">blue drive: gpart</font>
-* <font color="red">...plus 193 more (see TODO.edoc)
+* <font color="red">...plus 194 more (see TODO.edoc)
 </font>
 
 
