@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: evernote: fatal error</font>
 * <font color="red">desktop: smartware: update</font>
 * <font color="red">desktop: dropbox</font>
+* <font color="red">desktop: google drive</font>
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">desktop: virtualbox</font>
-* <font color="red">desktop: virtualbox: format</font>
-* <font color="red">...plus 195 more (see TODO.edoc)
+* <font color="red">...plus 196 more (see TODO.edoc)
 </font>
 
 
