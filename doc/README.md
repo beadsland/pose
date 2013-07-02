@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: final repartition</font>
 * <font color="red">desktop: remove d drive</font>
 * <font color="red">desktop: consolidate downloads folders</font>
 * <font color="red">blue drive: fully synced</font>
 * <font color="red">desktop: virtualbox</font>
 * <font color="red">desktop: virtualbox: format</font>
 * <font color="red">blue drive: gpart</font>
-* <font color="red">...plus 194 more (see TODO.edoc)
+* <font color="red">blue drive: seagate win drivers</font>
+* <font color="red">...plus 193 more (see TODO.edoc)
 </font>
 
 
