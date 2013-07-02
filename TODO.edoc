@@ -1,16 +1,13 @@
-@todo desktop: smartware: error
-@todo desktop; smartware: service dependencies
 @todo desktop: evernote: error
 @todo desktop: dropbox
 @todo desktop: google drive
 @todo desktop: consolidate downloads folders
-@todo desktop: virtualbox
+@todo desktop: virtualbox: mac
 @todo blue drive: archive folders
 @todo desktop: virtualbox: format
 @todo blue drive: gpart
 @todo blue drive: seagate win drivers
 @todo blue drive: new blue drive sync
-@todo closets
 @todo desktop: virtualbox: video software
 @todo desktop: chrome: tabs restore
 @todo desktop: mediamonkey dropbox
@@ -36,8 +33,11 @@
 @todo desktop: rehide g
 @todo desktop: start org
 @todo desktop: try hibernate again
+@todo desktop: memory
+@todo info re tag sale
 @todo mwash
 @todo litter scoop
+@todo closets
 @todo lumosity
 @todo android: go keyboard to system
 @todo android: teamviewer quicksupport samsung
