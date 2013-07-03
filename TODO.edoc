@@ -1,6 +1,6 @@
 @todo blue drive: new blue drive sync
 @todo desktop: dependency service or group
-@todo desktop: mediamonkey dropbox
+@todo desktop: mediamonkey library
 @todo desktop: picasa dropbox
 @todo desktop: defrag
 @todo desktop: deskpins
@@ -8,6 +8,7 @@
 @todo android: extract memos
 @todo android: import csv to evernote
 @todo android: delete memo app
+@todo desktop: delete blue drive from share
 @todo desktop: duplicates: images share
 @todo desktop: duplicates: dropbox
 @todo desktop: restore music collections
