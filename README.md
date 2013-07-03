@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: defrag</font>
 * <font color="red">desktop: deskpins</font>
 * <font color="red">desktop: tray manager</font>
-* <font color="red">...plus 204 more (see TODO.edoc)
+* <font color="red">...plus 199 more (see TODO.edoc)
 </font>
 
 
