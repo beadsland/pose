@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">shellexview</font>
 * <font color="red">vprot!!!!!!</font>
 * <font color="red">seagate driver</font>
 * <font color="red">desktop: seagate driver</font>
 * <font color="red">blue drive: new blue drive sync</font>
 * <font color="red">desktop: google drive</font>
 * <font color="red">desktop: virtualbox: video software</font>
-* <font color="red">desktop: virtualbox: shortcut</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
 
