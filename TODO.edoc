@@ -4,9 +4,11 @@
 @todo desktop: picasa dropbox
 @todo desktop: defrag
 @todo desktop: deskpins
-@todo desktop: tray manager
 @todo desktop: MOV Quicktime component
 @todo desktop: batch convert AMRs
+@todo android: extract memos
+@todo android: import csv to evernote
+@todo android: delete memo app
 @todo desktop: duplicates: images share
 @todo desktop: duplicates: dropbox
 @todo desktop: restore music collections
@@ -85,9 +87,6 @@
 @todo android: upnplay?
 @todo android: crash laptop test
 @todo android: confirm juicedefender settings
-@todo android: extract memos
-@todo android: import csv to evernote
-@todo android: delete memo app
 @todo android: better gallery
 @todo android: launcher: cameras page
 @todo android: launcher: bookmark play search?
