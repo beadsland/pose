@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">lbill</font>
+* <font color="red">brk</font>
+* <font color="red">mail</font>
 * <font color="red">blue drive: new blue drive sync</font>
 * <font color="red">desktop: dependency service or group</font>
 * <font color="red">desktop: mediamonkey library</font>
 * <font color="red">desktop: picasa dropbox</font>
-* <font color="red">desktop: defrag</font>
-* <font color="red">desktop: deskpins</font>
-* <font color="red">desktop: batch convert AMRs</font>
-* <font color="red">...plus 201 more (see TODO.edoc)
+* <font color="red">...plus 205 more (see TODO.edoc)
 </font>
 
 

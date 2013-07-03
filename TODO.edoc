@@ -1,3 +1,6 @@
+@todo lbill
+@todo brk
+@todo mail
 @todo blue drive: new blue drive sync
 @todo desktop: dependency service or group
 @todo desktop: mediamonkey library
@@ -7,6 +10,7 @@
 @todo desktop: batch convert AMRs
 @todo desktop: amr to mp3: uninstall
 @todo desktop: freemake: uninstall
+@todo desktop: bluescreen diagnosis
 @todo android: extract memos
 @todo android: import csv to evernote
 @todo android: delete memo app
