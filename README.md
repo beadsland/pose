@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: defrag</font>
 * <font color="red">desktop: deskpins</font>
 * <font color="red">desktop: batch convert AMRs</font>
-* <font color="red">...plus 199 more (see TODO.edoc)
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
