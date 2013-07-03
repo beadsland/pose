@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: virtualbox: shortcut</font>
 * <font color="red">desktop: chrome: tabs restore</font>
 * <font color="red">desktop: mediamonkey dropbox</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
 
