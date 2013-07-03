@@ -1,8 +1,7 @@
 @todo blue drive: new blue drive sync
 @todo desktop: dependency service or group
 @todo desktop: mediamonkey dropbox
-@todo desktop: close up machine
-@todo desktop: double efax startup?
+@todo desktop: picasa dropbox
 @todo desktop: defrag
 @todo desktop: deskpins
 @todo desktop: tray manager
@@ -110,6 +109,8 @@
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
 @todo dropbox: clear duplicate photos
+@todo laptop: picasa dropbox
+@todo laptop: mediamonkey dropbox
 @todo laptop: system restore point
 @todo laptop: seagate driver
 @todo laptop: smartware: update

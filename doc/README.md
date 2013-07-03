@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">blue drive: new blue drive sync</font>
 * <font color="red">desktop: dependency service or group</font>
 * <font color="red">desktop: mediamonkey dropbox</font>
-* <font color="red">desktop: close up machine</font>
-* <font color="red">desktop: double efax startup?</font>
+* <font color="red">desktop: picasa dropbox</font>
 * <font color="red">desktop: defrag</font>
 * <font color="red">desktop: deskpins</font>
-* <font color="red">...plus 203 more (see TODO.edoc)
+* <font color="red">desktop: tray manager</font>
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
