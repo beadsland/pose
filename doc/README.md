@@ -20,7 +20,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: chkdsk</font>
-* <font color="red">desktop: review chkdsk log</font>
+* <font color="red">desktop: wininit: review chkdsk log</font>
 * <font color="red">desktop: chkdsk</font>
 * <font color="red">desktop: memtest</font>
 * <font color="red">desktop: bluescreen diagnosis</font>
