@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: virt mem back to c</font>
 * <font color="red">desktop: defrag</font>
 * <font color="red">desktop: batch convert AMRs</font>
-* <font color="red">desktop: amr to mp3: uninstall</font>
-* <font color="red">desktop: freemake: uninstall</font>
-* <font color="red">desktop: bluescreen diagnosis</font>
-* <font color="red">...plus 202 more (see TODO.edoc)
+* <font color="red">hair</font>
+* <font color="red">brk</font>
+* <font color="red">laundry</font>
+* <font color="red">...plus 205 more (see TODO.edoc)
 </font>
 
 
