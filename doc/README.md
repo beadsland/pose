@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: sync g</font>
+* <font color="red">desktop: update adaware</font>
 * <font color="red">desktop: picasa import</font>
 * <font color="red">desktop: defrag</font>
 * <font color="red">desktop: batch convert AMRs</font>
