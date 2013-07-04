@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: deskpins</font>
 * <font color="red">desktop: batch convert AMRs</font>
 * <font color="red">desktop: amr to mp3: uninstall</font>
-* <font color="red">...plus 201 more (see TODO.edoc)
+* <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
 
