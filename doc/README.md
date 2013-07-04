@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: update adaware</font>
 * <font color="red">desktop: defrag</font>
 * <font color="red">desktop: batch convert AMRs</font>
 * <font color="red">desktop: amr to mp3: uninstall</font>
 * <font color="red">desktop: freemake: uninstall</font>
 * <font color="red">desktop: bluescreen diagnosis</font>
 * <font color="red">android: extract memos</font>
-* <font color="red">...plus 201 more (see TODO.edoc)
+* <font color="red">android: import csv to evernote</font>
+* <font color="red">...plus 200 more (see TODO.edoc)
 </font>
 
 
