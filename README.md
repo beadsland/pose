@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: defrag</font>
 * <font color="red">desktop: batch convert AMRs</font>
 * <font color="red">laundry</font>
+* <font color="red">across hall</font>
 * <font color="red">desktop: amr to mp3: uninstall</font>
 * <font color="red">desktop: freemake: uninstall</font>
 * <font color="red">desktop: update quicktime</font>
-* <font color="red">desktop: update itunes</font>
-* <font color="red">...plus 203 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
