@@ -1,13 +1,12 @@
-@todo desktop: chkdsk
+@todo desktop: chkdsk d
+@todo desktop: chkdsk c
 @todo desktop: wininit: review chkdsk log
-@todo desktop: chkdsk
+@todo desktop: chkdsk c
 @todo desktop: memtest
 @todo desktop: bluescreen diagnosis
 @todo desktop: defrag
 @todo desktop: batch convert AMRs
-@todo brk
 @todo laundry
-@todo status
 @todo desktop: amr to mp3: uninstall
 @todo desktop: freemake: uninstall
 @todo desktop: start org
