@@ -1,7 +1,3 @@
-@todo desktop: chkdsk d
-@todo desktop: chkdsk c
-@todo desktop: wininit: review chkdsk log
-@todo desktop: chkdsk c
 @todo desktop: memtest
 @todo desktop: bluescreen diagnosis
 @todo desktop: defrag

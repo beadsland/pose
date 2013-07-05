@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: chkdsk d</font>
-* <font color="red">desktop: chkdsk c</font>
-* <font color="red">desktop: wininit: review chkdsk log</font>
-* <font color="red">desktop: chkdsk c</font>
 * <font color="red">desktop: memtest</font>
 * <font color="red">desktop: bluescreen diagnosis</font>
 * <font color="red">desktop: defrag</font>
-* <font color="red">...plus 209 more (see TODO.edoc)
+* <font color="red">desktop: batch convert AMRs</font>
+* <font color="red">laundry</font>
+* <font color="red">desktop: amr to mp3: uninstall</font>
+* <font color="red">desktop: freemake: uninstall</font>
+* <font color="red">...plus 205 more (see TODO.edoc)
 </font>
 
 
