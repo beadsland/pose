@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: batch convert AMRs</font>
 * <font color="red">desktop: update itunes</font>
+* <font color="red">desktop: update mediamonkey</font>
 * <font color="red">desktop: start org</font>
-* <font color="red">android: extract memos</font>
-* <font color="red">android: import csv to evernote</font>
-* <font color="red">android: delete memo app</font>
-* <font color="red">desktop: delete blue drive from share</font>
-* <font color="red">...plus 198 more (see TODO.edoc)
+* <font color="red">desktop: brk</font>
+* <font color="red">destkop: across hall</font>
+* <font color="red">desktop: status</font>
+* <font color="red">...plus 202 more (see TODO.edoc)
 </font>
 
 
