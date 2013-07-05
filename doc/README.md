@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: memtest</font>
 * <font color="red">desktop: bluescreen diagnosis</font>
 * <font color="red">desktop: defrag</font>
-* <font color="red">...plus 207 more (see TODO.edoc)
+* <font color="red">...plus 209 more (see TODO.edoc)
 </font>
 
 
