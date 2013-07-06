@@ -1,6 +1,10 @@
 @todo itunes: restore g
-@todo itunes: reset podcast settings
+@todo itunes: lastfm: unplayed only
+@todo itunes: itunesu: all unplayed
+@todo itunes: podcasts: all unplayed
 @todo acronis: fix daily backup
+@todo itunes: ipod: sync
+@todo acronis: full backup
 @todo desktop: smartware: resume
 @todo desktop: batch convert AMRs
 @todo across hall
@@ -15,6 +19,7 @@
 @todo desktop: restore music collections
 @todo desktop: duplicates: all
 @todo desktop: rehide g (reboot)
+@todo desktop: disk image
 @todo desktop: try hibernate again
 @todo desktop: python 2.5
 @todo desktop: cheetah
