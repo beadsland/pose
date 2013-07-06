@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: batch convert AMRs</font>
-* <font color="red">desktop: brk</font>
-* <font color="red">destkop: across hall</font>
-* <font color="red">desktop: status</font>
+* <font color="red">across hall</font>
 * <font color="red">android: extract memos</font>
 * <font color="red">android: import csv to evernote</font>
 * <font color="red">android: delete memo app</font>
-* <font color="red">...plus 199 more (see TODO.edoc)
+* <font color="red">desktop: delete blue drive from share</font>
+* <font color="red">desktop: duplicates: images share</font>
+* <font color="red">...plus 197 more (see TODO.edoc)
 </font>
 
 
