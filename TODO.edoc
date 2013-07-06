@@ -1,9 +1,10 @@
 @todo desktop: batch convert AMRs
 @todo across hall
-@todo android: extract memos
+@todo laptop: retrieve data.img
+@todo android: extract-memos.sh
 @todo android: import csv to evernote
 @todo android: delete memo app
-@todo desktop: delete blue drive from share
+@todo move blue drive from share
 @todo desktop: duplicates: images share
 @todo desktop: duplicates: dropbox
 @todo desktop: restore music collections
@@ -98,6 +99,8 @@
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
 @todo dropbox: clear duplicate photos
+@todo laptop: sync
+@todo laptop: backup
 @todo laptop: review defrag settings
 @todo laptop: adaware activiation period
 @todo laptop: google plugin has stopped responding
