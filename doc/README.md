@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: smartware: resume</font>
 * <font color="red">install cpan</font>
 * <font color="red">reload cpan</font>
-* <font color="red">cpan update all</font>
 * <font color="red">text:csv</font>
 * <font color="red">memo: csv to txt files</font>
 * <font color="red">memo: evernote</font>
-* <font color="red">...plus 203 more (see TODO.edoc)
+* <font color="red">android: delete memo app</font>
+* <font color="red">...plus 202 more (see TODO.edoc)
 </font>
 
 
