@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: import csv to evernote</font>
 * <font color="red">android: delete memo app</font>
 * <font color="red">move blue drive from share</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 199 more (see TODO.edoc)
 </font>
 
 
