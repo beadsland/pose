@@ -1,8 +1,9 @@
 @todo desktop: batch convert AMRs
 @todo across hall
-@todo laptop: retrieve data.img
-@todo android: extract-memos.sh
-@todo android: import csv to evernote
+@todo laptop: memo: retrieve data.img
+@todo android: memo: extract-memos.sh
+@todo android: memo: csv to txt files
+@todo android: memo: evernote
 @todo android: delete memo app
 @todo desktop: duplicates: images share
 @todo desktop: duplicates: dropbox
