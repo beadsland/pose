@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">compress f</font>
 * <font color="red">laptop: memo: retrieve data.img</font>
-* <font color="red">itunes: podcasts: all unplayed</font>
-* <font color="red">acronis: fix daily backup</font>
-* <font color="red">itunes: ipod: interim 4</font>
-* <font color="red">itunes: ipod: sync</font>
-* <font color="red">acronis: full backup</font>
-* <font color="red">bit: resume</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">red: full sync</font>
+* <font color="red">desktop: smartware: resume</font>
+* <font color="red">desktop: batch convert AMRs</font>
+* <font color="red">across hall</font>
+* <font color="red">android: memo: unyaffs</font>
+* <font color="red">...plus 207 more (see TODO.edoc)
 </font>
 
 
