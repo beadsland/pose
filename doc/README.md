@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: smartware: resume</font>
 * <font color="red">desktop: batch convert AMRs</font>
 * <font color="red">across hall</font>
+* <font color="red">cygwin: sqlite</font>
 * <font color="red">android: memo: extract-memos.sh</font>
 * <font color="red">android: memo: csv to txt files</font>
-* <font color="red">android: memo: evernote</font>
-* <font color="red">...plus 203 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
