@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: smartware: resume</font>
 * <font color="red">desktop: batch convert WMAs</font>
-* <font color="red">cygwin: sqlite</font>
 * <font color="red">android: memo: extract-memos.sh</font>
 * <font color="red">android: memo: csv to txt files</font>
 * <font color="red">android: memo: evernote</font>
 * <font color="red">android: delete memo app</font>
-* <font color="red">...plus 202 more (see TODO.edoc)
+* <font color="red">desktop: duplicates: images share</font>
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
