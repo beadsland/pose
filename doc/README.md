@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: smartware: backup source error</font>
 * <font color="red">desktop: winmerge</font>
 * <font color="red">desktop: smartware: exclusions?</font>
+* <font color="red">desktop: remove old drive</font>
+* <font color="red">desktop: front fan</font>
 * <font color="red">desktop: data lifeguard: bad sectors</font>
-* <font color="red">desktop: duplicates: images share</font>
-* <font color="red">desktop: duplicates: dropbox</font>
-* <font color="red">...plus 201 more (see TODO.edoc)
+* <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
 
