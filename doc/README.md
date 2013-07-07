@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: smartware: resume</font>
+* <font color="red">desktop: smartware: exclusions?</font>
 * <font color="red">install cpan</font>
 * <font color="red">reload cpan</font>
 * <font color="red">text:csv</font>
