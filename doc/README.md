@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: winmerge</font>
+* <font color="red">desktop: bluescreen</font>
+* <font color="red">desktop: winmerge alt</font>
 * <font color="red">desktop: smartware: exclusions?</font>
 * <font color="red">desktop: duplicates: images share</font>
 * <font color="red">desktop: duplicates: dropbox</font>
 * <font color="red">desktop: restore music collections</font>
 * <font color="red">desktop: duplicates: all</font>
-* <font color="red">desktop: rehide g (reboot)</font>
-* <font color="red">...plus 198 more (see TODO.edoc)
+* <font color="red">...plus 199 more (see TODO.edoc)
 </font>
 
 
