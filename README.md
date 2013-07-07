@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">desktop: winmerge plugin</font>
 * <font color="red">desktop: winmerge</font>
 * <font color="red">desktop: smartware: exclusions?</font>
 * <font color="red">red</font>
 * <font color="red">reload cpan</font>
 * <font color="red">text:csv</font>
 * <font color="red">memo: csv to txt files</font>
-* <font color="red">memo: evernote</font>
-* <font color="red">...plus 203 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
