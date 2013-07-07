@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: landscape mode</font>
-* <font color="red">desktop: smartware: missing drive</font>
+* <font color="red">desktop: smartware: backup source error</font>
 * <font color="red">desktop: winmerge</font>
 * <font color="red">desktop: smartware: exclusions?</font>
+* <font color="red">desktop: hdtune</font>
 * <font color="red">desktop: duplicates: images share</font>
 * <font color="red">desktop: duplicates: dropbox</font>
-* <font color="red">desktop: restore music collections</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
