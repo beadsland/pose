@@ -1,4 +1,3 @@
-@todo android: landscape mode
 @todo desktop: smartware: backup source error
 @todo desktop: hirens: root kit
 @todo desktop: hirens: bad sectors
@@ -10,7 +9,6 @@
 @todo desktop: duplicates: dropbox
 @todo desktop: restore music collections
 @todo desktop: duplicates: all
-@todo desktop: rehide g (reboot)
 @todo desktop: disk image
 @todo desktop: try hibernate again
 @todo desktop: python 2.5
@@ -35,6 +33,7 @@
 @todo cubby
 @todo laptop: sync
 @todo laptop: backup
+@todo android: keyboard manager
 @todo android: delete memo app
 @todo android: go keyboard to system
 @todo android: teamviewer quicksupport samsung

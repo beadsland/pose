@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: landscape mode</font>
 * <font color="red">desktop: smartware: backup source error</font>
-* <font color="red">desktop: data lifeguard: bad sectors</font>
+* <font color="red">desktop: hirens: root kit</font>
+* <font color="red">desktop: hirens: bad sectors</font>
 * <font color="red">desktop: remove old drive</font>
 * <font color="red">desktop: front fan</font>
 * <font color="red">desktop: winmerge</font>
