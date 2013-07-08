@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: smartware: reinstall</font>
 * <font color="red">desktop: smartware: share paths</font>
 * <font color="red">desktop: smartware: dependencies</font>
 * <font color="red">desktop: smartware: backup source error</font>
 * <font color="red">desktop: front fans</font>
 * <font color="red">desktop: compare smartware to d</font>
 * <font color="red">desktop: smartware: exclusions?</font>
-* <font color="red">...plus 204 more (see TODO.edoc)
+* <font color="red">desktop: duplicates: images share</font>
+* <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
 
