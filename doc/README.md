@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: duplicates: images share</font>
 * <font color="red">desktop: duplicates: dropbox</font>
-* <font color="red">desktop: folder size</font>
 * <font color="red">desktop: bodhi's music: restore</font>
 * <font color="red">desktop: owl's music: restore</font>
 * <font color="red">desktop: duplicates: all</font>
 * <font color="red">desktop: front fans</font>
-* <font color="red">...plus 203 more (see TODO.edoc)
+* <font color="red">desktop: uninstalls</font>
+* <font color="red">...plus 202 more (see TODO.edoc)
 </font>
 
 
