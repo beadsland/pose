@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: bodhi's music: restore</font>
 * <font color="red">desktop: irpstacksize (reboot)</font>
+* <font color="red">desktop: bodhi's music: restore</font>
 * <font color="red">desktop: duplicates: images share</font>
 * <font color="red">desktop: duplicates: dropbox</font>
 * <font color="red">desktop: bodhi's music: merge</font>
