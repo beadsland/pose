@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: smartware: backup source error</font>
 * <font color="red">desktop: front fans</font>
-* <font color="red">desktop: compare smartware to d</font>
-* <font color="red">desktop: smartware: exclusions?</font>
 * <font color="red">desktop: duplicates: images share</font>
 * <font color="red">desktop: duplicates: dropbox</font>
 * <font color="red">desktop: restore music collections</font>
-* <font color="red">...plus 201 more (see TODO.edoc)
+* <font color="red">desktop: duplicates: all</font>
+* <font color="red">desktop: disk image</font>
+* <font color="red">...plus 199 more (see TODO.edoc)
 </font>
 
 
