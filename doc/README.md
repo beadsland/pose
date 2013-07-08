@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: duplicates: dropbox</font>
 * <font color="red">desktop: restore music collections</font>
 * <font color="red">desktop: duplicates: all</font>
-* <font color="red">desktop: disk image</font>
-* <font color="red">...plus 199 more (see TODO.edoc)
+* <font color="red">desktop: uninstalls</font>
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
