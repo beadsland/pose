@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: duplicates: images share</font>
 * <font color="red">stains</font>
 * <font color="red">vac</font>
-* <font color="red">grocer</font>
+* <font color="red">elec recycl</font>
 * <font color="red">sundry</font>
-* <font color="red">fix toy</font>
-* <font color="red">recycl</font>
-* <font color="red">...plus 207 more (see TODO.edoc)
+* <font color="red">grocer</font>
+* <font color="red">desktop: dropbox junction</font>
+* <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
 
