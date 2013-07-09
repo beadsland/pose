@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: adaware: update</font>
+* <font color="red">laptop: itunes: update</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: backup</font>
 * <font color="red">android: landscape keyboard</font>
