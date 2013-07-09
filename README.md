@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: owl's music: restore</font>
 * <font color="red">stains</font>
 * <font color="red">vac</font>
-* <font color="red">chik call</font>
 * <font color="red">grocer</font>
 * <font color="red">sundry</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">trim</font>
+* <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
 
