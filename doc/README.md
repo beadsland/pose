@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">laptop: adaware: update</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: backup</font>
+* <font color="red">android: landscape keyboard</font>
 * <font color="red">android: keyboard manager</font>
-* <font color="red">android: delete memo app</font>
 * <font color="red">android: go keyboard to system</font>
-* <font color="red">android: teamviewer quicksupport samsung</font>
-* <font color="red">android: bln control</font>
-* <font color="red">...plus 206 more (see TODO.edoc)
+* <font color="red">android: delete memo app</font>
+* <font color="red">...plus 208 more (see TODO.edoc)
 </font>
 
 
