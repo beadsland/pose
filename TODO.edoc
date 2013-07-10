@@ -1,12 +1,12 @@
 @todo android: wifi for dropbox
 @todo android: remove item from folder
 @todo android: os monitor
-@todo laptop: updates
 @todo laptop: smartware: backup
 @todo laptop: disk image
+@todo laptop: sync
 @todo desktop: wake on lan
+@todo desktop: updates
 @todo desktop: hide wifi sync
-@todo desktop: sharing over wifi
 @todo vac
 @todo elec recycl
 @todo laptop: sync: wifi
@@ -80,7 +80,6 @@
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
 @todo dropbox: clear duplicate photos
-@todo laptop: sync
 @todo laptop: skype: test video calls
 @todo laptop: native speakers
 @todo laptop: review defrag settings
@@ -105,6 +104,7 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
+@todo desktop: sharing over wifi
 @todo desktop: dropbox camera uploads
 @todo desktop: evernote: color backgrounds?
 @todo desktop: duplicates: images share
