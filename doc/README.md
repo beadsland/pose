@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: wifi for dropbox</font>
 * <font color="red">android: remove item from folder</font>
 * <font color="red">android: os monitor</font>
-* <font color="red">android: go widgets</font>
-* <font color="red">android: apps to folders</font>
-* <font color="red">android: remove camera screen</font>
+* <font color="red">laptop: updates</font>
 * <font color="red">laptop: smartware: backup</font>
-* <font color="red">...plus 212 more (see TODO.edoc)
+* <font color="red">laptop: disk image</font>
+* <font color="red">desktop: wake on lan</font>
+* <font color="red">...plus 214 more (see TODO.edoc)
 </font>
 
 
