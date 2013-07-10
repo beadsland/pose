@@ -1,8 +1,8 @@
+@todo android: system cleanup
+@todo android: clear cache partition
 @todo android: os monitor
 @todo android: phone hangs entirely
 @todo android: camera: video not working?
 @todo laptop: smartware: backup
 @todo laptop: disk image
-@todo laptop: sync
-@todo desktop: irpstacksize
-@todo ...plus 219 more (see TODO.edoc)
+@todo ...plus 221 more (see TODO.edoc)
