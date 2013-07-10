@@ -23,9 +23,9 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: disk image</font>
 * <font color="red">desktop: share: no password</font>
 * <font color="red">desktop: duplicates: images share</font>
-* <font color="red">stains</font>
 * <font color="red">vac</font>
 * <font color="red">elec recycl</font>
+* <font color="red">laptop: sync</font>
 * <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
