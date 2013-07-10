@@ -1,6 +1,7 @@
-@todo android: wifi for dropbox
-@todo android: remove item from folder
-@todo android: os monitor
+@todo android: locker: camera not working
+@todo android: less busy backgrounds
+@todo android: skype vs. sms?
+@todo android: phone hangs entirely
 @todo laptop: smartware: backup
 @todo laptop: disk image
 @todo laptop: sync
@@ -15,12 +16,15 @@
 @todo laptop: sync: wifi
 @todo sundry
 @todo grocer
-@todo desktop: dropbox junction
+@todo android: wifi for dropbox
+@todo android: remove item from folder
+@todo android: os monitor
 @todo android: go widgets
 @todo android: apps to folders
 @todo android: remove camera screen
 @todo android: delete nonuseful cameras
 @todo android: stock gallery: remove
+@todo android: dropsync
 @todo android: titanium: default to xsd
 @todo android: titanium: backups to pc?
 @todo android: privacy: backup data/auto restore
@@ -109,10 +113,10 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
+@todo desktop: dropbox junction
 @todo desktop: duplicates: images share
 @todo desktop: druplicate folders
 @todo desktop: duplicates
-@todo android: portrait keyboard
 @todo desktop: reclaim space
 @todo desktop: remove data share
 @todo desktop: remove empty folders
