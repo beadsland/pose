@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">desktop: wake on lan</font>
-* <font color="red">...plus 215 more (see TODO.edoc)
+* <font color="red">...plus 214 more (see TODO.edoc)
 </font>
 
 
