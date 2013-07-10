@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: juice: data</font>
+* <font color="red">android: juice: wifi: location</font>
 * <font color="red">android: performance</font>
 * <font color="red">android: mediascanner</font>
 * <font color="red">android: go notifications</font>
