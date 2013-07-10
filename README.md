@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: juice: data autofix</font>
 * <font color="red">android: gallery reverse cron</font>
+* <font color="red">andriod: mediascanner</font>
 * <font color="red">android: evernote: color backgrounds?</font>
 * <font color="red">android: go widgets</font>
 * <font color="red">android: snooker: delete</font>
 * <font color="red">android: find unused apps?</font>
-* <font color="red">laptop: picasa alternative</font>
-* <font color="red">...plus 210 more (see TODO.edoc)
+* <font color="red">...plus 211 more (see TODO.edoc)
 </font>
 
 
