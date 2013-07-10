@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: disable live wallpaper</font>
+* <font color="red">android: desk migrate</font>
 * <font color="red">android: lighting launcher</font>
 * <font color="red">android: juice: data autofix</font>
 * <font color="red">android: evernote: color backgrounds?</font>
