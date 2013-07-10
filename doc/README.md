@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: go notifications</font>
 * <font color="red">android: juice: data autofix</font>
 * <font color="red">android: evernote: color backgrounds?</font>
 * <font color="red">android: gallery reverse cron</font>
 * <font color="red">android: go widgets</font>
 * <font color="red">laptop: picasa alternative</font>
 * <font color="red">laptop: smartware: backup</font>
-* <font color="red">...plus 209 more (see TODO.edoc)
+* <font color="red">laptop: disk image</font>
+* <font color="red">...plus 208 more (see TODO.edoc)
 </font>
 
 
