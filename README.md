@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">laptop: zoner: update</font>
-* <font color="red">laptop: smartware: services</font>
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: sound</font>
+* <font color="red">laptop: disk image</font>
 * <font color="red">desktop: share: no password</font>
 * <font color="red">desktop: duplicates: images share</font>
 * <font color="red">stains</font>
-* <font color="red">...plus 212 more (see TODO.edoc)
+* <font color="red">vac</font>
+* <font color="red">...plus 211 more (see TODO.edoc)
 </font>
 
 
