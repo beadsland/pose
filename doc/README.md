@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: landscape keyboard</font>
 * <font color="red">android: keyboard manager</font>
 * <font color="red">android: go keyboard to system</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
 
