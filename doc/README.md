@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: locker: camera not working</font>
 * <font color="red">android: less busy backgrounds</font>
 * <font color="red">android: camera: video not working?</font>
-* <font color="red">android: locker: new messages</font>
+* <font color="red">android: skype vs. sms?</font>
+* <font color="red">android: os monitor</font>
+* <font color="red">android: phone hangs entirely</font>
 * <font color="red">laptop: smartware: backup</font>
-* <font color="red">laptop: disk image</font>
-* <font color="red">laptop: sync</font>
-* <font color="red">...plus 223 more (see TODO.edoc)
+* <font color="red">...plus 222 more (see TODO.edoc)
 </font>
 
 
