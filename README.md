@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: sync</font>
-* <font color="red">desktop: sharing over wifi</font>
-* <font color="red">...plus 214 more (see TODO.edoc)
+* <font color="red">desktop: irpstacksize</font>
+* <font color="red">...plus 216 more (see TODO.edoc)
 </font>
 
 
