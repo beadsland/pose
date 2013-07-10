@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">android: bln control</font>
 * <font color="red">android: juice: data autofix</font>
 * <font color="red">android: disable live wallpaper</font>
-* <font color="red">laptop: picasa alternative</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">android: lighting launcher</font>
+* <font color="red">...plus 213 more (see TODO.edoc)
 </font>
 
 
