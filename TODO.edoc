@@ -1,10 +1,10 @@
+@todo virtualbox adapter screws up sharing
 @todo android: system cleanup
 @todo android: clear cache partition
 @todo android: better battery stats
 @todo laptop: smartware: backup
 @todo laptop: disk image
 @todo laptop: sync
-@todo desktop: irpstacksize
 @todo desktop: sharing over wifi
 @todo desktop: dropbox camera uploads
 @todo desktop: evernote: color backgrounds?
