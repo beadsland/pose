@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">7 can't browse xp</font>
-* <font color="red">xp can't browse 7</font>
-* <font color="red">virtualbox adapter screws up sharing</font>
 * <font color="red">android: system cleanup</font>
 * <font color="red">android: clear cache partition</font>
 * <font color="red">android: better battery stats</font>
 * <font color="red">laptop: smartware: backup</font>
-* <font color="red">...plus 224 more (see TODO.edoc)
+* <font color="red">laptop: disk image</font>
+* <font color="red">laptop: sync</font>
+* <font color="red">desktop: sharing over wifi</font>
+* <font color="red">...plus 221 more (see TODO.edoc)
 </font>
 
 
