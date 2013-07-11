@@ -1,9 +1,3 @@
-@todo virtualbox: uninstall
-@todo virtualbox: remove hidden drivers
-@todo error accessing laptop
-@todo desktop: uninstall
-@todo desktop: remove hidden drivers
-@todo error accessing desktop
 @todo android: system cleanup
 @todo android: clear cache partition
 @todo android: better battery stats
