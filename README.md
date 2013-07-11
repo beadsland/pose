@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">virtualbox: uninstall</font>
+* <font color="red">virtualbox: remove hidden drivers</font>
+* <font color="red">error accessing laptop</font>
+* <font color="red">desktop: uninstall</font>
+* <font color="red">desktop: remove hidden drivers</font>
+* <font color="red">error accessing desktop</font>
 * <font color="red">android: system cleanup</font>
-* <font color="red">android: clear cache partition</font>
-* <font color="red">android: better battery stats</font>
-* <font color="red">laptop: smartware: backup</font>
-* <font color="red">laptop: disk image</font>
-* <font color="red">laptop: sync</font>
-* <font color="red">desktop: sharing over wifi</font>
-* <font color="red">...plus 221 more (see TODO.edoc)
+* <font color="red">...plus 227 more (see TODO.edoc)
 </font>
 
 
