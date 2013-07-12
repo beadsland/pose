@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: mediamonkey</font>
 * <font color="red">android: dropsync</font>
-* <font color="red">laptop: froze 11:50 thurs</font>
+* <font color="red">laptop: sluggish low cpu (low ram?)</font>
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: life cam: start menu</font>
-* <font color="red">desktop: dropbox camera uploads</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">desktop: evernote: color backgrounds?</font>
+* <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
 
