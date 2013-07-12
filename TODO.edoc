@@ -7,7 +7,6 @@
 @todo desktop: dropbox camera uploads
 @todo desktop: evernote: color backgrounds?
 @todo desktop: dropbox junction
-@todo dish
 @todo vac
 @todo elec recycl
 @todo sundry
@@ -76,11 +75,12 @@
 @todo android: launcher: gallery widget
 @todo dropbox: clear duplicate photos
 @todo laptop: life cam: autofocus instruct
-@todo laptop: sync: wifi
+@todo laptop: photos: duplicates
+@todo laptop: photos: archive
 @todo laptop: disk image
 @todo laptop: sync
-@todo laptop: skype: test video calls
-@todo laptop: native speakers
+@todo laptop: sync: wifi
+@todo laptop: doubletwist: uninstall
 @todo laptop: review defrag settings
 @todo laptop: adaware activiation period
 @todo laptop: google plugin has stopped responding
@@ -104,6 +104,7 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
+@todo desktop: doubletwist: unisntall
 @todo desktop: duplicates: images share
 @todo desktop: druplicate folders
 @todo desktop: duplicates
