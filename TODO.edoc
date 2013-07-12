@@ -1,9 +1,9 @@
-@todo android: system cleanup
-@todo android: clear cache partition
 @todo android: better battery stats
+@todo android: os monitor
+@todo android: phone hangs entirely
 @todo laptop: smartware: backup
-@todo laptop: disk image
-@todo laptop: sync
+@todo laptop: life cam: start menu
+@todo laptop: life cam: autofocus instruct
 @todo desktop: dropbox camera uploads
 @todo desktop: evernote: color backgrounds?
 @todo desktop: dropbox junction
@@ -13,8 +13,6 @@
 @todo laptop: sync: wifi
 @todo sundry
 @todo grocer
-@todo android: os monitor
-@todo android: phone hangs entirely
 @todo android: camera: video not working?
 @todo android: wifi for dropbox
 @todo android: remove item from folder
@@ -24,6 +22,7 @@
 @todo android: remove camera screen
 @todo android: delete nonuseful cameras
 @todo android: stock gallery: remove
+@todo android: mediamonkey
 @todo android: dropsync
 @todo android: titanium: default to xsd
 @todo android: titanium: backups to pc?
@@ -88,6 +87,8 @@
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
 @todo dropbox: clear duplicate photos
+@todo laptop: disk image
+@todo laptop: sync
 @todo laptop: skype: test video calls
 @todo laptop: native speakers
 @todo laptop: review defrag settings
