@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: logcat</font>
 * <font color="red">android: phone hangs entirely</font>
-* <font color="red">android: camera: video not working?</font>
+* <font color="red">android: dropbox: albums?</font>
 * <font color="red">laptop: dropbox full</font>
 * <font color="red">laptop: froze 11:50 thurs</font>
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">desktop: dropbox camera uploads</font>
-* <font color="red">...plus 222 more (see TODO.edoc)
+* <font color="red">...plus 213 more (see TODO.edoc)
 </font>
 
 
