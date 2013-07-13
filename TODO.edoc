@@ -1,13 +1,8 @@
-@todo android: bottom buttons slow
+@todo android: sms says "downloading"
+@todo android: keyboard too transparent
+@todo android: smart keys nonresponsive
+@todo android: dialer one
 @todo android: phone: favorites: high cpu
-@todo android: phone: logs: high cpu
-@todo android: phone hangs/fc
-@todo android: sms hangs/reboots
-@todo android: smart keyboard: confirmation off
-@todo android: lock: back to stock
-@todo android: dropbox: camera uploads
-@todo android: battery/performance
-@todo android: sms: duplicates
 @todo laptop: smartware: backup
 @todo laptop: disk image
 @todo laptop: sync
@@ -28,6 +23,15 @@
 @todo brk: supply
 @todo brk: sweep
 @todo dot: eye-care checklist
+@todo android: phone: logs: high cpu
+@todo android: phone hangs/fc
+@todo android: sms go
+@todo android: sms hangs/reboots
+@todo android: smart keyboard: confirmation off
+@todo android: lock: back to stock
+@todo android: dropbox: camera uploads
+@todo android: battery/performance
+@todo android: sms: duplicates
 @todo android: micro clock: simpler
 @todo android: mediamonkey
 @todo android: dropsync
