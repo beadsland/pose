@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: battery/performance</font>
-* <font color="red">android: mediamonkey</font>
+* <font color="red">android: sms: duplicates</font>
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">desktop: old shana-pc smartware to blue</font>
-* <font color="red">...plus 221 more (see TODO.edoc)
+* <font color="red">...plus 227 more (see TODO.edoc)
 </font>
 
 
