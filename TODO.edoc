@@ -1,8 +1,6 @@
+@todo android: km lost keyboard
 @todo android: sms says "downloading"
-@todo android: keyboard too transparent
 @todo android: smart keys nonresponsive
-@todo android: dialer one
-@todo android: phone: favorites: high cpu
 @todo laptop: smartware: backup
 @todo laptop: disk image
 @todo laptop: sync
@@ -23,6 +21,8 @@
 @todo brk: supply
 @todo brk: sweep
 @todo dot: eye-care checklist
+@todo android: dialer one
+@todo android: phone: favorites: high cpu
 @todo android: phone: logs: high cpu
 @todo android: phone hangs/fc
 @todo android: sms go
