@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: battery/performance</font>
 * <font color="red">android: mediamonkey</font>
-* <font color="red">desktop: old backups to blue</font>
-* <font color="red">desktop: old shana-pc smartware to blue</font>
-* <font color="red">mybooklive: old ghosts</font>
-* <font color="red">mybooklive: nearing capacity</font>
-* <font color="red">...plus 222 more (see TODO.edoc)
+* <font color="red">laptop: smartware: backup</font>
+* <font color="red">laptop: disk image</font>
+* <font color="red">laptop: sync</font>
+* <font color="red">desktop: startup delays</font>
+* <font color="red">...plus 224 more (see TODO.edoc)
 </font>
 
 

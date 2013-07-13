@@ -1,15 +1,16 @@
 @todo android: dropbox: camera uploads
 @todo android: battery/performance
 @todo android: mediamonkey
-@todo desktop: old shana-pc smartware to blue
-@todo mybooklive: old ghosts
-@todo mybooklive: nearing capacity
 @todo laptop: smartware: backup
 @todo laptop: disk image
 @todo laptop: sync
+@todo desktop: startup delays
+@todo desktop: old shana-pc smartware to blue
 @todo desktop: bluescreen
-@todo desktop: wake on lan
-@todo amped
+@todo mybooklive: old ghosts
+@todo mybooklive: nearing capacity
+@todo amped: firmware
+@todo amped: second ssid
 @todo dish
 @todo vac
 @todo elec recycl
@@ -111,6 +112,7 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
+@todo desktop: wake on lan
 @todo desktop: lifecam: start menu
 @todo desktop: teamviewer: update
 @todo desktop: evernote: color backgrounds?
