@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: sluggish low cpu (low ram?)</font>
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: life cam: start menu</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">...plus 212 more (see TODO.edoc)
 </font>
 
 
