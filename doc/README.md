@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: mediamonkey</font>
 * <font color="red">android: dropsync</font>
 * <font color="red">desktop: old backups to blue</font>
+* <font color="red">mybooklive: old ghosts</font>
 * <font color="red">mybooklive: nearing capacity</font>
-* <font color="red">laptop: sluggish low cpu (low ram?)</font>
-* <font color="red">laptop: teamviewer: update</font>
-* <font color="red">...plus 217 more (see TODO.edoc)
+* <font color="red">laptop: page file full?</font>
+* <font color="red">...plus 219 more (see TODO.edoc)
 </font>
 
 

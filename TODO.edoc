@@ -2,10 +2,11 @@
 @todo android: mediamonkey
 @todo android: dropsync
 @todo desktop: old backups to blue
+@todo mybooklive: old ghosts
 @todo mybooklive: nearing capacity
+@todo laptop: page file full?
 @todo laptop: sluggish low cpu (low ram?)
 @todo laptop: teamviewer: update
-@todo laptop: smartware: backup
 @todo desktop: bluescreen
 @todo desktop: teamviewer: update
 @todo dish
@@ -77,6 +78,7 @@
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
 @todo dropbox: clear duplicate photos
+@todo laptop: smartware: backup
 @todo laptop: life cam: autofocus instruct
 @todo laptop: life cam: start menu
 @todo laptop: photos: duplicates
@@ -111,9 +113,9 @@
 @todo desktop: evernote: color backgrounds?
 @todo desktop: dropbox junction
 @todo desktop: doubletwist: uninstall
-@todo desktop: duplicates: images share
-@todo desktop: duplicates: folders
 @todo desktop: duplicates: anti-sync
+@todo desktop: duplicates: blue: old backups
+@todo desktop: duplicates: mybooklive: shana
 @todo desktop: reclaim space
 @todo desktop: remove data share
 @todo desktop: remove empty folders
