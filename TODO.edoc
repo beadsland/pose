@@ -6,8 +6,8 @@
 @todo mybooklive: old ghosts
 @todo mybooklive: nearing capacity
 @todo laptop: smartware: backup
-@todo laptop: duplicates: anti-sync
-@todo laptop: photos: duplicates
+@todo laptop: disk image
+@todo laptop: sync
 @todo desktop: bluescreen
 @todo vac
 @todo elec recycl
@@ -77,10 +77,10 @@
 @todo android: theme chooser
 @todo android: jamt white
 @todo dropbox: clear duplicate photos
-@todo laptop: photos: archive
-@todo laptop: disk image
-@todo laptop: sync
 @todo laptop: sync: wifi
+@todo laptop: duplicates: anti-sync
+@todo laptop: photos: duplicates
+@todo laptop: photos: archive
 @todo laptop: doubletwist: uninstall
 @todo laptop: review defrag settings
 @todo laptop: adaware activiation period
