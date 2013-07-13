@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: sync</font>
-* <font color="red">desktop: event log file corrupt</font>
-* <font color="red">...plus 225 more (see TODO.edoc)
+* <font color="red">desktop: illegal instruction</font>
+* <font color="red">...plus 224 more (see TODO.edoc)
 </font>
 
 
