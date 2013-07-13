@@ -6,8 +6,8 @@
 @todo mybooklive: old ghosts
 @todo mybooklive: nearing capacity
 @todo laptop: page file full?
-@todo laptop: sluggish low cpu (low ram?)
 @todo laptop: teamviewer: update
+@todo laptop: smartware: backup
 @todo desktop: bluescreen
 @todo dish
 @todo vac
@@ -15,28 +15,6 @@
 @todo sundry
 @todo grocer
 @todo dot: eye-care checklist
-@todo android: titanium: default to xsd
-@todo android: titanium: backups to pc?
-@todo android: privacy: backup data/auto restore
-@todo android: appbrain
-@todo android: itemize apps to restore
-@todo android: full titanium backups
-@todo android: google sync
-@todo android: contact export
-@todo android: sms backup
-@todo android: backup via adb
-@todo android: full pc backups
-@todo android: nandroid backup
-@todo android: cyanogen
-@todo android: gapps
-@todo android: appbrain
-@todo android: fast web installer
-@todo android: full restore
-@todo android: titanium
-@todo android: full titanium restore
-@todo android: resume google syncing
-@todo android: theme chooser
-@todo android: jamt white
 @todo android: re-remove bloatware?
 @todo android: Remove Mobile Banking...
 @todo android: Remove Mobile Video...
@@ -77,8 +55,29 @@
 @todo android: launcher: imageotag
 @todo android: launcher: wondershare panorama
 @todo android: launcher: gallery widget
+@todo android: titanium: default to xsd
+@todo android: titanium: backups to pc?
+@todo android: privacy: backup data/auto restore
+@todo android: appbrain
+@todo android: itemize apps to restore
+@todo android: full titanium backups
+@todo android: google sync
+@todo android: contact export
+@todo android: sms backup
+@todo android: backup via adb
+@todo android: full pc backups
+@todo android: nandroid backup
+@todo android: cyanogen
+@todo android: gapps
+@todo android: appbrain
+@todo android: fast web installer
+@todo android: full restore
+@todo android: titanium
+@todo android: full titanium restore
+@todo android: resume google syncing
+@todo android: theme chooser
+@todo android: jamt white
 @todo dropbox: clear duplicate photos
-@todo laptop: smartware: backup
 @todo laptop: life cam: autofocus instruct
 @todo laptop: life cam: start menu
 @todo laptop: photos: duplicates
