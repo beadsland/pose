@@ -1,6 +1,6 @@
 @todo android: km lost keyboard
-@todo android: smart keys nonresponsive
-@todo android: dialer one
+@todo android: zeam
+@todo android: better launcher
 @todo laptop: smartware: backup
 @todo laptop: disk image
 @todo laptop: sync
@@ -21,6 +21,8 @@
 @todo brk: supply
 @todo brk: sweep
 @todo dot: eye-care checklist
+@todo android: smart keys nonresponsive
+@todo android: dialer one
 @todo android: phone: favorites: high cpu
 @todo android: phone: logs: high cpu
 @todo android: phone hangs/fc
@@ -28,7 +30,6 @@
 @todo android: sms says "downloading"
 @todo android: sms hangs/reboots
 @todo android: smart keyboard: confirmation off
-@todo android: lock: back to stock
 @todo android: dropbox: camera uploads
 @todo android: battery/performance
 @todo android: sms: duplicates
