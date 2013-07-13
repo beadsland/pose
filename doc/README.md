@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: dropbox: camera uploads</font>
+* <font color="red">android: battery/performance</font>
 * <font color="red">android: mediamonkey</font>
-* <font color="red">android: dropsync</font>
 * <font color="red">desktop: old backups to blue</font>
 * <font color="red">desktop: old shana-pc smartware to blue</font>
 * <font color="red">mybooklive: old ghosts</font>
 * <font color="red">mybooklive: nearing capacity</font>
-* <font color="red">...plus 216 more (see TODO.edoc)
+* <font color="red">...plus 222 more (see TODO.edoc)
 </font>
 
 
