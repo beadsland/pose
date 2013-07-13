@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">desktop: old shana-pc smartware to blue</font>
 * <font color="red">mybooklive: old ghosts</font>
 * <font color="red">mybooklive: nearing capacity</font>
-* <font color="red">...plus 217 more (see TODO.edoc)
+* <font color="red">...plus 216 more (see TODO.edoc)
 </font>
 
 
