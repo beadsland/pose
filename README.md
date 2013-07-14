@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">who</font>
-* <font color="red">litter</font>
 * <font color="red">acronis</font>
 * <font color="red">android: smart keyboard: new skins</font>
 * <font color="red">android: smart keyboard: purchase</font>
 * <font color="red">android: uninstall other keyboards</font>
 * <font color="red">laptop: kindle: app</font>
-* <font color="red">...plus 256 more (see TODO.edoc)
+* <font color="red">laptop: smartware: backup</font>
+* <font color="red">...plus 255 more (see TODO.edoc)
 </font>
 
 
