@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: km lost keyboard</font>
+* <font color="red">android: map out icons</font>
 * <font color="red">android: zeam</font>
-* <font color="red">android: better launcher</font>
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">desktop: old shana-pc smartware to blue</font>
-* <font color="red">...plus 238 more (see TODO.edoc)
+* <font color="red">...plus 239 more (see TODO.edoc)
 </font>
 
 
