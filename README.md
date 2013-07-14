@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: smartware: backup</font>
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: sync</font>
-* <font color="red">desktop: remove virtualpc</font>
-* <font color="red">...plus 242 more (see TODO.edoc)
+* <font color="red">desktop: old shana-pc smartware to blue</font>
+* <font color="red">...plus 240 more (see TODO.edoc)
 </font>
 
 
