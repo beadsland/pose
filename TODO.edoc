@@ -4,9 +4,9 @@
 @todo laptop: smartware: backup
 @todo laptop: disk image
 @todo laptop: sync
+@todo desktop: remove virtualpc
+@todo desktop: wake on lan
 @todo desktop: old shana-pc smartware to blue
-@todo desktop: bluescreen
-@todo desktop: hibernate test
 @todo mybooklive: old ghosts
 @todo mybooklive: nearing capacity
 @todo who
@@ -129,7 +129,8 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
-@todo desktop: wake on lan
+@todo desktop: bluescreen
+@todo desktop: hibernate test
 @todo desktop: lifecam: start menu
 @todo desktop: teamviewer: update
 @todo desktop: evernote: color backgrounds?
