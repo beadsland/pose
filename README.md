@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">litter</font>
-* <font color="red">hydr</font>
 * <font color="red">who</font>
+* <font color="red">litter</font>
+* <font color="red">acronis</font>
 * <font color="red">android: sms: downloading</font>
 * <font color="red">android: smart keyboard: new skins</font>
 * <font color="red">android: smart keyboard: purchase</font>
