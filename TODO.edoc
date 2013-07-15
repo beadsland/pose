@@ -4,9 +4,9 @@
 @todo laptop: kindle: app
 @todo laptop: smartware: desktop: h
 @todo laptop: smartware: deskcop: d
-@todo desktop: old shana-pc smartware to blue
 @todo desktop: kindle: app
-@todo desktop: bluescreen
+@todo desktop: hibernate not standby
+@todo desktop: lifecam: start menu
 @todo acronis
 @todo declutter
 @todo declutter: wardrobe
@@ -21,6 +21,7 @@
 @todo grocer
 @todo towel stain
 @todo laundry
+@todo gtalk: double notification
 @todo dot: eye-care checklist
 @todo brk: supply
 @todo brk: sweep
@@ -32,10 +33,12 @@
 @todo android: zeam
 @todo android: better launcher
 @todo android: smart keys nonresponsive
+@todo android: dropbox: camera uploads
 @todo android: dialer one
 @todo android: phone: favorites: high cpu
 @todo android: phone: logs: high cpu
 @todo android: phone hangs/fc
+@todo android: dropbox: camera uploads
 @todo android: sms go
 @todo android: sms says "downloading"
 @todo android: sms hangs/reboots
@@ -139,12 +142,11 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
-@todo desktop: hibernate test
-@todo desktop: lifecam: start menu
 @todo desktop: teamviewer: update
 @todo desktop: evernote: color backgrounds?
 @todo desktop: dropbox junction
 @todo desktop: doubletwist: uninstall
+@todo desktop: reseat all components
 @todo desktop: duplicates: anti-sync
 @todo desktop: duplicates: blue: old backups
 @todo desktop: duplicates: mybooklive: shana

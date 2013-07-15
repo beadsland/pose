@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: kindle: app</font>
 * <font color="red">laptop: smartware: desktop: h</font>
 * <font color="red">laptop: smartware: deskcop: d</font>
-* <font color="red">desktop: old shana-pc smartware to blue</font>
-* <font color="red">...plus 251 more (see TODO.edoc)
+* <font color="red">desktop: kindle: app</font>
+* <font color="red">...plus 250 more (see TODO.edoc)
 </font>
 
 
