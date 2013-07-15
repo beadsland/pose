@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: smart keyboard: transfer settings</font>
-* <font color="red">android: smart keyboard: new skins</font>
-* <font color="red">android: km: smart keyboard pro</font>
+* <font color="red">android: smart keyboard: new skin</font>
 * <font color="red">android: dropsync pro</font>
+* <font color="red">android: doesn't work after unplugged</font>
 * <font color="red">laptop: kindle: app</font>
 * <font color="red">laptop: smartware: desktop: h</font>
 * <font color="red">laptop: smartware: deskcop: d</font>
-* <font color="red">...plus 251 more (see TODO.edoc)
+* <font color="red">desktop: kindle: app</font>
+* <font color="red">...plus 249 more (see TODO.edoc)
 </font>
 
 
