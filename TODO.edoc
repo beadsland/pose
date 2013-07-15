@@ -1,17 +1,17 @@
-@todo android: sms: theme
-@todo android: sms: stay put
-@todo android: dropbox: camera uploads
-@todo laptop: disk image
-@todo laptop: delete 2:16 image (reboot)
-@todo laptop: sync
-@todo desktop: reseat all components
-@todo desktop: duplicates: pilotman
-@todo desktop: duplicates: blue: old backups
 @todo vac: before desk
 @todo vac: under desk
 @todo vac: couch area
 @todo vac: table area
 @todo vac: kitchen
+@todo android: sms: theme
+@todo android: sms: stay put
+@todo android: dropbox: camera uploads
+@todo laptop: disk image
+@todo laptop: black ethernet to cable modem
+@todo laptop: delete 2:16 image (reboot)
+@todo desktop: reseat all components
+@todo desktop: duplicates: pilotman
+@todo desktop: duplicates: blue: old backups
 @todo vac: bedroom
 @todo litter hook
 @todo old comp boxes
@@ -74,6 +74,7 @@
 @todo android: theme chooser
 @todo android: jamt white
 @todo dropbox: clear duplicate photos
+@todo laptop: sync
 @todo laptop: sync: wifi
 @todo laptop: duplicates: anti-sync
 @todo laptop: photos: duplicates
