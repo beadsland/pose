@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: km: smart keyboard pro</font>
 * <font color="red">android: dropsync pro</font>
 * <font color="red">laptop: kindle: app</font>
-* <font color="red">laptop: disk image</font>
 * <font color="red">laptop: smartware: desktop: h</font>
-* <font color="red">...plus 255 more (see TODO.edoc)
+* <font color="red">laptop: smartware: deskcop: d</font>
+* <font color="red">...plus 253 more (see TODO.edoc)
 </font>
 
 
