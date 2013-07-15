@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: delete 2:16 image (reboot)</font>
 * <font color="red">desktop: reseat all components</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
 
