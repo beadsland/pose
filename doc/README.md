@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: mediamonkey</font>
 * <font color="red">android: nandroid</font>
-* <font color="red">laptop: disk image</font>
+* <font color="red">laptop: updates</font>
+* <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
-* <font color="red">laptop: delete 2:16 image (reboot)</font>
-* <font color="red">desktop: reseat all components</font>
-* <font color="red">...plus 203 more (see TODO.edoc)
+* <font color="red">desktop: updates</font>
+* <font color="red">...plus 202 more (see TODO.edoc)
 </font>
 
 
