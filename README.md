@@ -22,10 +22,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: dialer: voice mail button</font>
 * <font color="red">android: dialer: favorites</font>
 * <font color="red">android: dropbox: camera uploads</font>
-* <font color="red">android: mediamonkey</font>
-* <font color="red">android: nandroid</font>
 * <font color="red">laptop: disk image</font>
 * <font color="red">laptop: sync</font>
+* <font color="red">laptop: sync: wifi</font>
+* <font color="red">desktop: reseat all components</font>
 * <font color="red">...plus 200 more (see TODO.edoc)
 </font>
 
