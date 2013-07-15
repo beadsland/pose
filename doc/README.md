@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: dropsync: tape-a-talk</font>
+* <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: mediamonkey</font>
 * <font color="red">laptop: smartware: desktop: h</font>
 * <font color="red">laptop: smartware: desktop: d</font>
