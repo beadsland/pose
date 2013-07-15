@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: mediamonkey</font>
 * <font color="red">android: nandroid</font>
 * <font color="red">laptop: disk image</font>
+* <font color="red">laptop: delete 2:16 image (reboot)</font>
 * <font color="red">laptop: sync</font>
-* <font color="red">laptop: sync: wifi</font>
 * <font color="red">desktop: reseat all components</font>
-* <font color="red">...plus 198 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
