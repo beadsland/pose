@@ -1,9 +1,9 @@
-@todo android: dropsync: tape-a-talk
 @todo android: dropbox: camera uploads
 @todo android: mediamonkey
-@todo laptop: smartware: desktop: h
-@todo laptop: smartware: desktop: d
+@todo android: nandroid
 @todo laptop: disk image
+@todo laptop: sync
+@todo laptop: sync: wifi
 @todo desktop: reseat all components
 @todo desktop: duplicates: pilotman
 @todo desktop: duplicates: blue: old backups
@@ -30,7 +30,6 @@
 @todo p bottom
 @todo tissue tray
 @todo declutter: drawers
-@todo android: nandroid
 @todo android: move apps off sd card
 @todo android: Remove Mobile Banking...
 @todo android: Remove Mobile Video...
@@ -68,8 +67,6 @@
 @todo android: theme chooser
 @todo android: jamt white
 @todo dropbox: clear duplicate photos
-@todo laptop: sync
-@todo laptop: sync: wifi
 @todo laptop: duplicates: anti-sync
 @todo laptop: photos: duplicates
 @todo laptop: photos: archive
