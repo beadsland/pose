@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">desktop: duplicates: pilotman</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 199 more (see TODO.edoc)
 </font>
 
 
