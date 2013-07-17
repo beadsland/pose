@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">desktop: clear d</font>
-* <font color="red">...plus 216 more (see TODO.edoc)
+* <font color="red">...plus 214 more (see TODO.edoc)
 </font>
 
 
