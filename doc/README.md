@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
 * <font color="red">desktop: duplicates</font>
-* <font color="red">...plus 220 more (see TODO.edoc)
+* <font color="red">...plus 219 more (see TODO.edoc)
 </font>
 
 
