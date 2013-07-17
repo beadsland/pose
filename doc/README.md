@@ -19,13 +19,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">bluetooth</font>
 * <font color="red">android: widgets: problem loading</font>
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: mediamonkey</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: sync: wifi</font>
+* <font color="red">desktop: duplicates: pilotman</font>
 * <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
