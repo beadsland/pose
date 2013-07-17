@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">desktop: clear d</font>
 * <font color="red">acronis</font>
+* <font color="red">connectify</font>
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">ipad: share internet from laptop</font>
 * <font color="red">ipad: evernote</font>
 * <font color="red">laptop: sync</font>
-* <font color="red">laptop: black ethernet to cable modem</font>
-* <font color="red">...plus 213 more (see TODO.edoc)
+* <font color="red">...plus 214 more (see TODO.edoc)
 </font>
 
 
