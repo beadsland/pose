@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">ipad: netbook: c: full</font>
+* <font color="red">ipad: netbook: install log</font>
 * <font color="red">ipad: desktop: wake on lan</font>
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">laptop: desktop: clear d</font>
 * <font color="red">laptop: sync: deletion settings</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">desktop: duplicates: pilotman</font>
-* <font color="red">...plus 217 more (see TODO.edoc)
+* <font color="red">...plus 220 more (see TODO.edoc)
 </font>
 
 
