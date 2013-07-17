@@ -20,8 +20,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: dropbox: camera uploads</font>
-* <font color="red">ipad: chrome</font>
-* <font color="red">ipad: skype</font>
+* <font color="red">ipad: siri advert</font>
+* <font color="red">ipad: evernote</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: sync: wifi</font>
