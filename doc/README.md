@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">ipad: netbook: .net 4.5</font>
 * <font color="red">ipad: share internet from laptop</font>
-* <font color="red">laptop: desktop: clear d</font>
-* <font color="red">laptop: sync: deletion settings</font>
 * <font color="red">laptop: sync</font>
-* <font color="red">desktop: duplicates: pilotman</font>
-* <font color="red">...plus 224 more (see TODO.edoc)
+* <font color="red">laptop: black ethernet to cable modem</font>
+* <font color="red">laptop: wake on lan: bios</font>
+* <font color="red">desktop: duplicates</font>
+* <font color="red">...plus 219 more (see TODO.edoc)
 </font>
 
 
