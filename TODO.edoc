@@ -1,12 +1,12 @@
 @todo android: dropbox: camera uploads
-@todo ipad: netbook: .net 4.5
+@todo ipad: netbook: update
 @todo ipad: netbook: connectify
 @todo laptop: sync
 @todo laptop: black ethernet to cable modem
 @todo laptop: wake on lan: bios
 @todo desktop: duplicates
+@todo desktop: duplicates: recover deleted pictures
 @todo desktop: reseat all components
-@todo desktop: remove data share
 @todo install log
 @todo blinds
 @todo brk: supply
@@ -50,7 +50,6 @@
 @todo ipad: hopstop
 @todo ipad: dropbox
 @todo ipad: upgrades
-@todo connectify
 @todo android: mediamonkey
 @todo android: nandroid
 @todo android: move apps off sd card
@@ -120,6 +119,7 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
+@todo desktop: remove data share
 @todo desktop: remove empty folders
 @todo desktop: uninstalls
 @todo desktop: disk image
