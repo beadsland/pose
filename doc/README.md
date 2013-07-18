@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">ipad: netbook: zonealarm: update</font>
-* <font color="red">ipad: kindle</font>
+* <font color="red">ipad: gtalk</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
 * <font color="red">desktop: duplicates</font>
-* <font color="red">...plus 212 more (see TODO.edoc)
+* <font color="red">...plus 211 more (see TODO.edoc)
 </font>
 
 
