@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: dropbox: camera uploads</font>
-* <font color="red">android: nandroid</font>
-* <font color="red">android: repartition</font>
+* <font color="red">andriod: sms thread to evernote</font>
+* <font color="red">android: remove extraneous picture folders</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
 * <font color="red">desktop: manage disk space</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
 
