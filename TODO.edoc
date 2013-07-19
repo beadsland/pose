@@ -1,6 +1,6 @@
 @todo android: dropbox: camera uploads
+@todo android: system partition
 @todo android: dialer: back up call log
-@todo android: dialer: delete old call log
 @todo laptop: sync
 @todo laptop: black ethernet to cable modem
 @todo laptop: wake on lan: bios
@@ -34,6 +34,7 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: dialer: delete old call log
 @todo android: back to stock sms
 @todo android: instability
 @todo android: call recorder?
