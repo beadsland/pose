@@ -1,6 +1,6 @@
 @todo android: dropbox: camera uploads
-@todo android: install cache
-@todo android: system cache
+@todo android: dialer: back up call log
+@todo android: dialer: delete old call log
 @todo laptop: sync
 @todo laptop: black ethernet to cable modem
 @todo laptop: wake on lan: bios
@@ -8,6 +8,7 @@
 @todo desktop: duplicates
 @todo desktop: duplicates: recover deleted pictures
 @todo dot: fec
+@todo sync: sd card to black
 @todo e: full
 @todo word macro
 @todo brk: supply
@@ -33,8 +34,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: dialer: back up call log
-@todo android: dialer: delete old call log
 @todo android: back to stock sms
 @todo android: instability
 @todo android: call recorder?
