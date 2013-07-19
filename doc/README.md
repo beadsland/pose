@@ -21,7 +21,7 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: back to stock sms</font>
-* <font color="red">android: dialer: delete old history</font>
+* <font color="red">android: dialer: delete old call log</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
