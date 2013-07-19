@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: .nomedia</font>
 * <font color="red">android: back to stock sms</font>
+* <font color="red">android: dialer: back up call log</font>
 * <font color="red">android: dialer: delete old call log</font>
 * <font color="red">laptop: allway vs good sync</font>
 * <font color="red">laptop: sync</font>
