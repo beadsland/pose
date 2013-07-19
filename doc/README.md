@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: dropbox: 2013-7-8 photo</font>
 * <font color="red">android: back to stock sms</font>
-* <font color="red">android: sms: delete old messages</font>
+* <font color="red">android: dialer: delete old call log</font>
 * <font color="red">laptop: allway vs good sync</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">desktop: manage disk space</font>
-* <font color="red">...plus 206 more (see TODO.edoc)
+* <font color="red">...plus 207 more (see TODO.edoc)
 </font>
 
 
