@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
 * <font color="red">desktop: manage disk space</font>
-* <font color="red">...plus 204 more (see TODO.edoc)
+* <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
 
