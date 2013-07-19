@@ -1,21 +1,21 @@
 @todo android: dropbox: camera uploads
+@todo android: dropbox: 2013-7-8 photo
 @todo android: back to stock sms
-@todo android: dialer: delete old call log
+@todo laptop: allway vs good sync
 @todo laptop: sync
 @todo laptop: black ethernet to cable modem
-@todo laptop: wake on lan: bios
 @todo desktop: manage disk space
 @todo desktop: duplicates
 @todo desktop: duplicates: recover deleted pictures
-@todo e: full
-@todo word macro
-@todo fran: radio plays internet radio
-@todo startup org
 @todo dot: sched
 @todo dot: fec
+@todo startup org
+@todo e: full
+@todo word macro
 @todo brk: supply
 @todo brk: sweep
 @todo brk: invoice
+@todo fran: radio plays internet radio
 @todo assist
 @todo dot: wed
 @todo dot: fri
@@ -36,6 +36,7 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo android: sms: delete old messages
+@todo android: dialer: delete old call log
 @todo android: call recorder?
 @todo android: nandroid
 @todo android: move apps off sd card
@@ -74,6 +75,7 @@
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
+@todo laptop: wake on lan: bios
 @todo laptop: wake on lan: net card
 @todo laptop: wake on lan: logmein
 @todo laptop: sync: wifi
