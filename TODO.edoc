@@ -1,8 +1,8 @@
-@todo android: sdcard photo to downloads
+@todo android: whatsapp: restore
+@todo android: sdcard photo to pictures
 @todo android: sms: photos
-@todo android: copy all to laptop
-@todo laptop: folder size
 @todo laptop: sync
+@todo laptop: folder size
 @todo laptop: black ethernet to cable modem
 @todo desktop: dropbox: restore
 @todo desktop: duplicates: a/d folder
@@ -35,6 +35,7 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: copy all to laptop
 @todo android: mysms
 @todo android: sms thread to evernote
 @todo android: sms to html
@@ -45,6 +46,8 @@
 @todo android: nandroid
 @todo android: repartition
 @todo android: instability
+@todo android: stock dialer: remove
+@todo android: stock sms: remove
 @todo android: call recorder?
 @todo camera: copy files
 @todo camera: photo uploader
