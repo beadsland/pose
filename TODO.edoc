@@ -1,13 +1,12 @@
-@todo dropbox: camera: last 24 hrs
-@todo android: dropbox: camera uploads
-@todo android: remove extraneous picture folders
-@todo android: justpictures: external card?
+@todo android: linecamera: remove
+@todo android: whatsapp: remove
+@todo android: powercam: remove
 @todo laptop: sync
 @todo laptop: black ethernet to cable modem
 @todo laptop: wake on lan: bios
 @todo desktop: duplicate alice & dom folder
-@todo desktop: tape-a-talk: duplicates
-@todo desktop: manage disk space
+@todo desktop: duplicates: tape-a-talk
+@todo desktop: duplicates: captivate
 @todo blinds
 @todo word macro
 @todo brk: supply
@@ -34,6 +33,7 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: copy all to dropbox
 @todo android: mysms
 @todo andriod: sms thread to evernote
 @todo android: sms to html
@@ -112,8 +112,12 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
-@todo desktop: duplicates
+@todo desktop: manage disk space
 @todo desktop: duplicates: recover deleted pictures
+@todo desktop: duplicates: music
+@todo desktop: duplicates: blue
+@todo desktop: duplicates: devices
+@todo desktop: duplciates
 @todo desktop: reseat all components
 @todo desktop: remove data share
 @todo desktop: remove empty folders
