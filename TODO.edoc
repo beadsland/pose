@@ -1,12 +1,14 @@
-@todo android: powercam: remove
 @todo android: whatsapp: remove
+@todo android: copy all to dropbox
+@todo android: mysms
+@todo laptop: folder size
 @todo laptop: sync
 @todo laptop: black ethernet to cable modem
-@todo laptop: wake on lan: bios
 @todo desktop: dropbox: restore
 @todo desktop: duplicates: a/d folder
 @todo desktop: duplicates: tape-a-talk
 @todo meal
+@todo goat yogurt
 @todo blinds
 @todo word macro
 @todo brk: supply
@@ -33,8 +35,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: copy all to dropbox
-@todo android: mysms
 @todo andriod: sms thread to evernote
 @todo android: sms to html
 @todo android: import html sms to evernote
@@ -82,6 +82,7 @@
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
+@todo laptop: wake on lan: bios
 @todo laptop: wake on lan: net card
 @todo laptop: wake on lan: logmein
 @todo laptop: sync: wifi
