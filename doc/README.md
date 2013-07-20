@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">desktop: wake on lan stopped working?</font>
-* <font color="red">desktop: hibernate stopped working?</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">android: dropbox: camera uploads</font>
 * <font color="red">android: remove extraneous picture folders</font>
 * <font color="red">android: justpictures: external card?</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
-* <font color="red">...plus 215 more (see TODO.edoc)
+* <font color="red">laptop: wake on lan: bios</font>
+* <font color="red">desktop: manage disk space</font>
+* <font color="red">...plus 213 more (see TODO.edoc)
 </font>
 
 

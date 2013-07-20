@@ -1,5 +1,3 @@
-@todo desktop: wake on lan stopped working?
-@todo desktop: hibernate stopped working?
 @todo laptop: sync
 @todo android: dropbox: camera uploads
 @todo android: remove extraneous picture folders
@@ -7,6 +5,8 @@
 @todo laptop: black ethernet to cable modem
 @todo laptop: wake on lan: bios
 @todo desktop: manage disk space
+@todo desktop: duplicates
+@todo desktop: duplicates: recover deleted pictures
 @todo dot: fec
 @todo blinds
 @todo word macro
@@ -111,8 +111,6 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
-@todo desktop: duplicates
-@todo desktop: duplicates: recover deleted pictures
 @todo desktop: reseat all components
 @todo desktop: remove data share
 @todo desktop: remove empty folders
