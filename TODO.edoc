@@ -1,5 +1,5 @@
-@todo android: device being registered with server???
-@todo android: sms thread to evernote
+@todo android: sms: stalling
+@todo android: sms: threads to evernote
 @todo android: sms to html
 @todo laptop: sync
 @todo laptop: folder size
@@ -38,6 +38,7 @@
 @todo declutter: storage
 @todo android: import html sms to evernote
 @todo android: delete old sms
+@todo android: one browser
 @todo android: skype: test
 @todo ipad: skype: test
 @todo android: nandroid
