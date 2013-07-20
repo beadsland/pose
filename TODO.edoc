@@ -1,6 +1,6 @@
+@todo android: usb: sd card?
+@todo android: camera: sd card error
 @todo android: evernote: db error
-@todo android: linecamera: remove
-@todo android: whatsapp: remove
 @todo laptop: sync
 @todo laptop: black ethernet to cable modem
 @todo laptop: wake on lan: bios
@@ -33,6 +33,8 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: linecamera: remove
+@todo android: whatsapp: remove
 @todo android: powercam: remove
 @todo android: copy all to dropbox
 @todo android: mysms
