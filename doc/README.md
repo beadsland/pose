@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: usb: sd card?</font>
-* <font color="red">android: camera: sd card error</font>
-* <font color="red">android: evernote: db error</font>
+* <font color="red">android: linecamera: remove</font>
+* <font color="red">android: whatsapp: remove</font>
+* <font color="red">android: powercam: remove</font>
 * <font color="red">laptop: sync</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
 * <font color="red">desktop: dropbox: restore</font>
-* <font color="red">...plus 224 more (see TODO.edoc)
+* <font color="red">...plus 222 more (see TODO.edoc)
 </font>
 
 
