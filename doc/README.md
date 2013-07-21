@@ -25,7 +25,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: mp navigator ex</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: review defrag settings</font>
-* <font color="red">desktop: evernote: import scans</font>
+* <font color="red">desktop: duplicates: captivate</font>
 * <font color="red">...plus 212 more (see TODO.edoc)
 </font>
 
