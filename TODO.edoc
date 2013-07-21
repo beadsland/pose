@@ -1,9 +1,9 @@
 @todo android: sms: color tweak
 @todo android: one browser
 @todo android: skype: test
-@todo laptop: black ethernet to cable modem
 @todo laptop: wake on lan: bios
 @todo laptop: wake on lan: net card
+@todo laptop: wake on lan: logmein
 @todo desktop: duplicates: captivate
 @todo desktop: mybook: clear space
 @todo desktop: manage disk space
@@ -82,7 +82,6 @@
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
-@todo laptop: wake on lan: logmein
 @todo laptop: sync: wifi
 @todo laptop: photos: duplicates
 @todo laptop: photos: archive

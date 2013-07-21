@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: sms: color tweak</font>
 * <font color="red">android: one browser</font>
 * <font color="red">android: skype: test</font>
-* <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
 * <font color="red">laptop: wake on lan: net card</font>
+* <font color="red">laptop: wake on lan: logmein</font>
 * <font color="red">desktop: duplicates: captivate</font>
-* <font color="red">...plus 218 more (see TODO.edoc)
+* <font color="red">...plus 217 more (see TODO.edoc)
 </font>
 
 
