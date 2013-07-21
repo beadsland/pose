@@ -1,12 +1,12 @@
 @todo android: sms: color tweak
 @todo android: one browser
 @todo android: skype: test
-@todo laptop: wake on lan: test: logmein
-@todo laptop: photos: archive
-@todo laptop: evernote: import scans
+@todo laptop: mp navigator ex
+@todo laptop: picasa: rebuild database
+@todo laptop: review defrag settings
+@todo desktop: evernote: import scans
 @todo desktop: duplicates: captivate
 @todo desktop: mybook: clear space
-@todo desktop: manage disk space
 @todo iqair: power cord
 @todo goat yogurt
 @todo word macro
@@ -82,7 +82,6 @@
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
-@todo laptop: review defrag settings
 @todo laptop: adaware activiation period
 @todo laptop: google plugin has stopped responding
 @todo laptop: picasa dropbox
@@ -102,7 +101,11 @@
 @todo laptop: thunderbird contacts sync
 @todo laptop: startup org
 @todo laptop: soluto?
+@todo desktop: manage disk space
 @todo desktop: duplicates: recover deleted pictures
+@todo desktop: duplicates: my pictures
+@todo desktop: my pictures: archive
+@todo desktop: picasa: rebuild database
 @todo desktop: duplicates: music
 @todo desktop: duplicates: blue
 @todo desktop: duplicates: devices
