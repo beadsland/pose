@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: nandroid</font>
 * <font color="red">android: repartition</font>
 * <font color="red">laptop: sync</font>
-* <font color="red">laptop: folder size</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
+* <font color="red">laptop: wake on lan: bios</font>
 * <font color="red">desktop: duplicates: captivate</font>
-* <font color="red">...plus 221 more (see TODO.edoc)
+* <font color="red">...plus 220 more (see TODO.edoc)
 </font>
 
 
