@@ -22,9 +22,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: sms: threads to evernote</font>
 * <font color="red">android: nandroid</font>
 * <font color="red">android: repartition</font>
-* <font color="red">laptop: allway: uninstall</font>
-* <font color="red">laptop: allway: reinstall</font>
 * <font color="red">laptop: sync</font>
+* <font color="red">laptop: chrome: downloads</font>
+* <font color="red">laptop: folder size</font>
 * <font color="red">desktop: duplicates: captivate</font>
 * <font color="red">...plus 223 more (see TODO.edoc)
 </font>
