@@ -20,8 +20,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: sms: color tweak</font>
-* <font color="red">android: sms: sound notification</font>
 * <font color="red">android: nandroid</font>
+* <font color="red">android: backup to pc</font>
 * <font color="red">laptop: sync: check running</font>
 * <font color="red">laptop: black ethernet to cable modem</font>
 * <font color="red">laptop: wake on lan: bios</font>
