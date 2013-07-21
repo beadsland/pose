@@ -22,9 +22,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: sms: color tweak</font>
 * <font color="red">android: one browser</font>
 * <font color="red">android: skype: test</font>
-* <font color="red">laptop: wake on lan: net card</font>
-* <font color="red">laptop: wake on lan: logmein</font>
 * <font color="red">laptop: wake on lan: test</font>
+* <font color="red">laptop: wake on lan: test: wifi</font>
+* <font color="red">laptop: wake on lan: test: logmein</font>
 * <font color="red">desktop: duplicates: captivate</font>
 * <font color="red">...plus 211 more (see TODO.edoc)
 </font>
