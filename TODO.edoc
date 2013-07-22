@@ -1,6 +1,6 @@
-@todo ipad: skype: test
-@todo camera: copy files
-@todo camera: photo uploader
+@todo android: move apps off sd card
+@todo android: Remove Mobile Banking...
+@todo android: Remove Mobile Video...
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag
 @todo laptop: system restore point
@@ -40,10 +40,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: nandroid
-@todo android: move apps off sd card
-@todo android: Remove Mobile Banking...
-@todo android: Remove Mobile Video...
 @todo android: Remove MobiTV...
 @todo android: Remove Where...
 @todo android: Remove Write And Go...( not AT&T app, a Samsung app, but removable)
@@ -80,6 +76,8 @@
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: call recorder?
+@todo camera: copy files
+@todo camera: photo uploader
 @todo laptop: seagate driver
 @todo laptop: smartware: update
 @todo laptop: chrome: settings: continue where left off
