@@ -1,6 +1,6 @@
-@todo android: go sms: delete old dialog
+@todo android: mysms: contacts
+@todo android: go sms: threshold db
 @todo android: appbrain: list
-@todo android: full titanium backups
 @todo laptop: recycle bin corrupted
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
@@ -45,8 +45,10 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
+@todo android: sms: preserve old backup
 @todo android: sms backup
 @todo android: backup via adb
 @todo android: nandroid backup
