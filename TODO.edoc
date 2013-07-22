@@ -1,12 +1,12 @@
-@todo android: reducing lag
 @todo android: sms: color tweak
+@todo android: titanium: backups
 @todo android: one browser
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag
 @todo laptop: system restore point
-@todo desktop: duplicates: captivate
-@todo desktop: mybook: clear space
 @todo desktop: manage disk space
+@todo desktop: duplicates: recover deleted pictures
+@todo desktop: duplicates: my pictures
 @todo hair
 @todo iqair: power cord
 @todo goat yogurt
@@ -40,8 +40,9 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo ipad: skype: test
+@todo android: dolphin: uninstall
 @todo android: skype: test
+@todo ipad: skype: test
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: call recorder?
@@ -99,8 +100,6 @@
 @todo laptop: startup org
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
-@todo desktop: duplicates: recover deleted pictures
-@todo desktop: duplicates: my pictures
 @todo desktop: my pictures: archive
 @todo desktop: picasa: rebuild database
 @todo desktop: duplicates: music
