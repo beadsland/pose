@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: mx850: folder: desktop</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">desktop: duplicates: captivate</font>
-* <font color="red">...plus 213 more (see TODO.edoc)
+* <font color="red">...plus 214 more (see TODO.edoc)
 </font>
 
 
