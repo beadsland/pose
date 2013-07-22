@@ -1,6 +1,6 @@
+@todo android: edit options limited?
 @todo android: appbrain: list
 @todo android: full titanium backups
-@todo android: google sync
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag
@@ -41,6 +41,7 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: google sync
 @todo android: contact export
 @todo android: sms backup
 @todo android: backup via adb
