@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: dolphin: evernote</font>
 * <font color="red">android: gmail: db size</font>
-* <font color="red">android: cache clearner: hourly</font>
+* <font color="red">android: cache cleaner: hourly</font>
+* <font color="red">android: skype: test</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag</font>
 * <font color="red">laptop: system restore point</font>
 * <font color="red">desktop: manage disk space</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
 
