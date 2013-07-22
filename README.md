@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: defrag</font>
 * <font color="red">laptop: system restore point</font>
 * <font color="red">desktop: manage disk space</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">...plus 212 more (see TODO.edoc)
 </font>
 
 

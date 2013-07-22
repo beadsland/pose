@@ -40,11 +40,9 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: gmail: db size
 @todo android: skype: test
 @todo ipad: skype: test
-@todo android: stock dialer: remove
-@todo android: stock sms: remove
-@todo android: call recorder?
 @todo camera: copy files
 @todo camera: photo uploader
 @todo android: nandroid
@@ -84,6 +82,9 @@
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
+@todo android: stock dialer: remove
+@todo android: stock sms: remove
+@todo android: call recorder?
 @todo laptop: seagate driver
 @todo laptop: smartware: update
 @todo laptop: chrome: settings: continue where left off
