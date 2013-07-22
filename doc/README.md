@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: move apps off sd card</font>
+* <font color="red">android: install internal default</font>
 * <font color="red">android: Remove Mobile Banking...</font>
 * <font color="red">android: Remove Mobile Video...</font>
 * <font color="red">laptop: picasa: rebuild database</font>
