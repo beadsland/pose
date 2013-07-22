@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: wdphotos setup</font>
 * <font color="red">android: wd2go setup</font>
-* <font color="red">android: crash laptop test</font>
+* <font color="red">android: privacy: backup data/auto restore</font>
+* <font color="red">android: appbrain</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag</font>
-* <font color="red">laptop: system restore point</font>
+* <font color="red">laptop: android crash test</font>
 * <font color="red">desktop: manage disk space</font>
-* <font color="red">...plus 194 more (see TODO.edoc)
+* <font color="red">...plus 191 more (see TODO.edoc)
 </font>
 
 

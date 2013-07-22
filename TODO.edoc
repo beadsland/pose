@@ -1,9 +1,9 @@
-@todo android: wdphotos setup
 @todo android: wd2go setup
-@todo android: crash laptop test
+@todo android: privacy: backup data/auto restore
+@todo android: appbrain
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag
-@todo laptop: system restore point
+@todo laptop: android crash test
 @todo desktop: manage disk space
 @todo desktop: copy backup: goldtower
 @todo desktop: copy backup: shana-pc
@@ -40,10 +40,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: titanium: default to xsd
-@todo android: titanium: backups to pc?
-@todo android: privacy: backup data/auto restore
-@todo android: appbrain
 @todo android: itemize apps to restore
 @todo android: full titanium backups
 @todo android: google sync
@@ -65,6 +61,7 @@
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: call recorder?
+@todo laptop: system restore point
 @todo laptop: camera: copy files
 @todo laptop: camera: photo uploader
 @todo laptop: seagate driver
