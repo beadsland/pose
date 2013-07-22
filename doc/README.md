@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: review defrag settings</font>
 * <font color="red">laptop: system restore point</font>
-* <font color="red">desktop: mediamonkey: dropbox</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">desktop: evernote: test ocr</font>
+* <font color="red">...plus 209 more (see TODO.edoc)
 </font>
 
 
