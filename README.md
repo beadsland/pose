@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: sms: color tweak</font>
 * <font color="red">android: one browser</font>
 * <font color="red">android: skype: test</font>
-* <font color="red">laptop: mx850: folder</font>
-* <font color="red">laptop: mx850: folder: desktop</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">desktop: duplicates: captivate</font>
-* <font color="red">...plus 214 more (see TODO.edoc)
+* <font color="red">laptop: review defrag settings</font>
+* <font color="red">laptop: adaware activiation period</font>
+* <font color="red">desktop: evernote: log back in</font>
+* <font color="red">...plus 213 more (see TODO.edoc)
 </font>
 
 
