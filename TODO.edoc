@@ -1,6 +1,6 @@
-@todo android: remove gallery
-@todo android: disable unneeded services
+@todo android: wdphotos setup
 @todo android: wd2go setup
+@todo android: crash laptop test
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag
 @todo laptop: system restore point
@@ -40,8 +40,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: upnplay?
-@todo android: crash laptop test
 @todo android: titanium: default to xsd
 @todo android: titanium: backups to pc?
 @todo android: privacy: backup data/auto restore
