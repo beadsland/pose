@@ -1,12 +1,12 @@
 @todo android: edit options limited?
 @todo android: appbrain: list
 @todo android: full titanium backups
+@todo laptop: recycle bin corrupted
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
-@todo laptop: defrag
+@todo desktop: evernote: gmail
 @todo desktop: manage disk space
 @todo desktop: copy backup: goldtower
-@todo desktop: copy backup: shana-pc
 @todo deposit
 @todo paint chip
 @todo dot: fec
@@ -60,6 +60,7 @@
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: call recorder?
+@todo laptop: defrag
 @todo laptop: io installs
 @todo laptop: system restore point
 @todo laptop: camera: copy files
@@ -79,6 +80,7 @@
 @todo laptop: startup org
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
+@todo desktop: copy backup: shana-pc
 @todo desktop: duplicates: old backups
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: duplicates: my pictures
