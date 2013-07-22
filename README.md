@@ -23,9 +23,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: one browser</font>
 * <font color="red">android: skype: test</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">laptop: review defrag settings</font>
+* <font color="red">laptop: defrag</font>
 * <font color="red">laptop: system restore point</font>
-* <font color="red">desktop: evernote: test ocr</font>
+* <font color="red">desktop: duplicates: captivate</font>
 * <font color="red">...plus 209 more (see TODO.edoc)
 </font>
 
