@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: skype: test</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: review defrag settings</font>
-* <font color="red">laptop: adaware: activation period</font>
-* <font color="red">desktop: evernote: log back in</font>
-* <font color="red">...plus 214 more (see TODO.edoc)
+* <font color="red">laptop: system restore point</font>
+* <font color="red">desktop: mediamonkey: dropbox</font>
+* <font color="red">...plus 211 more (see TODO.edoc)
 </font>
 
 
