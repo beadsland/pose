@@ -25,7 +25,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: android crash test</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: permissions fix</font>
-* <font color="red">desktop: manage disk space</font>
+* <font color="red">laptop: defrag</font>
 * <font color="red">...plus 190 more (see TODO.edoc)
 </font>
 
