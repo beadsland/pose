@@ -3,7 +3,7 @@
 @todo android: google sync
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
-@todo laptop: defrag
+@todo laptop: permissions fix
 @todo desktop: manage disk space
 @todo desktop: copy backup: goldtower
 @todo desktop: copy backup: shana-pc
@@ -58,6 +58,7 @@
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: call recorder?
+@todo laptop: defrag
 @todo laptop: io installs
 @todo laptop: system restore point
 @todo laptop: camera: copy files
