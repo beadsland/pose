@@ -1,6 +1,6 @@
-@todo android: privacy: backup data/auto restore
 @todo android: appbrain
 @todo android: itemize apps to restore
+@todo android: full titanium backups
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag
 @todo laptop: android crash test
@@ -40,7 +40,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
 @todo android: sms backup
