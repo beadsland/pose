@@ -1,9 +1,9 @@
-@todo android: appbrain
-@todo android: itemize apps to restore
+@todo android: appbrain: sync
 @todo android: full titanium backups
+@todo android: google sync
+@todo laptop: android crash test
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag
-@todo laptop: android crash test
 @todo desktop: manage disk space
 @todo desktop: copy backup: goldtower
 @todo desktop: copy backup: shana-pc
@@ -40,7 +40,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: google sync
 @todo android: contact export
 @todo android: sms backup
 @todo android: backup via adb
