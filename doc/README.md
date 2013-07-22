@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: titanium: backups</font>
 * <font color="red">android: one browser</font>
 * <font color="red">android: dolphin: uninstall</font>
+* <font color="red">android: gmail: db size</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag</font>
 * <font color="red">laptop: system restore point</font>
