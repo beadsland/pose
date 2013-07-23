@@ -1,6 +1,6 @@
-@todo android: facebook: photos
-@todo android: contacts+
+@todo android: contacts analyzer
 @todo android: linkedin: contacts
+@todo android: mysms: contacts
 @todo laptop: recycle bin corrupted
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
@@ -45,7 +45,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: mysms: contacts
 @todo ipad: volume boost
 @todo ipad: mysms
 @todo android: gosms: free sms?
