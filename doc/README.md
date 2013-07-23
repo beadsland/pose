@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: skype: test</font>
-* <font color="red">android: paste defeats keyboard</font>
+* <font color="red">android: keyboard: landscape freaks out</font>
+* <font color="red">android: smart keyboard: portrait</font>
 * <font color="red">android: mysms: contacts</font>
 * <font color="red">laptop: recycle bin corrupted</font>
 * <font color="red">laptop: android crash test</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">desktop: evernote: gmail</font>
 * <font color="red">...plus 205 more (see TODO.edoc)
 </font>
 
