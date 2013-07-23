@@ -1,6 +1,6 @@
-@todo android: mysms: contacts
-@todo android: appbrain: list
-@todo android: full titanium backups
+@todo android: skype: test
+@todo android: paste defeats keyboard
+@todo android: no longer need keyboard mgr?
 @todo laptop: recycle bin corrupted
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
@@ -45,6 +45,12 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: keyboard freaks out landscape
+@todo ipad: mysms
+@todo android: mysms: contacts
+@todo android: ted talks
+@todo android: appbrain: list
+@todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
 @todo android: sms: preserve old backup
