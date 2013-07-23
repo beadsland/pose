@@ -1,6 +1,6 @@
 @todo android: facebook: photos
 @todo android: contacts+
-@todo android: gosms: free sms?
+@todo android: linkedin: contacts
 @todo laptop: recycle bin corrupted
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
@@ -48,6 +48,7 @@
 @todo android: mysms: contacts
 @todo ipad: volume boost
 @todo ipad: mysms
+@todo android: gosms: free sms?
 @todo android: mysms: now see photos?
 @todo android: mysms: retains archive?
 @todo android: mysms: repop evernote

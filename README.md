@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: facebook: photos</font>
 * <font color="red">android: contacts+</font>
-* <font color="red">android: gosms: free sms?</font>
+* <font color="red">android: linkedin: contacts</font>
 * <font color="red">laptop: recycle bin corrupted</font>
 * <font color="red">laptop: android crash test</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">desktop: evernote: gmail</font>
-* <font color="red">...plus 209 more (see TODO.edoc)
+* <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
 
