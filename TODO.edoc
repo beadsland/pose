@@ -1,6 +1,6 @@
-@todo android: sms: contact photos
+@todo android: facebook: photos
+@todo android: better contacts manager
 @todo android: mysms: contacts
-@todo android: skype: test
 @todo laptop: recycle bin corrupted
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
@@ -47,6 +47,10 @@
 @todo declutter: storage
 @todo ipad: volume boost
 @todo ipad: mysms
+@todo android: mysms: now see photos?
+@todo android: mysms: retains archive?
+@todo android: mysms: repop evernote
+@todo android: skype: test
 @todo android: ted talks
 @todo android: audiobook player
 @todo android: appbrain: list
