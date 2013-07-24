@@ -1,9 +1,9 @@
 @todo android: sms: preserve last backup
 @todo android: sms: backup
 @todo android: sms: import old backup
+@todo laptop: volume in bios
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
-@todo laptop: defrag: full optimize
 @todo desktop: evernote: gmail
 @todo desktop: manage disk space
 @todo desktop: copy backup: goldtower
@@ -88,6 +88,7 @@
 @todo android: call recorder?
 @todo ipad: jailbreak
 @todo ipad: sound boost
+@todo laptop: defrag: full optimize
 @todo laptop: io installs
 @todo laptop: system restore point
 @todo laptop: camera: copy files
