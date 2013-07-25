@@ -1,19 +1,19 @@
-@todo android: full titanium backups
-@todo android: google sync
-@todo android: contact export
+@todo android: sms: backup
+@todo android: sms: import old backup
+@todo android: stock dialer: remove
 @todo laptop: hfs+ drivers
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
 @todo desktop: evernote: gmail
 @todo desktop: evernote: computer notebook
 @todo desktop: manage disk space
-@todo calculator: battery
-@todo nails
-@todo fran: radio plays internet radio
 @todo carol: scanner
 @todo carol: hook
+@todo carol: shaker
 @todo ha: reminder
 @todo brk: invoice
+@todo calculator: battery
+@todo fran: radio plays internet radio
 @todo dot: eye-care checklist
 @todo dot: fri
 @todo dot: jane froman
@@ -40,6 +40,14 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: stock sms: remove
+@todo android: reboot
+@todo android: try calling
+@todo android: try texting
+@todo android: sms backup+: auto not working
+@todo android: full titanium backups
+@todo android: google sync
+@todo android: contact export
 @todo android: sms: preserve old backup
 @todo android: sms backup
 @todo android: backup via adb
@@ -57,14 +65,9 @@
 @todo android: jamt white
 @todo android: installs: default to phone
 @todo android: old amrs: remove link
-@todo android: stock dialer: remove
-@todo android: stock sms: remove
 @todo android: skype: test
 @todo android: audiobook player
 @todo android: call recorder?
-@todo android: sms: preserve last backup
-@todo android: sms: backup
-@todo android: sms: import old backup
 @todo android: mysms: evernote: turn off
 @todo android: mysms: evernote: archive
 @todo android: mysms: uninstall/delete data
@@ -73,7 +76,6 @@
 @todo android: mysms: evernote: turn on
 @todo android: mysms: repop evernote
 @todo android: mysms: clean up tags
-@todo android: sms backup+: auto not working
 @todo ipad: auto-cap: disable
 @todo ipad: wd2go
 @todo ipad: skype: headset
