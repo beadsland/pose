@@ -4,9 +4,9 @@
 @todo laptop: hfs+ drivers
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
+@todo desktop: mysms: remove from evernote
+@todo desktop: mysms: clear tags
 @todo desktop: evernote: gmail
-@todo desktop: evernote: computer notebook
-@todo desktop: manage disk space
 @todo carol: scanner
 @todo carol: hook
 @todo carol: shaker
@@ -77,6 +77,7 @@
 @todo android: mysms: repop evernote
 @todo android: mysms: clean up tags
 @todo ipad: auto-cap: disable
+@todo ipad: voice recognition?
 @todo ipad: wd2go
 @todo ipad: skype: headset
 @todo ipad: bluetooth keyboard
@@ -103,6 +104,8 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
+@todo desktop: evernote: computer notebook
+@todo desktop: manage disk space
 @todo desktop: duplicates: old backups
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: duplicates: my pictures
