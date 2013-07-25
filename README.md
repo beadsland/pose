@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: sms: titanium backup</font>
 * <font color="red">android: sms: purge to 1000</font>
 * <font color="red">android: stock dialer: remove</font>
-* <font color="red">laptop: hfs+ drivers</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: picasa: rebuild database</font>
+* <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">desktop: mysms: remove from evernote</font>
-* <font color="red">...plus 218 more (see TODO.edoc)
+* <font color="red">...plus 217 more (see TODO.edoc)
 </font>
 
 

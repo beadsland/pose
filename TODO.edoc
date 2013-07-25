@@ -1,9 +1,9 @@
 @todo android: sms: titanium backup
 @todo android: sms: purge to 1000
 @todo android: stock dialer: remove
-@todo laptop: hfs+ drivers
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
+@todo laptop: defrag: full optimize
 @todo desktop: mysms: remove from evernote
 @todo desktop: mysms: clear tags
 @todo desktop: evernote: gmail
@@ -84,7 +84,6 @@
 @todo ipad: jailbreak
 @todo ipad: sound boost
 @todo iqair: read manual
-@todo laptop: defrag: full optimize
 @todo laptop: io installs
 @todo laptop: system restore point
 @todo laptop: camera: copy files
