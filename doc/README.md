@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: sms: backup</font>
-* <font color="red">android: sms: import old backup</font>
+* <font color="red">android: sms: titanium backup</font>
+* <font color="red">android: sms: purge to 1000</font>
 * <font color="red">android: stock dialer: remove</font>
 * <font color="red">laptop: hfs+ drivers</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
