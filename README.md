@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: sms backup+</font>
 * <font color="red">android: sms: not going to gmail</font>
-* <font color="red">android: ted talks</font>
+* <font color="red">android: appbrain: list</font>
 * <font color="red">laptop: hfs+ drivers</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">desktop: evernote: gmail</font>
-* <font color="red">...plus 213 more (see TODO.edoc)
+* <font color="red">...plus 214 more (see TODO.edoc)
 </font>
 
 

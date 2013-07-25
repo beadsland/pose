@@ -1,6 +1,6 @@
 @todo android: sms backup+
 @todo android: sms: not going to gmail
-@todo android: ted talks
+@todo android: appbrain: list
 @todo laptop: hfs+ drivers
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
@@ -40,9 +40,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: audiobook player
-@todo android: skype: test
-@todo android: appbrain: list
 @todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
@@ -61,8 +58,12 @@
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
+@todo android: installs: default to phone
+@todo android: old amrs: remove link
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
+@todo android: skype: test
+@todo android: audiobook player
 @todo android: call recorder?
 @todo android: sms: preserve last backup
 @todo android: sms: backup
