@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: android crash test</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">desktop: evernote: gmail</font>
-* <font color="red">...plus 218 more (see TODO.edoc)
+* <font color="red">...plus 213 more (see TODO.edoc)
 </font>
 
 
