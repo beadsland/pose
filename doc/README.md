@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: ted talks</font>
 * <font color="red">android: audiobook player</font>
 * <font color="red">android: skype: test</font>
-* <font color="red">laptop: android crash test</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: picasa: rebuild database</font>
+* <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">desktop: evernote: gmail</font>
-* <font color="red">...plus 207 more (see TODO.edoc)
+* <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
 
