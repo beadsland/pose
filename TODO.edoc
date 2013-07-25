@@ -1,6 +1,6 @@
-@todo android: sms backup+
-@todo android: sms: not going to gmail
-@todo android: appbrain: list
+@todo android: full titanium backups
+@todo android: google sync
+@todo android: contact export
 @todo laptop: hfs+ drivers
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
@@ -40,9 +40,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: full titanium backups
-@todo android: google sync
-@todo android: contact export
 @todo android: sms: preserve old backup
 @todo android: sms backup
 @todo android: backup via adb
@@ -76,6 +73,7 @@
 @todo android: mysms: evernote: turn on
 @todo android: mysms: repop evernote
 @todo android: mysms: clean up tags
+@todo android: sms backup+: auto not working
 @todo ipad: auto-cap: disable
 @todo ipad: wd2go
 @todo ipad: skype: headset
