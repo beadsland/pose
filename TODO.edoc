@@ -1,14 +1,12 @@
-@todo android: sms: preserve last backup
-@todo android: sms: backup
-@todo android: sms: import old backup
+@todo android: ted talks
+@todo android: audiobook player
+@todo android: skype: test
 @todo laptop: volume in bios
 @todo laptop: android crash test
 @todo laptop: picasa: rebuild database
 @todo desktop: evernote: gmail
 @todo desktop: manage disk space
 @todo desktop: copy backup: goldtower
-@todo brk
-@todo deod
 @todo ha: reminder
 @todo cloud 9: review
 @todo dot: will name correction
@@ -52,16 +50,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: mysms: evernote: turn off
-@todo android: mysms: evernote: archive
-@todo android: mysms: uninstall/delete data
-@todo android: mysms: reinstall
-@todo android: mysms: sync contacts
-@todo android: mysms: evernote: turn on
-@todo android: mysms: repop evernote
-@todo android: ted talks
-@todo android: audiobook player
-@todo android: skype: test
 @todo android: appbrain: list
 @todo android: full titanium backups
 @todo android: google sync
@@ -84,6 +72,16 @@
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: call recorder?
+@todo android: sms: preserve last backup
+@todo android: sms: backup
+@todo android: sms: import old backup
+@todo android: mysms: evernote: turn off
+@todo android: mysms: evernote: archive
+@todo android: mysms: uninstall/delete data
+@todo android: mysms: reinstall
+@todo android: mysms: sync contacts
+@todo android: mysms: evernote: turn on
+@todo android: mysms: repop evernote
 @todo ipad: jailbreak
 @todo ipad: sound boost
 @todo laptop: defrag: full optimize
