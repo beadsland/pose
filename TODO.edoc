@@ -1,6 +1,6 @@
-@todo android: upgrade 2.3.5
-@todo android: cwm / corn
-@todo android: restore sd card
+@todo android: nandroid: restore pre
+@todo android: titanium: phone data to xml
+@todo android: cyanogen
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
@@ -39,16 +39,14 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: nandroid: restore pre
-@todo android: titanium: phone data to xml
-@todo android: cyanogen
 @todo android: gapps
 @todo android: titanium
 @todo android: titanium: xsd card
+@todo android: titanium: system data migration
+@todo android: titanium: backup restore
 @todo android: titanium: phone data from xml
 @todo android: appbrain: fast web installer
 @todo android: appbrain: full restore
-@todo android: titanium: data restore
 @todo android: resume google syncing
 @todo android: sms: purge over 1000
 @todo android: reboot
@@ -58,6 +56,9 @@
 @todo android: theme chooser
 @todo android: jamt white
 @todo android: earpiece working?
+@todo android: titanium: full backup
+@todo android: titanium: turn off system data migration
+@todo android: titanium: schedule backups
 @todo android: sms: auto delete old
 @todo android: archive full pc backup
 @todo android: mysms: works w/o phone?
