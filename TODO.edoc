@@ -1,4 +1,4 @@
-@todo android: sms: purge to 1000
+@todo android: sms clear
 @todo android: reboot
 @todo android: try calling
 @todo laptop: copy backup: shana-pc
@@ -60,6 +60,8 @@
 @todo android: appbrain: full restore
 @todo android: titanium: data restore
 @todo android: resume google syncing
+@todo android: sms: purge over 1000
+@todo android: reboot
 @todo android: test call
 @todo android: test sms
 @todo android: sms: landscape keyboard
@@ -80,6 +82,7 @@
 @todo android: mysms: evernote: turn on
 @todo android: mysms: repop evernote
 @todo android: mysms: clean up tags
+@todo android: replace old amrs with mp3s?
 @todo ipad: auto-cap: disable
 @todo ipad: voice recognition?
 @todo ipad: wd2go
