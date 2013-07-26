@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">desktop: mysms: remove from evernote</font>
-* <font color="red">...plus 217 more (see TODO.edoc)
+* <font color="red">...plus 215 more (see TODO.edoc)
 </font>
 
 
