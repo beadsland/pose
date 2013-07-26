@@ -1,13 +1,12 @@
-@todo android: landscape: turn off full screen
-@todo android: nandroid
 @todo android: sms: titanium backup
+@todo android: sms: purge to 1000
+@todo android: try calling
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
 @todo desktop: evernote: gmail
 @todo desktop: clear space on mybook
 @todo desktop: manage disk space
-@todo ebook: ambassadors cover
 @todo itunes: ipod: interlude 4.5
 @todo itunes: ipod: sync
 @todo elec recycl
@@ -29,18 +28,14 @@
 @todo mesh bag
 @todo tissue tray
 @todo grocer
+@todo declutter: bags by wardrobe
 @todo declutter: bedsheets
 @todo declutter: curtain rod
 @todo declutter: blackout drapes
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo acronis: old big backups: remove
-@todo android: sms: purge to 1000
-@todo android: stock dialer: remove
-@todo android: stock sms: remove
-@todo android: reboot
-@todo android: try calling
+@todo declutter: acronis: old big backups: remove
 @todo android: try texting
 @todo android: sms backup+: auto not working
 @todo android: full titanium backups
@@ -61,6 +56,9 @@
 @todo android: resume google syncing
 @todo android: theme chooser
 @todo android: jamt white
+@todo android: stock dialer: remove
+@todo android: stock sms: remove
+@todo android: phone alternative
 @todo android: installs: default to phone
 @todo android: old amrs: remove link
 @todo android: skype: test
@@ -83,6 +81,7 @@
 @todo ipad: sound boost
 @todo vaio: hirens
 @todo toshiba: clear
+@todo shana: web site
 @todo iqair: read manual
 @todo laptop: io installs
 @todo laptop: system restore point
