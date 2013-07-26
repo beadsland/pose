@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: titanium</font>
-* <font color="red">android: titanium: external sd</font>
-* <font color="red">android: titanium: migrate system data</font>
+* <font color="red">android: appbrain</font>
+* <font color="red">android: appbrain: fast web installer</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: desktop: duplicates: old backups</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">desktop: dropbox: nested hubl</font>
-* <font color="red">...plus 202 more (see TODO.edoc)
+* <font color="red">desktop: bluescreen</font>
+* <font color="red">...plus 198 more (see TODO.edoc)
 </font>
 
 
