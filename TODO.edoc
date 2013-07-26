@@ -1,6 +1,6 @@
-@todo android: titanium
-@todo settings: off market apps
-@todo android: titanium: xsd card
+@todo android: titanium: restore apps
+@todo android: resume google syncing
+@todo android: test call
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
@@ -39,12 +39,6 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: titanium: system data migration
-@todo android: titanium: phone data from xml
-@todo android: sim card
-@todo android: titanium: restore apps
-@todo android: resume google syncing
-@todo android: test call
 @todo android: test sms
 @todo android: sms: landscape keyboard
 @todo android: theme chooser
