@@ -1,6 +1,6 @@
-@todo android: sms cleaner free
-@todo android: titanium: sms clearer free
-@todo android: appbrain: list
+@todo android: sms backup
+@todo android: backup via adb
+@todo android: nandroid backup
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
@@ -39,12 +39,6 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: google sync
-@todo android: contact export
-@todo android: sms: preserve old backup
-@todo android: sms backup
-@todo android: backup via adb
-@todo android: nandroid backup
 @todo android: full pc backups
 @todo android: archive full pc backup
 @todo android: cyanogen

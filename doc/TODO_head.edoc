@@ -1,8 +1,8 @@
-@todo android: try calling
-@todo android: try texting
-@todo android: sms backup+: auto not working
+@todo android: sms backup
+@todo android: backup via adb
+@todo android: nandroid backup
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
 @todo desktop: bluescreen
-@todo ...plus 214 more (see TODO.edoc)
+@todo ...plus 205 more (see TODO.edoc)
