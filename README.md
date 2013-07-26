@@ -25,7 +25,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: desktop: duplicates: old backups</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">desktop: dropbox: nested hubl</font>
+* <font color="red">desktop: clear space on mybook</font>
 * <font color="red">...plus 198 more (see TODO.edoc)
 </font>
 
