@@ -1,6 +1,6 @@
 @todo android: titanium: restore apps
 @todo android: resume google syncing
-@todo android: reboot
+@todo android: sync mysms
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
@@ -41,6 +41,7 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: reboot
 @todo android: test call
 @todo android: test sms
 @todo android: sms: landscape keyboard
