@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: stock rom</font>
+* <font color="red">android: keis mini</font>
 * <font color="red">android: upgrade 2.3.5</font>
 * <font color="red">android: cwm / corn</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: desktop: duplicates: old backups</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">desktop: dropbox: nested hubl</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 208 more (see TODO.edoc)
 </font>
 
 
