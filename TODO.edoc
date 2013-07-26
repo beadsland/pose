@@ -1,6 +1,6 @@
-@todo android: sms: titanium backup
-@todo android: sms: purge to 1000
-@todo android: try calling
+@todo android: titanium: force all
+@todo android: titanium: verify all
+@todo android: nandroid: again
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
@@ -36,6 +36,8 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: sms: purge to 1000
+@todo android: try calling
 @todo android: try texting
 @todo android: sms backup+: auto not working
 @todo android: full titanium backups
@@ -128,7 +130,6 @@
 @todo desktop: better nas backup solution
 @todo desktop: cpu upgrade?
 @todo desktop: cpu cooler
-@todo cubby
 @todo sync red to black
 @todo hp on green
 @todo trash blue
@@ -136,11 +137,9 @@
 @todo abaiko
 @todo laptop: abaiko
 @todo desktop: abaiko
-@todo macrium: smaller files?
 @todo slimcomputer
 @todo startup delayer
 @todo receipts
-@todo bk: acct
 @todo gklst micro
 @todo folderl: pose dumping iwd on error?
 @todo folderl: redirecting stderr prepends "ls"
