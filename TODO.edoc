@@ -1,12 +1,13 @@
+@todo android: finish downloads/syncs
+@todo android: titanium: external sd
 @todo android: titanium: force all
-@todo android: titanium: verify all
-@todo android: nandroid: again
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
+@todo desktop: tray: sound missing
 @todo desktop: evernote: gmail
 @todo desktop: clear space on mybook
-@todo desktop: manage disk space
+@todo itunes: podcasts: update
 @todo itunes: ipod: interlude 4.5
 @todo itunes: ipod: sync
 @todo elec recycl
@@ -37,6 +38,8 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: titanium: verify all
+@todo android: nandroid: again
 @todo android: sms: purge to 1000
 @todo android: try calling
 @todo android: try texting
@@ -49,14 +52,19 @@
 @todo android: backup via adb
 @todo android: nandroid backup
 @todo android: full pc backups
+@todo android: archive full pc backup
 @todo android: cyanogen
 @todo android: gapps
 @todo android: appbrain
 @todo android: fast web installer
 @todo android: full restore
 @todo android: titanium
+@todo android: titanium: external sd
 @todo android: full titanium restore
 @todo android: resume google syncing
+@todo android: test call
+@todo android: test sms
+@todo android: sms: landscape keyboard
 @todo android: theme chooser
 @todo android: jamt white
 @todo android: stock dialer: remove
@@ -105,6 +113,7 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
+@todo desktop: manage disk space
 @todo desktop: duplicates: old backups
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: duplicates: my pictures
