@@ -1,12 +1,12 @@
+@todo android: nandroid
 @todo android: sms: titanium backup
 @todo android: sms: purge to 1000
-@todo android: stock dialer: remove
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
-@todo desktop: mysms: clear tags
-@todo desktop: evernote: computer notebook
 @todo desktop: evernote: gmail
+@todo desktop: clear space on mybook
+@todo desktop: manage disk space
 @todo carol: hook
 @todo brk: invoice
 @todo calculator: battery
@@ -37,6 +37,7 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: reboot
 @todo android: try calling
@@ -100,8 +101,6 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
-@todo desktop: clear space on mybook
-@todo desktop: manage disk space
 @todo desktop: duplicates: old backups
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: duplicates: my pictures
