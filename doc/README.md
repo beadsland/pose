@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: titanium: force all</font>
+* <font color="red">android: titanium: verify all</font>
 * <font color="red">android: nandroid: again</font>
-* <font color="red">android: sms: purge to 1000</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">desktop: evernote: gmail</font>
-* <font color="red">...plus 202 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
