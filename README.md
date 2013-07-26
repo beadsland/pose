@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: titanium: force all</font>
 * <font color="red">android: titanium: verify all</font>
-* <font color="red">android: nandroid: again</font>
+* <font color="red">android: titanium: dup: force all</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
+* <font color="red">laptop: desktop: duplicates: old backups</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">desktop: tray: sound missing</font>
-* <font color="red">...plus 211 more (see TODO.edoc)
+* <font color="red">...plus 212 more (see TODO.edoc)
 </font>
 
 

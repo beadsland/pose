@@ -1,12 +1,12 @@
 @todo android: titanium: force all
 @todo android: titanium: verify all
-@todo android: nandroid: again
+@todo android: titanium: dup: force all
 @todo laptop: copy backup: shana-pc
+@todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
-@todo laptop: defrag: full optimize
 @todo desktop: tray: sound missing
-@todo desktop: evernote: gmail
 @todo desktop: clear space on mybook
+@todo desktop: manage disk space
 @todo itunes: podcasts: update
 @todo itunes: ipod: interlude 4.5
 @todo itunes: ipod: sync
@@ -38,6 +38,8 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: titanium: dup: verify all
+@todo android: nandroid: again
 @todo android: sms: purge to 1000
 @todo android: try calling
 @todo android: try texting
@@ -92,6 +94,7 @@
 @todo toshiba: clear
 @todo shana: web site
 @todo iqair: read manual
+@todo laptop: defrag: full optimize
 @todo laptop: io installs
 @todo laptop: system restore point
 @todo laptop: camera: copy files
@@ -111,8 +114,6 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
-@todo desktop: manage disk space
-@todo desktop: duplicates: old backups
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: duplicates: my pictures
 @todo desktop: my pictures: archive
@@ -125,7 +126,7 @@
 @todo desktop: reseat all components
 @todo desktop: remove data share
 @todo desktop: remove empty folders
-@todo desktop: uninstalls
+@todo desktop: evernote: gmail archives
 @todo desktop: disk image
 @todo desktop: resize data drive per thunder
 @todo desktop: gmail meter script errors
