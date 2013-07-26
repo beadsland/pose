@@ -1,6 +1,6 @@
+@todo android: landscape: turn off full screen
 @todo android: nandroid
 @todo android: sms: titanium backup
-@todo android: sms: purge to 1000
 @todo laptop: copy backup: shana-pc
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
@@ -37,6 +37,7 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: sms: purge to 1000
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: reboot
