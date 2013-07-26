@@ -1,6 +1,6 @@
-@todo android: nandroid: backup cyan
-@todo android: nandroid: restore pre
-@todo android: titanium: phone data to xml
+@todo android: stock rom
+@todo android: upgrade 2.3.5
+@todo android: cwm / corn
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
@@ -39,6 +39,9 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: restore sd card
+@todo android: nandroid: restore pre
+@todo android: titanium: phone data to xml
 @todo android: nandroid: restore cyan
 @todo android: titanium: phone data from xml
 @todo android: appbrain: fast web installer
