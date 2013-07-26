@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: titanium: force all</font>
-* <font color="red">android: titanium: verify all</font>
 * <font color="red">android: titanium: dup: force all</font>
+* <font color="red">android: titanium: dup: dialer data</font>
+* <font color="red">android: titanium: dialer data</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: desktop: duplicates: old backups</font>
 * <font color="red">laptop: picasa: rebuild database</font>

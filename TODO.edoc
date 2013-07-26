@@ -1,6 +1,6 @@
-@todo android: titanium: force all
-@todo android: titanium: verify all
 @todo android: titanium: dup: force all
+@todo android: titanium: dup: dialer data
+@todo android: titanium: dialer data
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
@@ -38,13 +38,11 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: titanium: dup: verify all
 @todo android: nandroid: again
 @todo android: sms: purge to 1000
 @todo android: try calling
 @todo android: try texting
 @todo android: sms backup+: auto not working
-@todo android: full titanium backups
 @todo android: google sync
 @todo android: contact export
 @todo android: sms: preserve old backup
@@ -55,12 +53,14 @@
 @todo android: archive full pc backup
 @todo android: cyanogen
 @todo android: gapps
-@todo android: appbrain
-@todo android: fast web installer
-@todo android: full restore
 @todo android: titanium
 @todo android: titanium: external sd
-@todo android: full titanium restore
+@todo android: titanium: migrate system data
+@todo android: titanium: restore sms/logs
+@todo android: appbrain
+@todo android: appbrain: fast web installer
+@todo android: appbrain: full restore
+@todo android: titanium: data restore
 @todo android: resume google syncing
 @todo android: test call
 @todo android: test sms
