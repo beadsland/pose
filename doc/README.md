@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: nandroid: again</font>
 * <font color="red">android: sms: purge to 1000</font>
+* <font color="red">android: reboot</font>
 * <font color="red">android: try calling</font>
 * <font color="red">laptop: copy backup: shana-pc</font>
 * <font color="red">laptop: desktop: duplicates: old backups</font>
