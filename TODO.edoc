@@ -4,9 +4,9 @@
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
+@todo desktop: bluescreen
 @todo desktop: tray: sound missing
 @todo desktop: clear space on mybook
-@todo desktop: manage disk space
 @todo itunes: podcasts: update
 @todo itunes: ipod: interlude 4.5
 @todo itunes: ipod: sync
@@ -65,6 +65,7 @@
 @todo android: sms: landscape keyboard
 @todo android: theme chooser
 @todo android: jamt white
+@todo android: mysms: works w/o phone?
 @todo android: stock dialer: remove
 @todo android: stock sms: remove
 @todo android: phone alternative
@@ -73,8 +74,6 @@
 @todo android: skype: test
 @todo android: audiobook player
 @todo android: call recorder?
-@todo android: mysms: evernote: turn off
-@todo android: mysms: evernote: archive
 @todo android: mysms: uninstall/delete data
 @todo android: mysms: reinstall
 @todo android: mysms: sync contacts
@@ -112,6 +111,7 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
+@todo desktop: manage disk space
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: duplicates: my pictures
 @todo desktop: my pictures: archive
