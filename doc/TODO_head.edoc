@@ -1,8 +1,8 @@
-@todo android: titanium: restore apps
-@todo android: resume google syncing
-@todo android: sync mysms
+@todo android: sms backup+: sync
+@todo android: mysms: sync
+@todo android: test call
 @todo laptop: copy backup: shana-pc
 @todo laptop: desktop: duplicates: old backups
 @todo laptop: picasa: rebuild database
 @todo desktop: bluescreen
-@todo ...plus 199 more (see TODO.edoc)
+@todo ...plus 203 more (see TODO.edoc)
