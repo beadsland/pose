@@ -1,13 +1,12 @@
-@todo android: dsp error
+@todo android: wait for gmail sync
 @todo android: cpu load
-@todo android: test call
-@todo laptop: copy backup: shana-pc
-@todo laptop: desktop: duplicates: old backups
+@todo android: test sms backup+
 @todo laptop: picasa: rebuild database
+@todo laptop: defrag: full optimize
+@todo laptop: io installs
 @todo desktop: reseat video card
 @todo desktop: connect only speakers
 @todo desktop: bluescreen
-@todo shirt
 @todo scrab
 @todo kd
 @todo gmail
@@ -47,41 +46,14 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: test sms
-@todo android: titanium: delete justpictures
-@todo android: titanium: delete mysms
-@todo android: titanium: delete google+
-@todo android: move stuff to sd
-@todo andriod: titanium: backup all apps
-@todo android: titanium: restore all apps
-@todo android: move stuff off sd
-@todo android: resume google syncing
-@todo android: sync mysms
-@todo android: reboot
-@todo android: test call
-@todo android: test sms
-@todo android: test camera
+@todo android: test tape-a-talk sync
+@todo android: test camera uploads
+@todo android: restore maps/compass
+@todo android: restore old amrs link
 @todo android: sms: landscape keyboard
-@todo android: theme chooser
-@todo android: jamt white
-@todo android: earpiece working?
-@todo android: test all apps
-@todo android: titanium: full backup
-@todo android: titanium: turn off system data migration
 @todo android: titanium: schedule backups
-@todo android: sms: auto delete old
-@todo android: archive full pc backup
-@todo android: mysms: works w/o phone?
-@todo android: stock dialer: remove
-@todo android: stock sms: remove
-@todo android: phone alternative
-@todo android: installs: default to phone
-@todo android: old amrs: remove link
 @todo android: skype: test
-@todo android: audiobook player
-@todo android: call recorder?
-@todo android: google+: high cpu?
-@todo android: justpictures: high cpu?
+@todo android: sms: auto delete old
 @todo android: mysms: high cpu?
 @todo android: mysms: sync
 @todo android: mysms: uninstall/delete data
@@ -90,7 +62,15 @@
 @todo android: mysms: evernote: turn on
 @todo android: mysms: repop evernote
 @todo android: mysms: clean up tags
+@todo android: google+: high cpu?
 @todo android: replace old amrs with mp3s?
+@todo android: theme chooser
+@todo android: jamt white
+@todo android: archive full pc backup
+@todo android: titanium: turn off system data migration
+@todo android: installs: default to phone
+@todo android: audiobook player
+@todo android: call recorder?
 @todo ipad: auto-cap: disable
 @todo ipad: voice recognition?
 @todo ipad: wd2go
@@ -102,8 +82,6 @@
 @todo toshiba: clear
 @todo shana: web site
 @todo iqair: read manual
-@todo laptop: defrag: full optimize
-@todo laptop: io installs
 @todo laptop: system restore point
 @todo laptop: camera: copy files
 @todo laptop: camera: photo uploader
@@ -122,6 +100,7 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
+@todo desktop: duplicates: old backups
 @todo desktop: divx update
 @todo desktop: tray: sound missing
 @todo desktop: manage disk space
