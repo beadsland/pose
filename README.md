@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">laptop: io installs</font>
-* <font color="red">desktop: reseat video card</font>
-* <font color="red">...plus 202 more (see TODO.edoc)
+* <font color="red">desktop: smartware: no old backups</font>
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
