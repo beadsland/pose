@@ -1,6 +1,6 @@
-@todo android: clear dock
-@todo android: send sms from phone app
 @todo android: gmail high cpu
+@todo android: gallery high cpu
+@todo android: cpu load
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
 @todo laptop: io installs
@@ -43,8 +43,6 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: gallery high cpu
-@todo android: cpu load
 @todo android: test sms backup+
 @todo android: test tape-a-talk sync
 @todo android: test camera uploads
