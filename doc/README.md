@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: desktop: duplicates: old backups</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">desktop: reseat video card</font>
-* <font color="red">...plus 221 more (see TODO.edoc)
+* <font color="red">...plus 222 more (see TODO.edoc)
 </font>
 
 
