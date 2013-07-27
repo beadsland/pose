@@ -1,13 +1,10 @@
-@todo android: gmail high cpu
-@todo android: calendar: not syncing
-@todo android: smart key: full screen
-@todo android: sms backup+: error
 @todo andriod: tape-a-talk: file name numbers?
 @todo android: go sms: doesn't clear notification
 @todo android: camera: no noise
 @todo android: camera: store location
 @todo android: gallery high cpu
 @todo android: cpu load
+@todo android: sms backup+: error
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
 @todo laptop: io installs
