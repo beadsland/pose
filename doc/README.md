@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: lock: timeout</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: camera: photo uploader</font>
-* <font color="red">laptop: smartware: update</font>
-* <font color="red">desktop: connect only speakers</font>
-* <font color="red">...plus 192 more (see TODO.edoc)
+* <font color="red">laptop: chrome: settings: continue where left off</font>
+* <font color="red">desktop: duplicates: old backups</font>
+* <font color="red">...plus 190 more (see TODO.edoc)
 </font>
 
 
