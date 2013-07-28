@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">andriod: tape-a-talk: file name numbers?</font>
-* <font color="red">android: go sms: doesn't clear notification</font>
-* <font color="red">android: camera: no noise</font>
-* <font color="red">android: camera: store location</font>
-* <font color="red">android: gallery high cpu</font>
-* <font color="red">android: cpu load</font>
-* <font color="red">android: sms backup+: error</font>
-* <font color="red">...plus 206 more (see TODO.edoc)
+* <font color="red">android: cyanogenmod 9</font>
+* <font color="red">android: gapps ics</font>
+* <font color="red">android: titanium</font>
+* <font color="red">laptop: picasa: rebuild database</font>
+* <font color="red">laptop: defrag: full optimize</font>
+* <font color="red">laptop: io installs</font>
+* <font color="red">desktop: smartware: no old backups</font>
+* <font color="red">...plus 224 more (see TODO.edoc)
 </font>
 
 

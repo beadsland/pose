@@ -1,10 +1,6 @@
-@todo andriod: tape-a-talk: file name numbers?
-@todo android: go sms: doesn't clear notification
-@todo android: camera: no noise
-@todo android: camera: store location
-@todo android: gallery high cpu
-@todo android: cpu load
-@todo android: sms backup+: error
+@todo android: cyanogenmod 9
+@todo android: gapps ics
+@todo android: titanium
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
 @todo laptop: io installs
@@ -48,6 +44,27 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: titanium: upgrade settings
+@todo android: titanium: restore xmls
+@todo android: sim card
+@todo android: zeam
+@todo android: go multi backgrounds
+@todo android: keyboard
+@todo android: gmail
+@todo android: camera
+@todo android: dock apps
+@todo android: first page apps
+@todo android: second page apps
+@todo android: third page apps
+@todo android: fourth page apps
+@todo android: shutdown animation
+@todo andriod: tape-a-talk: file name numbers?
+@todo android: go sms: doesn't clear notification
+@todo android: camera: no noise
+@todo android: camera: store location
+@todo android: gallery high cpu
+@todo android: cpu load
+@todo android: sms backup+: error
 @todo android: test sms backup+
 @todo android: test tape-a-talk sync
 @todo android: test camera uploads
@@ -74,6 +91,7 @@
 @todo android: installs: default to phone
 @todo android: audiobook player
 @todo android: call recorder?
+@todo scanner: replacement
 @todo ipad: auto-cap: disable
 @todo ipad: voice recognition?
 @todo ipad: wd2go
