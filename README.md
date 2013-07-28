@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">laptop: io installs</font>
 * <font color="red">desktop: smartware: no old backups</font>
-* <font color="red">...plus 210 more (see TODO.edoc)
+* <font color="red">...plus 211 more (see TODO.edoc)
 </font>
 
 
