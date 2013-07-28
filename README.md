@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: camera: photo uploader</font>
 * <font color="red">laptop: chrome: settings: continue where left off</font>
 * <font color="red">desktop: duplicates: old backups</font>
-* <font color="red">...plus 187 more (see TODO.edoc)
+* <font color="red">...plus 186 more (see TODO.edoc)
 </font>
 
 
