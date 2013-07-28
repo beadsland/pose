@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: defrag: full optimize</font>
 * <font color="red">laptop: io installs</font>
 * <font color="red">desktop: reseat video card</font>
-* <font color="red">...plus 195 more (see TODO.edoc)
+* <font color="red">...plus 197 more (see TODO.edoc)
 </font>
 
 
