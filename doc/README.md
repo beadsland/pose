@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: kernel</font>
 * <font color="red">android: lock: timeout</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">laptop: camera: copy files</font>
 * <font color="red">laptop: camera: photo uploader</font>
+* <font color="red">laptop: smartware: update</font>
 * <font color="red">desktop: connect only speakers</font>
-* <font color="red">...plus 193 more (see TODO.edoc)
+* <font color="red">...plus 192 more (see TODO.edoc)
 </font>
 
 
