@@ -1,33 +1,32 @@
 @todo android: ring tones
+@todo android: kernel: semaphore?
 @todo android: kernel
-@todo android: lock: timeout
 @todo laptop: picasa: rebuild database
 @todo laptop: camera: photo uploader
 @todo laptop: chrome: settings: continue where left off
 @todo desktop: duplicates: old backups
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: manage disk space
-@todo show
-@todo bath: quick
 @todo vacu: quick
+@todo bath: quick
 @todo recycl
 @todo elec recycl
 @todo calculator: battery
 @todo laundry
 @todo brush: replacement
 @todo carol: grumpy cat
-@todo carol: wqxr
-@todo carol: mp3s
 @todo carol: square dance
 @todo carol: hook
 @todo carol: kindle
 @todo carol: kindle: audiobook demo
 @todo carol: plants
-@todo dot: eye-care checklist
+@todo dot: mon
+@todo ha: tues
 @todo who: dwm
 @todo itunes: podcasts: update
 @todo itunes: ipod: interlude 4.5
 @todo itunes: ipod: sync
+@todo dot: eye-care checklist
 @todo dot: jane froman
 @todo dot: pop tops
 @todo dot: livestock welfare
@@ -37,8 +36,6 @@
 @todo mesh bag
 @todo tissue tray
 @todo grocer
-@todo dot: mon
-@todo ha: tues
 @todo declutter: bags by wardrobe
 @todo declutter: bedsheets
 @todo declutter: curtain rod
@@ -47,6 +44,7 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: lock: timeout
 @todo android: lock: animation
 @todo android: test sms
 @todo android: shutdown animation
