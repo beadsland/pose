@@ -1,8 +1,8 @@
+@todo android: kernel
 @todo android: lock: timeout
-@todo android: fc: timeout
+@todo android: lock: animation
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
 @todo laptop: io installs
 @todo desktop: smartware: no old backups
-@todo desktop: reseat video card
-@todo ...plus 193 more (see TODO.edoc)
+@todo ...plus 194 more (see TODO.edoc)
