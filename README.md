@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: gallery high cpu</font>
 * <font color="red">android: cpu load</font>
 * <font color="red">android: sms backup+: error</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 206 more (see TODO.edoc)
 </font>
 
 
