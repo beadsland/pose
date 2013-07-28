@@ -20,7 +20,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: nandroid</font>
-* <font color="red">andriod: ext4all</font>
+* <font color="red">andriod: datafix</font>
 * <font color="red">android: test call</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag: full optimize</font>
