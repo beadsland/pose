@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: gosms</font>
-* <font color="red">android: dock apps</font>
+* <font color="red">android: evernote</font>
+* <font color="red">android: contacts</font>
 * <font color="red">android: first page apps</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: defrag: full optimize</font>
