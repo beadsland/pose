@@ -1,6 +1,6 @@
+@todo android: apps back off sd
+@todo android: gosms icon green
 @todo android: nandroid
-@todo andriod: datafix
-@todo android: test call
 @todo laptop: picasa: rebuild database
 @todo laptop: defrag: full optimize
 @todo laptop: io installs
@@ -44,34 +44,16 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: sms: landscape keyboard
+@todo android: test call
 @todo android: test sms
-@todo android: mysms
 @todo android: shutdown animation
 @todo android: lock screen: notifications
-@todo android: go sms: doesn't clear notification
-@todo android: camera: no noise
-@todo android: camera: store location
-@todo android: gallery high cpu
-@todo android: cpu load
-@todo android: sms backup+: error
-@todo android: test sms backup+
+@todo android: mysms
 @todo android: test tape-a-talk sync
 @todo android: test camera uploads
-@todo android: restore maps/compass
-@todo android: restore old amrs link
-@todo android: sms: landscape keyboard
 @todo android: titanium: schedule backups
-@todo android: skype: test
 @todo android: sms: auto delete old
-@todo android: mysms: high cpu?
-@todo android: mysms: sync
-@todo android: mysms: uninstall/delete data
-@todo android: mysms: reinstall
-@todo android: mysms: sync contacts
-@todo android: mysms: evernote: turn on
-@todo android: mysms: repop evernote
-@todo android: mysms: clean up tags
-@todo android: google+: high cpu?
 @todo android: replace old amrs with mp3s?
 @todo android: theme chooser
 @todo android: jamt white
