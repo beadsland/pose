@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: battery charger</font>
 * <font color="red">android: ring tones</font>
 * <font color="red">android: treesize sd</font>
-* <font color="red">android: sgs kernel flasher</font>
 * <font color="red">laptop: won't turn on</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: camera: photo uploader</font>
 * <font color="red">desktop: very slow</font>
-* <font color="red">...plus 210 more (see TODO.edoc)
+* <font color="red">...plus 211 more (see TODO.edoc)
 </font>
 
 
