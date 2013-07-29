@@ -20,13 +20,13 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: ring tones</font>
-* <font color="red">android: kernel: semaphore?</font>
-* <font color="red">android: kernel</font>
+* <font color="red">android: treesize sd</font>
+* <font color="red">android: sgs kernel flasher</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: camera: photo uploader</font>
 * <font color="red">laptop: chrome: settings: continue where left off</font>
 * <font color="red">desktop: duplicates: old backups</font>
-* <font color="red">...plus 185 more (see TODO.edoc)
+* <font color="red">...plus 188 more (see TODO.edoc)
 </font>
 
 
