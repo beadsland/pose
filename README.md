@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: drivers</font>
+* <font color="red">android: kernel manager light</font>
 * <font color="red">android: remove sim</font>
 * <font color="red">android: nandroid</font>
 * <font color="red">laptop: picasa: rebuild database</font>
