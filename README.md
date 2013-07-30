@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: picasa alt: uninstall</font>
 * <font color="red">laptop: windows ddk</font>
 * <font color="red">desktop: ati: uninstall ati software</font>
-* <font color="red">...plus 208 more (see TODO.edoc)
+* <font color="red">...plus 205 more (see TODO.edoc)
 </font>
 
 
