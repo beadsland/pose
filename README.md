@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: treesize sd</font>
 * <font color="red">android: sgs kernel flasher</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">laptop: chrome: settings: continue where left off</font>
-* <font color="red">laptop: chrome: session manager</font>
-* <font color="red">desktop: small button on tower</font>
-* <font color="red">...plus 208 more (see TODO.edoc)
+* <font color="red">laptop: picasa alt: uninstall</font>
+* <font color="red">laptop: vprot!!!!!</font>
+* <font color="red">desktop: high cpu/slow computer</font>
+* <font color="red">...plus 207 more (see TODO.edoc)
 </font>
 
 
