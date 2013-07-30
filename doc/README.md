@@ -24,9 +24,9 @@ __<font color="red">To do</font>__
 * <font color="red">android: sgs kernel flasher</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: picasa alt: uninstall</font>
-* <font color="red">laptop: vprot!!!!!</font>
+* <font color="red">laptop: windows ddk</font>
 * <font color="red">desktop: small button on tower</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
