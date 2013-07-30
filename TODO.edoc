@@ -1,6 +1,6 @@
-@todo android: nandroid
+@todo android: drivers
 @todo android: odin
-@todo android: semaphore kernel
+@todo android: remove sim
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
@@ -50,6 +50,8 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
+@todo android: nandroid
+@todo android: semaphore kernel
 @todo android: restore sim
 @todo android: semaphore manager app
 @todo android: ring tones
