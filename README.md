@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: camera: photo uploader</font>
 * <font color="red">laptop: chrome: settings: continue where left off</font>
 * <font color="red">desktop: small button on tower</font>
-* <font color="red">...plus 205 more (see TODO.edoc)
+* <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
 
