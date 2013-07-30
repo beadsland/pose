@@ -1,6 +1,6 @@
-@todo android: ring tones
-@todo android: treesize sd
-@todo android: sgs kernel flasher
+@todo android: nandroid
+@todo android: odin
+@todo android: semaphore kernel
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
@@ -50,20 +50,19 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: remove sim
-@todo android: nandroid
-@todo android: semaphore kernel
 @todo android: restore sim
 @todo android: semaphore manager app
+@todo android: gmail: mark unread
+@todo android: gmail: getting hot
+@todo android: ring tones
 @todo android: tape-a-talk: reinstall
+@todo android: tape-a-talk: move to xsd
 @todo android: tape-a-talk: test duration
 @todo android: tape-a-talk: file names
 @todo android: puzzle pieces
 @todo android: lock: timeout
 @todo android: lock: keeps closing out of gmail
 @todo android: lock: animation
-@todo android: gmail: mark unread
-@todo android: gmail: getting hot
 @todo android: sms: voice recognition
 @todo android: clock: no timer
 @todo android: lock screen: notifications
