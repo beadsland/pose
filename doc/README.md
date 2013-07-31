@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: semaphore manager app</font>
+* <font color="red">android: bluetooth disable</font>
 * <font color="red">android: sgs kernel flasher: uninstall</font>
 * <font color="red">android: kernel manager lite: uninstall</font>
 * <font color="red">laptop: picasa: rebuild database</font>
