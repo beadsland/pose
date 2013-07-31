@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: gmail: test swipe to delete</font>
 * <font color="red">android: tape-a-talk: test duration</font>
-* <font color="red">android: lock: animation</font>
+* <font color="red">android: puzzle pieces</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: picasa alt: uninstall</font>
 * <font color="red">laptop: windows ddk</font>
 * <font color="red">desktop: device manager: review</font>
-* <font color="red">...plus 194 more (see TODO.edoc)
+* <font color="red">...plus 193 more (see TODO.edoc)
 </font>
 
 
