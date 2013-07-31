@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: nandroid</font>
-* <font color="red">android: semaphore kernel</font>
 * <font color="red">android: restore sim</font>
+* <font color="red">android: semaphore manager app</font>
+* <font color="red">android: sgs kernel flasher: uninstall</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: picasa alt: uninstall</font>
 * <font color="red">laptop: windows ddk</font>
 * <font color="red">desktop: device manager: review</font>
-* <font color="red">...plus 206 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
