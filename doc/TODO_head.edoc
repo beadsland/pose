@@ -1,8 +1,8 @@
-@todo android: restore sim
+@todo android: market: uninstall updates
+@todo android: reboot
 @todo android: semaphore manager app
-@todo android: sgs kernel flasher: uninstall
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
 @todo desktop: device manager: review
-@todo ...plus 204 more (see TODO.edoc)
+@todo ...plus 205 more (see TODO.edoc)
