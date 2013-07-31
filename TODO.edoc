@@ -1,6 +1,6 @@
-@todo android: kernel manager light
-@todo android: remove sim
 @todo android: nandroid
+@todo android: semaphore kernel
+@todo android: restore sim
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
@@ -45,10 +45,9 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: semaphore kernel
-@todo android: restore sim
 @todo android: semaphore manager app
 @todo android: sgs kernel flasher: uninstall
+@todo android: kernel manager lite: uninstall
 @todo android: gmail: obnoxious big letters
 @todo android: bln
 @todo android: tape-a-talk: reinstall
