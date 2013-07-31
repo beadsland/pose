@@ -19,7 +19,7 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: go sms: very slow</font>
+* <font color="red">android: go sms: very slow/fc</font>
 * <font color="red">android: mysms</font>
 * <font color="red">android: test tape-a-talk sync</font>
 * <font color="red">laptop: picasa: rebuild database</font>
