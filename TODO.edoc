@@ -4,8 +4,8 @@
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
-@todo desktop: ati: regedit: hklm/software/ati: delete
-@todo desktop: ati: reinstall drivers
+@todo desktop: ati: catalyst
+@todo desktop: ati: multimedia
 @todo destkop: ati: fix startup
 @todo exterm: wed
 @todo dot: clear
@@ -71,7 +71,7 @@
 @todo android: replace old amrs with mp3s?
 @todo android: theme chooser
 @todo android: jamt white
-@todo andriod: tape-a-talk: file name numbers?
+@todo android: tape-a-talk: file name numbers?
 @todo android: archive full pc backup
 @todo android: titanium: turn off system data migration
 @todo android: installs: default to phone
