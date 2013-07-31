@@ -4,9 +4,9 @@
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
-@todo desktop: device manager: review
-@todo desktop: ati: bluescreen test
+@todo desktop: ati2dvag: blue screen on hibernate
 @todo desktop: small button on tower
+@todo desktop: system recovery point
 @todo exterm: wed
 @todo show
 @todo dot: clear
@@ -81,7 +81,6 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
-@todo desktop: system recovery point
 @todo desktop: ati: multimedia
 @todo desktop: ati: bluescreen test
 @todo desktop: ati: fix startup
