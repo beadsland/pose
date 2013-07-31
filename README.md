@@ -21,12 +21,12 @@ __<font color="red">To do</font>__
 <br></br>
 * <font color="red">vaio: ebay listing estimate</font>
 * <font color="red">vaio: follow up w/ client</font>
-* <font color="red">vaio: hirens</font>
+* <font color="red">vaio: partition</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: picasa alt: uninstall</font>
 * <font color="red">laptop: windows ddk</font>
 * <font color="red">desktop: ati2dvag: blue screen on hibernate</font>
-* <font color="red">...plus 185 more (see TODO.edoc)
+* <font color="red">...plus 183 more (see TODO.edoc)
 </font>
 
 
