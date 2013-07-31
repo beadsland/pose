@@ -5,8 +5,8 @@
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
 @todo desktop: ati: catalyst
-@todo desktop: ati: multimedia
-@todo destkop: ati: fix startup
+@todo desktop: ati: fix startup
+@todo desktop: ati bluescreen
 @todo exterm: wed
 @todo dot: clear
 @todo dot: lunch
@@ -100,8 +100,8 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
-@todo desktop: ati bluescreen
 @todo desktop: small button on tower
+@todo desktop: ati: multimedia
 @todo desktop: duplicates: old backups
 @todo desktop: duplicates: recover deleted pictures
 @todo desktop: manage disk space
