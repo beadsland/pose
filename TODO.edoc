@@ -1,6 +1,6 @@
-@todo android: sms: voice recognition
-@todo android: go sms: very slow
 @todo android: clock: no timer
+@todo android: go sms: very slow
+@todo android: mysms
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
@@ -45,8 +45,6 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: lock screen: notifications
-@todo android: mysms
 @todo android: test tape-a-talk sync
 @todo android: test camera uploads
 @todo android: titanium: schedule backups
