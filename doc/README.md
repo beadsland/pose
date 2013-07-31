@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: picasa alt: uninstall</font>
 * <font color="red">laptop: windows ddk</font>
-* <font color="red">desktop: ati: bluescreen test</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">desktop: device manager: review</font>
+* <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
 
