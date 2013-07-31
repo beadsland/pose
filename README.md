@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">vaio: salary check</font>
-* <font color="red">vaio: ebay listing</font>
+* <font color="red">vaio: ebay listing estimate</font>
+* <font color="red">vaio: follow up w/ client</font>
 * <font color="red">vaio: hirens</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">laptop: picasa alt: uninstall</font>
