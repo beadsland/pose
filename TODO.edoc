@@ -1,6 +1,6 @@
 @todo android: gmail: test swipe to delete
 @todo android: tape-a-talk: test duration
-@todo android: tape-a-talk: file names
+@todo android: puzzle pieces
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
@@ -45,10 +45,6 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: puzzle pieces
-@todo android: lock: timeout
-@todo android: lock: keeps closing out of gmail
-@todo android: lock: animation
 @todo android: sms: voice recognition
 @todo android: go sms: very slow
 @todo android: clock: no timer
