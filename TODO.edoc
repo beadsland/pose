@@ -4,9 +4,9 @@
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
-@todo desktop: ati: uninstall ati software
-@todo desktop: ati: uninstall ati drivers
-@todo desktop: ati: program files: delete ati folder
+@todo desktop: ati: regedit: hklm/software/ati: delete
+@todo desktop: ati: reinstall drivers
+@todo destkop: ati: fix startup
 @todo exterm: wed
 @todo dot: clear
 @todo dot: lunch
@@ -100,9 +100,6 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
-@todo desktop: ati: regedit: hklm/software/ati: delete
-@todo desktop: ati: reinstall drivers
-@todo destkop: ati: fix startup
 @todo desktop: ati bluescreen
 @todo desktop: small button on tower
 @todo desktop: duplicates: old backups
