@@ -20,11 +20,11 @@
 @todo brk: ach
 @todo kd: vid
 @todo carol: square dance
-@todo carol: hook
 @todo carol: wifi password
 @todo carol: kindle
 @todo carol: kindle: audiobook demo
 @todo carol: plants
+@todo return drill
 @todo itunes: podcasts: update
 @todo itunes: ipod: interlude 4.5
 @todo itunes: ipod: sync
@@ -48,6 +48,8 @@
 @todo android: semaphore kernel
 @todo android: restore sim
 @todo android: semaphore manager app
+@todo android: sgs kernel flasher: uninstall
+@todo android: gmail: obnoxious big letters
 @todo android: bln
 @todo android: tape-a-talk: reinstall
 @todo android: tape-a-talk: move to xsd
@@ -65,6 +67,8 @@
 @todo android: test tape-a-talk sync
 @todo android: test camera uploads
 @todo android: titanium: schedule backups
+@todo android: evernote: sync
+@todo android: contacts: images
 @todo android: sms: auto delete old
 @todo android: replace old amrs with mp3s?
 @todo android: theme chooser
