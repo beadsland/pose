@@ -1,6 +1,6 @@
-@todo android: market: uninstall updates
-@todo android: reboot
 @todo android: semaphore manager app
+@todo android: sgs kernel flasher: uninstall
+@todo android: kernel manager lite: uninstall
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
@@ -45,8 +45,6 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: sgs kernel flasher: uninstall
-@todo android: kernel manager lite: uninstall
 @todo android: gmail: obnoxious big letters
 @todo android: bln
 @todo android: tape-a-talk: reinstall
