@@ -1,6 +1,6 @@
-@todo android: clock: no timer
 @todo android: go sms: very slow
 @todo android: mysms
+@todo android: test tape-a-talk sync
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
@@ -45,10 +45,9 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: test tape-a-talk sync
 @todo android: test camera uploads
-@todo android: titanium: schedule backups
 @todo android: evernote: sync
+@todo android: titanium: schedule backups
 @todo android: contacts: images
 @todo android: sms: auto delete old
 @todo android: replace old amrs with mp3s?
