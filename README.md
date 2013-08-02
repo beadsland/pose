@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">vaio: ebay listing estimate</font>
-* <font color="red">vaio: follow up w/ client</font>
-* <font color="red">vaio: partition</font>
+* <font color="red">android: review logs re crash</font>
+* <font color="red">android: tapeatalk stopped</font>
+* <font color="red">android: video stopped</font>
+* <font color="red">laptop: very slow</font>
 * <font color="red">laptop: usb shuts down device</font>
 * <font color="red">ipad: auto-cap: disable</font>
-* <font color="red">ipad: voice recognition?</font>
 * <font color="red">desktop: mp4s: to blue drive</font>
-* <font color="red">...plus 191 more (see TODO.edoc)
+* <font color="red">...plus 195 more (see TODO.edoc)
 </font>
 
 
