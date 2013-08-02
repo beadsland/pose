@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: review logs re crash</font>
 * <font color="red">android: tapeatalk stopped</font>
 * <font color="red">android: video stopped</font>
-* <font color="red">laptop: realtek: "disappeared" errors</font>
-* <font color="red">laptop: very slow</font>
-* <font color="red">laptop: usb shuts down device</font>
+* <font color="red">ipad: auto-cap: disable</font>
+* <font color="red">ipad: voice recognition?</font>
+* <font color="red">ipad: wd2go</font>
 * <font color="red">desktop: mp4s: to blue drive</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 197 more (see TODO.edoc)
 </font>
 
 
