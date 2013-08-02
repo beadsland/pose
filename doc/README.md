@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">vaio: ebay listing estimate</font>
 * <font color="red">vaio: follow up w/ client</font>
 * <font color="red">vaio: partition</font>
-* <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">laptop: picasa alt: uninstall</font>
-* <font color="red">laptop: windows ddk</font>
+* <font color="red">ipad: auto-cap: disable</font>
+* <font color="red">ipad: voice recognition?</font>
+* <font color="red">ipad: wd2go</font>
 * <font color="red">desktop: ati2dvag: blue screen on hibernate</font>
-* <font color="red">...plus 190 more (see TODO.edoc)
+* <font color="red">...plus 186 more (see TODO.edoc)
 </font>
 
 
