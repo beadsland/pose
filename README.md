@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">ipad: auto-cap: disable</font>
 * <font color="red">ipad: voice recognition?</font>
 * <font color="red">ipad: wd2go</font>
-* <font color="red">desktop: ati2dvag: blue screen on hibernate</font>
-* <font color="red">...plus 186 more (see TODO.edoc)
+* <font color="red">desktop: mp4s: to blue drive</font>
+* <font color="red">...plus 189 more (see TODO.edoc)
 </font>
 
 
