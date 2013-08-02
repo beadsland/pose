@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: picasa alt: uninstall</font>
 * <font color="red">laptop: windows ddk</font>
 * <font color="red">desktop: ati2dvag: blue screen on hibernate</font>
-* <font color="red">...plus 185 more (see TODO.edoc)
+* <font color="red">...plus 194 more (see TODO.edoc)
 </font>
 
 
