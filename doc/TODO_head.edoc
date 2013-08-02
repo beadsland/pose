@@ -1,8 +1,8 @@
-@todo android: video: stopped
-@todo android: review logs re crash
-@todo android: go sms: very slow/fc
+@todo android: semaphore: enable logger
+@todo android: camera: video resolution
+@todo android: camera video: stopped
 @todo laptop: type up chart
 @todo ipad: auto-cap: disable
 @todo ipad: voice recognition?
 @todo desktop: mp4s: to blue drive
-@todo ...plus 200 more (see TODO.edoc)
+@todo ...plus 202 more (see TODO.edoc)
