@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: smart voice recorder</font>
 * <font color="red">android: smart: move dropsync</font>
 * <font color="red">android: smart: move files</font>
+* <font color="red">android: tapeatalk: no time indicator</font>
 * <font color="red">laptop: type up chart</font>
 * <font color="red">ipad: auto-cap: disable</font>
 * <font color="red">ipad: voice recognition?</font>
 * <font color="red">desktop: mp4s: to blue drive</font>
-* <font color="red">...plus 206 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
