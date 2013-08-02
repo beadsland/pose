@@ -1,13 +1,14 @@
 @todo android: review logs re crash
 @todo android: tapeatalk stopped
 @todo android: video stopped
+@todo laptop: bonjour: disable
+@todo laptop: network card: "disappeared"
 @todo laptop: very slow
-@todo laptop: usb shuts down device
-@todo ipad: auto-cap: disable
 @todo desktop: mp4s: to blue drive
 @todo desktop: mp4s: dropbox
 @todo desktop: blue drive: mac can't write to
 @todo vacate
+@todo brk: curb
 @todo brk: ach
 @todo storage
 @todo rent
@@ -70,6 +71,7 @@
 @todo android: audiobook player
 @todo android: call recorder?
 @todo scanner: replacement
+@todo ipad: auto-cap: disable
 @todo ipad: voice recognition?
 @todo ipad: wd2go
 @todo ipad: skype: headset
@@ -78,7 +80,7 @@
 @todo ipad: sound boost
 @todo shana: web site
 @todo iqair: read manual
-@todo laptop: bonjour: disable
+@todo laptop: usb shuts down device
 @todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
