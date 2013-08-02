@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: usb shuts down device</font>
 * <font color="red">ipad: auto-cap: disable</font>
 * <font color="red">desktop: mp4s: to blue drive</font>
-* <font color="red">...plus 196 more (see TODO.edoc)
+* <font color="red">...plus 198 more (see TODO.edoc)
 </font>
 
 
