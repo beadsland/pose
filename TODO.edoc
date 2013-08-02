@@ -1,12 +1,13 @@
-@todo android: semaphore: enable logger
-@todo android: camera: video resolution
+@todo android: camera ics: install
 @todo android: camera video: stopped
+@todo android: go sms: very slow/fc
 @todo laptop: type up chart
 @todo ipad: auto-cap: disable
 @todo ipad: voice recognition?
 @todo desktop: mp4s: to blue drive
 @todo desktop: mp4s: dropbox
 @todo desktop: blue drive: mac can't write to
+@todo feed
 @todo brk: curb
 @todo vacate
 @todo recyc
@@ -52,8 +53,6 @@
 @todo declutter: desk
 @todo declutter: storage
 @todo declutter: acronis: old big backups: remove
-@todo android: review logs re crash
-@todo android: go sms: very slow/fc
 @todo android: mysms
 @todo android: test tape-a-talk sync
 @todo android: test camera uploads
