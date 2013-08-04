@@ -1,6 +1,6 @@
-@todo android: mysms
-@todo android: test smart voice sync
-@todo android: smart voice: not good enough?
+@todo android: alternative video camera
+@todo android: semaphore: bigmem?
+@todo android: semaphore: read ahead slow?
 @todo ipad: test skype
 @todo ipad: skype: headset
 @todo ipad: wd2go
@@ -48,6 +48,11 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
+@todo android: videocam slow: kernel?
+@todo android: videocam slow: wifi?
+@todo android: mysms
+@todo android: test smart voice sync
+@todo android: smart voice: not good enough?
 @todo android: test camera uploads
 @todo android: evernote: sync
 @todo android: chainfire?
