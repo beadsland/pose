@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">ipad: skype: headset</font>
 * <font color="red">ipad: bluetooth keyboard</font>
 * <font color="red">desktop: mp4s: to blue drive</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 204 more (see TODO.edoc)
 </font>
 
 
