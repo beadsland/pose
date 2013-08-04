@@ -1,6 +1,6 @@
-@todo android: camera ics: install
-@todo android: camera video: stopped
 @todo android: go sms: very slow/fc
+@todo android: mysms
+@todo android: test smart voice sync
 @todo ipad: test skype
 @todo ipad: skype: headset
 @todo ipad: wd2go
@@ -48,8 +48,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: mysms
-@todo android: test smart voice sync
 @todo android: test camera uploads
 @todo android: evernote: sync
 @todo android: chainfire?
