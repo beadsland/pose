@@ -1,6 +1,6 @@
-@todo android: go sms: very slow/fc
 @todo android: mysms
 @todo android: test smart voice sync
+@todo android: smart voice: not good enough?
 @todo ipad: test skype
 @todo ipad: skype: headset
 @todo ipad: wd2go
@@ -59,7 +59,6 @@
 @todo vaio: partition
 @todo vaio: clear
 @todo toshiba: clear
-@todo android: smart voice: not good enough?
 @todo android: titanium: schedule backups
 @todo android: contacts: images
 @todo android: sms: auto delete old
