@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: nandroid</font>
-* <font color="red">android: devil kernel</font>
+* <font color="red">android: devil kernel manager</font>
+* <font color="red">android: governor</font>
 * <font color="red">android: stability</font>
 * <font color="red">ipad: skype: headset</font>
 * <font color="red">voice recorder: not working (full?)</font>
 * <font color="red">laptop: review event logs</font>
 * <font color="red">desktop: mp4s: smartware</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
