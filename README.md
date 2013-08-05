@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: test touchwake</font>
 * <font color="red">android: evernote: sync</font>
-* <font color="red">android: chainfire?</font>
 * <font color="red">android: test skype</font>
 * <font color="red">r0: 16 gig sd?</font>
 * <font color="red">alan watts 2: duplicates</font>
