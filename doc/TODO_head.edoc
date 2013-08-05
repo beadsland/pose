@@ -1,6 +1,6 @@
-@todo android: semaphore: bigmem?
-@todo android: semaphore: read ahead slow?
+@todo android: rebooting?
 @todo android: videocam slow: kernel?
+@todo android: videocam slow: wifi?
 @todo ipad: skype: headset
 @todo voice recorder: not working (full?)
 @todo laptop: review event logs

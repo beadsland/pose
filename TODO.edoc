@@ -1,12 +1,12 @@
-@todo android: semaphore: bigmem?
-@todo android: semaphore: read ahead slow?
+@todo android: rebooting?
 @todo android: videocam slow: kernel?
+@todo android: videocam slow: wifi?
 @todo ipad: skype: headset
 @todo voice recorder: not working (full?)
 @todo laptop: review event logs
 @todo desktop: mp4s: smartware
+@todo desktop: hyatt videos
 @todo desktop: mybook: clear space
-@todo desktop: ati2dvag: blue screen on hibernate
 @todo stain
 @todo dot: drops
 @todo sh: org closet
@@ -48,7 +48,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: videocam slow: wifi?
 @todo android: mysms
 @todo android: test smart voice sync
 @todo android: smart voice: not good enough?
@@ -92,6 +91,7 @@
 @todo laptop: soluto?
 @todo laptop: evernote: cancel subscript
 @todo laptop: sync: memory upgrade
+@todo desktop: ati2dvag: blue screen on hibernate
 @todo desktop: small button on tower
 @todo desktop: system recovery point
 @todo desktop: ati: multimedia
