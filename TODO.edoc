@@ -1,6 +1,6 @@
-@todo android: test touchwake
-@todo android: evernote: sync
 @todo android: test skype
+@todo android: battery meter after reboot
+@todo android: contacts: images
 @todo r0: 16 gig sd?
 @todo alan watts 2: duplicates
 @todo red thumb: archive
@@ -51,10 +51,6 @@
 @todo vaio: partition
 @todo vaio: clear
 @todo toshiba: clear
-@todo android: battery meter after reboot
-@todo android: mysms
-@todo android: titanium: schedule backups
-@todo android: contacts: images
 @todo android: sms: auto delete old
 @todo android: replace old amrs with mp3s?
 @todo android: theme chooser
@@ -64,6 +60,7 @@
 @todo android: installs: default to phone
 @todo android: audiobook player
 @todo android: call recorder?
+@todo android: mysms
 @todo android: clear nandroid backups
 @todo android: test smart voice sync
 @todo android: test camera uploads
