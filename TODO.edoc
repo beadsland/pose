@@ -1,17 +1,16 @@
-@todo android: rebooting?
-@todo android: videocam slow: kernel?
-@todo android: videocam slow: wifi?
+@todo android: stability
+@todo android: test smart voice sync
+@todo android: smart voice: not good enough?
 @todo ipad: skype: headset
 @todo voice recorder: not working (full?)
 @todo laptop: review event logs
 @todo desktop: mp4s: smartware
 @todo desktop: hyatt videos
 @todo desktop: mybook: clear space
-@todo stain
 @todo dot: drops
+@todo prep
 @todo sh: org closet
 @todo sh: boxes
-@todo prep
 @todo acronis
 @todo gmail
 @todo liner: frosted?
@@ -48,9 +47,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: mysms
-@todo android: test smart voice sync
-@todo android: smart voice: not good enough?
 @todo android: test camera uploads
 @todo android: evernote: sync
 @todo android: chainfire?
@@ -62,6 +58,7 @@
 @todo vaio: partition
 @todo vaio: clear
 @todo toshiba: clear
+@todo android: mysms
 @todo android: titanium: schedule backups
 @todo android: contacts: images
 @todo android: sms: auto delete old

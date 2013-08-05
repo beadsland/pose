@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: rebooting?</font>
-* <font color="red">android: videocam slow: kernel?</font>
-* <font color="red">android: videocam slow: wifi?</font>
+* <font color="red">android: stability</font>
+* <font color="red">android: test smart voice sync</font>
+* <font color="red">android: smart voice: not good enough?</font>
 * <font color="red">ipad: skype: headset</font>
 * <font color="red">voice recorder: not working (full?)</font>
 * <font color="red">laptop: review event logs</font>
 * <font color="red">desktop: mp4s: smartware</font>
-* <font color="red">...plus 200 more (see TODO.edoc)
+* <font color="red">...plus 197 more (see TODO.edoc)
 </font>
 
 
