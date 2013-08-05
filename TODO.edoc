@@ -1,6 +1,6 @@
-@todo android: test photo send
-@todo android: enable touch wake
-@todo android: test smart voice sync
+@todo android: evernote: sync
+@todo android: chainfire?
+@todo android: test skype
 @todo r0: 16 gig sd?
 @todo alan watts 2: duplicates
 @todo red thumb: archive
@@ -47,16 +47,11 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: smart voice: not good enough?
-@todo android: test camera uploads
-@todo android: evernote: sync
-@todo android: chainfire?
-@todo android: test skype
-@todo android: battery meter after reboot
 @todo vaio: ebay listing estimate
 @todo vaio: partition
 @todo vaio: clear
 @todo toshiba: clear
+@todo android: battery meter after reboot
 @todo android: mysms
 @todo android: titanium: schedule backups
 @todo android: contacts: images
@@ -70,6 +65,8 @@
 @todo android: audiobook player
 @todo android: call recorder?
 @todo android: clear nandroid backups
+@todo android: test smart voice sync
+@todo android: test camera uploads
 @todo scanner: replacement
 @todo ipad: jailbreak
 @todo ipad: sound boost
