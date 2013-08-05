@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: devil kernel manager</font>
 * <font color="red">android: governor</font>
 * <font color="red">android: stability</font>
-* <font color="red">ipad: skype: headset</font>
-* <font color="red">voice recorder: not working (full?)</font>
-* <font color="red">laptop: review event logs</font>
+* <font color="red">r0: 16 gig sd?</font>
+* <font color="red">alan watts 2: duplicates</font>
+* <font color="red">red thumb: archive</font>
 * <font color="red">desktop: mp4s: smartware</font>
-* <font color="red">...plus 201 more (see TODO.edoc)
+* <font color="red">...plus 205 more (see TODO.edoc)
 </font>
 
 
