@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">ipad: skype: headset</font>
 * <font color="red">laptop: review event logs</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">desktop: mp4s: to blue drive</font>
-* <font color="red">...plus 201 more (see TODO.edoc)
+* <font color="red">desktop: mp4s: smartware</font>
+* <font color="red">...plus 200 more (see TODO.edoc)
 </font>
 
 
