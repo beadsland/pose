@@ -1,6 +1,6 @@
-@todo android: delete stock sms
 @todo android: go sms as default
 @todo android: sms: delete old
+@todo android: contacts: very slow
 @todo r0: 16 gig sd?
 @todo alan watts 2: duplicates
 @todo red thumb: archive
@@ -51,7 +51,6 @@
 @todo vaio: partition
 @todo vaio: clear
 @todo toshiba: clear
-@todo android: contacts: very slow
 @todo android: archive full pc backup
 @todo android: clear nandroid backups
 @todo android: test smart voice sync
