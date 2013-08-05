@@ -19,12 +19,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: alternative video camera</font>
 * <font color="red">android: semaphore: bigmem?</font>
 * <font color="red">android: semaphore: read ahead slow?</font>
+* <font color="red">android: videocam slow: kernel?</font>
 * <font color="red">ipad: skype: headset</font>
+* <font color="red">voice recorder: not working (full?)</font>
 * <font color="red">laptop: review event logs</font>
-* <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">desktop: mp4s: smartware</font>
 * <font color="red">...plus 200 more (see TODO.edoc)
 </font>

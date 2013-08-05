@@ -1,8 +1,8 @@
-@todo android: alternative video camera
 @todo android: semaphore: bigmem?
 @todo android: semaphore: read ahead slow?
+@todo android: videocam slow: kernel?
 @todo ipad: skype: headset
+@todo voice recorder: not working (full?)
 @todo laptop: review event logs
-@todo laptop: picasa: rebuild database
 @todo desktop: mp4s: smartware
 @todo ...plus 200 more (see TODO.edoc)

@@ -1,9 +1,9 @@
-@todo android: alternative video camera
 @todo android: semaphore: bigmem?
 @todo android: semaphore: read ahead slow?
+@todo android: videocam slow: kernel?
 @todo ipad: skype: headset
+@todo voice recorder: not working (full?)
 @todo laptop: review event logs
-@todo laptop: picasa: rebuild database
 @todo desktop: mp4s: smartware
 @todo desktop: mybook: clear space
 @todo desktop: ati2dvag: blue screen on hibernate
@@ -48,7 +48,6 @@
 @todo declutter: drawers
 @todo declutter: desk
 @todo declutter: storage
-@todo android: videocam slow: kernel?
 @todo android: videocam slow: wifi?
 @todo android: mysms
 @todo android: test smart voice sync
@@ -81,6 +80,7 @@
 @todo ipad: sound boost
 @todo shana: web site
 @todo iqair: read manual
+@todo laptop: picasa: rebuild database
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
 @todo laptop: repair installer
