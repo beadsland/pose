@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: semaphore: bigmem?</font>
 * <font color="red">android: semaphore: read ahead slow?</font>
 * <font color="red">ipad: skype: headset</font>
-* <font color="red">ipad: wd2go</font>
 * <font color="red">rio: alan watts</font>
+* <font color="red">laptop: review event logs</font>
 * <font color="red">desktop: mp4s: to blue drive</font>
-* <font color="red">...plus 204 more (see TODO.edoc)
+* <font color="red">...plus 203 more (see TODO.edoc)
 </font>
 
 
