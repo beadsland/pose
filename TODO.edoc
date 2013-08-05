@@ -1,6 +1,6 @@
-@todo android: contacts: images
 @todo android: sms: auto delete old
-@todo android: theme chooser
+@todo android: titanium: turn off system data migration
+@todo android: audiobook player
 @todo r0: 16 gig sd?
 @todo alan watts 2: duplicates
 @todo red thumb: archive
@@ -51,11 +51,7 @@
 @todo vaio: partition
 @todo vaio: clear
 @todo toshiba: clear
-@todo android: jamt white
 @todo android: archive full pc backup
-@todo android: titanium: turn off system data migration
-@todo android: installs: default to phone
-@todo android: audiobook player
 @todo android: call recorder?
 @todo android: mysms
 @todo android: clear nandroid backups
