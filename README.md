@@ -19,8 +19,8 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: remove go sms</font>
 * <font color="red">android: archive full pc backup</font>
-* <font color="red">android: final sms test</font>
 * <font color="red">android: contacts: very slow</font>
 * <font color="red">vaio: ebay listing estimate</font>
 * <font color="red">vaio: partition</font>
