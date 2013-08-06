@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">m4v: won't play on mac?</font>
-* <font color="red">r0: alan watts 2</font>
+* <font color="red">r0: music</font>
+* <font color="red">android: archive full pc backup</font>
 * <font color="red">android: final sms test</font>
 * <font color="red">android: contacts: very slow</font>
-* <font color="red">android: archive full pc backup</font>
-* <font color="red">desktop: mp4s: smartware</font>
-* <font color="red">desktop: hyatt videos</font>
-* <font color="red">...plus 181 more (see TODO.edoc)
+* <font color="red">vaio: ebay listing estimate</font>
+* <font color="red">vaio: partition</font>
+* <font color="red">vaio: clear</font>
+* <font color="red">...plus 184 more (see TODO.edoc)
 </font>
 
 
