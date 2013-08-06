@@ -22,11 +22,11 @@ __<font color="red">To do</font>__
 * <font color="red">android: final sms test</font>
 * <font color="red">android: contacts: very slow</font>
 * <font color="red">android: archive full pc backup</font>
+* <font color="red">m4v: won't play on mac?</font>
+* <font color="red">itunes: requires bonjour?</font>
 * <font color="red">r0: 16 gig sd?</font>
 * <font color="red">alan watts 2: duplicates</font>
-* <font color="red">red thumb: archive</font>
-* <font color="red">desktop: mp4s: smartware</font>
-* <font color="red">...plus 184 more (see TODO.edoc)
+* <font color="red">...plus 186 more (see TODO.edoc)
 </font>
 
 
