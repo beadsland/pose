@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">vaio: partition</font>
 * <font color="red">vaio: clear</font>
 * <font color="red">laptop: review event logs</font>
-* <font color="red">...plus 194 more (see TODO.edoc)
+* <font color="red">...plus 191 more (see TODO.edoc)
 </font>
 
 
