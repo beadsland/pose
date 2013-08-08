@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">house: dot</font>
+* <font color="red">house: carol</font>
+* <font color="red">house: water</font>
 * <font color="red">android: remove go sms</font>
 * <font color="red">android: can't receive phone calls</font>
 * <font color="red">android: archive full pc backup</font>
 * <font color="red">laptop: review event logs</font>
-* <font color="red">laptop: itunes: requires bonjour?</font>
-* <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">vaio: ebay listing estimate</font>
-* <font color="red">...plus 196 more (see TODO.edoc)
+* <font color="red">...plus 193 more (see TODO.edoc)
 </font>
 
 
