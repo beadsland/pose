@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: watchdog: 80%</font>
 * <font color="red">android: remove google+</font>
 * <font color="red">laptop: review event logs</font>
-* <font color="red">...plus 204 more (see TODO.edoc)
+* <font color="red">...plus 205 more (see TODO.edoc)
 </font>
 
 
