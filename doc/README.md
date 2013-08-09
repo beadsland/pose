@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: can't receive phone calls</font>
 * <font color="red">android: archive full pc backup</font>
 * <font color="red">laptop: review event logs</font>
-* <font color="red">...plus 196 more (see TODO.edoc)
+* <font color="red">...plus 197 more (see TODO.edoc)
 </font>
 
 
