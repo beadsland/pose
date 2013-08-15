@@ -25,8 +25,8 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: review event logs</font>
 * <font color="red">laptop: itunes: requires bonjour?</font>
 * <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">house: stains</font>
-* <font color="red">...plus 212 more (see TODO.edoc)
+* <font color="red">house: laundry: hang</font>
+* <font color="red">...plus 210 more (see TODO.edoc)
 </font>
 
 
