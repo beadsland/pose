@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">laptop: itunes: requires bonjour?</font>
 * <font color="red">laptop: picasa: rebuild database</font>
 * <font color="red">house: sh: support</font>
-* <font color="red">...plus 199 more (see TODO.edoc)
+* <font color="red">...plus 201 more (see TODO.edoc)
 </font>
 
 
