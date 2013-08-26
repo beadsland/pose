@@ -1,6 +1,14 @@
 @todo android: remove go sms
 @todo android: watchdog: 80%
 @todo android: remove google+
+@todo android: remove facebook
+@todo android: remove linkedin
+@todo android: screen goes black sms
+@todo android: can't receive phone calls
+@todo android: archive full pc backup
+@todo android: contacts: very slow
+@todo android: test smart voice sync
+@todo android: test camera uploads
 @todo laptop: review event logs
 @todo laptop: itunes: requires bonjour?
 @todo laptop: picasa: rebuild database
@@ -64,14 +72,6 @@
 @todo vaio: partition
 @todo vaio: clear
 @todo vaio: toshiba: clear
-@todo android: remove facebook
-@todo android: remove linkedin
-@todo android: screen goes black sms
-@todo android: can't receive phone calls
-@todo android: archive full pc backup
-@todo android: contacts: very slow
-@todo android: test smart voice sync
-@todo android: test camera uploads
 @todo laptop: picasa alt: uninstall
 @todo laptop: windows ddk
 @todo laptop: repair installer

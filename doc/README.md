@@ -22,10 +22,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: remove go sms</font>
 * <font color="red">android: watchdog: 80%</font>
 * <font color="red">android: remove google+</font>
-* <font color="red">laptop: review event logs</font>
-* <font color="red">laptop: itunes: requires bonjour?</font>
-* <font color="red">laptop: picasa: rebuild database</font>
-* <font color="red">house: scrub brush</font>
+* <font color="red">android: remove facebook</font>
+* <font color="red">android: remove linkedin</font>
+* <font color="red">android: screen goes black sms</font>
+* <font color="red">android: can't receive phone calls</font>
 * <font color="red">...plus 194 more (see TODO.edoc)
 </font>
 
