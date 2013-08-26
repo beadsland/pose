@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: gmail: too much memory</font>
 * <font color="red">android: screen goes black sms</font>
 * <font color="red">android: can't receive phone calls</font>
-* <font color="red">android: gmail: too much memory</font>
 * <font color="red">android: archive full pc backup</font>
 * <font color="red">android: contacts: very slow</font>
 * <font color="red">android: test smart voice sync</font>
