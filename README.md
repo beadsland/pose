@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
-* <font color="red">android: remove google+</font>
-* <font color="red">android: remove facebook</font>
-* <font color="red">android: remove linkedin</font>
-* <font color="red">android: remove go sms</font>
+* <font color="red">android: remove youtube</font>
 * <font color="red">android: default sms in dock</font>
 * <font color="red">android: screen goes black sms</font>
 * <font color="red">android: can't receive phone calls</font>
-* <font color="red">...plus 196 more (see TODO.edoc)
+* <font color="red">android: watchdog: 80%</font>
+* <font color="red">android: gmail: too much memory</font>
+* <font color="red">android: archive full pc backup</font>
+* <font color="red">...plus 193 more (see TODO.edoc)
 </font>
 
 
