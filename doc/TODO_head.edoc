@@ -1,8 +1,8 @@
-@todo android: archive full pc backup
-@todo android: contacts: very slow
-@todo android: test smart voice sync
-@todo android: test camera uploads
-@todo laptop: review event logs
-@todo laptop: itunes: requires bonjour?
-@todo laptop: picasa: rebuild database
-@todo ...plus 187 more (see TODO.edoc)
+@todo android: vnc server
+@todo android: netbook: vnc client
+@todo android: voice talk to text
+@todo android: ringer type (where)
+@todo android: force media scan
+@todo android: gallery
+@todo android: kernel: bluetooth off
+@todo ...plus 191 more (see TODO.edoc)
