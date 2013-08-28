@@ -1,12 +1,13 @@
-@todo android: vnc server
-@todo android: voice talk to text
-@todo android: force media scan
+@todo android: media scan
 @todo android: gallery
 @todo android: ringer type (where)
-@todo android: search providers
+@todo android: search providers: gmail search
+@todo android: search providers: sms search
 @todo android: kernel: bluetooth off
 @todo android: juice: low mem
 @todo android: wifi: not working?
+@todo android: vnc server
+@todo android: voice talk to text
 @todo android: archive full pc backup
 @todo android: contacts: very slow
 @todo android: test smart voice sync
