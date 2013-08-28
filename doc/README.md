@@ -23,10 +23,10 @@ __<font color="red">To do</font>__
 * <font color="red">android: ringer type (where)</font>
 * <font color="red">android: search providers: gmail search</font>
 * <font color="red">android: search providers: sms search</font>
-* <font color="red">android: kernel: bluetooth off</font>
-* <font color="red">android: juice: low mem</font>
+* <font color="red">android: vnc server</font>
 * <font color="red">android: wifi: not working?</font>
-* <font color="red">...plus 192 more (see TODO.edoc)
+* <font color="red">android: voice talk to text</font>
+* <font color="red">...plus 190 more (see TODO.edoc)
 </font>
 
 
