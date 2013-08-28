@@ -20,12 +20,12 @@ packages was removed from Erlang/OTP as of R16A01.)
 __<font color="red">To do</font>__
 <br></br>
 * <font color="red">android: vnc server</font>
-* <font color="red">android: netbook: vnc client</font>
 * <font color="red">android: voice talk to text</font>
 * <font color="red">android: ringer type (where)</font>
 * <font color="red">android: force media scan</font>
 * <font color="red">android: gallery</font>
 * <font color="red">android: kernel: bluetooth off</font>
+* <font color="red">android: juice: low mem</font>
 * <font color="red">...plus 191 more (see TODO.edoc)
 </font>
 
