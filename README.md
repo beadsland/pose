@@ -26,7 +26,7 @@ __<font color="red">To do</font>__
 * <font color="red">android: search providers: sms search</font>
 * <font color="red">android: vnc server</font>
 * <font color="red">android: wifi: not working?</font>
-* <font color="red">...plus 191 more (see TODO.edoc)
+* <font color="red">...plus 190 more (see TODO.edoc)
 </font>
 
 
