@@ -19,14 +19,14 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: sqllite: archive</font>
+* <font color="red">android: Camera: archive</font>
 * <font color="red">android: media scanner: disable</font>
 * <font color="red">android: restore ring tones</font>
 * <font color="red">android: gallery replacement</font>
 * <font color="red">android: search providers: gmail search</font>
 * <font color="red">android: search providers: sms search</font>
-* <font color="red">android: vnc server</font>
-* <font color="red">android: wifi: not working?</font>
-* <font color="red">...plus 192 more (see TODO.edoc)
+* <font color="red">...plus 194 more (see TODO.edoc)
 </font>
 
 
