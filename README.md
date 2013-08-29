@@ -19,9 +19,9 @@ packages was removed from Erlang/OTP as of R16A01.)
 
 __<font color="red">To do</font>__
 <br></br>
+* <font color="red">android: sms: no enter key</font>
 * <font color="red">android: sqllite: archive</font>
 * <font color="red">android: Camera: archive</font>
-* <font color="red">android: sms: no enter key</font>
 * <font color="red">android: media scanner: disable</font>
 * <font color="red">android: restore ring tones</font>
 * <font color="red">android: gallery replacement</font>
